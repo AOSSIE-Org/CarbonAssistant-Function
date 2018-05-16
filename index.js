@@ -3,6 +3,8 @@
 const functions = require('firebase-functions'); // Cloud Functions for Firebase library
 const DialogflowApp = require('actions-on-google').DialogflowApp; // Google Assistant helper library
 const requestLib = require('request');
+var config = require('./config')
+
 exports.dialogflowFirebaseFulfillment = functions.https.onRequest((request, response) => {
   console.log('Dialogflow Request headers: ' + JSON.stringify(request.headers));
   console.log('Dialogflow Request body: ' + JSON.stringify(request.body));
@@ -35,6 +37,74 @@ function processV1Request (request, response) {
       } else {
         sendResponse('Hello, Welcome to my Dialogflow agent!'); // Send simple response to user
       }
+    },
+    'input.appliance_details': () => {
+        if(parameters.appliance !== "") {
+            if(parameters.appliance_specs !== "") {
+                if(parameters.geo_country !== "") {
+                    // At this point we have enough info
+                    var options = {
+                        uri: config.endpoint + "/appliances",
+                        method: 'POST',
+                        headers: {
+                            'access-key': config.access_key
+                        },
+	                    json: true,
+                        body: {
+                            "appliance": parameters.appliance, "type":parameters.appliance_specs, "region":parameters.geo_country
+                        }
+                    };
+                    requestLib(options, function (error, response, body) {
+                        if (!error && response.statusCode === 200) {
+                            console.log(body) // Print the shortened url.
+                            //let emission = body.emissions.CO2;
+                            if(parameters.emission_type !== "") {
+                                let emissionType = parameters.emission_type;
+                                let emission;
+                                if(emissionType === "CO2")
+                                    emission = body.emissions.CO2;
+                                else if(emissionType === "N2O")
+                                    emission = body.emissions.N2O;
+                                else
+                                    emission = body.emissions.CH4;
+
+                                let unit = body.unit;
+                                if(unit !== undefined)
+                                    sendGoogleResponse(emissionType+' emission for a '+parameters.appliance_specs+' '+parameters.appliance+' in '+parameters.geo_country+' is '+emission+' '+unit);
+                                else
+                                    sendGoogleResponse(emissionType+' emission for a '+parameters.appliance_specs+' '+parameters.appliance+' in '+parameters.geo_country+' is '+emission+' kg');
+                            }
+                            else {
+                                let carbonEmission = body.emissions.CO2;
+                                let nitrousEmission = body.emissions.N2O;
+                                let methaneEmission = body.emissions.CH4;
+                                sendGoogleResponse('Emissions for a '+parameters.appliance_specs+' '+parameters.appliance+' in '+parameters.geo_country+' are as follows.\n  \n'
+                                                    +'Carbon Dioxide: '+carbonEmission+' kg.\n'
+                                                    +"Nitrous Oxide: "+nitrousEmission+' kg.\n'
+                                                    +"Methane: "+methaneEmission+' kg.');
+                            }
+                        }
+				        else {
+				            if(body.err !== undefined)
+				                sendGoogleResponse(body.err);
+				            else {
+				                sendGoogleResponse("Sorry, we are facing a temporary outage. Please contact our support.");
+				            }
+				        }
+                    });
+                }
+                else {
+                    sendGoogleResponse('Sorry, you need to specify the region');
+                }
+            }
+            else {
+                sendGoogleResponse('Sorry, you need to specify the appliance type');
+            }
+        }
+        else {
+            sendGoogleResponse("Sorry, I did not understand the appliance you mentioned");
+        }
+        // sendGoogleResponse('This is a valid request'); // Send simple response to user
     },
     // The default fallback intent has been matched, try to recover (https://dialogflow.com/docs/intents#fallback_intents)
     'input.unknown': () => {
