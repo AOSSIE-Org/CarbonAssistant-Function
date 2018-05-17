@@ -57,9 +57,6 @@ function processV1Request(request, response) {
                 else
                     usage_country = 'Default';
 
-                console.log("Original Size: " + parameters.size);
-                console.log("Size: " + appliance_size);
-
                 if (appliance_type != "" && appliance_size != "")
                     appliance_path = appliance_type + " " + appliance_size;
                 else if (appliance_type != "")
