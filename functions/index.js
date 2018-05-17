@@ -96,11 +96,20 @@ function processV1Request(request, response) {
                             else
                                 emission = body.emissions.CH4;
 
+                            let basicResponseString = emissionType + ' emission for a ' + appliance_size + appliance_type + ' ' + parameters.appliance;
+                            let finalResponseString = "";
+
+                            if (usage_country != "" && usage_country != "Default")
+                                finalResponseString = basicResponseString + ' in ' + usage_country + ' is ' + emission;
+                            else
+                                finalResponseString = basicResponseString + ' is ' + emission;
+
+
                             let unit = body.unit;
                             if (unit !== undefined)
-                                sendGoogleResponse(emissionType + ' emission for a ' + parameters.type + ' ' + parameters.appliance + ' in ' + parameters.geo_country + ' is ' + emission + ' ' + unit);
+                                sendGoogleResponse(finalResponseString + ' ' + unit);
                             else
-                                sendGoogleResponse(emissionType + ' emission for a ' + parameters.type + ' ' + parameters.appliance + ' in ' + parameters.geo_country + ' is ' + emission + ' kg');
+                                sendGoogleResponse(emissionType + ' emission for a ' + appliance_size + appliance_type + ' ' + parameters.appliance + ' in ' + parameters.geo_country + ' is ' + emission + ' kg');
                         } else {
                             let carbonEmission = body.emissions.CO2;
                             let nitrousEmission = body.emissions.N2O;
