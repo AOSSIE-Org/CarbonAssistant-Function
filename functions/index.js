@@ -84,8 +84,7 @@ function processV1Request(request, response) {
                 };
                 requestLib(options, function(error, response, body) {
                     if (!error && response.statusCode === 200) {
-                        console.log(body) // Print the shortened url.
-                        //let emission = body.emissions.CO2;
+                        console.log(body);
                         if (parameters.emission_type !== "") {
                             let emissionType = parameters.emission_type;
                             let emission;
