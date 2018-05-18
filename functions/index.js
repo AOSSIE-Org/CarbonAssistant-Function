@@ -111,10 +111,16 @@ function processV1Request(request, response) {
                             else
                                 sendGoogleResponse(emissionType + ' emission for a ' + appliance_size + appliance_type + ' ' + parameters.appliance + ' in ' + parameters.geo_country + ' is ' + emission + ' kg');
                         } else {
+                            let basicResponseString = 'Emissions for a ' + appliance_size + appliance_type + ' ' + parameters.appliance;
+                            let finalResponseString = "";
+                            if (usage_country != "" && usage_country != "Default")
+                                finalResponseString = basicResponseString + ' in ' + usage_country;
+                            else
+                                finalResponseString = basicResponseString;
                             let carbonEmission = body.emissions.CO2;
                             let nitrousEmission = body.emissions.N2O;
                             let methaneEmission = body.emissions.CH4;
-                            sendGoogleResponse('Emissions for a ' + parameters.type + ' ' + parameters.appliance + ' in ' + parameters.geo_country + ' are as follows.\n  \n' +
+                            sendGoogleResponse(finalResponseString + ' are as follows:\n  \n' +
                                 'Carbon Dioxide: ' + carbonEmission + ' kg.\n' +
                                 "Nitrous Oxide: " + nitrousEmission + ' kg.\n' +
                                 "Methane: " + methaneEmission + ' kg.');
