@@ -110,7 +110,7 @@ function processV1Request(request, response) {
                             else
                                 emission = body.emissions.CH4;
 
-                            let basicResponseString = emissionType + ' emission for a ' + appliance_size + ' ' + appliance_type + ' ' + parameters.appliance;
+                            let basicResponseString = emissionType + ' emission for ' + appliance_quantity + ' ' + appliance_size + ' ' + appliance_type + ' ' + parameters.appliance + ' consumed for ' + appliance_usage_hours + ' hours';
                             let finalResponseString = "";
 
                             if (usage_country != "" && usage_country != "Default")
@@ -125,7 +125,7 @@ function processV1Request(request, response) {
                             else
                                 sendGoogleResponse(emissionType + ' emission for a ' + appliance_size + ' ' + appliance_type + ' ' + parameters.appliance + ' in ' + parameters.geo_country + ' is ' + emission + ' kg');
                         } else {
-                            let basicResponseString = 'Emissions for a ' + appliance_size + appliance_type + ' ' + parameters.appliance;
+                            let basicResponseString = 'Emissions for ' + appliance_quantity + ' ' + appliance_size + ' ' + appliance_type + ' ' + parameters.appliance + ' consumed for ' + appliance_usage_hours + ' hours';
                             let finalResponseString = "";
                             if (usage_country != "" && usage_country != "Default")
                                 finalResponseString = basicResponseString + ' in ' + usage_country;
