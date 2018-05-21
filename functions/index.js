@@ -43,6 +43,7 @@ function processV1Request(request, response) {
         },
         'input.appliance_details': () => {
             if (parameters.appliance !== "") {
+                let item = parameters.appliance;
                 let appliance_type = "",
                     appliance_size = "",
                     appliance_quantity = 1,
@@ -59,13 +60,16 @@ function processV1Request(request, response) {
                 else
                     usage_country = 'Default';
 
-                if (appliance_type != "" && appliance_size != "")
+                if (appliance_type != "" && appliance_size != "") {
                     appliance_path = appliance_type + " " + appliance_size;
-                else if (appliance_type != "")
+                    item = item + ' ' + appliance_path;
+                } else if (appliance_type != "") {
                     appliance_path = appliance_type;
-                else if (appliance_size != "")
+                    item = item + ' ' + appliance_path;
+                } else if (appliance_size != "") {
                     appliance_path = appliance_size;
-                else
+                    item = item + ' ' + appliance_path;
+                } else
                     appliance_path = "";
 
                 if (parameters.quantity != "")
@@ -83,18 +87,17 @@ function processV1Request(request, response) {
 
                 // At this point we have enough info
                 var options = {
-                    uri: config.endpoint + "/appliances",
+                    uri: config.endpoint + "/emissions",
                     method: 'POST',
                     headers: {
                         'access-key': config.access_key
                     },
                     json: true,
                     body: {
-                        "appliance": parameters.appliance,
-                        "type": appliance_path,
+                        "item": item,
                         "region": usage_country,
                         "quantity": appliance_quantity,
-                        "running_time": appliance_usage_hours
+                        "multiply": appliance_usage_hours
                     }
                 };
                 requestLib(options, function(error, response, body) {
@@ -110,7 +113,7 @@ function processV1Request(request, response) {
                             else
                                 emission = body.emissions.CH4;
 
-                            let basicResponseString = emissionType + ' emission for ' + appliance_quantity + ' ' + appliance_size + ' ' + appliance_type + ' ' + parameters.appliance + ' consumed for ' + appliance_usage_hours + ' hours';
+                            let basicResponseString = emissionType + ' emission for ' + appliance_quantity + ' ' + appliance_size + ' ' + appliance_type + ' ' + parameters.appliance + ' consumed for ' + appliance_usage_hours + ' hour(s)';
                             let finalResponseString = "";
 
                             if (usage_country != "" && usage_country != "Default")
@@ -125,7 +128,7 @@ function processV1Request(request, response) {
                             else
                                 sendGoogleResponse(emissionType + ' emission for a ' + appliance_size + ' ' + appliance_type + ' ' + parameters.appliance + ' in ' + parameters.geo_country + ' is ' + emission + ' kg');
                         } else {
-                            let basicResponseString = 'Emissions for ' + appliance_quantity + ' ' + appliance_size + ' ' + appliance_type + ' ' + parameters.appliance + ' consumed for ' + appliance_usage_hours + ' hours';
+                            let basicResponseString = 'Emissions for ' + appliance_quantity + ' ' + appliance_size + ' ' + appliance_type + ' ' + parameters.appliance + ' consumed for ' + appliance_usage_hours + ' hour(s)';
                             let finalResponseString = "";
                             if (usage_country != "" && usage_country != "Default")
                                 finalResponseString = basicResponseString + ' in ' + usage_country;
@@ -141,7 +144,7 @@ function processV1Request(request, response) {
                         }
                     } else {
                         if (body.err !== undefined) {
-                            console.log("Error: " + body);
+                            console.log("Error: " + JSON.stringify(body));
                             sendGoogleResponse(body.err);
                         } else {
                             sendGoogleResponse("Sorry, we are facing a temporary outage. Please contact our support.");
