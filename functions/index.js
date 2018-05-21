@@ -45,6 +45,8 @@ function processV1Request(request, response) {
             if (parameters.appliance !== "") {
                 let appliance_type = "",
                     appliance_size = "",
+                    appliance_quantity = 1,
+                    appliance_usage_hours = 1,
                     appliance_path = "";
                 let usage_country;
 
@@ -66,7 +68,18 @@ function processV1Request(request, response) {
                 else
                     appliance_path = "";
 
+                if (parameters.quantity != "")
+                    appliance_quantity = parameters.quantity;
+
+                if (parameters.duration) {
+                    let duration_in_hours = getTimeInHours(parameters.duration);
+                    console.log("Calculated duration:" + duration_in_hours);
+                    if (duration_in_hours != -1)
+                        appliance_usage_hours = duration_in_hours;
+                }
+
                 console.log("Appliance: " + parameters.appliance + ", path=" + appliance_path);
+                console.log("Duration: " + appliance_usage_hours + ", quantity=" + appliance_quantity);
 
                 // At this point we have enough info
                 var options = {
@@ -79,7 +92,9 @@ function processV1Request(request, response) {
                     body: {
                         "appliance": parameters.appliance,
                         "type": appliance_path,
-                        "region": usage_country
+                        "region": usage_country,
+                        "quantity": appliance_quantity,
+                        "running_time": appliance_usage_hours
                     }
                 };
                 requestLib(options, function(error, response, body) {
@@ -95,7 +110,7 @@ function processV1Request(request, response) {
                             else
                                 emission = body.emissions.CH4;
 
-                            let basicResponseString = emissionType + ' emission for a ' + appliance_size + appliance_type + ' ' + parameters.appliance;
+                            let basicResponseString = emissionType + ' emission for a ' + appliance_size + ' ' + appliance_type + ' ' + parameters.appliance;
                             let finalResponseString = "";
 
                             if (usage_country != "" && usage_country != "Default")
@@ -108,7 +123,7 @@ function processV1Request(request, response) {
                             if (unit !== undefined)
                                 sendGoogleResponse(finalResponseString + ' ' + unit);
                             else
-                                sendGoogleResponse(emissionType + ' emission for a ' + appliance_size + appliance_type + ' ' + parameters.appliance + ' in ' + parameters.geo_country + ' is ' + emission + ' kg');
+                                sendGoogleResponse(emissionType + ' emission for a ' + appliance_size + ' ' + appliance_type + ' ' + parameters.appliance + ' in ' + parameters.geo_country + ' is ' + emission + ' kg');
                         } else {
                             let basicResponseString = 'Emissions for a ' + appliance_size + appliance_type + ' ' + parameters.appliance;
                             let finalResponseString = "";
@@ -125,9 +140,10 @@ function processV1Request(request, response) {
                                 "Methane: " + methaneEmission + ' kg.');
                         }
                     } else {
-                        if (body.err !== undefined)
+                        if (body.err !== undefined) {
+                            console.log("Error: " + body);
                             sendGoogleResponse(body.err);
-                        else {
+                        } else {
                             sendGoogleResponse("Sorry, we are facing a temporary outage. Please contact our support.");
                         }
                     }
@@ -217,6 +233,17 @@ function processV1Request(request, response) {
             console.log('Response to Dialogflow: ' + JSON.stringify(responseJson));
             response.json(responseJson); // Send response to Dialogflow
         }
+    }
+
+    function getTimeInHours(duration) {
+        if (duration.unit === 'h')
+            return duration.amount;
+        else if (duration.unit === 'min')
+            return duration.amount / 60;
+        else if (duration.unit === 's')
+            return duration.amount / (60 * 60);
+        else
+            return -1;
     }
 }
 // Construct rich response for Google Assistant (v1 requests only)
