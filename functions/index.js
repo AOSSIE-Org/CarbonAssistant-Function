@@ -71,8 +71,13 @@ function processV1Request(request, response) {
                         let emission = body.emissions.CO2;
 
                         let basicResponseString = 'Carbon emissions for flight from ' + origin_original + ' ( ' +
-                            origin + ' ) to ' + destination_original + ' ( ' + destination + ' ) are ' + emission;
-                        let finalResponseString = basicResponseString;
+                            origin + ' ) to ' + destination_original + ' ( ' + destination + ' )';
+
+                        let finalResponseString;
+                        if (passengers !== 1)
+                            finalResponseString = basicResponseString + ' carrying ' + passengers + ' passengers are ' + emission;
+                        else
+                            finalResponseString = basicResponseString + ' are ' + emission
 
 
                         let unit = body.unit;
