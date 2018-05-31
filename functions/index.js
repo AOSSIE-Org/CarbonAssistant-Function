@@ -39,6 +39,60 @@ function processV1Request(request, response) {
                 sendResponse('Hello, Welcome to my Dialogflow agent!'); // Send simple response to user
             }
         },
+        'input.flight_details': () => {
+            if (parameters.origin != "" && parameters.destination !== "") {
+                let origin = parameters.origin,
+                    destination = parameters.destination,
+                    origin_original = parameters.origin_original,
+                    destination_original = parameters.destination_original,
+                    passengers = 1;
+
+                if (parameters.passengers !== "")
+                    passengers = parameters.passengers;
+
+                var options = {
+                    uri: config.endpoint + "/flight",
+                    method: 'POST',
+                    headers: {
+                        'access-key': config.access_key
+                    },
+                    json: true,
+                    body: {
+                        "origin": origin,
+                        "destination": destination,
+                        "passengers": passengers
+                    }
+                };
+
+                requestLib(options, function(error, response, body) {
+                    if (!error && response.statusCode === 200) {
+                        console.log(body);
+                        let emissionType = parameters.emission_type;
+                        let emission = body.emissions.CO2;
+
+                        let basicResponseString = 'Carbon emissions for flight from ' + origin_original + ' ( ' +
+                            origin + ' ) to ' + destination_original + ' ( ' + destination + ' ) are ' + emission;
+                        let finalResponseString = basicResponseString;
+
+
+                        let unit = body.unit;
+                        if (unit !== undefined)
+                            sendGoogleResponse(finalResponseString + ' ' + unit);
+                        else
+                            sendGoogleResponse(finalResponseString + ' kg');
+                    } else {
+                        if (body.err !== undefined) {
+                            console.log("Error: " + JSON.stringify(body));
+                            sendGoogleResponse(body.err);
+                        } else {
+                            sendGoogleResponse("Sorry, we are facing a temporary outage. Please contact our support.");
+                        }
+                    }
+                });
+            } else {
+                sendGoogleResponse("Sorry, need a valid origin and destination of your flight travel");
+            }
+        },
         'input.fuel_details': () => {
             if (parameters.fuel_type != "" && parameters.fuel_original !== "") {
                 let consumed_quantity = 1,
