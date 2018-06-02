@@ -154,8 +154,8 @@ function processV1Request(request, response) {
                         let emissionType = parameters.emission_type;
                         let emission = body.emissions.CO2;
 
-                        let basicResponseString = 'Carbon emissions for flight from ' + origin_original + ' ( ' +
-                            origin + ' ) to ' + destination_original + ' ( ' + destination + ' )';
+                        let basicResponseString = 'Carbon emissions for a flight from ' + origin_original + ' (' +
+                            origin + ') to ' + destination_original + ' (' + destination + ')';
 
                         let finalResponseString;
                         if (passengers !== 1)
@@ -222,8 +222,8 @@ function processV1Request(request, response) {
                             else
                                 emission = body.emissions.CH4;
 
-                            let basicResponseString = emissionType + ' emission for ' + consumed_quantity + ' ' + consumption_unit + ' ' +
-                                consumed_fuel_original + ' consumption is ' + emission;
+                            let basicResponseString = emissionType + ' emissions due to ' + consumed_quantity + ' ' + consumption_unit + ' ' +
+                                consumed_fuel_original + ' consumption are ' + emission;
                             let finalResponseString = basicResponseString;
 
 
@@ -233,7 +233,7 @@ function processV1Request(request, response) {
                             else
                                 sendGoogleResponse(finalResponseString + ' kg');
                         } else {
-                            let basicResponseString = 'Emissions for ' + consumed_quantity + ' ' + consumption_unit + ' ' +
+                            let basicResponseString = 'Emissions due to ' + consumed_quantity + ' ' + consumption_unit + ' ' +
                                 consumed_fuel_original + ' consumption';
                             let finalResponseString = basicResponseString;
 
@@ -299,22 +299,22 @@ function processV1Request(request, response) {
                         else
                             emission = body.emissions.CH4;
 
-                        let basicResponseString = emissionType + ' emission for electricity consumption of ' + consumed_quantity + ' kWh';
+                        let basicResponseString = emissionType + ' emissions due to electricity consumption of ' + consumed_quantity + ' kWh';
                         let finalResponseString = "";
 
                         if (consumption_country != "" && consumption_country != "Default")
-                            finalResponseString = basicResponseString + ' in ' + consumption_country + ' is ' + emission;
+                            finalResponseString = basicResponseString + ' in ' + consumption_country + ' are ' + emission;
                         else
-                            finalResponseString = basicResponseString + ' is ' + emission;
+                            finalResponseString = basicResponseString + ' are ' + emission;
 
 
                         let unit = body.unit;
                         if (unit !== undefined)
                             sendGoogleResponse(finalResponseString + ' ' + unit);
                         else
-                            sendGoogleResponse(emissionType + ' emission for a ' + appliance_size + ' ' + appliance_type + ' ' + parameters.appliance + ' in ' + parameters.geo_country + ' is ' + emission + ' kg');
+                            sendGoogleResponse(finalResponseString + ' kg');
                     } else {
-                        let basicResponseString = 'Emissions for electricity consumption of ' + consumed_quantity + ' kWh';
+                        let basicResponseString = 'Emissions due to electricity consumption of ' + consumed_quantity + ' kWh';
                         let finalResponseString = "";
                         if (consumption_country != "" && consumption_country != "Default")
                             finalResponseString = basicResponseString + ' in ' + consumption_country;
@@ -375,7 +375,7 @@ function processV1Request(request, response) {
                         let unit = '';
                         if (poultry_type !== 'egg')
                             unit = 'kg(s) ';
-                        let basicResponseString = 'CO2 emission for ' + poultry_quantity + ' ' + unit + poultry_type + ' production';
+                        let basicResponseString = 'CO2 emissions for ' + poultry_quantity + ' ' + unit + poultry_type + ' production';
                         let finalResponseString = "";
 
                         if (poultry_region != "Default")
@@ -475,22 +475,24 @@ function processV1Request(request, response) {
                             else
                                 emission = body.emissions.CH4;
 
-                            let basicResponseString = emissionType + ' emission for ' + appliance_quantity + ' ' + appliance_size + ' ' + appliance_type + ' ' + parameters.appliance + ' consumed for ' + appliance_usage_hours + ' hour(s)';
+                            let basicResponseString = emissionType + ' emissions due to ' + appliance_quantity + ' ' + appliance_size + ' ' + appliance_type +
+                                ' ' + parameters.appliance + ' consumed for ' + appliance_usage_hours + ' hour(s)';
                             let finalResponseString = "";
 
                             if (usage_country != "" && usage_country != "Default")
-                                finalResponseString = basicResponseString + ' in ' + usage_country + ' is ' + emission;
+                                finalResponseString = basicResponseString + ' in ' + usage_country + ' are ' + emission;
                             else
-                                finalResponseString = basicResponseString + ' is ' + emission;
+                                finalResponseString = basicResponseString + ' are ' + emission;
 
 
                             let unit = body.unit;
                             if (unit !== undefined)
                                 sendGoogleResponse(finalResponseString + ' ' + unit);
                             else
-                                sendGoogleResponse(emissionType + ' emission for a ' + appliance_size + ' ' + appliance_type + ' ' + parameters.appliance + ' in ' + parameters.geo_country + ' is ' + emission + ' kg');
+                                sendGoogleResponse(finalResponseString + ' kg');
                         } else {
-                            let basicResponseString = 'Emissions for ' + appliance_quantity + ' ' + appliance_size + ' ' + appliance_type + ' ' + parameters.appliance + ' consumed for ' + appliance_usage_hours + ' hour(s)';
+                            let basicResponseString = 'Emissions due to ' + appliance_quantity + ' ' + appliance_size + ' ' + appliance_type + ' ' +
+                                parameters.appliance + ' consumed for ' + appliance_usage_hours + ' hour(s)';
                             let finalResponseString = "";
                             if (usage_country != "" && usage_country != "Default")
                                 finalResponseString = basicResponseString + ' in ' + usage_country;
