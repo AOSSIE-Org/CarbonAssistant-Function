@@ -3,11 +3,12 @@
 const functions = require('firebase-functions'); // Cloud Functions for Firebase library
 const DialogflowApp = require('actions-on-google').DialogflowApp; // Google Assistant helper library
 const requestLib = require('request');
-var config = require('./config')
-var flights = require('./flights')
-var vehicles = require('./vehicles')
-var fuels = require('./fuels')
-var electricity = require('./electricity')
+var config = require('./config');
+var flights = require('./flights');
+var vehicles = require('./vehicles');
+var fuels = require('./fuels');
+var electricity = require('./electricity');
+var poultry = require('./poultry');
 
 exports.dialogflowFirebaseFulfillment = functions.https.onRequest((request, response) => {
     console.log('Dialogflow Request headers: ' + JSON.stringify(request.headers));
@@ -81,68 +82,13 @@ function processV1Request(request, response) {
 
         },
         'input.poultry_details': () => {
-            if (parameters.poultry_type !== "") {
-                let poultry_type = parameters.poultry_type;
-                let poultry_region = "Default",
-                    poultry_quantity = 1;
-
-                if (parameters.poultry_region !== "")
-                    poultry_region = parameters.poultry_region;
-
-                if (parameters.poultry_quantity !== "")
-                    poultry_quantity = parameters.poultry_quantity;
-
-                console.log("Poultry type = " + poultry_type + ", region =" + poultry_region + ", quantity =" + poultry_quantity);
-
-                var options = {
-                    uri: config.endpoint + "/poultry",
-                    method: 'POST',
-                    headers: {
-                        'access-key': config.access_key
-                    },
-                    json: true,
-                    body: {
-                        "type": poultry_type,
-                        "region": poultry_region,
-                        "quantity": poultry_quantity
-                    }
-                };
-
-                requestLib(options, function(error, response, body) {
-                    if (!error && response.statusCode === 200) {
-                        console.log(body);
-
-                        let emission = body.emissions.CO2;
-                        let unit = '';
-                        if (poultry_type !== 'egg')
-                            unit = 'kg(s) ';
-                        let basicResponseString = 'CO2 emissions for ' + poultry_quantity + ' ' + unit + poultry_type + ' production';
-                        let finalResponseString = "";
-
-                        if (poultry_region != "Default")
-                            finalResponseString = basicResponseString + ' in ' + poultry_region + ' is ' + emission;
-                        else
-                            finalResponseString = basicResponseString + ' is ' + emission;
-
-
-                        let outputUnit = body.unit;
-                        if (outputUnit !== undefined)
-                            sendGoogleResponse(finalResponseString + ' ' + outputUnit);
-                        else
-                            sendGoogleResponse(finalResponseString + ' kg');
-                    } else {
-                        if (body.err !== undefined) {
-                            console.log("Error: " + JSON.stringify(body));
-                            sendGoogleResponse(body.err);
-                        } else {
-                            sendGoogleResponse("Sorry, we are facing a temporary outage. Please contact our support.");
-                        }
-                    }
-                });
-
-            } else {
-                sendGoogleResponse("Sorry, I did not understand the poultry type you said.");
-            }
+           poultry.processRequest(parameters)
+                .then(function(responseString) {
+                    sendGoogleResponse(responseString);
+                })
+                .catch(function(errorString) {
+                    sendGoogleResponse(errorString);
+                }); 
         },
         'input.appliance_details': () => {
             if (parameters.appliance !== "") {
