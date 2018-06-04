@@ -4,6 +4,7 @@ const functions = require('firebase-functions'); // Cloud Functions for Firebase
 const DialogflowApp = require('actions-on-google').DialogflowApp; // Google Assistant helper library
 const requestLib = require('request');
 var config = require('./config')
+var flights = require('./flights')
 
 exports.dialogflowFirebaseFulfillment = functions.https.onRequest((request, response) => {
     console.log('Dialogflow Request headers: ' + JSON.stringify(request.headers));
@@ -124,63 +125,13 @@ function processV1Request(request, response) {
             }
         },
         'input.flight_details': () => {
-            if (parameters.origin != "" && parameters.destination !== "") {
-                let origin = parameters.origin,
-                    destination = parameters.destination,
-                    origin_original = parameters.origin_original,
-                    destination_original = parameters.destination_original,
-                    passengers = 1;
-
-                if (parameters.passengers !== "")
-                    passengers = parameters.passengers;
-
-                var options = {
-                    uri: config.endpoint + "/flight",
-                    method: 'POST',
-                    headers: {
-                        'access-key': config.access_key
-                    },
-                    json: true,
-                    body: {
-                        "origin": origin,
-                        "destination": destination,
-                        "passengers": passengers
-                    }
-                };
-
-                requestLib(options, function(error, response, body) {
-                    if (!error && response.statusCode === 200) {
-                        console.log(body);
-                        let emissionType = parameters.emission_type;
-                        let emission = body.emissions.CO2;
-
-                        let basicResponseString = 'Carbon emissions for a flight from ' + origin_original + ' (' +
-                            origin + ') to ' + destination_original + ' (' + destination + ')';
-
-                        let finalResponseString;
-                        if (passengers !== 1)
-                            finalResponseString = basicResponseString + ' carrying ' + passengers + ' passengers are ' + emission;
-                        else
-                            finalResponseString = basicResponseString + ' are ' + emission
-
-
-                        let unit = body.unit;
-                        if (unit !== undefined)
-                            sendGoogleResponse(finalResponseString + ' ' + unit);
-                        else
-                            sendGoogleResponse(finalResponseString + ' kg');
-                    } else {
-                        if (body.err !== undefined) {
-                            console.log("Error: " + JSON.stringify(body));
-                            sendGoogleResponse(body.err);
-                        } else {
-                            sendGoogleResponse("Sorry, we are facing a temporary outage. Please contact our support.");
-                        }
-                    }
+            flights.processRequest(parameters)
+                .then(function(responseString) {
+                    sendGoogleResponse(responseString);
+                })
+                .catch(function(errorString) {
+                    sendGoogleResponse(errorString);
                 });
-            } else {
-                sendGoogleResponse("Sorry, need a valid origin and destination of your flight travel");
-            }
         },
         'input.fuel_details': () => {
             if (parameters.fuel_type != "" && parameters.fuel_original !== "") {
