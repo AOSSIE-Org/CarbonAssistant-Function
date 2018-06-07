@@ -10,6 +10,7 @@ var fuels = require('./fuels');
 var electricity = require('./electricity');
 var poultry = require('./poultry');
 var appliances = require('./appliances');
+var trains = require('./trains');
 
 exports.dialogflowFirebaseFulfillment = functions.https.onRequest((request, response) => {
     console.log('Dialogflow Request headers: ' + JSON.stringify(request.headers));
@@ -44,6 +45,15 @@ function processV1Request(request, response) {
             } else {
                 sendResponse('Hello, Welcome to my Dialogflow agent!'); // Send simple response to user
             }
+        },
+        'input.train_details': () => {
+            trains.processRequest(parameters)
+                .then(function(responseString) {
+                    sendGoogleResponse(responseString);
+                })
+                .catch(function(errorString) {
+                    sendGoogleResponse(errorString);
+                });
         },
         'input.vehicle_details': () => {
             vehicles.processRequest(parameters)
