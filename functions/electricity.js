@@ -1,7 +1,7 @@
 var config = require('./config')
 const requestLib = require('request');
 
-exports.processRequest = function(parameters) {
+exports.processRequest = function(conv, parameters) {
     return new Promise(function(resolve, reject) {
         let consumed_quantity = 1,
             consumption_country = 'Default',
@@ -53,10 +53,13 @@ exports.processRequest = function(parameters) {
 
 
                     let unit = body.unit;
-                    if (unit !== undefined)
-                        resolve(finalResponseString + ' ' + unit);
-                    else
-                        resolve(finalResponseString + ' kg');
+                    if (unit !== undefined) {
+                        conv.ask(finalResponseString + ' ' + unit);
+                        resolve();
+                    } else {
+                        conv.ask(finalResponseString + ' kg');
+                        resolve();
+                    }
                 } else {
                     let basicResponseString = 'Emissions due to electricity consumption of ' + consumed_quantity + ' kWh';
                     let finalResponseString = "";
@@ -67,17 +70,20 @@ exports.processRequest = function(parameters) {
                     let carbonEmission = body.emissions.CO2;
                     let nitrousEmission = body.emissions.N2O;
                     let methaneEmission = body.emissions.CH4;
-                    resolve(finalResponseString + ' are as follows:\n  \n' +
+                    conv.ask(finalResponseString + ' are as follows:\n  \n' +
                         'Carbon Dioxide: ' + carbonEmission + ' kg.\n' +
                         "Nitrous Oxide: " + nitrousEmission + ' kg.\n' +
                         "Methane: " + methaneEmission + ' kg.');
+                    resolve();
                 }
             } else {
                 if (body.err !== undefined) {
                     console.log("Error: " + JSON.stringify(body));
-                    reject(body.err);
+                    conv.ask(body.err);
+                    resolve();
                 } else {
-                    reject("Sorry, we are facing a temporary outage. Please contact our support.");
+                    conv.ask("Sorry, we are facing a temporary outage. Please contact our support.");
+                    resolve();
                 }
             }
         });

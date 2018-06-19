@@ -1,7 +1,7 @@
 var config = require('./config')
 const requestLib = require('request');
 
-exports.processRequest = function(parameters) {
+exports.processRequest = function(conv, parameters) {
     return new Promise(function(resolve, reject) {
         if (parameters.origin != "" && parameters.destination !== "") {
             let origin = parameters.origin,
@@ -37,18 +37,22 @@ exports.processRequest = function(parameters) {
                         finalResponseString = basicResponseString + ' carrying ' + passengers + ' passengers';
 
                     let carbonEmission = body.emissions.CO2;
-                    resolve(finalResponseString + ' are ' + carbonEmission + ' kg.\n');
+                    conv.ask(finalResponseString + ' are ' + carbonEmission + ' kg.\n');
+                    resolve();
                 } else {
                     if (body.err !== undefined) {
                         console.log("Error: " + JSON.stringify(body));
-                        reject(body.err);
+                        conv.ask(body.err);
+                        resolve();
                     } else {
-                        reject("Sorry, we are facing a temporary outage. Please contact our support.");
+                        conv.ask("Sorry, we are facing a temporary outage. Please contact our support.");
+                        resolve();
                     }
                 }
             });
         } else {
-            reject("Sorry, need a valid origin and destination of your train journey. Could you please say it again?");
+            conv.ask("Sorry, need a valid origin and destination of your train journey. Could you please say it again?");
+            resolve();
         }
     });
 }

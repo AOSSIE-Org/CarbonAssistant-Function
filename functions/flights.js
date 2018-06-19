@@ -1,7 +1,7 @@
 var config = require('./config')
 const requestLib = require('request');
 
-exports.processRequest = function(parameters) {
+exports.processRequest = function(conv, parameters) {
     return new Promise(function(resolve, reject) {
         if (parameters.origin != "" && parameters.destination !== "") {
             let origin = parameters.origin,
@@ -44,21 +44,27 @@ exports.processRequest = function(parameters) {
 
 
                     let unit = body.unit;
-                    if (unit !== undefined)
-                        resolve(finalResponseString + ' ' + unit);
-                    else
-                        resolve(finalResponseString + ' kg');
+                    if (unit !== undefined) {
+                        conv.ask(finalResponseString + ' ' + unit);
+                        resolve();
+                    } else {
+                        conv.ask(finalResponseString + ' kg');
+                        resolve();
+                    }
                 } else {
                     if (body.err !== undefined) {
                         console.log("Error: " + JSON.stringify(body));
-                        resolve(body.err);
+                        conv.ask(body.err);
+                        resolve();
                     } else {
-                        reject("Sorry, we are facing a temporary outage. Please contact our support.");
+                        conv.ask("Sorry, we are facing a temporary outage. Please contact our support.");
+                        resolve();
                     }
                 }
             });
         } else {
-            reject("Sorry, need a valid origin and destination of your flight travel");
+            conv.ask("Sorry, need a valid origin and destination of your flight travel");
+            resolve();
         }
     });
 }

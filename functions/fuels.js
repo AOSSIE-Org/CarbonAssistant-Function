@@ -1,7 +1,7 @@
 var config = require('./config')
 const requestLib = require('request');
 
-exports.processRequest = function(parameters) {
+exports.processRequest = function(conv, parameters) {
     return new Promise(function(resolve, reject) {
         if (parameters.fuel_type != "" && parameters.fuel_original !== "") {
             let consumed_quantity = 1,
@@ -48,10 +48,13 @@ exports.processRequest = function(parameters) {
 
 
                         let unit = body.unit;
-                        if (unit !== undefined)
-                            resolve(finalResponseString + ' ' + unit);
-                        else
-                            resolve(finalResponseString + ' kg');
+                        if (unit !== undefined) {
+                            conv.ask(finalResponseString + ' ' + unit);
+                            resolve();
+                        } else {
+                            conv.ask(finalResponseString + ' kg');
+                            resolve();
+                        }
                     } else {
                         let basicResponseString = 'Emissions due to ' + consumed_quantity + ' ' + consumption_unit + ' ' +
                             consumed_fuel_original + ' consumption';
@@ -60,22 +63,26 @@ exports.processRequest = function(parameters) {
                         let carbonEmission = body.emissions.CO2;
                         let nitrousEmission = body.emissions.N2O;
                         let methaneEmission = body.emissions.CH4;
-                        resolve(finalResponseString + ' are as follows:\n  \n' +
+                        conv.ask(finalResponseString + ' are as follows:\n  \n' +
                             'Carbon Dioxide: ' + carbonEmission + ' kg.\n' +
                             "Nitrous Oxide: " + nitrousEmission + ' kg.\n' +
                             "Methane: " + methaneEmission + ' kg.');
+                        resolve();
                     }
                 } else {
                     if (body.err !== undefined) {
                         console.log("Error: " + JSON.stringify(body));
-                        reject(body.err);
+                        conv.ask(body.err);
+                        resolve();
                     } else {
-                        reject("Sorry, we are facing a temporary outage. Please contact our support.");
+                        conv.ask("Sorry, we are facing a temporary outage. Please contact our support.");
+                        resolve();
                     }
                 }
             });
         } else {
-            reject("Sorry, I did not understand the fuel type you said.");
+            conv.ask("Sorry, I did not understand the fuel type you said.");
+            resolve();
         }
     });
 }

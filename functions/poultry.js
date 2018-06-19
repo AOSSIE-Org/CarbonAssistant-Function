@@ -1,7 +1,7 @@
 var config = require('./config')
 const requestLib = require('request');
 
-exports.processRequest = function(parameters) {
+exports.processRequest = function(conv, parameters) {
     return new Promise(function(resolve, reject) {
         if (parameters.poultry_type !== "") {
             let poultry_type = parameters.poultry_type;
@@ -48,22 +48,27 @@ exports.processRequest = function(parameters) {
 
 
                     let outputUnit = body.unit;
-                    if (outputUnit !== undefined)
-                        resolve(finalResponseString + ' ' + outputUnit);
-                    else
-                        resolve(finalResponseString + ' kg');
+                    if (outputUnit !== undefined) {
+                        conv.ask(finalResponseString + ' ' + outputUnit);
+                        resolve();
+                    } else {
+                        conv.ask(finalResponseString + ' kg');
+                        resolve();
+                    }
                 } else {
                     if (body.err !== undefined) {
                         console.log("Error: " + JSON.stringify(body));
                         reject(body.err);
                     } else {
-                        reject("Sorry, we are facing a temporary outage. Please contact our support.");
+                        conv.ask("Sorry, we are facing a temporary outage. Please contact our support.");
+                        resolve();
                     }
                 }
             });
 
         } else {
-            reject("Sorry, I did not understand the poultry type you said.");
+            conv.ask("Sorry, I did not understand the poultry type you said.");
+            resolve();
         }
     });
 }
