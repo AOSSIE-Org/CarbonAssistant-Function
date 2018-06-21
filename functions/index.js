@@ -21,7 +21,46 @@ const app = dialogflow({
 
 // The default welcome intent has been matched, welcome the user (https://dialogflow.com/docs/events#default_welcome_intent)
 app.intent('Default Welcome Intent', (conv) => {
-    sendGoogleResponse(conv, 'Hello, Welcome to CarbonFootPrint Action!');
+    const options = {
+        context: 'Hello, Welcome to CarbonFootPrint Action! To address you by name and provide you relatable emission comparisons based on your location',
+        // Ask for more than one permission. User can authorize all or none.
+        permissions: ['NAME', 'DEVICE_PRECISE_LOCATION'],
+    };
+    if ((!conv.user.storage.name || !conv.user.storage.location) && !conv.user.storage.noPermission)
+        conv.ask(new Permission(options));
+    else {
+        if (!conv.user.storage.noPermission) {
+            const name = conv.user.storage.name.given;
+            conv.ask("Hello " + name + ", what's the info you need today? Feel free to ask what I can do for assistance or you can simply say 'help'");
+        } else {
+            conv.ask("Hey there!, what's the info you need today? Feel free to ask what I can do for assistance or you can simply say 'help'");
+        }
+    }
+});
+
+app.intent('permission_confirmation', (conv, parameters, permission_allowed) => {
+    if (permission_allowed) {
+        const {
+            location
+        } = conv.device;
+        const {
+            name
+        } = conv.user;
+
+        conv.user.storage.noPermission = false;
+        conv.user.storage.name = name;
+        conv.user.storage.location = location;
+
+        const {
+            latitude,
+            longitude
+        } = location.coordinates;
+        conv.ask("Ok " + name.given ", we are all set!");
+    } else {
+        conv.ask("Sorry about that :( Unfortunately, we cannot provide you intelligent emission results without the location information. \
+            Therefore, you will only be able to receive raw emission results. Please say 'request permissions' if you change your mind.");
+        conv.user.storage.noPermission = true;
+    }
 });
 
 app.intent('trains_intent', (conv, parameters) => {
