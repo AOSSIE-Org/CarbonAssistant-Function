@@ -7,7 +7,7 @@ CarbonFootPrint Firebase function forms the backend of the Google Assistant Acti
 
 This documentation will only guide through Deployement of DialogFlow Agent. For guide on deployment of Dialogflow agent, please refer the repository of the agent: [here](https://gitlab.com/aossie/CarbonAssistant-Agent)
 #### Part 2 - Deploying Firebase Cloud Function:
-We will use firebase CLI to deploy our cloud function. Make sure you have latest version of npm and node installed on your machine.
+We will use firebase CLI to deploy our cloud function. Make sure you have node v6 installed on your machine since cloud functions work with node v6.
 
 In command line:
 - Clone this repository and `cd` to it.
@@ -35,6 +35,11 @@ This command is a command-line wizard which will guide you through a process whi
 Once deployed you will get a URL, this is your webhook endpoint that Dialogflow will use to make requests to.
 - Return to Part 1 of deployment and paste the URL in the 'Fullfillment' section of your Dialogflow agent.
 
+References and How to report bugs
+----
+- Detailed deployment documentation [here](https://developers.google.com/actions/dialogflow/deploy-fulfillment)
+- Actions on Google docs: https://developers.google.com/actions/
+- If you find any issues, please open a bug here on Gitlab.
 
 License
 ----
