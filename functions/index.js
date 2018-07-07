@@ -88,12 +88,15 @@ app.intent('poultry_intent', (conv, parameters) => {
 });
 
 app.intent('appliance_intent', (conv, parameters) => {
-    conv.user.storage.params.lastApplianceParams = parameters;
-    return appliances.processRequest(conv, parameters);
+    conv.user.storage.lastParams = parameters;
+    if (!conv.user.storage.noPermission)
+        return appliances.processRequest(conv, parameters, true);
+    else
+        return appliances.processRequest(conv, parameters, false);
 });
 
 app.intent('appliance_intent - followup', (conv, parameters) => {
-    let contextParams = conv.user.storage.params.lastApplianceParams;
+    let contextParams = conv.user.storage.lastParams;
     let newParams = {};
 
     if (parameters.type && parameters.type !== "")
@@ -131,7 +134,7 @@ app.intent('appliance_intent - followup', (conv, parameters) => {
     else
         newParams.quantity = contextParams.quantity;
 
-    conv.user.storage.lastIntentParameters = newParams;
+    conv.user.storage.lastParams = newParams;
 
     return appliances.processRequest(conv, newParams);
 });
