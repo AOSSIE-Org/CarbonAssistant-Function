@@ -55,7 +55,7 @@ app.intent('permission_confirmation', (conv, parameters, permission_allowed) => 
             latitude,
             longitude
         } = location.coordinates;
-        conv.ask("Ok " + name.given ", we are all set!");
+        conv.ask("Ok " + name.given + ", we are all set!");
     } else {
         conv.ask("Sorry about that :( Unfortunately, we cannot provide you intelligent emission results without the location information. \
             Therefore, you will only be able to receive raw emission results. Please say 'request permissions' if you change your mind.");
@@ -88,7 +88,52 @@ app.intent('poultry_intent', (conv, parameters) => {
 });
 
 app.intent('appliance_intent', (conv, parameters) => {
+    conv.user.storage.params.lastApplianceParams = parameters;
     return appliances.processRequest(conv, parameters);
+});
+
+app.intent('appliance_intent - followup', (conv, parameters) => {
+    let contextParams = conv.user.storage.params.lastApplianceParams;
+    let newParams = {};
+
+    if (parameters.type && parameters.type !== "")
+        newParams.type = parameters.type;
+    else
+        newParams.type = contextParams.type;
+
+    if (parameters.appliance && parameters.appliance !== "")
+        newParams.appliance = parameters.appliance;
+    else
+        newParams.appliance = contextParams.appliance;
+
+    if (parameters.geo_country && parameters.geo_country !== "")
+        newParams.geo_country = parameters.geo_country;
+    else
+        newParams.geo_country = contextParams.geo_country;
+
+    if (parameters.emission_type && parameters.emission_type !== "")
+        newParams.emission_type = parameters.emission_type;
+    else
+        newParams.emission_type = contextParams.emission_type;
+
+    if (parameters.duration && parameters.duration !== "")
+        newParams.duration = parameters.duration;
+    else
+        newParams.duration = contextParams.duration;
+
+    if (parameters.size && parameters.size !== "")
+        newParams.size = parameters.size;
+    else
+        newParams.size = contextParams.size;
+
+    if (parameters.quantity && parameters.quantity !== "")
+        newParams.quantity = parameters.quantity;
+    else
+        newParams.quantity = contextParams.quantity;
+
+    conv.user.storage.lastIntentParameters = newParams;
+
+    return appliances.processRequest(conv, newParams);
 });
 
 // The default fallback intent has been matched, try to recover (https://dialogflow.com/docs/intents#fallback_intents)
