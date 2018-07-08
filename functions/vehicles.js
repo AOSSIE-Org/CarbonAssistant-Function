@@ -1,5 +1,7 @@
 var config = require('./config')
 const requestLib = require('request');
+const reverseLookupManager = require('./reverseLookupManager');
+const utils = require('./utils');
 
 function getFuelType(fuelString) {
     return fuelString.substring(4);
@@ -53,15 +55,29 @@ exports.processRequest = function(conv, parameters) {
                         else
                             finalResponseString = basicResponseString + 'usually with a mileage of 20 km/l is ' + emission;
 
-
-                        let unit = body.unit;
-                        if (unit !== undefined) {
-                            conv.ask(finalResponseString + ' ' + unit);
-                            resolve();
-                        } else {
-                            conv.ask(finalResponseString + ' kg');
-                            resolve();
-                        }
+                        let reverseLookup = reverseLookupManager.reverseLookup(body.emissions, conv.user.storage.location.coordinates, "vehicles");
+                        reverseLookup
+                            .then((responses) => {
+                                let selectedResponse = utils.getRandomNumber(0, responses.length - 1);
+                                let unit = body.unit;
+                                if (unit !== undefined) {
+                                    conv.ask(finalResponseString + ' ' + unit + ' \n\n' + responses[selectedResponse]);
+                                    resolve();
+                                } else {
+                                    conv.ask(finalResponseString + ' kg' + ' \n\n' + responses[selectedResponse]);
+                                    resolve();
+                                }
+                            })
+                            .catch((err) => {
+                                let unit = body.unit;
+                                if (unit !== undefined) {
+                                    conv.ask(finalResponseString + ' ' + unit);
+                                    resolve();
+                                } else {
+                                    conv.ask(finalResponseString + ' kg');
+                                    resolve();
+                                }
+                            });
                     } else {
                         let basicResponseString = 'Emissions for a road trip from ' + origin + ' to ' + destination + ' on a ' +
                             fuel_type + '-based vehicle ';
@@ -75,11 +91,25 @@ exports.processRequest = function(conv, parameters) {
                         let carbonEmission = body.emissions.CO2;
                         let nitrousEmission = body.emissions.N2O;
                         let methaneEmission = body.emissions.CH4;
-                        conv.ask(finalResponseString + ' are as follows:\n  \n' +
-                            'Carbon Dioxide: ' + carbonEmission + ' kg.\n' +
-                            "Nitrous Oxide: " + nitrousEmission + ' kg.\n' +
-                            "Methane: " + methaneEmission + ' kg.');
-                        resolve();
+                        let reverseLookup = reverseLookupManager.reverseLookup(body.emissions, conv.user.storage.location.coordinates);
+                        reverseLookup
+                            .then((responses) => {
+                                console.log("responses length: " + responses.length);
+                                let selectedResponse = utils.getRandomNumber(0, responses.length - 1);
+                                console.log("selected response: " + selectedResponse);
+                                conv.ask(finalResponseString + ' are as follows:\n  \n' +
+                                    'Carbon Dioxide: ' + carbonEmission + ' kg.\n' +
+                                    "Nitrous Oxide: " + nitrousEmission + ' kg.\n' +
+                                    "Methane: " + methaneEmission + ' kg.' + ' \n\n' + responses[selectedResponse]);
+                                resolve();
+                            })
+                            .catch((err) => {
+                                conv.ask(finalResponseString + ' are as follows:\n  \n' +
+                                    'Carbon Dioxide: ' + carbonEmission + ' kg.\n' +
+                                    "Nitrous Oxide: " + nitrousEmission + ' kg.\n' +
+                                    "Methane: " + methaneEmission + ' kg.');
+                                resolve();
+                            });
                     }
                 } else {
                     console.log("Vehicles: error response");
