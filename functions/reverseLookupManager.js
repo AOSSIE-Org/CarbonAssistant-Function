@@ -29,7 +29,7 @@ function constructResponse(result) {
 	return response;
 }
 
-exports.reverseLookup = function(emissions, locationData) {
+exports.reverseLookup = function(emissions, locationData, blacklist) {
     return new Promise(function(resolve, reject) {
         var reverseLookupOptions = {
             uri: config.endpoint + "/comparer",
@@ -54,11 +54,11 @@ exports.reverseLookup = function(emissions, locationData) {
                 let matches = body.matches;
                 let responses = [];
 				console.log("Matches length:"+matches.length);
-				console.log("Matches: "+JSON.stringify(matches));
                 for (let i = 0; i < matches.length; i++) {
-                    if (matches[i].status == "success")
+                    if (matches[i].status === "success" && matches[i].section !== blacklist)
                         responses.push(constructResponse(matches[i]));
                 }
+                console.log("Allowed responses: "+JSON.stringify(responses));
                 resolve(responses);
             } else {
                 console.log("Error in reverseLookup:" + error);
