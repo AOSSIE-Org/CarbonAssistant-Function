@@ -93,7 +93,42 @@ app.intent('trains_intent - followup', (conv, parameters) => {
 });
 
 app.intent('vehicle_intent', (conv, parameters) => {
+    conv.user.storage.lastParams = parameters;
     return vehicles.processRequest(conv, parameters);
+});
+
+app.intent('vehicle_intent - followup', (conv, parameters) => {
+    let contextParams = conv.user.storage.lastParams;
+    let newParams = {};
+
+    if (parameters.origin && parameters.origin !== "")
+        newParams.origin = parameters.origin;
+    else
+        newParams.origin = contextParams.origin;
+
+    if (parameters.destination && parameters.destination !== "")
+        newParams.destination = parameters.destination;
+    else
+        newParams.destination = contextParams.destination;
+
+    if (parameters.mileage && parameters.mileage !== "")
+        newParams.mileage = parameters.mileage;
+    else
+        newParams.mileage = contextParams.mileage;
+
+    if (parameters.emission_type && parameters.emission_type !== "")
+        newParams.emission_type = parameters.emission_type;
+    else
+        newParams.emission_type = contextParams.emission_type;
+
+    if (parameters.fuel_type && parameters.fuel_type !== "")
+        newParams.fuel_type = parameters.fuel_type;
+    else
+        newParams.fuel_type = contextParams.fuel_type;
+
+    conv.user.storage.lastParams = newParams;
+
+    return vehicles.processRequest(conv, newParams);
 });
 
 app.intent('flights_intent', (conv, parameters) => {
