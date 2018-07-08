@@ -64,7 +64,32 @@ app.intent('permission_confirmation', (conv, parameters, permission_allowed) => 
 });
 
 app.intent('trains_intent', (conv, parameters) => {
+    conv.user.storage.lastParams = parameters;
     return trains.processRequest(conv, parameters);
+});
+
+app.intent('trains_intent - followup', (conv, parameters) => {
+    let contextParams = conv.user.storage.lastParams;
+    let newParams = {};
+
+    if (parameters.origin && parameters.origin !== "")
+        newParams.origin = parameters.origin;
+    else
+        newParams.origin = contextParams.origin;
+
+    if (parameters.destination && parameters.destination !== "")
+        newParams.destination = parameters.destination;
+    else
+        newParams.destination = contextParams.destination;
+
+    if (parameters.passengers && parameters.passengers !== "")
+        newParams.passengers = parameters.passengers;
+    else
+        newParams.passengers = contextParams.passengers;
+
+    conv.user.storage.lastParams = newParams;
+
+    return trains.processRequest(conv, newParams);
 });
 
 app.intent('vehicle_intent', (conv, parameters) => {
