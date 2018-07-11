@@ -1,5 +1,7 @@
 var config = require('./config')
 const requestLib = require('request');
+const reverseLookupManager = require('./reverseLookupManager');
+const utils = require('./utils');
 
 exports.processRequest = function(conv, parameters) {
     return new Promise(function(resolve, reject) {
@@ -42,15 +44,29 @@ exports.processRequest = function(conv, parameters) {
                     else
                         finalResponseString = basicResponseString + ' are ' + emission
 
-
-                    let unit = body.unit;
-                    if (unit !== undefined) {
-                        conv.ask(finalResponseString + ' ' + unit);
-                        resolve();
-                    } else {
-                        conv.ask(finalResponseString + ' kg');
-                        resolve();
-                    }
+                    let reverseLookup = reverseLookupManager.reverseLookup(body.emissions, conv.user.storage.location.coordinates);
+                    reverseLookup
+                        .then((responses) => {
+                            let selectedResponse = utils.getRandomNumber(0, responses.length - 1);
+                            let unit = body.unit;
+                            if (unit !== undefined) {
+                                conv.ask(finalResponseString + ' ' + unit + '\n\n' + responses[selectedResponse]);
+                                resolve();
+                            } else {
+                                conv.ask(finalResponseString + ' kg ' + '\n\n' + responses[selectedResponse]);
+                                resolve();
+                            }
+                        })
+                        .catch((err) => {
+                            let unit = body.unit;
+                            if (unit !== undefined) {
+                                conv.ask(finalResponseString + ' ' + unit);
+                                resolve();
+                            } else {
+                                conv.ask(finalResponseString + ' kg');
+                                resolve();
+                            }
+                        });
                 } else {
                     if (body.err !== undefined) {
                         console.log("Error: " + JSON.stringify(body));

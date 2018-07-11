@@ -55,7 +55,7 @@ app.intent('permission_confirmation', (conv, parameters, permission_allowed) => 
             latitude,
             longitude
         } = location.coordinates;
-        conv.ask("Ok " + name.given ", we are all set!");
+        conv.ask("Ok " + name.given + ", we are all set!");
     } else {
         conv.ask("Sorry about that :( Unfortunately, we cannot provide you intelligent emission results without the location information. \
             Therefore, you will only be able to receive raw emission results. Please say 'request permissions' if you change your mind.");
@@ -64,15 +64,108 @@ app.intent('permission_confirmation', (conv, parameters, permission_allowed) => 
 });
 
 app.intent('trains_intent', (conv, parameters) => {
+    conv.user.storage.lastParams = parameters;
     return trains.processRequest(conv, parameters);
 });
 
+app.intent('trains_intent - followup', (conv, parameters) => {
+    let contextParams = conv.user.storage.lastParams;
+    let newParams = {};
+
+    if (parameters.origin && parameters.origin !== "")
+        newParams.origin = parameters.origin;
+    else
+        newParams.origin = contextParams.origin;
+
+    if (parameters.destination && parameters.destination !== "")
+        newParams.destination = parameters.destination;
+    else
+        newParams.destination = contextParams.destination;
+
+    if (parameters.passengers && parameters.passengers !== "")
+        newParams.passengers = parameters.passengers;
+    else
+        newParams.passengers = contextParams.passengers;
+
+    conv.user.storage.lastParams = newParams;
+
+    return trains.processRequest(conv, newParams);
+});
+
 app.intent('vehicle_intent', (conv, parameters) => {
+    conv.user.storage.lastParams = parameters;
     return vehicles.processRequest(conv, parameters);
 });
 
+app.intent('vehicle_intent - followup', (conv, parameters) => {
+    let contextParams = conv.user.storage.lastParams;
+    let newParams = {};
+
+    if (parameters.origin && parameters.origin !== "")
+        newParams.origin = parameters.origin;
+    else
+        newParams.origin = contextParams.origin;
+
+    if (parameters.destination && parameters.destination !== "")
+        newParams.destination = parameters.destination;
+    else
+        newParams.destination = contextParams.destination;
+
+    if (parameters.mileage && parameters.mileage !== "")
+        newParams.mileage = parameters.mileage;
+    else
+        newParams.mileage = contextParams.mileage;
+
+    if (parameters.emission_type && parameters.emission_type !== "")
+        newParams.emission_type = parameters.emission_type;
+    else
+        newParams.emission_type = contextParams.emission_type;
+
+    if (parameters.fuel_type && parameters.fuel_type !== "")
+        newParams.fuel_type = parameters.fuel_type;
+    else
+        newParams.fuel_type = contextParams.fuel_type;
+
+    conv.user.storage.lastParams = newParams;
+
+    return vehicles.processRequest(conv, newParams);
+});
+
 app.intent('flights_intent', (conv, parameters) => {
+    conv.user.storage.lastParams = parameters;
     return flights.processRequest(conv, parameters);
+});
+
+app.intent('flights_intent - followup', (conv, parameters) => {
+    let contextParams = conv.user.storage.lastParams;
+    let newParams = {};
+
+    if (parameters.origin && parameters.origin !== "") {
+        newParams.origin = parameters.origin;
+        newParams.origin_original = newParams.origin_original;
+	}
+    else {
+        newParams.origin = contextParams.origin;
+        newParams.origin_original = contextParams.origin_original;
+	}
+
+    if (parameters.destination && parameters.destination !== "") {
+        newParams.destination = parameters.destination;
+        newParams.destination_original = parameters.destination_original;
+	}
+    else {
+        newParams.destination = contextParams.destination;
+        newParams.destination_original = contextParams.destination_original;
+	}
+
+    if (parameters.passengers && parameters.passengers !== "")
+        newParams.passengers = parameters.passengers;
+    else
+        newParams.passengers = contextParams.passengers;
+
+    conv.user.storage.lastParams = newParams;
+
+    return flights.processRequest(conv, newParams);
 });
 
 app.intent('fuels_intent', (conv, parameters) => {
@@ -88,7 +181,55 @@ app.intent('poultry_intent', (conv, parameters) => {
 });
 
 app.intent('appliance_intent', (conv, parameters) => {
-    return appliances.processRequest(conv, parameters);
+    conv.user.storage.lastParams = parameters;
+    if (!conv.user.storage.noPermission)
+        return appliances.processRequest(conv, parameters, true);
+    else
+        return appliances.processRequest(conv, parameters, false);
+});
+
+app.intent('appliance_intent - followup', (conv, parameters) => {
+    let contextParams = conv.user.storage.lastParams;
+    let newParams = {};
+
+    if (parameters.type && parameters.type !== "")
+        newParams.type = parameters.type;
+    else
+        newParams.type = contextParams.type;
+
+    if (parameters.appliance && parameters.appliance !== "")
+        newParams.appliance = parameters.appliance;
+    else
+        newParams.appliance = contextParams.appliance;
+
+    if (parameters.geo_country && parameters.geo_country !== "")
+        newParams.geo_country = parameters.geo_country;
+    else
+        newParams.geo_country = contextParams.geo_country;
+
+    if (parameters.emission_type && parameters.emission_type !== "")
+        newParams.emission_type = parameters.emission_type;
+    else
+        newParams.emission_type = contextParams.emission_type;
+
+    if (parameters.duration && parameters.duration !== "")
+        newParams.duration = parameters.duration;
+    else
+        newParams.duration = contextParams.duration;
+
+    if (parameters.size && parameters.size !== "")
+        newParams.size = parameters.size;
+    else
+        newParams.size = contextParams.size;
+
+    if (parameters.quantity && parameters.quantity !== "")
+        newParams.quantity = parameters.quantity;
+    else
+        newParams.quantity = contextParams.quantity;
+
+    conv.user.storage.lastParams = newParams;
+
+    return appliances.processRequest(conv, newParams);
 });
 
 // The default fallback intent has been matched, try to recover (https://dialogflow.com/docs/intents#fallback_intents)
