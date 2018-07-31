@@ -75,6 +75,7 @@ exports.processRequest = function(conv, parameters, requestReverseLookup) {
                 }
             };
             requestLib(options, function(error, response, body) {
+                const emissionResponse = "The emissions released due to this action aregiven below";
                 if (!error && response.statusCode === 200) {
                     console.log(body);
                     if (parameters.emission_type !== "") {
@@ -102,20 +103,22 @@ exports.processRequest = function(conv, parameters, requestReverseLookup) {
                                 let selectedResponse = utils.getRandomNumber(0, responses.length - 1);
                                 let unit = body.unit;
                                 if (unit !== undefined) {
-                                    conv.ask(finalResponseString + ' ' + unit + ' \n\n' + responses[selectedResponse]);
+                                    finalResponseString = finalResponseString + ' ' + unit + ' \n\n' + responses[selectedResponse];
+                                    utils.richResponse(conv, finalResponseString, responses[selectedResponse]);
                                     resolve();
                                 } else {
-                                    conv.ask(finalResponseString + ' kg' + ' \n\n' + responses[selectedResponse]);
+                                    finalResponseString = finalResponseString + ' kg' + ' \n\n' + responses[selectedResponse];
+                                    utils.richResponse(conv, finalResponseString, responses[selectedResponse]);
                                     resolve();
                                 }
                             })
                             .catch((err) => {
                                 let unit = body.unit;
                                 if (unit !== undefined) {
-                                    conv.ask(finalResponseString + ' ' + unit);
+                                    utils.richResponse(conv, finalResponseString + ' ' + unit, emissionResponse);
                                     resolve();
                                 } else {
-                                    conv.ask(finalResponseString + ' kg');
+                                    utils.richResponse(conv, finalResponseString + ' kg', emissionResponse);
                                     resolve();
                                 }
                             });
@@ -138,17 +141,19 @@ exports.processRequest = function(conv, parameters, requestReverseLookup) {
                                 console.log("responses length: " + responses.length);
                                 let selectedResponse = utils.getRandomNumber(0, responses.length - 1);
                                 console.log("selected response: " + selectedResponse);
-                                conv.ask(finalResponseString + ' are as follows:\n  \n' +
+                                finalResponseString = finalResponseString + ' are as follows:\n  \n' +
                                     'Carbon Dioxide: ' + carbonEmission + ' kg.\n' +
                                     "Nitrous Oxide: " + nitrousEmission + ' kg.\n' +
-                                    "Methane: " + methaneEmission + ' kg.' + ' \n\n' + responses[selectedResponse]);
+                                    "Methane: " + methaneEmission + ' kg.' + ' \n\n' + responses[selectedResponse];
+                                utils.richResponse(conv, finalResponseString, responses[selectedResponse]);
                                 resolve();
                             })
                             .catch((err) => {
-                                conv.ask(finalResponseString + ' are as follows:\n  \n' +
+                                finalResponseString = finalResponseString + ' are as follows:\n  \n' +
                                     'Carbon Dioxide: ' + carbonEmission + ' kg.\n' +
                                     "Nitrous Oxide: " + nitrousEmission + ' kg.\n' +
-                                    "Methane: " + methaneEmission + ' kg.');
+                                    "Methane: " + methaneEmission + ' kg.';
+                                utils.richResponse(conv, finalResponseString, emissionResponse);
                                 resolve();
                             });
                     }
