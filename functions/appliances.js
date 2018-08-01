@@ -75,7 +75,7 @@ exports.processRequest = function(conv, parameters, requestReverseLookup) {
                 }
             };
             requestLib(options, function(error, response, body) {
-                const emissionResponse = "The emissions released due to this action aregiven below";
+                const emissionResponse = "The emissions released due to this action are given below";
                 if (!error && response.statusCode === 200) {
                     console.log(body);
                     if (parameters.emission_type !== "") {
