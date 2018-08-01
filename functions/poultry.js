@@ -1,5 +1,6 @@
 var config = require('./config')
 const requestLib = require('request');
+const utils = require('./utils');
 
 exports.processRequest = function(conv, parameters) {
     return new Promise(function(resolve, reject) {
@@ -31,6 +32,7 @@ exports.processRequest = function(conv, parameters) {
             };
 
             requestLib(options, function(error, response, body) {
+                const emissionResponse = "The emissions released due to this action are given below";
                 if (!error && response.statusCode === 200) {
                     console.log(body);
 
@@ -49,10 +51,12 @@ exports.processRequest = function(conv, parameters) {
 
                     let outputUnit = body.unit;
                     if (outputUnit !== undefined) {
-                        conv.ask(finalResponseString + ' ' + outputUnit);
+                        finalResponseString = finalResponseString + ' ' + outputUnit;
+                        utils.richResponse(conv, finalResponseString, emissionResponse);
                         resolve();
                     } else {
-                        conv.ask(finalResponseString + ' kg');
+                        finalResponseString = finalResponseString + ' kg'
+                        utils.richResponse(conv, finalResponseString, emissionResponse);
                         resolve();
                     }
                 } else {
