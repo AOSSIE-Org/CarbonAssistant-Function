@@ -65,7 +65,10 @@ app.intent('permission_confirmation', (conv, parameters, permission_allowed) => 
 
 app.intent('trains_intent', (conv, parameters) => {
     conv.user.storage.lastParams = parameters;
-    return trains.processRequest(conv, parameters);
+    if (!conv.user.storage.noPermission)
+        return trains.processRequest(conv, parameters, true);
+    else
+        return trains.processRequest(conv, parameters, false);
 });
 
 app.intent('trains_intent - followup', (conv, parameters) => {
@@ -89,12 +92,18 @@ app.intent('trains_intent - followup', (conv, parameters) => {
 
     conv.user.storage.lastParams = newParams;
 
-    return trains.processRequest(conv, newParams);
+    if (!conv.user.storage.noPermission)
+        return trains.processRequest(conv, newParams, true);
+    else
+        return trains.processRequest(conv, newParams, false);
 });
 
 app.intent('vehicle_intent', (conv, parameters) => {
     conv.user.storage.lastParams = parameters;
-    return vehicles.processRequest(conv, parameters);
+    if (!conv.user.storage.noPermission)
+        return vehicles.processRequest(conv, parameters, true);
+    else
+        return vehicles.processRequest(conv, parameters, false);
 });
 
 app.intent('vehicle_intent - followup', (conv, parameters) => {
@@ -128,12 +137,18 @@ app.intent('vehicle_intent - followup', (conv, parameters) => {
 
     conv.user.storage.lastParams = newParams;
 
-    return vehicles.processRequest(conv, newParams);
+    if (!conv.user.storage.noPermission)
+        return vehicles.processRequest(conv, newParams, true);
+    else
+        return vehicles.processRequest(conv, newParams, false);
 });
 
 app.intent('flights_intent', (conv, parameters) => {
     conv.user.storage.lastParams = parameters;
-    return flights.processRequest(conv, parameters);
+    if (!conv.user.storage.noPermission)
+        return flights.processRequest(conv, parameters, true);
+    else
+        return flights.processRequest(conv, parameters, false);
 });
 
 app.intent('flights_intent - followup', (conv, parameters) => {
@@ -165,7 +180,10 @@ app.intent('flights_intent - followup', (conv, parameters) => {
 
     conv.user.storage.lastParams = newParams;
 
-    return flights.processRequest(conv, newParams);
+    if (!conv.user.storage.noPermission)
+        return flights.processRequest(conv, newParams, true);
+    else
+        return flights.processRequest(conv, newParams, false);
 });
 
 app.intent('fuels_intent', (conv, parameters) => {
@@ -229,7 +247,10 @@ app.intent('appliance_intent - followup', (conv, parameters) => {
 
     conv.user.storage.lastParams = newParams;
 
-    return appliances.processRequest(conv, newParams);
+    if (!conv.user.storage.noPermission)
+        return appliances.processRequest(conv, newParams, true);
+    else
+        return appliances.processRequest(conv, newParams, false);
 });
 
 // The default fallback intent has been matched, try to recover (https://dialogflow.com/docs/intents#fallback_intents)

@@ -97,31 +97,42 @@ exports.processRequest = function(conv, parameters, requestReverseLookup) {
                         else
                             finalResponseString = basicResponseString + ' are ' + emission;
 
-                        let reverseLookup = reverseLookupManager.reverseLookup(body.emissions, conv.user.storage.location.coordinates);
-                        reverseLookup
-                            .then((responses) => {
-                                let selectedResponse = utils.getRandomNumber(0, responses.length - 1);
-                                let unit = body.unit;
-                                if (unit !== undefined) {
-                                    finalResponseString = finalResponseString + ' ' + unit + ' \n\n' + responses[selectedResponse];
-                                    utils.richResponse(conv, finalResponseString, responses[selectedResponse]);
-                                    resolve();
-                                } else {
-                                    finalResponseString = finalResponseString + ' kg' + ' \n\n' + responses[selectedResponse];
-                                    utils.richResponse(conv, finalResponseString, responses[selectedResponse]);
-                                    resolve();
-                                }
-                            })
-                            .catch((err) => {
-                                let unit = body.unit;
-                                if (unit !== undefined) {
-                                    utils.richResponse(conv, finalResponseString + ' ' + unit, emissionResponse);
-                                    resolve();
-                                } else {
-                                    utils.richResponse(conv, finalResponseString + ' kg', emissionResponse);
-                                    resolve();
-                                }
-                            });
+                        if (requestReverseLookup) {
+                            let reverseLookup = reverseLookupManager.reverseLookup(body.emissions, conv.user.storage.location.coordinates);
+                            reverseLookup
+                                .then((responses) => {
+                                    let selectedResponse = utils.getRandomNumber(0, responses.length - 1);
+                                    let unit = body.unit;
+                                    if (unit !== undefined) {
+                                        finalResponseString = finalResponseString + ' ' + unit + ' \n\n' + responses[selectedResponse];
+                                        utils.richResponse(conv, finalResponseString, responses[selectedResponse]);
+                                        resolve();
+                                    } else {
+                                        finalResponseString = finalResponseString + ' kg' + ' \n\n' + responses[selectedResponse];
+                                        utils.richResponse(conv, finalResponseString, responses[selectedResponse]);
+                                        resolve();
+                                    }
+                                })
+                                .catch((err) => {
+                                    let unit = body.unit;
+                                    if (unit !== undefined) {
+                                        utils.richResponse(conv, finalResponseString + ' ' + unit, emissionResponse);
+                                        resolve();
+                                    } else {
+                                        utils.richResponse(conv, finalResponseString + ' kg', emissionResponse);
+                                        resolve();
+                                    }
+                                });
+                        } else {
+                            let unit = body.unit;
+                            if (unit !== undefined) {
+                                utils.richResponse(conv, finalResponseString + ' ' + unit, emissionResponse);
+                                resolve();
+                            } else {
+                                utils.richResponse(conv, finalResponseString + ' kg', emissionResponse);
+                                resolve();
+                            }
+                        }
                     } else {
                         let basicResponseString = 'Emissions due to ' + appliance_quantity + ' ' + appliance_size + ' ' + appliance_type + ' ' +
                             parameters.appliance + ' consumed for ' + appliance_usage_hours + ' hour(s)';
@@ -134,28 +145,37 @@ exports.processRequest = function(conv, parameters, requestReverseLookup) {
                         let nitrousEmission = body.emissions.N2O;
                         let methaneEmission = body.emissions.CH4;
 
-                        console.log("Location data:" + JSON.stringify(conv.user.storage.location.coordinates));
-                        let reverseLookup = reverseLookupManager.reverseLookup(body.emissions, conv.user.storage.location.coordinates);
-                        reverseLookup
-                            .then((responses) => {
-                                console.log("responses length: " + responses.length);
-                                let selectedResponse = utils.getRandomNumber(0, responses.length - 1);
-                                console.log("selected response: " + selectedResponse);
-                                finalResponseString = finalResponseString + ' are as follows:\n  \n' +
-                                    'Carbon Dioxide: ' + carbonEmission + ' kg.\n' +
-                                    "Nitrous Oxide: " + nitrousEmission + ' kg.\n' +
-                                    "Methane: " + methaneEmission + ' kg.' + ' \n\n' + responses[selectedResponse];
-                                utils.richResponse(conv, finalResponseString, responses[selectedResponse]);
-                                resolve();
-                            })
-                            .catch((err) => {
-                                finalResponseString = finalResponseString + ' are as follows:\n  \n' +
-                                    'Carbon Dioxide: ' + carbonEmission + ' kg.\n' +
-                                    "Nitrous Oxide: " + nitrousEmission + ' kg.\n' +
-                                    "Methane: " + methaneEmission + ' kg.';
-                                utils.richResponse(conv, finalResponseString, emissionResponse);
-                                resolve();
-                            });
+                        if (requestReverseLookup) {
+                            console.log("Location data:" + JSON.stringify(conv.user.storage.location.coordinates));
+                            let reverseLookup = reverseLookupManager.reverseLookup(body.emissions, conv.user.storage.location.coordinates);
+                            reverseLookup
+                                .then((responses) => {
+                                    console.log("responses length: " + responses.length);
+                                    let selectedResponse = utils.getRandomNumber(0, responses.length - 1);
+                                    console.log("selected response: " + selectedResponse);
+                                    finalResponseString = finalResponseString + ' are as follows:\n  \n' +
+                                        'Carbon Dioxide: ' + carbonEmission + ' kg.\n' +
+                                        "Nitrous Oxide: " + nitrousEmission + ' kg.\n' +
+                                        "Methane: " + methaneEmission + ' kg.' + ' \n\n' + responses[selectedResponse];
+                                    utils.richResponse(conv, finalResponseString, responses[selectedResponse]);
+                                    resolve();
+                                })
+                                .catch((err) => {
+                                    finalResponseString = finalResponseString + ' are as follows:\n  \n' +
+                                        'Carbon Dioxide: ' + carbonEmission + ' kg.\n' +
+                                        "Nitrous Oxide: " + nitrousEmission + ' kg.\n' +
+                                        "Methane: " + methaneEmission + ' kg.';
+                                    utils.richResponse(conv, finalResponseString, emissionResponse);
+                                    resolve();
+                                });
+                        } else {
+                            finalResponseString = finalResponseString + ' are as follows:\n  \n' +
+                                'Carbon Dioxide: ' + carbonEmission + ' kg.\n' +
+                                "Nitrous Oxide: " + nitrousEmission + ' kg.\n' +
+                                "Methane: " + methaneEmission + ' kg.';
+                            utils.richResponse(conv, finalResponseString, emissionResponse);
+                            resolve();
+                        }
                     }
                 } else {
                     if (body && body.err) {
