@@ -124,13 +124,13 @@ exports.processRequest = function(conv, parameters) {
                         console.log("Error: " + JSON.stringify(body));
                         reject(body.err);
                     } else {
-                        conv.ask("Sorry, we are facing a temporary outage. Please contact our support.");
+                        conv.close("Sorry, we are facing a temporary outage. Please contact our support.");
                         resolve();
                     }
                 }
             });
         } else {
-            conv.ask("Sorry, need a valid origin, destination and type of fuel your vehicle uses. Could you please say it again?");
+            conv.close("Sorry, need a valid origin, destination and type of fuel your vehicle uses. Could you please say it again?");
             resolve();
         }
     });

@@ -57,16 +57,16 @@ exports.processRequest = function(conv, parameters) {
                 } else {
                     if (body.err !== undefined) {
                         console.log("Error: " + JSON.stringify(body));
-                        conv.ask(body.err);
+                        conv.close(body.err);
                         resolve();
                     } else {
-                        conv.ask("Sorry, we are facing a temporary outage. Please contact our support.");
+                        conv.close("Sorry, we are facing a temporary outage. Please contact our support.");
                         resolve();
                     }
                 }
             });
         } else {
-            conv.ask("Sorry, need a valid origin and destination of your train journey. Could you please say it again?");
+            conv.close("Sorry, need a valid origin and destination of your train journey. Could you please say it again?");
             resolve();
         }
     });
