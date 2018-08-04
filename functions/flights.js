@@ -63,26 +63,26 @@ exports.processRequest = function(conv, parameters) {
                         .catch((err) => {
                             let unit = body.unit;
                             if (unit !== undefined) {
-                                conv.close(finalResponseString + ' ' + unit);
+                                conv.ask(finalResponseString + ' ' + unit);
                                 resolve();
                             } else {
-                                conv.close(finalResponseString + ' kg');
+                                conv.ask(finalResponseString + ' kg');
                                 resolve();
                             }
                         });
                 } else {
                     if (body.err !== undefined) {
                         console.log("Error: " + JSON.stringify(body));
-                        conv.close(body.err);
+                        conv.ask(body.err);
                         resolve();
                     } else {
-                        conv.close("Sorry, we are facing a temporary outage. Please contact our support.");
+                        conv.ask("Sorry, we are facing a temporary outage. Please contact our support.");
                         resolve();
                     }
                 }
             });
         } else {
-            conv.close("Sorry, need a valid origin and destination of your flight travel");
+            conv.ask("Sorry, need a valid origin and destination of your flight travel");
             resolve();
         }
     });

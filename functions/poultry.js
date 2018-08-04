@@ -64,14 +64,14 @@ exports.processRequest = function(conv, parameters) {
                         console.log("Error: " + JSON.stringify(body));
                         reject(body.err);
                     } else {
-                        conv.close("Sorry, we are facing a temporary outage. Please contact our support.");
+                        conv.ask("Sorry, we are facing a temporary outage. Please contact our support.");
                         resolve();
                     }
                 }
             });
 
         } else {
-            conv.close("Sorry, I did not understand the poultry type you said.");
+            conv.ask("Sorry, I did not understand the poultry type you said.");
             resolve();
         }
     });

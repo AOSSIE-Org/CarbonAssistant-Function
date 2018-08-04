@@ -82,10 +82,10 @@ exports.processRequest = function(conv, parameters) {
             } else {
                 if (body.err !== undefined) {
                     console.log("Error: " + JSON.stringify(body));
-                    conv.close(body.err);
+                    conv.ask(body.err);
                     resolve();
                 } else {
-                    conv.close("Sorry, we are facing a temporary outage. Please contact our support.");
+                    conv.ask("Sorry, we are facing a temporary outage. Please contact our support.");
                     resolve();
                 }
             }

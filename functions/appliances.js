@@ -160,16 +160,16 @@ exports.processRequest = function(conv, parameters, requestReverseLookup) {
                 } else {
                     if (body && body.err) {
                         console.log("Error: " + JSON.stringify(body));
-                        conv.close(body.err);
+                        conv.ask(body.err);
                         resolve();
                     } else {
-                        conv.close("Sorry, we are facing a temporary outage. Please contact our support.\nError: " + error);
+                        conv.ask("Sorry, we are facing a temporary outage. Please contact our support.\nError: " + error);
                         resolve();
                     }
                 }
             });
         } else {
-            conv.close("Sorry, I did not understand the appliance you mentioned");
+            conv.ask("Sorry, I did not understand the appliance you mentioned");
             resolve();
         }
     });
