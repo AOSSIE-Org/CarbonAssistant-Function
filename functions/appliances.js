@@ -2,6 +2,7 @@ var config = require('./config')
 const requestLib = require('request');
 const reverseLookupManager = require('./reverseLookupManager');
 const utils = require('./utils');
+const appliances_utils = require('./appliances_utils');
 
 function getTimeInHours(duration) {
     if (duration.unit === 'h')
@@ -43,8 +44,17 @@ exports.processRequest = function(conv, parameters, requestReverseLookup) {
             } else if (appliance_size != "") {
                 appliance_path = appliance_size;
                 item = item + ' ' + appliance_path;
-            } else
+            } else {
                 appliance_path = "";
+                var applianceTypes = appliances_utils.getApplianceTypes(item);
+                console.log("Appliance types avilable: " + applianceTypes);
+                console.log("Appliance types length: " + applianceTypes.length);
+                if (applianceTypes.length > 0) {
+                    utils.responseWithSuggestions(conv, "Please select from the following types of " + item + "s", applianceTypes);
+                    resolve();
+                    return;
+                }
+            }
 
             if (parameters.quantity != "")
                 appliance_quantity = parameters.quantity;
@@ -189,7 +199,7 @@ exports.processRequest = function(conv, parameters, requestReverseLookup) {
                 }
             });
         } else {
-            conv.ask("Sorry, I did not understand the appliance you mentioned");
+            conv.ask("Sorry, I didn't get the appliance you were looking for. Can you say the appliance name again?");
             resolve();
         }
     });
