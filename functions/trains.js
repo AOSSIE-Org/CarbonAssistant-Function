@@ -28,6 +28,7 @@ exports.processRequest = function(conv, parameters) {
             };
 
             requestLib(options, function(error, response, body) {
+                const emissionResponse = "The emissions released due to this action are given below";
                 if (!error && response.statusCode === 200) {
                     console.log(body);
                     let basicResponseString = 'CO2 emissions due to train journey from ' + origin + ' to ' + destination;
@@ -44,11 +45,13 @@ exports.processRequest = function(conv, parameters) {
                     reverseLookup
                         .then((responses) => {
                             let selectedResponse = utils.getRandomNumber(0, responses.length - 1);
-                            conv.ask(finalResponseString + ' are ' + carbonEmission + ' kg.\n\n' + responses[selectedResponse]);
+                            finalResponseString = finalResponseString + ' are ' + carbonEmission + ' kg.\n\n' + responses[selectedResponse]
+                            utils.richResponse(conv, finalResponseString, responses[selectedResponse]);
                             resolve();
                         })
                         .catch((err) => {
-                            conv.ask(finalResponseString + ' are ' + carbonEmission + ' kg.\n');
+                            finalResponseString = finalResponseString + ' are ' + carbonEmission + ' kg.\n';
+                            utils.richResponse(conv, finalResponseString, emissionResponse);
                             resolve();
                         });
                 } else {

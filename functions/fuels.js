@@ -1,5 +1,6 @@
 var config = require('./config')
 const requestLib = require('request');
+const utils = require('./utils');
 
 exports.processRequest = function(conv, parameters) {
     return new Promise(function(resolve, reject) {
@@ -30,6 +31,7 @@ exports.processRequest = function(conv, parameters) {
             };
 
             requestLib(options, function(error, response, body) {
+                const emissionResponse = "The emissions released due to this action are given below";
                 if (!error && response.statusCode === 200) {
                     console.log(body);
                     if (parameters.emission_type !== "") {
@@ -49,10 +51,12 @@ exports.processRequest = function(conv, parameters) {
 
                         let unit = body.unit;
                         if (unit !== undefined) {
-                            conv.ask(finalResponseString + ' ' + unit);
+                            finalResponseString = finalResponseString + ' ' + unit;
+                            utils.richResponse(conv, finalResponseString, emissionResponse);
                             resolve();
                         } else {
-                            conv.ask(finalResponseString + ' kg');
+                            finalResponseString = finalResponseString + ' kg';
+                            utils.richResponse(conv, finalResponseString, emissionResponse);
                             resolve();
                         }
                     } else {
@@ -63,10 +67,11 @@ exports.processRequest = function(conv, parameters) {
                         let carbonEmission = body.emissions.CO2;
                         let nitrousEmission = body.emissions.N2O;
                         let methaneEmission = body.emissions.CH4;
-                        conv.ask(finalResponseString + ' are as follows:\n  \n' +
+                        finalResponseString = finalResponseString + ' are as follows:\n  \n' +
                             'Carbon Dioxide: ' + carbonEmission + ' kg.\n' +
                             "Nitrous Oxide: " + nitrousEmission + ' kg.\n' +
-                            "Methane: " + methaneEmission + ' kg.');
+                            "Methane: " + methaneEmission + ' kg.'
+                        utils.richResponse(conv, finalResponseString, emissionResponse);
                         resolve();
                     }
                 } else {

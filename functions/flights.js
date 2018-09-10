@@ -30,6 +30,7 @@ exports.processRequest = function(conv, parameters) {
             };
 
             requestLib(options, function(error, response, body) {
+                const emissionResponse = "The emissions released due to this action are given below";
                 if (!error && response.statusCode === 200) {
                     console.log(body);
                     let emissionType = parameters.emission_type;
@@ -50,10 +51,12 @@ exports.processRequest = function(conv, parameters) {
                             let selectedResponse = utils.getRandomNumber(0, responses.length - 1);
                             let unit = body.unit;
                             if (unit !== undefined) {
-                                conv.ask(finalResponseString + ' ' + unit + '\n\n' + responses[selectedResponse]);
+                                finalResponseString = finalResponseString + ' ' + unit + '\n\n' + responses[selectedResponse];
+                                utils.richResponse(conv, finalResponseString, responses[selectedResponse])
                                 resolve();
                             } else {
-                                conv.ask(finalResponseString + ' kg ' + '\n\n' + responses[selectedResponse]);
+                                finalResponseString = finalResponseString + ' kg ' + '\n\n' + responses[selectedResponse];
+                                utils.richResponse(conv, finalResponseString, responses[selectedResponse])
                                 resolve();
                             }
                         })
