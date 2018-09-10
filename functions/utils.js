@@ -1,5 +1,5 @@
 const {
-    SimpleResponse
+    SimpleResponse, Suggestions
 } = require('actions-on-google');
 
 exports.roundWithPrecision = (value, precision) => {
@@ -16,4 +16,14 @@ exports.richResponse = (conv, display, toSpeak) => {
         speech: toSpeak,
         text: display
     }));
+}
+
+exports.responseWithSuggestions = (conv, display, suggestions) => {
+	console.log("Sending response: "+display);
+	console.log("Sending suggestion: "+suggestions);
+    conv.ask(new SimpleResponse({
+        speech: display,
+        text: display
+    }),
+	new Suggestions(suggestions));
 }

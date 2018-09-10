@@ -3,7 +3,7 @@ const requestLib = require('request');
 const reverseLookupManager = require('./reverseLookupManager');
 const utils = require('./utils');
 
-exports.processRequest = function(conv, parameters) {
+exports.processRequest = function(conv, parameters, requestReverseLookup) {
     return new Promise(function(resolve, reject) {
         if (parameters.origin != "" && parameters.destination !== "") {
             let origin = parameters.origin,
@@ -45,31 +45,42 @@ exports.processRequest = function(conv, parameters) {
                     else
                         finalResponseString = basicResponseString + ' are ' + emission
 
-                    let reverseLookup = reverseLookupManager.reverseLookup(body.emissions, conv.user.storage.location.coordinates);
-                    reverseLookup
-                        .then((responses) => {
-                            let selectedResponse = utils.getRandomNumber(0, responses.length - 1);
-                            let unit = body.unit;
-                            if (unit !== undefined) {
-                                finalResponseString = finalResponseString + ' ' + unit + '\n\n' + responses[selectedResponse];
-                                utils.richResponse(conv, finalResponseString, responses[selectedResponse])
-                                resolve();
-                            } else {
-                                finalResponseString = finalResponseString + ' kg ' + '\n\n' + responses[selectedResponse];
-                                utils.richResponse(conv, finalResponseString, responses[selectedResponse])
-                                resolve();
-                            }
-                        })
-                        .catch((err) => {
-                            let unit = body.unit;
-                            if (unit !== undefined) {
-                                conv.ask(finalResponseString + ' ' + unit);
-                                resolve();
-                            } else {
-                                conv.ask(finalResponseString + ' kg');
-                                resolve();
-                            }
-                        });
+                    if (requestReverseLookup) {
+                        let reverseLookup = reverseLookupManager.reverseLookup(body.emissions, conv.user.storage.location.coordinates);
+                        reverseLookup
+                            .then((responses) => {
+                                let selectedResponse = utils.getRandomNumber(0, responses.length - 1);
+                                let unit = body.unit;
+                                if (unit !== undefined) {
+                                    finalResponseString = finalResponseString + ' ' + unit + '\n\n' + responses[selectedResponse];
+                                    utils.richResponse(conv, finalResponseString, responses[selectedResponse])
+                                    resolve();
+                                } else {
+                                    finalResponseString = finalResponseString + ' kg ' + '\n\n' + responses[selectedResponse];
+                                    utils.richResponse(conv, finalResponseString, responses[selectedResponse])
+                                    resolve();
+                                }
+                            })
+                            .catch((err) => {
+                                let unit = body.unit;
+                                if (unit !== undefined) {
+                                    conv.ask(finalResponseString + ' ' + unit);
+                                    resolve();
+                                } else {
+                                    conv.ask(finalResponseString + ' kg');
+                                    resolve();
+                                }
+                            });
+                    } else {
+                        let unit = body.unit;
+                        if (unit !== undefined) {
+                            conv.ask(finalResponseString + ' ' + unit);
+                            resolve();
+                        } else {
+                            conv.ask(finalResponseString + ' kg');
+                            resolve();
+                        }
+                    }
                 } else {
                     if (body.err !== undefined) {
                         console.log("Error: " + JSON.stringify(body));

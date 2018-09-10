@@ -3,7 +3,7 @@ const requestLib = require('request');
 const reverseLookupManager = require('./reverseLookupManager');
 const utils = require('./utils');
 
-exports.processRequest = function(conv, parameters) {
+exports.processRequest = function(conv, parameters, requestReverseLookup) {
     return new Promise(function(resolve, reject) {
         if (parameters.origin != "" && parameters.destination !== "") {
             let origin = parameters.origin,
@@ -41,19 +41,25 @@ exports.processRequest = function(conv, parameters) {
 
                     let carbonEmission = body.emissions.CO2;
 
-                    let reverseLookup = reverseLookupManager.reverseLookup(body.emissions, conv.user.storage.location.coordinates, "trains");
-                    reverseLookup
-                        .then((responses) => {
-                            let selectedResponse = utils.getRandomNumber(0, responses.length - 1);
-                            finalResponseString = finalResponseString + ' are ' + carbonEmission + ' kg.\n\n' + responses[selectedResponse]
-                            utils.richResponse(conv, finalResponseString, responses[selectedResponse]);
-                            resolve();
-                        })
-                        .catch((err) => {
-                            finalResponseString = finalResponseString + ' are ' + carbonEmission + ' kg.\n';
-                            utils.richResponse(conv, finalResponseString, emissionResponse);
-                            resolve();
-                        });
+                    if (requestReverseLookup) {
+                        let reverseLookup = reverseLookupManager.reverseLookup(body.emissions, conv.user.storage.location.coordinates, "trains");
+                        reverseLookup
+                            .then((responses) => {
+                                let selectedResponse = utils.getRandomNumber(0, responses.length - 1);
+                                finalResponseString = finalResponseString + ' are ' + carbonEmission + ' kg.\n\n' + responses[selectedResponse]
+                                utils.richResponse(conv, finalResponseString, responses[selectedResponse]);
+                                resolve();
+                            })
+                            .catch((err) => {
+                                finalResponseString = finalResponseString + ' are ' + carbonEmission + ' kg.\n';
+                                utils.richResponse(conv, finalResponseString, emissionResponse);
+                                resolve();
+                            });
+                    } else {
+                        finalResponseString = finalResponseString + ' are ' + carbonEmission + ' kg.\n';
+                        utils.richResponse(conv, finalResponseString, emissionResponse);
+                        resolve();
+                    }
                 } else {
                     if (body.err !== undefined) {
                         console.log("Error: " + JSON.stringify(body));

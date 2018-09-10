@@ -54,12 +54,16 @@ exports.reverseLookup = function(emissions, locationData, blacklist) {
                 let matches = body.matches;
                 let responses = [];
 				console.log("Matches length:"+matches.length);
+                console.log("Unfiltered Matches :"+JSON.stringify(matches));
                 for (let i = 0; i < matches.length; i++) {
                     if (matches[i].status === "success" && matches[i].section !== blacklist)
                         responses.push(constructResponse(matches[i]));
                 }
                 console.log("Allowed responses: "+JSON.stringify(responses));
-                resolve(responses);
+                if(responses.length > 0)
+                    resolve(responses);
+                else
+                    reject();
             } else {
                 console.log("Error in reverseLookup:" + error);
                 reject();

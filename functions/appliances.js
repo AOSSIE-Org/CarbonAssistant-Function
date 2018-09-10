@@ -2,6 +2,7 @@ var config = require('./config')
 const requestLib = require('request');
 const reverseLookupManager = require('./reverseLookupManager');
 const utils = require('./utils');
+const appliances_utils = require('./appliances_utils');
 
 function getTimeInHours(duration) {
     if (duration.unit === 'h')
@@ -43,8 +44,17 @@ exports.processRequest = function(conv, parameters, requestReverseLookup) {
             } else if (appliance_size != "") {
                 appliance_path = appliance_size;
                 item = item + ' ' + appliance_path;
-            } else
+            } else {
                 appliance_path = "";
+                var applianceTypes = appliances_utils.getApplianceTypes(item);
+                console.log("Appliance types avilable: " + applianceTypes);
+                console.log("Appliance types length: " + applianceTypes.length);
+                if (applianceTypes.length > 0) {
+                    utils.responseWithSuggestions(conv, "Please select from the following types of " + item + "s", applianceTypes);
+                    resolve();
+                    return;
+                }
+            }
 
             if (parameters.quantity != "")
                 appliance_quantity = parameters.quantity;
@@ -97,31 +107,42 @@ exports.processRequest = function(conv, parameters, requestReverseLookup) {
                         else
                             finalResponseString = basicResponseString + ' are ' + emission;
 
-                        let reverseLookup = reverseLookupManager.reverseLookup(body.emissions, conv.user.storage.location.coordinates);
-                        reverseLookup
-                            .then((responses) => {
-                                let selectedResponse = utils.getRandomNumber(0, responses.length - 1);
-                                let unit = body.unit;
-                                if (unit !== undefined) {
-                                    finalResponseString = finalResponseString + ' ' + unit + ' \n\n' + responses[selectedResponse];
-                                    utils.richResponse(conv, finalResponseString, responses[selectedResponse]);
-                                    resolve();
-                                } else {
-                                    finalResponseString = finalResponseString + ' kg' + ' \n\n' + responses[selectedResponse];
-                                    utils.richResponse(conv, finalResponseString, responses[selectedResponse]);
-                                    resolve();
-                                }
-                            })
-                            .catch((err) => {
-                                let unit = body.unit;
-                                if (unit !== undefined) {
-                                    utils.richResponse(conv, finalResponseString + ' ' + unit, emissionResponse);
-                                    resolve();
-                                } else {
-                                    utils.richResponse(conv, finalResponseString + ' kg', emissionResponse);
-                                    resolve();
-                                }
-                            });
+                        if (requestReverseLookup) {
+                            let reverseLookup = reverseLookupManager.reverseLookup(body.emissions, conv.user.storage.location.coordinates);
+                            reverseLookup
+                                .then((responses) => {
+                                    let selectedResponse = utils.getRandomNumber(0, responses.length - 1);
+                                    let unit = body.unit;
+                                    if (unit !== undefined) {
+                                        finalResponseString = finalResponseString + ' ' + unit + ' \n\n' + responses[selectedResponse];
+                                        utils.richResponse(conv, finalResponseString, responses[selectedResponse]);
+                                        resolve();
+                                    } else {
+                                        finalResponseString = finalResponseString + ' kg' + ' \n\n' + responses[selectedResponse];
+                                        utils.richResponse(conv, finalResponseString, responses[selectedResponse]);
+                                        resolve();
+                                    }
+                                })
+                                .catch((err) => {
+                                    let unit = body.unit;
+                                    if (unit !== undefined) {
+                                        utils.richResponse(conv, finalResponseString + ' ' + unit, emissionResponse);
+                                        resolve();
+                                    } else {
+                                        utils.richResponse(conv, finalResponseString + ' kg', emissionResponse);
+                                        resolve();
+                                    }
+                                });
+                        } else {
+                            let unit = body.unit;
+                            if (unit !== undefined) {
+                                utils.richResponse(conv, finalResponseString + ' ' + unit, emissionResponse);
+                                resolve();
+                            } else {
+                                utils.richResponse(conv, finalResponseString + ' kg', emissionResponse);
+                                resolve();
+                            }
+                        }
                     } else {
                         let basicResponseString = 'Emissions due to ' + appliance_quantity + ' ' + appliance_size + ' ' + appliance_type + ' ' +
                             parameters.appliance + ' consumed for ' + appliance_usage_hours + ' hour(s)';
@@ -134,28 +155,37 @@ exports.processRequest = function(conv, parameters, requestReverseLookup) {
                         let nitrousEmission = body.emissions.N2O;
                         let methaneEmission = body.emissions.CH4;
 
-                        console.log("Location data:" + JSON.stringify(conv.user.storage.location.coordinates));
-                        let reverseLookup = reverseLookupManager.reverseLookup(body.emissions, conv.user.storage.location.coordinates);
-                        reverseLookup
-                            .then((responses) => {
-                                console.log("responses length: " + responses.length);
-                                let selectedResponse = utils.getRandomNumber(0, responses.length - 1);
-                                console.log("selected response: " + selectedResponse);
-                                finalResponseString = finalResponseString + ' are as follows:\n  \n' +
-                                    'Carbon Dioxide: ' + carbonEmission + ' kg.\n' +
-                                    "Nitrous Oxide: " + nitrousEmission + ' kg.\n' +
-                                    "Methane: " + methaneEmission + ' kg.' + ' \n\n' + responses[selectedResponse];
-                                utils.richResponse(conv, finalResponseString, responses[selectedResponse]);
-                                resolve();
-                            })
-                            .catch((err) => {
-                                finalResponseString = finalResponseString + ' are as follows:\n  \n' +
-                                    'Carbon Dioxide: ' + carbonEmission + ' kg.\n' +
-                                    "Nitrous Oxide: " + nitrousEmission + ' kg.\n' +
-                                    "Methane: " + methaneEmission + ' kg.';
-                                utils.richResponse(conv, finalResponseString, emissionResponse);
-                                resolve();
-                            });
+                        if (requestReverseLookup) {
+                            console.log("Location data:" + JSON.stringify(conv.user.storage.location.coordinates));
+                            let reverseLookup = reverseLookupManager.reverseLookup(body.emissions, conv.user.storage.location.coordinates);
+                            reverseLookup
+                                .then((responses) => {
+                                    console.log("responses length: " + responses.length);
+                                    let selectedResponse = utils.getRandomNumber(0, responses.length - 1);
+                                    console.log("selected response: " + selectedResponse);
+                                    finalResponseString = finalResponseString + ' are as follows:\n  \n' +
+                                        'Carbon Dioxide: ' + carbonEmission + ' kg.\n' +
+                                        "Nitrous Oxide: " + nitrousEmission + ' kg.\n' +
+                                        "Methane: " + methaneEmission + ' kg.' + ' \n\n' + responses[selectedResponse];
+                                    utils.richResponse(conv, finalResponseString, responses[selectedResponse]);
+                                    resolve();
+                                })
+                                .catch((err) => {
+                                    finalResponseString = finalResponseString + ' are as follows:\n  \n' +
+                                        'Carbon Dioxide: ' + carbonEmission + ' kg.\n' +
+                                        "Nitrous Oxide: " + nitrousEmission + ' kg.\n' +
+                                        "Methane: " + methaneEmission + ' kg.';
+                                    utils.richResponse(conv, finalResponseString, emissionResponse);
+                                    resolve();
+                                });
+                        } else {
+                            finalResponseString = finalResponseString + ' are as follows:\n  \n' +
+                                'Carbon Dioxide: ' + carbonEmission + ' kg.\n' +
+                                "Nitrous Oxide: " + nitrousEmission + ' kg.\n' +
+                                "Methane: " + methaneEmission + ' kg.';
+                            utils.richResponse(conv, finalResponseString, emissionResponse);
+                            resolve();
+                        }
                     }
                 } else {
                     if (body && body.err) {
@@ -169,7 +199,7 @@ exports.processRequest = function(conv, parameters, requestReverseLookup) {
                 }
             });
         } else {
-            conv.ask("Sorry, I did not understand the appliance you mentioned");
+            conv.ask("Sorry, I didn't get the appliance you were looking for. Can you say the appliance name again?");
             resolve();
         }
     });
