@@ -22,7 +22,7 @@ const app = dialogflow({
 // The default welcome intent has been matched, welcome the user (https://dialogflow.com/docs/events#default_welcome_intent)
 app.intent('Default Welcome Intent', (conv) => {
     const options = {
-        context: 'Hello, Welcome to CarbonFootPrint Action! To address you by name and provide you relatable emission comparisons based on your location',
+        context: `Hello, Welcome to CarbonFootPrint Action! To address you by name and provide you relatable emission comparisons based on your location`,
         // Ask for more than one permission. User can authorize all or none.
         permissions: ['NAME', 'DEVICE_PRECISE_LOCATION'],
     };
@@ -31,23 +31,23 @@ app.intent('Default Welcome Intent', (conv) => {
     else {
         if (!conv.user.storage.noPermission) {
             const name = conv.user.storage.name.given;
-            conv.ask("Hello " + name + ", what's the info you need today? Feel free to ask what I can do for assistance or you can simply say 'help'");
+            conv.ask(`Hello ${name}, what's the info you need today? Feel free to ask what I can do for assistance or you can simply say 'help'`);
         } else {
-            conv.ask("Hey there!, what's the info you need today? Feel free to ask what I can do for assistance or you can simply say 'help'");
+            conv.ask(`Hey there!, what's the info you need today? Feel free to ask what I can do for assistance or you can simply say 'help'`);
         }
     }
 });
 
 app.intent('request_permission', (conv) => {
     const options = {
-        context: 'Hello, Welcome to CarbonFootPrint Action! To address you by name and provide you relatable emission comparisons based on your location',
+        context: `Hello, Welcome to CarbonFootPrint Action! To address you by name and provide you relatable emission comparisons based on your location`,
         // Ask for more than one permission. User can authorize all or none.
         permissions: ['NAME', 'DEVICE_PRECISE_LOCATION'],
     };
     if (!conv.user.storage.name || !conv.user.storage.location)
         conv.ask(new Permission(options));
     else
-        conv.ask("I already have all the permissions I need. Thanks!");
+        conv.ask(`I already have all the permissions I need. Thanks!`);
 });
 
 app.intent('permission_confirmation', (conv, parameters, permission_allowed) => {
@@ -67,10 +67,10 @@ app.intent('permission_confirmation', (conv, parameters, permission_allowed) => 
             latitude,
             longitude
         } = location.coordinates;
-        conv.ask("Ok " + name.given + ", we are all set!");
+        conv.ask(`Ok ${name.given}, we are all set!`);
     } else {
-        conv.ask("Sorry about that :( Unfortunately, we cannot provide you intelligent emission results without the location information. \
-            Therefore, you will only be able to receive raw emission results. Please say 'request permissions' if you change your mind.");
+        conv.ask(`Sorry about that! Unfortunately, we cannot provide you intelligent emission results without the location information.
+            Therefore, you will only be able to receive raw emission results. Please say 'request permissions' if you change your mind.`);
         conv.user.storage.noPermission = true;
     }
 });
@@ -266,7 +266,7 @@ app.intent('appliance_intent - followup', (conv, parameters) => {
 // The default fallback intent has been matched, try to recover (https://dialogflow.com/docs/intents#fallback_intents)
 app.intent('Default Fallback Intent', (conv) => {
     // Use the Actions on Google lib to respond to Google requests; for other requests use JSON
-    sendGoogleResponse(conv, 'I\'m having trouble, can you try that again?');
+    sendGoogleResponse(conv, `I'm having trouble, can you try that again?`);
 });
 
 // Function to send correctly formatted Google Assistant responses to Dialogflow which are then sent to the user
