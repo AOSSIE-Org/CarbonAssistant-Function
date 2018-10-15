@@ -80,14 +80,8 @@ exports.processRequest = function(conv, parameters) {
                     resolve();
                 }
             } else {
-                if (body.err !== undefined) {
-                    console.log("Error: " + JSON.stringify(body));
-                    conv.ask(body.err);
-                    resolve();
-                } else {
-                    conv.ask("Sorry, we are facing a temporary outage. Please contact our support.");
-                    resolve();
-                }
+                conv.tell("Sorry, we are facing a temporary outage. Please contact our support.");
+                resolve();
             }
         });
     });

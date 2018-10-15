@@ -147,7 +147,7 @@ exports.processRequest = function(conv, parameters, requestReverseLookup) {
                         console.log("Error: " + JSON.stringify(body));
                         reject(body.err);
                     } else {
-                        conv.ask("Sorry, we are facing a temporary outage. Please contact our support.");
+                        conv.tell("Sorry, we are facing a temporary outage. Please contact our support.");
                         resolve();
                     }
                 }

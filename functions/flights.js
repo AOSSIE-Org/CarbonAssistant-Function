@@ -82,18 +82,12 @@ exports.processRequest = function(conv, parameters, requestReverseLookup) {
                         }
                     }
                 } else {
-                    if (body.err !== undefined) {
-                        console.log("Error: " + JSON.stringify(body));
-                        conv.ask(body.err);
-                        resolve();
-                    } else {
-                        conv.ask("Sorry, we are facing a temporary outage. Please contact our support.");
-                        resolve();
-                    }
+                    conv.tell("Sorry, we are facing a temporary outage. Please contact our support.");
+                    resolve();
                 }
             });
         } else {
-            conv.ask("Sorry, need a valid origin and destination of your flight travel");
+            conv.ask("Sorry, need a valid origin and destination of your flight travel. Could you please repeat your question with correct information?");
             resolve();
         }
     });

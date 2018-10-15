@@ -188,14 +188,8 @@ exports.processRequest = function(conv, parameters, requestReverseLookup) {
                         }
                     }
                 } else {
-                    if (body && body.err) {
-                        console.log("Error: " + JSON.stringify(body));
-                        conv.ask(body.err);
-                        resolve();
-                    } else {
-                        conv.ask("Sorry, we are facing a temporary outage. Please contact our support.\nError: " + error);
-                        resolve();
-                    }
+                    conv.tell("Sorry, we are facing a temporary outage. Please contact our support.\nError: " + error);
+                    resolve();
                 }
             });
         } else {
