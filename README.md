@@ -15,14 +15,11 @@ The Dialogflow agent which handles NLP, is combined with the firebase function w
   - Context management support (Able to remember what you said last and continue conversation over it)
   - Slot filling support (Able to recognize and re-enquire missing pieces of required information in your query)
 
+The deployment of the Google Assistant Action is done in two parts: Deployment of DialogFlow Agent and Deployment of Firebase Cloud Function.
+
 # CarbonFootprint Dialogflow Agent
 
-CarbonFootPrint DialogFlow agent is one part of the Action.
-
 ### Deploying
-
-The deployment of the Google Assistant Action is done in two parts: Deployment of DialogFlow Agent and Deployment of Firebase Cloud Function. This documentation will only guide through Deployement of DialogFlow Agent. For guide on deployment of Firebase Cloud function, please refer the repository of cloud function [here](https://gitlab.com/aossie/CarbonAssistant-Function)
-#### Part 1 - Deploying DialogFlow Agent:
 
 - Download the agent zip by clicking [here](https://gitlab.com/aossie/CarbonAssistant-Function/raw/master/carbon-assistant-agent.zip)
 - Once you have a zip, head to [Actions on Google](https://console.actions.google.com/u/0/) and create a new project by entering a name and country for the project
@@ -42,8 +39,6 @@ CarbonFootPrint Firebase function forms the backend of the Google Assistant Acti
 
 ### Deploying
 
-This documentation will only guide through Deployement of DialogFlow Agent. For guide on deployment of Dialogflow agent, please refer the repository of the agent: [here](https://gitlab.com/aossie/CarbonAssistant-Agent)
-#### Part 2 - Deploying Firebase Cloud Function:
 We will use firebase CLI to deploy our cloud function. Make sure you have node v6 installed on your machine since cloud functions work with node v6.
 
 In command line:
