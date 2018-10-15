@@ -16,7 +16,7 @@ exports.richResponse = (conv, display, toSpeak) => {
         speech: toSpeak,
         text: display
     }));
-    conv.ask("What else would you like to know next? Say 'Nothing' or 'Good bye' if you don't want to ask anything else");
+    conv.ask("What else would you like to know next? Say 'Exit', 'Cancel' or 'Good bye' if you don't want to ask anything else");
 }
 
 exports.responseWithSuggestions = (conv, display, suggestions) => {
