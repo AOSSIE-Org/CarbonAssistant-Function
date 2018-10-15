@@ -1,4 +1,9 @@
-CarbonFootPrint DialogFlow agent is one part of the Google Assistant Action named 'CarbonFootPrint'. The agent which handles NLP, combined with the firebase function which forms the backend and executes several APIs form the Google Assistant Action.
+# CarbonFootprint Assistant Action
+
+CarbonFootprint is a Google Assistant Action which brings conversational access to the data supplied by the parent project [CarbonFootprint-API](https://gitlab.com/aossie/CarbonFootprint-API). Project CarbonFootprint-API aims at providing carbon emission data for various usecases. That could be about your usage of some appliance, or taking a flight or train to somewhere.
+
+The Google Assistant Action provides you access to this information through voice on practically any device that may run Google Assistant - be it an Android device, Google Home or an iPhone. The action is accessible everywhere.
+The Dialogflow agent which handles NLP, is combined with the firebase function which forms the backend and obtains data from the API project. Together, Agent and the Function form the Action.
 
 # Features:
 
@@ -10,12 +15,16 @@ CarbonFootPrint DialogFlow agent is one part of the Google Assistant Action name
   - Context management support (Able to remember what you said last and continue conversation over it)
   - Slot filling support (Able to recognize and re-enquire missing pieces of required information in your query)
 
+# CarbonFootprint Dialogflow Agent
+
+CarbonFootPrint DialogFlow agent is one part of the Action.
+
 ### Deploying
 
 The deployment of the Google Assistant Action is done in two parts: Deployment of DialogFlow Agent and Deployment of Firebase Cloud Function. This documentation will only guide through Deployement of DialogFlow Agent. For guide on deployment of Firebase Cloud function, please refer the repository of cloud function [here](https://gitlab.com/aossie/CarbonAssistant-Function)
 #### Part 1 - Deploying DialogFlow Agent:
 
-- Download the repository as a zip by clicking [here](https://gitlab.com/aossie/CarbonAssistant-Agent/-/archive/master/CarbonAssistant-Agent-master.zip)
+- Download the agent zip by clicking [here](https://gitlab.com/aossie/CarbonAssistant-Function/raw/master/carbon-assistant-agent.zip)
 - Once you have a zip, head to [Actions on Google](https://console.actions.google.com/u/0/) and create a new project by entering a name and country for the project
 - Once the project is created, you will be on the Onboarding screen. Select 'Education & Reference' on this screen.
 - Fill in the basic details about your action such as invocation phrase, voice etc in the 'Quick Setup' section.
