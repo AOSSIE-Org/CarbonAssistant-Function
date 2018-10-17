@@ -66,7 +66,7 @@ exports.processRequest = function(conv, parameters, requestReverseLookup) {
                         conv.ask(body.err);
                         resolve();
                     } else {
-                        conv.tell("Sorry, we are facing a temporary outage. Please contact our support.");
+                        conv.close("Sorry, we are facing a temporary outage. Please contact our support.");
                         resolve();
                     }
                 }
