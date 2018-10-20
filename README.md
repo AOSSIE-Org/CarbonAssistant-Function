@@ -46,11 +46,12 @@ In command line:
 - Create a config.js in the functions directory with following contents:
 ``` javascript
 var config = {
-    endpoint: 'https://www.carbonhub.xyz/v1',
+    endpoint: 'https://www.carbonhub.org/v1',
     access_key: '<insert-your-carbonfootprint-key>'
 };
 module.exports = config;
 ```
+- You can get your CarbonFootprint key by signing up with https://www.carbonhub.org/
 
 - Now you need to install firebase tools
 
