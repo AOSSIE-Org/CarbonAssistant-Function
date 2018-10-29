@@ -51,21 +51,55 @@ var config = {
 };
 module.exports = config;
 ```
-- You can get your CarbonFootprint key by signing up with https://www.carbonhub.org/
+You can get your CarbonFootprint key by signing up with https://www.carbonhub.org/
 
-- Now you need to install firebase tools
+Now you need to install firebase tools.
+
+For this you will need a node.js installation and npm. You can install node.js [here](https://nodejs.org/en/)
 
 `npm install -g firebase-tools`
-- Next to initialize firebase cloud functions library
+
+Next, we will need to initialize firebase cloud functions library
+
+- If you haven't used firebase-tools on your computer, you'll need to login
+
+`firebase login`
+
+- Once you're logged in to firebase, run the next command
 
 `firebase init functions`
 
-This command is a command-line wizard which will guide you through a process which will associate your firebase function with your Google Cloud project that gets created when you created 'Actions on Google' project in Part 1 of the deployment. Make sure you select the project ID correctly. The project must be same as the one the agent is deployed to. The wizard will ask you if you want to replace package.json and index.js, **MAKE SURE YOU ENTER NO**, otherwise the code will be overwritten by a template firebase function.
+- This command is a command-line wizard which will guide you through a process which will associate your firebase function with your Google Cloud project that gets created when you created 'Actions on Google' project in Part 1 of the deployment.
+
+- The wizard will ask:
+
+`Select a default Firebase project for this directory: <your directory>`
+
+- Make sure you select the project ID correctly using the arrow keys. The project must be same as the one the agent is deployed to. 
+
+- When asked what language to use, select `JavaScript` using the arrow keys
+
+- The wizard will ask:
+
+`File functions/package.json already exists. Overwrite?`
+
+`File functions/index.js already exists. Overwrite?`
+
+**MAKE SURE YOU ENTER NO FOR BOTH**
+
+- If you select yes, the code will be overwritten with a default firebase function. If this happens, clone the repository again.
+
+- It will then ask:
+
+`Do you want to install dependencies with npm now?`
+
+- Select `Yes` and wait for the wizard to finish.
+
 - Once the association is done, next you deploy the cloud function. Execute the following command
 
 `firebase deploy --only functions:dialogflowFirebaseFulfillment`
 
-Once deployed you will get a URL, this is your webhook endpoint that Dialogflow will use to make requests to. Paste the URL in the 'Fullfillment' section of your Dialogflow agent
+- Once deployed you will get a URL, this is your webhook endpoint that Dialogflow will use to make requests to. Paste the URL in the 'Fullfillment' section of your Dialogflow agent
 
 References and How to report bugs
 ----
