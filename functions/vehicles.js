@@ -142,14 +142,9 @@ exports.processRequest = function(conv, parameters, requestReverseLookup) {
                         }
                     }
                 } else {
-                    console.log("Vehicles: error response");
-                    if (body.err !== undefined) {
-                        console.log("Error: " + JSON.stringify(body));
-                        reject(body.err);
-                    } else {
-                        conv.close("Sorry, we are facing a temporary outage. Please contact our support.");
-                        resolve();
-                    }
+                  //Handle the error in the utils function
+                  conv.close(utils.handleError(error, response, body));
+                  resolve();
                 }
             });
         } else {

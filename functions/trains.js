@@ -61,14 +61,9 @@ exports.processRequest = function(conv, parameters, requestReverseLookup) {
                         resolve();
                     }
                 } else {
-                    if (body.err !== undefined) {
-                        console.log("Error: " + JSON.stringify(body));
-                        conv.ask(body.err);
-                        resolve();
-                    } else {
-                        conv.close("Sorry, we are facing a temporary outage. Please contact our support.");
-                        resolve();
-                    }
+                  //Handle the error in the utils function
+                  utils.handleError(error, response, body, conv);
+                  resolve();
                 }
             });
         } else {
