@@ -87,6 +87,7 @@ exports.processRequest = function(conv, parameters, requestReverseLookup) {
             requestLib(options, function(error, response, body) {
                 const emissionResponse = "The emissions released due to this action are given below";
                 if (!error && response.statusCode === 200) {
+                    //The response returned no error, as expected.
                     console.log(body);
                     if (parameters.emission_type !== "") {
                         let emissionType = parameters.emission_type;
@@ -188,13 +189,17 @@ exports.processRequest = function(conv, parameters, requestReverseLookup) {
                         }
                     }
                 } else {
-                    conv.close("Sorry, we are facing a temporary outage. Please contact our support.\nError: " + error);
-                    resolve();
+                  console.log(response);
+                  console.log(error);
+                  //Handle the error in the utils function
+                  utils.handleError(error, response, body, conv);
+                  resolve();
                 }
             });
         } else {
-            conv.ask("Sorry, I didn't get the appliance you were looking for. Can you say the appliance name again?");
-            resolve();
+          //Handle the errors here
+          conv.ask("I didn't get the appliance you were looking for. Can you say the appliance name again?");
+          resolve();
         }
     });
 }

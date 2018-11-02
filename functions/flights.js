@@ -82,8 +82,9 @@ exports.processRequest = function(conv, parameters, requestReverseLookup) {
                         }
                     }
                 } else {
-                    conv.close("Sorry, we are facing a temporary outage. Please contact our support.");
-                    resolve();
+                  //Handle the error in the utils function
+                  utils.handleError(error, response, body, conv);
+                  resolve();
                 }
             });
         } else {

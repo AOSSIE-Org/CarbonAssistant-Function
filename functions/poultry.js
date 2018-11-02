@@ -60,8 +60,9 @@ exports.processRequest = function(conv, parameters) {
                         resolve();
                     }
                 } else {
-                    conv.ask("Sorry, we are facing a temporary outage. Please contact our support.");
-                    resolve();
+                  // Handle errors here
+                  utils.handleError(error, response, body, conv);
+                  resolve();
                 }
             });
 
