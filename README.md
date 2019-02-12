@@ -23,7 +23,7 @@ The deployment of the Google Assistant Action is done in two parts: Deployment o
 
 - Download the agent zip by clicking [here](https://gitlab.com/aossie/CarbonAssistant-Function/raw/master/carbon-assistant-agent.zip)
 - Once you have a zip, head to [Actions on Google](https://console.actions.google.com/u/0/) and create a new project by entering a name and country for the project
-- Once the project is created, you will be on the Onboarding screen. Select 'Education & Reference' on this screen.
+- Once the project is created, you will be on the Onboarding screen. Select 'Conversational' on this screen.
 - Fill in the basic details about your action such as invocation phrase, voice etc in the 'Quick Setup' section.
 - In 'Build your Action' section, select 'Add new action' and select 'Custom Intent' in the consecutive dialog box and click 'Build'
 - You will redirected to DialogFlow's project page. On this screen - select your timezone - don't change the language. Then select 'Create' and wait for the process to complete.
