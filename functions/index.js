@@ -69,8 +69,8 @@ app.intent('permission_confirmation', (conv, parameters, permission_allowed) => 
         } = location.coordinates;
         conv.ask(`Ok ${name.given}, we are all set!`);
     } else {
-        conv.ask(`Sorry about that! Unfortunately, we cannot provide you intelligent emission results without the location information.
-            Therefore, you will only be able to receive raw emission results. Please say 'request permissions' if you change your mind.`);
+        conv.ask(` Unfortunately, we can't provide you intelligent emission results without the location information.
+            Therefore, you'll only be able to receive raw emission results. You can allow the permission if you change your mind.`);
         conv.user.storage.noPermission = true;
     }
 });
