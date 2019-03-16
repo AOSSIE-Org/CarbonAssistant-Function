@@ -3,7 +3,10 @@
 const functions = require('firebase-functions'); // Cloud Functions for Firebase library
 const {
     dialogflow,
-    Permission
+    Permission,
+    Suggestions,
+    BasicCard,
+    SimpleResponse
 } = require('actions-on-google'); // Google Assistant helper library
 const requestLib = require('request');
 var config = require('./config');
@@ -18,6 +21,8 @@ var trains = require('./trains');
 const app = dialogflow({
     debug: true
 });
+
+
 
 // The default welcome intent has been matched, welcome the user (https://dialogflow.com/docs/events#default_welcome_intent)
 app.intent('Default Welcome Intent', (conv) => {
@@ -69,10 +74,53 @@ app.intent('permission_confirmation', (conv, parameters, permission_allowed) => 
         } = location.coordinates;
         conv.ask(`Ok ${name.given}, we are all set!`);
     } else {
-        conv.ask(`Sorry about that! Unfortunately, we cannot provide you intelligent emission results without the location information.
-            Therefore, you will only be able to receive raw emission results. Please say 'request permissions' if you change your mind.`);
-        conv.user.storage.noPermission = true;
+        //For display screens
+        if (conv.surface.capabilities.has('actions.capability.SCREEN_OUTPUT')){
+            conv.ask(` Unfortunately, we can't provide you intelligent emission results without the location information.
+                Therefore, you'll only be able to receive raw emission results. You can allow the permission if you change your mind.`);
+            conv.ask(new Suggestions(['Request Permission', 'Allowed Permission']));    
+            conv.user.storage.noPermission = true;
+        } else if (!conv.surface.capabilities.has('actions.capability.SCREEN_OUTPUT')){
+            // google home
+            conv.ask(` Unfortunately, we can't provide you intelligent emission results without the location information.
+                Therefore, you'll only be able to receive raw emission results. You can allow the permission if you change your mind.`);
+            conv.user.storage.noPermission = true;
+
+        }
+        
+
     }
+});
+
+app.intent('help_intent', (conv) => {
+    //google home
+    if (!conv.surface.capabilities.has('actions.capability.SCREEN_OUTPUT')){
+        conv.ask(`I can try to answer some of your emission related questions. I promise to make it less boring by giving you info that you can relate with!I can provide you with info regarding emissions released due to appliance usage, flight travels, train journeys, road trips, fuel consumption, poultry and meat generation and electricity generation across the world.  You can ask me about how much emissions your washing machine produces, or, how much pollution you contribute to by taking a flight to Mauritius. I support limited number of categories right now but trust me I'll get better over time.`)
+    } else if(conv.surface.capabilities.has('actions.capability.SCREEN_OUTPUT')){
+    //display screens
+        conv.ask(new SimpleResponse({
+            speech: "I can tell you the emissions produced by different activities and appliances. Try asking me about them.",
+            text: "Here's what I can do:"
+        }));
+        conv.ask(new BasicCard({
+            title: '',
+            text: "**Appliances**  \n  \ne.g: *How much emissions are produced if a radio is used for 3 hours in Canada?* \n  \n  \n**Travel \u0026 Journeys**  \n  \nYou can ask about emissions generated due to a travel by flight,"
+             +" train or a private vehicle by road between two places, optionally, with no. of passengers if you"+
+              "know.  \n  \ne.g: *How much emissions are produced due to flight from Mumbai to Seattle airport with 1202 passengers?*  \n  \nThere is much more I can do. Click Read More to know more.",
+            
+            buttons: [
+                {
+                 title: "Read More",
+                 openUrlAction: {
+                    url: "https://gitlab.com/aossie/CarbonAssistant-Function/tree/master/docs/Usage.md",
+                    urlTypeHint: "URL_TYPE_HINT_UNSPECIFIED"
+                    }
+                }
+            ]
+        }));
+    }
+        
+    
 });
 
 app.intent('trains_intent', (conv, parameters) => {
