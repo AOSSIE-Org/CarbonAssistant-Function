@@ -1,0 +1,51 @@
+{
+  "name": "exit_event",
+  "auto": true,
+  "contexts": [],
+  "responses": [
+    {
+      "resetContexts": false,
+      "affectedContexts": [],
+      "parameters": [],
+      "messages": [
+        {
+          "type": "simple_response",
+          "platform": "google",
+          "lang": "en",
+          "customizeAudio": true,
+          "items": [
+            {
+              "textToSpeech": "Alright! See you later. Have a nice day!",
+              "displayText": "Alright! See you later. Have a nice day!"
+            },
+            {
+              "textToSpeech": "Ok! Let's do this again later sometime!",
+              "displayText": "Ok! Let's do this again later sometime! :) :)"
+            },
+            {
+              "textToSpeech": "Ok bye!",
+              "displayText": "Ok bye! :)"
+            }
+          ]
+        },
+        {
+          "type": 0,
+          "lang": "en",
+          "speech": []
+        }
+      ],
+      "defaultResponsePlatforms": {},
+      "speech": []
+    }
+  ],
+  "priority": 500000,
+  "webhookUsed": false,
+  "webhookForSlotFilling": false,
+  "lastUpdate": 1531205879,
+  "fallbackIntent": false,
+  "events": [
+    {
+      "name": "actions_intent_CANCEL"
+    }
+  ]
+}

@@ -1,0 +1,59 @@
+[
+  {
+    "value": "size",
+    "synonyms": [
+      "small",
+      "medium",
+      "large"
+    ]
+  },
+  {
+    "value": "type",
+    "synonyms": [
+      "ducted",
+      "portable",
+      "fixed",
+      "ducted",
+      "single",
+      "double",
+      "cabinet",
+      "rotary",
+      "wired in",
+      "with monitor",
+      "monitor and printer",
+      "Exhaust",
+      "Ceiling",
+      "200L",
+      "300L",
+      "450L",
+      "vertical",
+      "portable",
+      "fluoroscent",
+      "CFL",
+      "incandescent",
+      "LED",
+      "Conventional",
+      "Convection",
+      "250L",
+      "500L",
+      "600L",
+      "CRT",
+      "LCD",
+      "Plasma",
+      "S",
+      "standard",
+      "automatic",
+      "with element",
+      "king",
+      "queen",
+      "instantaneous",
+      "quick recovery"
+    ]
+  },
+  {
+    "value": "curler",
+    "synonyms": [
+      "curler"
+    ]
+  }
+]

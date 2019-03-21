@@ -1,0 +1,90 @@
+{
+  "name": "vehicle_intent",
+  "auto": true,
+  "contexts": [],
+  "responses": [
+    {
+      "resetContexts": false,
+      "action": "input.vehicle_details",
+      "affectedContexts": [
+        {
+          "name": "vehicle_intent-followup",
+          "parameters": {},
+          "lifespan": 2
+        }
+      ],
+      "parameters": [
+        {
+          "required": false,
+          "dataType": "@emission_type",
+          "name": "emission_type",
+          "value": "$emission_type",
+          "isList": false
+        },
+        {
+          "required": true,
+          "dataType": "@sys.geo-city",
+          "name": "destination",
+          "value": "$destination",
+          "prompts": [
+            {
+              "lang": "en",
+              "value": "Ok. A road trip is happening from $origin, but where does it end ? Sorry, I didn't pick that up."
+            },
+            {
+              "lang": "en",
+              "value": "Alright. Where does this road trip end? Could you tell me the name of the city ?"
+            }
+          ],
+          "isList": false
+        },
+        {
+          "required": true,
+          "dataType": "@sys.geo-city",
+          "name": "origin",
+          "value": "$origin",
+          "prompts": [
+            {
+              "lang": "en",
+              "value": "From where does this road trip to $destination begin ? Could you tell me the source of this journey?"
+            },
+            {
+              "lang": "en",
+              "value": "From which place does this road trip begin?"
+            }
+          ],
+          "isList": false
+        },
+        {
+          "required": false,
+          "dataType": "@fuels",
+          "name": "fuel_type",
+          "value": "$fuel_type",
+          "isList": false
+        },
+        {
+          "required": false,
+          "dataType": "@sys.number",
+          "name": "mileage",
+          "value": "$mileage",
+          "isList": false
+        }
+      ],
+      "messages": [
+        {
+          "type": 0,
+          "lang": "en",
+          "speech": []
+        }
+      ],
+      "defaultResponsePlatforms": {},
+      "speech": []
+    }
+  ],
+  "priority": 500000,
+  "webhookUsed": true,
+  "webhookForSlotFilling": false,
+  "lastUpdate": 1532368950,
+  "fallbackIntent": false,
+  "events": []
+}

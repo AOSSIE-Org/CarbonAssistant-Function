@@ -1,0 +1,62 @@
+{
+  "name": "flights_intent - followup",
+  "auto": true,
+  "contexts": [
+    "flights_intent-followup"
+  ],
+  "responses": [
+    {
+      "resetContexts": false,
+      "action": "flights_intent.flights_intent-more",
+      "affectedContexts": [
+        {
+          "name": "flights_intent-followup",
+          "parameters": {},
+          "lifespan": 5
+        }
+      ],
+      "parameters": [
+        {
+          "dataType": "@flight_airports",
+          "name": "origin",
+          "value": "$origin",
+          "isList": false
+        },
+        {
+          "dataType": "@sys.number",
+          "name": "passengers",
+          "value": "$passengers",
+          "isList": false
+        },
+        {
+          "dataType": "@flight_airports",
+          "name": "destination",
+          "value": "$destination"
+        },
+        {
+          "name": "origin_original",
+          "value": "$origin.original"
+        },
+        {
+          "name": "destination_original",
+          "value": "$destination.original"
+        }
+      ],
+      "messages": [
+        {
+          "type": 0,
+          "lang": "en",
+          "speech": []
+        }
+      ],
+      "defaultResponsePlatforms": {},
+      "speech": []
+    }
+  ],
+  "priority": 500000,
+  "webhookUsed": true,
+  "webhookForSlotFilling": false,
+  "lastUpdate": 1531043307,
+  "fallbackIntent": false,
+  "events": []
+}

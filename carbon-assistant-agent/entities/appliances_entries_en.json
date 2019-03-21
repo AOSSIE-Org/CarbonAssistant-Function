@@ -1,0 +1,411 @@
+[
+  {
+    "value": "Kiln Pottery",
+    "synonyms": [
+      "Kiln Pottery",
+      "Kiln Potteries"
+    ]
+  },
+  {
+    "value": "Kettle",
+    "synonyms": [
+      "Kettle",
+      "Kettles"
+    ]
+  },
+  {
+    "value": "Coffee percolator",
+    "synonyms": [
+      "Coffee percolator",
+      "Coffee percolators"
+    ]
+  },
+  {
+    "value": "Stereo",
+    "synonyms": [
+      "Stereo",
+      "Stereos"
+    ]
+  },
+  {
+    "value": "Towel rail",
+    "synonyms": [
+      "Towel rail",
+      "Towel rails"
+    ]
+  },
+  {
+    "value": "Salt water chlorinator",
+    "synonyms": [
+      "Salt water chlorinator",
+      "Salt water chlorinators"
+    ]
+  },
+  {
+    "value": "Vacuum cleaner",
+    "synonyms": [
+      "Vacuum cleaner",
+      "Vaccum cleaners"
+    ]
+  },
+  {
+    "value": "Swimming Pool Pump",
+    "synonyms": [
+      "Swimming Pool Pump",
+      "Pool pump",
+      "Pool pumps",
+      "Swimming pool pumps"
+    ]
+  },
+  {
+    "value": "Iron",
+    "synonyms": [
+      "Iron",
+      "Irons"
+    ]
+  },
+  {
+    "value": "Hotplate",
+    "synonyms": [
+      "Hotplate",
+      "Hotplates"
+    ]
+  },
+  {
+    "value": "Griddle",
+    "synonyms": [
+      "Griddle"
+    ]
+  },
+  {
+    "value": "Microoven",
+    "synonyms": [
+      "Microoven",
+      "Microwave",
+      "Microwaves",
+      "Microovens"
+    ]
+  },
+  {
+    "value": "Saw",
+    "synonyms": [
+      "Saw",
+      "Saws"
+    ]
+  },
+  {
+    "value": "DVD player",
+    "synonyms": [
+      "DVD player",
+      "DVD Players"
+    ]
+  },
+  {
+    "value": "Welder",
+    "synonyms": [
+      "Welder",
+      "Welders"
+    ]
+  },
+  {
+    "value": "Spa heater",
+    "synonyms": [
+      "Spa heater",
+      "spa heaters"
+    ]
+  },
+  {
+    "value": "Oven",
+    "synonyms": [
+      "Oven",
+      "Ovens"
+    ]
+  },
+  {
+    "value": "Toaster",
+    "synonyms": [
+      "Toaster",
+      "Toasters"
+    ]
+  },
+  {
+    "value": "Juice extractor",
+    "synonyms": [
+      "Juice extractor",
+      "Juice extractors"
+    ]
+  },
+  {
+    "value": "Radio",
+    "synonyms": [
+      "Radio",
+      "Radios"
+    ]
+  },
+  {
+    "value": "Water bed",
+    "synonyms": [
+      "Water bed",
+      "water beds"
+    ]
+  },
+  {
+    "value": "Water heater",
+    "synonyms": [
+      "Water heater",
+      "Water heaters"
+    ]
+  },
+  {
+    "value": "Storage Heater",
+    "synonyms": [
+      "Storage Heater",
+      "storage heaters"
+    ]
+  },
+  {
+    "value": "Fry Pan",
+    "synonyms": [
+      "Fry Pan",
+      "Frying Pan",
+      "Frying Pans",
+      "Fry Pans"
+    ]
+  },
+  {
+    "value": "Refrigerator",
+    "synonyms": [
+      "Refrigerator",
+      "Fridge",
+      "Fridges"
+    ]
+  },
+  {
+    "value": "Laptop",
+    "synonyms": [
+      "Laptop",
+      "Laptops"
+    ]
+  },
+  {
+    "value": "Blanket",
+    "synonyms": [
+      "Blanket",
+      "Blankets"
+    ]
+  },
+  {
+    "value": "Hair curler",
+    "synonyms": [
+      "Hair curler",
+      "Hair curlers"
+    ]
+  },
+  {
+    "value": "Hair styler",
+    "synonyms": [
+      "Hair styler",
+      "Hair stylers"
+    ]
+  },
+  {
+    "value": "Computer",
+    "synonyms": [
+      "Computer",
+      "Computers",
+      "PC",
+      "PCs"
+    ]
+  },
+  {
+    "value": "Food mixer",
+    "synonyms": [
+      "Food mixer",
+      "Food mixers"
+    ]
+  },
+  {
+    "value": "Ironing machine",
+    "synonyms": [
+      "Ironing machine",
+      "Ironing Machines"
+    ]
+  },
+  {
+    "value": "Nebuliser",
+    "synonyms": [
+      "Nebuliser",
+      "Nebulisers"
+    ]
+  },
+  {
+    "value": "Clothes dryer",
+    "synonyms": [
+      "Clothes dryer"
+    ]
+  },
+  {
+    "value": "Air conditioner",
+    "synonyms": [
+      "Air conditioner",
+      "AC",
+      "ACs",
+      "Air conditioners"
+    ]
+  },
+  {
+    "value": "Garbage disposal unit",
+    "synonyms": [
+      "Garbage disposal unit",
+      "Garbage Disposal"
+    ]
+  },
+  {
+    "value": "Drill",
+    "synonyms": [
+      "Drill",
+      "Drills"
+    ]
+  },
+  {
+    "value": "Air cooler",
+    "synonyms": [
+      "Air cooler",
+      "Air coolers"
+    ]
+  },
+  {
+    "value": "Fan",
+    "synonyms": [
+      "Fan",
+      "Fans"
+    ]
+  },
+  {
+    "value": "Hair dryer",
+    "synonyms": [
+      "Hair dryer",
+      "Hair dryers"
+    ]
+  },
+  {
+    "value": "Record Player",
+    "synonyms": [
+      "Record Player"
+    ]
+  },
+  {
+    "value": "Television",
+    "synonyms": [
+      "Television",
+      "TV",
+      "TVs",
+      "Televisions"
+    ]
+  },
+  {
+    "value": "Washing machine",
+    "synonyms": [
+      "Washing machine",
+      "washing machines"
+    ]
+  },
+  {
+    "value": "Deep fryer",
+    "synonyms": [
+      "Deep fryer",
+      "Deep fryers"
+    ]
+  },
+  {
+    "value": "Freezer",
+    "synonyms": [
+      "Freezer",
+      "Freezers"
+    ]
+  },
+  {
+    "value": "Lighting",
+    "synonyms": [
+      "Lighting",
+      "Lightings"
+    ]
+  },
+  {
+    "value": "Range Hood",
+    "synonyms": [
+      "Range Hood",
+      "Range hoods"
+    ]
+  },
+  {
+    "value": "Slow cooker",
+    "synonyms": [
+      "Slow cooker",
+      "Slow cookers"
+    ]
+  },
+  {
+    "value": "Griller",
+    "synonyms": [
+      "Griller",
+      "Grillers"
+    ]
+  },
+  {
+    "value": "Ceramic halogen",
+    "synonyms": [
+      "Ceramic halogen"
+    ]
+  },
+  {
+    "value": "Domestic water pressure pump",
+    "synonyms": [
+      "Domestic water pressure pump",
+      "water pump",
+      "water pumps",
+      "Domestic water pressure pumps"
+    ]
+  },
+  {
+    "value": "Sewing Machine",
+    "synonyms": [
+      "Sewing Machine",
+      "Sewing machines"
+    ]
+  },
+  {
+    "value": "Bio septic system",
+    "synonyms": [
+      "Bio septic system",
+      "Bio septic systems"
+    ]
+  },
+  {
+    "value": "Shaver",
+    "synonyms": [
+      "Shaver",
+      "Shavers"
+    ]
+  },
+  {
+    "value": "Heat pump",
+    "synonyms": [
+      "Heat pump",
+      "Heat pumps"
+    ]
+  },
+  {
+    "value": "Dishwasher",
+    "synonyms": [
+      "Dishwasher",
+      "Dish washer"
+    ]
+  },
+  {
+    "value": "hair",
+    "synonyms": [
+      "hair"
+    ]
+  }
+]

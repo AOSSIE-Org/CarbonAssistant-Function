@@ -1,0 +1,79 @@
+[
+  {
+    "data": [
+      {
+        "text": "carbon",
+        "alias": "emission_type",
+        "meta": "@emission_type",
+        "userDefined": false
+      },
+      {
+        "text": " emissions for electricity consumed in ",
+        "userDefined": false
+      },
+      {
+        "text": "Canada",
+        "alias": "geo_country",
+        "meta": "@sys.geo-country",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 1527189144
+  },
+  {
+    "data": [
+      {
+        "text": "carbon",
+        "alias": "emission_type",
+        "meta": "@emission_type",
+        "userDefined": false
+      },
+      {
+        "text": " emissions for ",
+        "userDefined": false
+      },
+      {
+        "text": "100",
+        "alias": "quantity",
+        "meta": "@sys.number",
+        "userDefined": false
+      },
+      {
+        "text": " units of electricity consumed in ",
+        "userDefined": false
+      },
+      {
+        "text": "India",
+        "alias": "geo_country",
+        "meta": "@sys.geo-country",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 1527189144
+  },
+  {
+    "data": [
+      {
+        "text": "how much emissions are produced due to ",
+        "userDefined": false
+      },
+      {
+        "text": "1.545",
+        "alias": "quantity",
+        "meta": "@sys.number",
+        "userDefined": false
+      },
+      {
+        "text": " kwh of electricty consumed",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 1527104422
+  }
+]
