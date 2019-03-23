@@ -1,0 +1,25 @@
+[
+  {
+    "value": "CO2",
+    "synonyms": [
+      "CO2",
+      "Carbon Dioxide",
+      "carbon"
+    ]
+  },
+  {
+    "value": "CH4",
+    "synonyms": [
+      "CH4",
+      "Methane"
+    ]
+  },
+  {
+    "value": "N2O",
+    "synonyms": [
+      "N2O",
+      "Nitrous oxide",
+      "nitrous"
+    ]
+  }
+]

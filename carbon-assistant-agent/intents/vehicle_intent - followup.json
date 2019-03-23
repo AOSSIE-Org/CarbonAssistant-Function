@@ -1,0 +1,66 @@
+{
+  "name": "vehicle_intent - followup",
+  "auto": true,
+  "contexts": [
+    "vehicle_intent-followup"
+  ],
+  "responses": [
+    {
+      "resetContexts": false,
+      "action": "vehicle_intent.vehicle_intent-more",
+      "affectedContexts": [
+        {
+          "name": "vehicle_intent-followup",
+          "parameters": {},
+          "lifespan": 5
+        }
+      ],
+      "parameters": [
+        {
+          "dataType": "@emission_type",
+          "name": "emission_type",
+          "value": "$emission_type",
+          "isList": false
+        },
+        {
+          "dataType": "@fuels",
+          "name": "fuel_type",
+          "value": "$fuel_type",
+          "isList": false
+        },
+        {
+          "dataType": "@sys.geo-city",
+          "name": "destination",
+          "value": "$destination",
+          "isList": false
+        },
+        {
+          "dataType": "@sys.number",
+          "name": "mileage",
+          "value": "$mileage",
+          "isList": false
+        },
+        {
+          "dataType": "@sys.geo-city",
+          "name": "origin",
+          "value": "$origin"
+        }
+      ],
+      "messages": [
+        {
+          "type": 0,
+          "lang": "en",
+          "speech": []
+        }
+      ],
+      "defaultResponsePlatforms": {},
+      "speech": []
+    }
+  ],
+  "priority": 500000,
+  "webhookUsed": true,
+  "webhookForSlotFilling": false,
+  "lastUpdate": 1531045384,
+  "fallbackIntent": false,
+  "events": []
+}

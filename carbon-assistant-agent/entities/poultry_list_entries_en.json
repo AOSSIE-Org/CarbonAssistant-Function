@@ -1,0 +1,38 @@
+[
+  {
+    "value": "egg",
+    "synonyms": [
+      "egg"
+    ]
+  },
+  {
+    "value": "broiler chicken",
+    "synonyms": [
+      "broiler chicken"
+    ]
+  },
+  {
+    "value": "pork",
+    "synonyms": [
+      "pork"
+    ]
+  },
+  {
+    "value": "beef",
+    "synonyms": [
+      "beef"
+    ]
+  },
+  {
+    "value": "lamp",
+    "synonyms": [
+      "lamp"
+    ]
+  },
+  {
+    "value": "turkey",
+    "synonyms": [
+      "turkey"
+    ]
+  }
+]

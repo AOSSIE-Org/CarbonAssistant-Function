@@ -1,0 +1,58 @@
+{
+  "name": "trains_intent - followup",
+  "auto": true,
+  "contexts": [
+    "trains_intent-followup"
+  ],
+  "responses": [
+    {
+      "resetContexts": false,
+      "action": "trains_intent.trains_intent-more",
+      "affectedContexts": [
+        {
+          "name": "trains_intent-followup",
+          "parameters": {},
+          "lifespan": 5
+        }
+      ],
+      "parameters": [
+        {
+          "required": false,
+          "dataType": "@sys.geo-city",
+          "name": "origin",
+          "value": "$origin",
+          "isList": false
+        },
+        {
+          "required": false,
+          "dataType": "@sys.geo-city",
+          "name": "destination",
+          "value": "$destination",
+          "isList": false
+        },
+        {
+          "required": false,
+          "dataType": "@sys.number",
+          "name": "passengers",
+          "value": "$passengers",
+          "isList": false
+        }
+      ],
+      "messages": [
+        {
+          "type": 0,
+          "lang": "en",
+          "speech": []
+        }
+      ],
+      "defaultResponsePlatforms": {},
+      "speech": []
+    }
+  ],
+  "priority": 500000,
+  "webhookUsed": true,
+  "webhookForSlotFilling": false,
+  "lastUpdate": 1531040057,
+  "fallbackIntent": false,
+  "events": []
+}

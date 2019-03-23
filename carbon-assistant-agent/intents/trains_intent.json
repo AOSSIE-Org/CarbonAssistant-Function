@@ -1,0 +1,82 @@
+{
+  "name": "trains_intent",
+  "auto": true,
+  "contexts": [],
+  "responses": [
+    {
+      "resetContexts": false,
+      "action": "input.train_details",
+      "affectedContexts": [
+        {
+          "name": "trains_intent-followup",
+          "parameters": {},
+          "lifespan": 2
+        }
+      ],
+      "parameters": [
+        {
+          "required": true,
+          "dataType": "@sys.geo-city",
+          "name": "origin",
+          "value": "$origin",
+          "prompts": [
+            {
+              "lang": "en",
+              "value": "Sorry, from what city does this train start ? I understood that it terminates at $destination"
+            },
+            {
+              "lang": "en",
+              "value": "Ok. What is the source of this train journey?"
+            }
+          ],
+          "isList": false
+        },
+        {
+          "required": true,
+          "dataType": "@sys.geo-city",
+          "name": "destination",
+          "value": "$destination",
+          "prompts": [
+            {
+              "lang": "en",
+              "value": "Where does this train journey end? I can see that the journey starts at $origin, but where does it end?"
+            },
+            {
+              "lang": "en",
+              "value": "Can you tell me the destination of this train?"
+            }
+          ],
+          "isList": false
+        },
+        {
+          "required": false,
+          "dataType": "@sys.number",
+          "name": "passengers",
+          "value": "$passengers",
+          "isList": false
+        },
+        {
+          "dataType": "@emission_type",
+          "name": "emission_type",
+          "value": "$emission_type",
+          "isList": false
+        }
+      ],
+      "messages": [
+        {
+          "type": 0,
+          "lang": "en",
+          "speech": []
+        }
+      ],
+      "defaultResponsePlatforms": {},
+      "speech": []
+    }
+  ],
+  "priority": 500000,
+  "webhookUsed": true,
+  "webhookForSlotFilling": false,
+  "lastUpdate": 1532367904,
+  "fallbackIntent": false,
+  "events": []
+}

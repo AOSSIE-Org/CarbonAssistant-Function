@@ -1,0 +1,104 @@
+{
+  "name": "appliance_intent",
+  "auto": true,
+  "contexts": [],
+  "responses": [
+    {
+      "resetContexts": false,
+      "action": "input.appliance_details",
+      "affectedContexts": [
+        {
+          "name": "appliance_intent-followup",
+          "parameters": {},
+          "lifespan": 2
+        }
+      ],
+      "parameters": [
+        {
+          "required": false,
+          "dataType": "@appliance_specs",
+          "name": "type",
+          "value": "$type.original",
+          "isList": false
+        },
+        {
+          "required": true,
+          "dataType": "@appliances",
+          "name": "appliance",
+          "value": "$appliance",
+          "prompts": [
+            {
+              "lang": "en",
+              "value": "I didn't get the appliance you were looking for. Can you please say the appliance name again?"
+            },
+            {
+              "lang": "en",
+              "value": "Sorry I didn't get the appliance name you said, what was it?"
+            }
+          ],
+          "isList": false
+        },
+        {
+          "required": true,
+          "dataType": "@sys.geo-country",
+          "name": "geo_country",
+          "value": "$geo_country",
+          "prompts": [
+            {
+              "lang": "en",
+              "value": "I need the name of the country where the appliance is being used to provide you with accurate emissions. Can you tell me the country name?"
+            },
+            {
+              "lang": "en",
+              "value": "I need the country name to tell you about emissions. What country is the appliance being used in ?"
+            }
+          ],
+          "isList": false
+        },
+        {
+          "required": false,
+          "dataType": "@emission_type",
+          "name": "emission_type",
+          "value": "$emission_type",
+          "isList": false
+        },
+        {
+          "required": false,
+          "dataType": "@sys.duration",
+          "name": "duration",
+          "value": "$duration",
+          "isList": false
+        },
+        {
+          "required": false,
+          "dataType": "@appliance_specs",
+          "name": "size",
+          "value": "$size.original",
+          "isList": false
+        },
+        {
+          "required": false,
+          "dataType": "@sys.number",
+          "name": "quantity",
+          "value": "$quantity",
+          "isList": false
+        }
+      ],
+      "messages": [
+        {
+          "type": 0,
+          "lang": "en",
+          "speech": []
+        }
+      ],
+      "defaultResponsePlatforms": {},
+      "speech": []
+    }
+  ],
+  "priority": 500000,
+  "webhookUsed": true,
+  "webhookForSlotFilling": false,
+  "lastUpdate": 1532365781,
+  "fallbackIntent": false,
+  "events": []
+}

@@ -1,0 +1,76 @@
+[
+  {
+    "value": "fuelPetrol",
+    "synonyms": [
+      "petrol"
+    ]
+  },
+  {
+    "value": "fuelDiesel",
+    "synonyms": [
+      "Diesel"
+    ]
+  },
+  {
+    "value": "fuelGasoline",
+    "synonyms": [
+      "Gasoline"
+    ]
+  },
+  {
+    "value": "fuelE10",
+    "synonyms": [
+      "E10",
+      "E 10"
+    ]
+  },
+  {
+    "value": "fuelE25",
+    "synonyms": [
+      "E25",
+      "E 25"
+    ]
+  },
+  {
+    "value": "fuelE85",
+    "synonyms": [
+      "E85",
+      "E 85"
+    ]
+  },
+  {
+    "value": "fuelEthanol",
+    "synonyms": [
+      "Ethanol"
+    ]
+  },
+  {
+    "value": "fuelBioDiesel",
+    "synonyms": [
+      "BioDiesel",
+      "Bio Diesel"
+    ]
+  },
+  {
+    "value": "fuelB20",
+    "synonyms": [
+      "B20"
+    ]
+  },
+  {
+    "value": "fuelLPG",
+    "synonyms": [
+      "LPG",
+      "Liquified Petrolum Gas",
+      "petroleum gas",
+      "liquid petroleum gas"
+    ]
+  },
+  {
+    "value": "fuelCNG",
+    "synonyms": [
+      "CNG",
+      "Compressed natural gas"
+    ]
+  }
+]

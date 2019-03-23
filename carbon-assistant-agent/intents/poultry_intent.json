@@ -1,0 +1,50 @@
+{
+  "name": "poultry_intent",
+  "auto": true,
+  "contexts": [],
+  "responses": [
+    {
+      "resetContexts": false,
+      "action": "input.poultry_details",
+      "affectedContexts": [],
+      "parameters": [
+        {
+          "required": false,
+          "dataType": "@poultry_list",
+          "name": "poultry_type",
+          "value": "$poultry_type",
+          "isList": false
+        },
+        {
+          "required": false,
+          "dataType": "@poultry_regions",
+          "name": "poultry_region",
+          "value": "$poultry_region",
+          "isList": false
+        },
+        {
+          "required": false,
+          "dataType": "@sys.number",
+          "name": "poultry_quantity",
+          "value": "$poultry_quantity",
+          "isList": false
+        }
+      ],
+      "messages": [
+        {
+          "type": 0,
+          "lang": "en",
+          "speech": []
+        }
+      ],
+      "defaultResponsePlatforms": {},
+      "speech": []
+    }
+  ],
+  "priority": 500000,
+  "webhookUsed": true,
+  "webhookForSlotFilling": false,
+  "lastUpdate": 1527016896,
+  "fallbackIntent": false,
+  "events": []
+}

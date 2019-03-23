@@ -1,0 +1,52 @@
+[
+  {
+    "value": "idaho",
+    "synonyms": [
+      "idaho"
+    ]
+  },
+  {
+    "value": "pennsylvania",
+    "synonyms": [
+      "pennsylvania"
+    ]
+  },
+  {
+    "value": "ohio",
+    "synonyms": [
+      "ohio"
+    ]
+  },
+  {
+    "value": "lowa",
+    "synonyms": [
+      "Iowa",
+      "iowa"
+    ]
+  },
+  {
+    "value": "nebraska",
+    "synonyms": [
+      "nebraska"
+    ]
+  },
+  {
+    "value": "michigan",
+    "synonyms": [
+      "michigan"
+    ]
+  },
+  {
+    "value": "new jersey",
+    "synonyms": [
+      "new jersey"
+    ]
+  },
+  {
+    "value": "british columbia",
+    "synonyms": [
+      "british columbia",
+      "bc"
+    ]
+  }
+]

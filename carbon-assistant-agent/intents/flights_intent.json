@@ -1,0 +1,88 @@
+{
+  "name": "flights_intent",
+  "auto": true,
+  "contexts": [],
+  "responses": [
+    {
+      "resetContexts": false,
+      "action": "input.flight_details",
+      "affectedContexts": [
+        {
+          "name": "flights_intent-followup",
+          "parameters": {},
+          "lifespan": 2
+        }
+      ],
+      "parameters": [
+        {
+          "required": true,
+          "dataType": "@flight_airports",
+          "name": "origin",
+          "value": "$origin",
+          "prompts": [
+            {
+              "lang": "en",
+              "value": "Sorry, I couldn't understand from where the flight will take off. Can you tell me the origin of your flight? You can say the name of the city, airport or the code of the airport if you will."
+            },
+            {
+              "lang": "en",
+              "value": "I didn't get the source of your requested flight travel, could you tell me from where the flight will take off?"
+            }
+          ],
+          "isList": false
+        },
+        {
+          "required": true,
+          "dataType": "@flight_airports",
+          "name": "destination",
+          "value": "$destination",
+          "prompts": [
+            {
+              "lang": "en",
+              "value": "Sorry, but where will the flight land? I couldn't understand correctly the destination of your flight travel"
+            },
+            {
+              "lang": "en",
+              "value": "Ok. where will this flight land? I mean what city or airport ?"
+            }
+          ],
+          "isList": false
+        },
+        {
+          "required": false,
+          "dataType": "@sys.number",
+          "name": "passengers",
+          "value": "$passengers",
+          "isList": false
+        },
+        {
+          "required": false,
+          "name": "origin_original",
+          "value": "$origin.original",
+          "isList": false
+        },
+        {
+          "required": false,
+          "name": "destination_original",
+          "value": "$destination.original",
+          "isList": false
+        }
+      ],
+      "messages": [
+        {
+          "type": 0,
+          "lang": "en",
+          "speech": []
+        }
+      ],
+      "defaultResponsePlatforms": {},
+      "speech": []
+    }
+  ],
+  "priority": 500000,
+  "webhookUsed": true,
+  "webhookForSlotFilling": false,
+  "lastUpdate": 1532367066,
+  "fallbackIntent": false,
+  "events": []
+}
