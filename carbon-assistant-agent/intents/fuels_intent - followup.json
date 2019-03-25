@@ -1,16 +1,18 @@
 {
-  "name": "fuels_intent",
+  "name": "fuels_intent - followup",
   "auto": true,
-  "contexts": [],
+  "contexts": [
+    "fuels_intent-followup"
+  ],
   "responses": [
     {
       "resetContexts": false,
-      "action": "input.fuel_details",
+      "action": "fuels_intent.fuels_intent-custom",
       "affectedContexts": [
         {
           "name": "fuels_intent-followup",
           "parameters": {},
-          "lifespan": 2
+          "lifespan": 5
         }
       ],
       "parameters": [
@@ -22,38 +24,23 @@
           "isList": false
         },
         {
-          "required": true,
-          "dataType": "@fuels",
-          "name": "fuel_type",
-          "value": "$fuel_type",
-          "prompts": [
-            {
-              "lang": "en",
-              "value": "I didn't get the fuel you are  looking for. Can you please say the fuel name again?"
-            },
-            {
-              "lang": "en",
-              "value": "Sorry I didn't get the fuel name you said. What was it again?"
-            },
-            {
-              "lang": "en",
-              "value": "I can't tell you the exact emission value without knowing the fuel name. CAn you please say the fuel name?"
-            }
-          ],
-          "isList": false
-        },
-        {
-          "required": false,
-          "dataType": "",
-          "name": "fuel_original",
-          "value": "$fuel_type.original",
-          "isList": false
-        },
-        {
           "required": false,
           "dataType": "@sys.number",
           "name": "quantity",
           "value": "$quantity",
+          "isList": false
+        },
+        {
+          "required": false,
+          "dataType": "@fuels",
+          "name": "fuel_type",
+          "value": "$fuel_type",
+          "isList": false
+        },
+        {
+          "required": false,
+          "name": "fuel_original",
+          "value": "$fuel_type.original",
           "isList": false
         }
       ],
@@ -71,7 +58,7 @@
   "priority": 500000,
   "webhookUsed": true,
   "webhookForSlotFilling": false,
-  "lastUpdate": 1527423032,
+  "lastUpdate": 1551876583,
   "fallbackIntent": false,
   "events": []
 }
