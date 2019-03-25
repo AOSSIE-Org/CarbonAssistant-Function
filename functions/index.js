@@ -17,6 +17,7 @@ var electricity = require('./electricity');
 var poultry = require('./poultry');
 var appliances = require('./appliances');
 var trains = require('./trains');
+var land = require('./land');
 
 const app = dialogflow({
     debug: true
@@ -310,6 +311,37 @@ app.intent('appliance_intent - followup', (conv, parameters) => {
     else
         return appliances.processRequest(conv, newParams, false);
 });
+
+app.intent('land_intent', (conv, parameters) => {
+    conv.user.storage.lastParams = parameters;
+    if (!conv.user.storage.noPermission)
+        return land.processRequest(conv, parameters, true);
+    else
+        return land.processRequest(conv, parameters, false);
+});
+
+app.intent('land_intent - followup', (conv, parameters) => {
+    let contextParams = conv.user.storage.lastParams;
+    let newParams = {};
+
+    if (parameters.land_type && parameters.land_type !== "")
+        newParams.land_type = parameters.land_type;
+    else
+        newParams.land_type = contextParams.land_type;
+
+    if (parameters.land_region && parameters.land_region !== "")
+        newParams.land_region = parameters.land_region;
+    else
+        newParams.land_region = contextParams.land_region;
+
+    conv.user.storage.lastParams = newParams;
+
+    if (!conv.user.storage.noPermission)
+        return land.processRequest(conv, newParams, true);
+    else
+        return land.processRequest(conv, newParams, false);
+});
+
 
 // The default fallback intent has been matched, try to recover (https://dialogflow.com/docs/intents#fallback_intents)
 app.intent('Default Fallback Intent', (conv) => {
