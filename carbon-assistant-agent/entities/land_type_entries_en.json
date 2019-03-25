@@ -1,0 +1,26 @@
+[
+  {
+    "value": "cropland",
+    "synonyms": [
+      "cropland"
+    ]
+  },
+  {
+    "value": "grassland",
+    "synonyms": [
+      "grassland"
+    ]
+  },
+  {
+    "value": "forest land",
+    "synonyms": [
+      "forest land"
+    ]
+  },
+  {
+    "value": "Burning biomass",
+    "synonyms": [
+      "Burning biomass"
+    ]
+  }
+]

@@ -1,0 +1,68 @@
+{
+  "name": "land_intent",
+  "auto": true,
+  "contexts": [],
+  "responses": [
+    {
+      "resetContexts": false,
+      "affectedContexts": [
+        {
+          "name": "land_intent-followup",
+          "parameters": {},
+          "lifespan": 2
+        }
+      ],
+      "parameters": [
+        {
+          "required": true,
+          "dataType": "@land_type",
+          "name": "land_type",
+          "value": "$land_type",
+          "prompts": [
+            {
+              "lang": "en",
+              "value": "I can't tell you the exact emission without knowing the land type. Can you please say the land type?"
+            },
+            {
+              "lang": "en",
+              "value": "Sorry I didn't get the land type you are looking for. Can you please say that again?"
+            }
+          ],
+          "isList": false
+        },
+        {
+          "required": true,
+          "dataType": "@sys.geo-country",
+          "name": "land_region",
+          "value": "$land_region",
+          "prompts": [
+            {
+              "lang": "en",
+              "value": "I can't tell the net emission without knowing the region. Please tell the region you want to know the emission for."
+            },
+            {
+              "lang": "en",
+              "value": "What is the region you are looking for?"
+            },
+            {
+              "lang": "en",
+              "value": "Can you please specify the region where you want to know the emission?"
+            }
+          ],
+          "isList": false
+        }
+      ],
+      "messages": [],
+      "defaultResponsePlatforms": {
+        "google": true
+      },
+      "speech": []
+    }
+  ],
+  "priority": 500000,
+  "webhookUsed": true,
+  "webhookForSlotFilling": false,
+  "lastUpdate": 1551621075,
+  "fallbackIntent": false,
+  "events": []
+}

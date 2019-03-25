@@ -1,0 +1,51 @@
+{
+  "name": "land_intent - followup",
+  "auto": true,
+  "contexts": [
+    "land_intent-followup"
+  ],
+  "responses": [
+    {
+      "resetContexts": false,
+      "action": "land_intent.land_intent-custom",
+      "affectedContexts": [
+        {
+          "name": "land_intent-followup",
+          "parameters": {},
+          "lifespan": 5
+        }
+      ],
+      "parameters": [
+        {
+          "required": false,
+          "dataType": "@land_type",
+          "name": "land_type",
+          "value": "$land_type",
+          "isList": false
+        },
+        {
+          "required": false,
+          "dataType": "@sys.geo-country",
+          "name": "land_region",
+          "value": "$land_region",
+          "isList": false
+        }
+      ],
+      "messages": [
+        {
+          "type": 0,
+          "lang": "en",
+          "speech": []
+        }
+      ],
+      "defaultResponsePlatforms": {},
+      "speech": []
+    }
+  ],
+  "priority": 500000,
+  "webhookUsed": true,
+  "webhookForSlotFilling": false,
+  "lastUpdate": 1508189124811,
+  "fallbackIntent": false,
+  "events": []
+}
