@@ -245,8 +245,45 @@ app.intent('flights_intent - followup', (conv, parameters) => {
 });
 
 app.intent('fuels_intent', (conv, parameters) => {
-    return fuels.processRequest(conv, parameters);
+    conv.user.storage.lastParams = parameters;
+    if (!conv.user.storage.noPermission)
+        return fuels.processRequest(conv, parameters, true);
+    else
+        return fuels.processRequest(conv, parameters, false);
 });
+
+app.intent('fuels_intent - followup', (conv, parameters) => {
+    let contextParams = conv.user.storage.lastParams;
+    let newParams = {};
+
+    if (parameters.quantity && parameters.quantity !== "")
+        newParams.quantity = parameters.quantity;
+    else
+        newParams.quantity = contextParams.quantity;
+
+    if (parameters.fuel_original && parameters.fuel_original !== "")
+        newParams.fuel_original = parameters.fuel_original;
+    else
+        newParams.fuel_original = contextParams.fuel_original;
+
+    if (parameters.emission_type && parameters.emission_type !== "")
+        newParams.emission_type = parameters.emission_type;
+    else
+        newParams.emission_type = contextParams.emission_type;
+
+    if (parameters.fuel_type && parameters.fuel_type !== "")
+        newParams.fuel_type = parameters.fuel_type;
+    else
+        newParams.fuel_type = contextParams.fuel_type;
+
+    conv.user.storage.lastParams = newParams;
+
+    if (!conv.user.storage.noPermission)
+        return fuels.processRequest(conv, newParams, true);
+    else
+        return fuels.processRequest(conv, newParams, false);
+});
+
 
 app.intent('electricity_intent', (conv, parameters) => {
     conv.user.storage.lastParams = parameters;
