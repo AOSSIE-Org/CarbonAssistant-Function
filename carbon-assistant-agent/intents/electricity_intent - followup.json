@@ -1,0 +1,58 @@
+{
+  "name": "electricity_intent - followup",
+  "auto": true,
+  "contexts": [
+    "electricity_intent-followup"
+  ],
+  "responses": [
+    {
+      "resetContexts": false,
+      "action": "electricity_intent.electricity_intent-custom",
+      "affectedContexts": [
+        {
+          "name": "electricity_intent-followup",
+          "parameters": {},
+          "lifespan": 5
+        }
+      ],
+      "parameters": [
+        {
+          "required": false,
+          "dataType": "@sys.number",
+          "name": "quantity",
+          "value": "$quantity",
+          "isList": false
+        },
+        {
+          "required": false,
+          "dataType": "@sys.geo-country",
+          "name": "geo_country",
+          "value": "$geo_country",
+          "isList": false
+        },
+        {
+          "required": false,
+          "dataType": "@emission_type",
+          "name": "emission_type",
+          "value": "$emission_type",
+          "isList": false
+        }
+      ],
+      "messages": [
+        {
+          "type": 0,
+          "lang": "en",
+          "speech": []
+        }
+      ],
+      "defaultResponsePlatforms": {},
+      "speech": []
+    }
+  ],
+  "priority": 500000,
+  "webhookUsed": true,
+  "webhookForSlotFilling": false,
+  "lastUpdate": 1551770710,
+  "fallbackIntent": false,
+  "events": []
+}

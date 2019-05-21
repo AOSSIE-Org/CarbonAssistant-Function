@@ -249,8 +249,40 @@ app.intent('fuels_intent', (conv, parameters) => {
 });
 
 app.intent('electricity_intent', (conv, parameters) => {
-    return electricity.processRequest(conv, parameters);
+    conv.user.storage.lastParams = parameters;
+    if (!conv.user.storage.noPermission)
+        return electricity.processRequest(conv, parameters, true);
+    else
+        return electricity.processRequest(conv, parameters, false);
 });
+
+app.intent('electricity_intent - followup', (conv, parameters) => {
+    let contextParams = conv.user.storage.lastParams;
+    let newParams = {};
+
+    if (parameters.quantity && parameters.quantity !== "")
+        newParams.quantity = parameters.quantity;
+    else
+        newParams.quantity = contextParams.quantity;
+
+    if (parameters.geo_country && parameters.geo_country !== "")
+        newParams.geo_country = parameters.geo_country;
+    else
+        newParams.geo_country = contextParams.geo_country;
+    
+    if (parameters.emission_type && parameters.emission_type !== "")
+        newParams.emission_type = parameters.emission_type;
+    else
+        newParams.emission_type = contextParams.emission_type;
+
+    conv.user.storage.lastParams = newParams;
+
+    if (!conv.user.storage.noPermission)
+        return electricity.processRequest(conv, newParams, true);
+    else
+        return electricity.processRequest(conv, newParams, false);
+});
+
 
 app.intent('poultry_intent', (conv, parameters) => {
     return poultry.processRequest(conv, parameters);
