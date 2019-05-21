@@ -6,13 +6,33 @@
     {
       "resetContexts": false,
       "action": "input.poultry_details",
-      "affectedContexts": [],
+      "affectedContexts": [
+        {
+          "name": "poultry_intent-followup",
+          "parameters": {},
+          "lifespan": 2
+        }
+      ],
       "parameters": [
         {
-          "required": false,
+          "required": true,
           "dataType": "@poultry_list",
           "name": "poultry_type",
           "value": "$poultry_type",
+          "prompts": [
+            {
+              "lang": "en",
+              "value": "I didn't get the poultry type you are looking for. Can you please say the poultry name again?"
+            },
+            {
+              "lang": "en",
+              "value": "Can you please say the poultry name again?"
+            },
+            {
+              "lang": "en",
+              "value": "I can't tell you the exact emission without knowing the poultry type. Can you please say the type of the poultry?"
+            }
+          ],
           "isList": false
         },
         {
@@ -30,21 +50,17 @@
           "isList": false
         }
       ],
-      "messages": [
-        {
-          "type": 0,
-          "lang": "en",
-          "speech": []
-        }
-      ],
-      "defaultResponsePlatforms": {},
+      "messages": [],
+      "defaultResponsePlatforms": {
+        "google": false
+      },
       "speech": []
     }
   ],
   "priority": 500000,
   "webhookUsed": true,
   "webhookForSlotFilling": false,
-  "lastUpdate": 1527016896,
+  "lastUpdate": 1551896833,
   "fallbackIntent": false,
   "events": []
 }

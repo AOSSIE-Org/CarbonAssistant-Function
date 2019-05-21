@@ -285,8 +285,44 @@ app.intent('electricity_intent - followup', (conv, parameters) => {
 
 
 app.intent('poultry_intent', (conv, parameters) => {
-    return poultry.processRequest(conv, parameters);
+    conv.user.storage.lastParams = parameters;
+    
+    if (!conv.user.storage.noPermission)
+        return poultry.processRequest(conv, parameters, true);
+    else
+        return poultry.processRequest(conv, parameters, false);
+    
 });
+
+
+app.intent('poultry_intent - followup', (conv, parameters) => {
+    let contextParams = conv.user.storage.lastParams;
+    let newParams = {};
+
+    if (parameters.poultry_type && parameters.poultry_type !== "")
+        newParams.poultry_type = parameters.poultry_type;
+    else
+        newParams.poultry_type = contextParams.poultry_type;
+
+    if (parameters.poultry_region && parameters.poultry_region !== "")
+        newParams.poultry_region = parameters.poultry_region;
+    else
+        newParams.poultry_region = contextParams.poultry_region;
+
+    if (parameters.poultry_quantity && parameters.poultry_quantity !== "")
+        newParams.poultry_quantity = parameters.poultry_quantity;
+    else
+        newParams.poultry_quantity = contextParams.poultry_quantity;
+
+    conv.user.storage.lastParams = newParams;
+
+    if (!conv.user.storage.noPermission)
+        return poultry.processRequest(conv, newParams, true);
+    else
+        return poultry.processRequest(conv, newParams, false);
+    
+});
+
 
 app.intent('appliance_intent', (conv, parameters) => {
     conv.user.storage.lastParams = parameters;

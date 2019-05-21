@@ -1,8 +1,9 @@
 var config = require('./config')
 const requestLib = require('request');
+const reverseLookupManager = require('./reverseLookupManager');
 const utils = require('./utils');
 
-exports.processRequest = function(conv, parameters) {
+exports.processRequest = function(conv, parameters, requestReverseLookup) {
     return new Promise(function(resolve, reject) {
         if (parameters.poultry_type !== "") {
             let poultry_type = parameters.poultry_type;
@@ -15,7 +16,6 @@ exports.processRequest = function(conv, parameters) {
             if (parameters.poultry_quantity !== "")
                 poultry_quantity = parameters.poultry_quantity;
 
-            console.log("Poultry type = " + poultry_type + ", region =" + poultry_region + ", quantity =" + poultry_quantity);
 
             var options = {
                 uri: config.endpoint + "/poultry",
@@ -34,7 +34,6 @@ exports.processRequest = function(conv, parameters) {
             requestLib(options, function(error, response, body) {
                 const emissionResponse = "The emissions released due to this action are given below";
                 if (!error && response.statusCode === 200) {
-                    console.log(body);
 
                     let emission = body.emissions.CO2;
                     let unit = '';
@@ -48,18 +47,47 @@ exports.processRequest = function(conv, parameters) {
                     else
                         finalResponseString = basicResponseString + ' is ' + emission;
 
+                    
 
-                    let outputUnit = body.unit;
-                    if (outputUnit !== undefined) {
-                        finalResponseString = finalResponseString + ' ' + outputUnit;
-                        utils.richResponse(conv, finalResponseString, emissionResponse);
-                        resolve();
+                    if (requestReverseLookup) {
+                        
+                        let reverseLookup = reverseLookupManager.reverseLookup(body.emissions, conv.user.storage.location.coordinates);
+                        reverseLookup
+                            .then((responses) => {
+                                let selectedResponse = utils.getRandomNumber(0, responses.length - 1);
+                                let unit = body.unit;
+                                if (unit !== undefined) {
+                                    finalResponseString = finalResponseString + ' ' + unit + ' \n\n' + responses[selectedResponse];
+                                    utils.richResponse(conv, finalResponseString, responses[selectedResponse]);
+                                    resolve();
+                                } else {
+                                    finalResponseString = finalResponseString + ' kg' + ' \n\n' + responses[selectedResponse];
+                                    utils.richResponse(conv, finalResponseString, responses[selectedResponse]);
+                                    resolve();
+                                }
+                            })
+                            .catch((err) => {
+                                let unit = body.unit;
+                                if (unit !== undefined) {
+                                    utils.richResponse(conv, finalResponseString + ' ' + unit, emissionResponse);
+                                    resolve();
+                                } else {
+                                    utils.richResponse(conv, finalResponseString + ' kg', emissionResponse);
+                                    resolve();
+                                }
+                            });
                     } else {
-                        finalResponseString = finalResponseString + ' kg'
-                        utils.richResponse(conv, finalResponseString, emissionResponse);
-                        resolve();
+                        let unit = body.unit;
+                        if (unit !== undefined) {
+                            utils.richResponse(conv, finalResponseString + ' ' + unit, emissionResponse);
+                            resolve();
+                        } else {
+                            utils.richResponse(conv, finalResponseString + ' kg', emissionResponse);
+                            resolve();
+                        }
                     }
                 } else {
+                    
                   // Handle errors here
                   utils.handleError(error, response, body, conv);
                   resolve();
