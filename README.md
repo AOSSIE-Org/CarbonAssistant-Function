@@ -21,14 +21,14 @@ The deployment of the Google Assistant Action is done in two parts: Deployment o
 
 ### Deploying
 
-- Download the agent zip by clicking [here](https://gitlab.com/aossie/CarbonAssistant-Function/raw/master/carbon-assistant-agent.zip)
+- Go to the carbon-assistant-agent directory, compress it's contents and create a zip file.
 - Once you have a zip, head to [Actions on Google](https://console.actions.google.com/u/0/) and create a new project by entering a name and country for the project
 - Once the project is created, you will be on the Onboarding screen. Select 'Conversational' on this screen.
 - Fill in the basic details about your action such as invocation phrase, voice etc in the 'Quick Setup' section.
 - In 'Build your Action' section, select 'Add new action' and select 'Custom Intent' in the consecutive dialog box and click 'Build'
 - You will redirected to DialogFlow's project page. On this screen - select your timezone - don't change the language. Then select 'Create' and wait for the process to complete.
 - Once done, select the Settings gear icon at the top left and then go to Export and Import tab.
-- On this screen, select 'Restore from Zip' and restore the zip you downloaded!
+- On this screen, select 'Restore from Zip' and restore the zip you created!
 - Go to the 'Fulfillment' tab and you will see a field 'Webhook', you have to enter your own https endpoint. You can create your webhook by following deployment guide of the Firebase Cloud Function.
 - That's it, you are almost there! Next select the 'Integrations' tab and then under Google Assistant section click on 'Integration Settings' and click on Test! You are done!
 - Now, the Google assistant action has been deployed only for your Gmail account. You can fire up your Google Assistant app using the Invocation phrase you defined earlier and test it!
