@@ -1,0 +1,62 @@
+{
+  "name": "food_intent",
+  "auto": true,
+  "contexts": [],
+  "responses": [
+    {
+      "resetContexts": false,
+      "affectedContexts": [
+        {
+          "name": "food_intent-followup",
+          "parameters": {},
+          "lifespan": 2
+        }
+      ],
+      "parameters": [
+        {
+          "required": true,
+          "dataType": "@food_type",
+          "name": "food_type",
+          "value": "$food_type",
+          "prompts": [
+            {
+              "lang": "en",
+              "value": "I can't tell the exact emission without knowing the food type. Can you please say the name of the food product."
+            },
+            {
+              "lang": "en",
+              "value": "Sorry I didn't get the food product you are looking for. Can you please say that again?"
+            }
+          ],
+          "isList": false
+        },
+        {
+          "required": true,
+          "dataType": "@sys.geo-country",
+          "name": "food_region",
+          "value": "$food_region",
+          "prompts": [
+            {
+              "lang": "en",
+              "value": "Sorry, I can't tell the emission without knowing the country name. Can you please say the name of the country."
+            },
+            {
+              "lang": "en",
+              "value": "What is the name of the country?"
+            }
+          ],
+          "isList": false
+        }
+      ],
+      "messages": [],
+      "defaultResponsePlatforms": {},
+      "speech": []
+    }
+  ],
+  "priority": 500000,
+  "webhookUsed": true,
+  "webhookForSlotFilling": false,
+  "lastUpdate": 1551640901,
+  "fallbackIntent": false,
+  "events": []
+}

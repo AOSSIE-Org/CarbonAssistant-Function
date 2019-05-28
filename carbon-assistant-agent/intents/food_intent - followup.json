@@ -1,0 +1,51 @@
+{
+  "name": "food_intent - followup",
+  "auto": true,
+  "contexts": [
+    "food_intent-followup"
+  ],
+  "responses": [
+    {
+      "resetContexts": false,
+      "action": "food_intent.food_intent-custom",
+      "affectedContexts": [
+        {
+          "name": "food_intent-followup",
+          "parameters": {},
+          "lifespan": 5
+        }
+      ],
+      "parameters": [
+        {
+          "required": false,
+          "dataType": "@food_type",
+          "name": "food_type",
+          "value": "$food_type",
+          "isList": false
+        },
+        {
+          "required": false,
+          "dataType": "@sys.geo-country",
+          "name": "food_region",
+          "value": "$food_region",
+          "isList": false
+        }
+      ],
+      "messages": [
+        {
+          "type": 0,
+          "lang": "en",
+          "speech": []
+        }
+      ],
+      "defaultResponsePlatforms": {},
+      "speech": []
+    }
+  ],
+  "priority": 500000,
+  "webhookUsed": true,
+  "webhookForSlotFilling": false,
+  "lastUpdate": 1508189124811,
+  "fallbackIntent": false,
+  "events": []
+}
