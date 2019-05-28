@@ -1,0 +1,167 @@
+[
+  {
+    "data": [
+      {
+        "text": "what about emissions due to food products like, ",
+        "userDefined": false
+      },
+      {
+        "text": "rice, paddy",
+        "alias": "food_type",
+        "meta": "@food_type",
+        "userDefined": true
+      },
+      {
+        "text": " ?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0
+  },
+  {
+    "data": [
+      {
+        "text": "what about emissions due to ",
+        "userDefined": false
+      },
+      {
+        "text": "cereals excluding rice",
+        "alias": "food_type",
+        "meta": "@food_type",
+        "userDefined": true
+      },
+      {
+        "text": "?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0
+  },
+  {
+    "data": [
+      {
+        "text": "How about  ",
+        "userDefined": false
+      },
+      {
+        "text": "meat, cattle",
+        "alias": "food_type",
+        "meta": "@food_type",
+        "userDefined": true
+      },
+      {
+        "text": " in ",
+        "userDefined": false
+      },
+      {
+        "text": "Malaysia",
+        "alias": "food_region",
+        "meta": "@sys.geo-country",
+        "userDefined": true
+      },
+      {
+        "text": " ?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0
+  },
+  {
+    "data": [
+      {
+        "text": "what about in ",
+        "userDefined": false
+      },
+      {
+        "text": "India",
+        "alias": "food_region",
+        "meta": "@sys.geo-country",
+        "userDefined": true
+      },
+      {
+        "text": "?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0
+  },
+  {
+    "data": [
+      {
+        "text": "what about ",
+        "userDefined": false
+      },
+      {
+        "text": "rice, paddy",
+        "alias": "food_type",
+        "meta": "@food_type",
+        "userDefined": true
+      },
+      {
+        "text": " ?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0
+  },
+  {
+    "data": [
+      {
+        "text": "tell me more",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0
+  },
+  {
+    "data": [
+      {
+        "text": "what else",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0
+  },
+  {
+    "data": [
+      {
+        "text": "say",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      },
+      {
+        "text": " more",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0
+  },
+  {
+    "data": [
+      {
+        "text": "Emission due to ",
+        "userDefined": false
+      },
+      {
+        "text": "meat, sheep",
+        "alias": "food_type",
+        "meta": "@food_type",
+        "userDefined": true
+      },
+      {
+        "text": " ?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0
+  }
+]

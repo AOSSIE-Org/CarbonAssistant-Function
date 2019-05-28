@@ -1,0 +1,95 @@
+[
+  {
+    "value": "cereals excluding rice",
+    "synonyms": [
+      "cereals excluding rice",
+      "cereals without rice"
+    ]
+  },
+  {
+    "value": "rice, paddy",
+    "synonyms": [
+      "rice",
+      "rice, paddy",
+      "rice paddy"
+    ]
+  },
+  {
+    "value": "milk, whole fresh cow",
+    "synonyms": [
+      "milk, cow",
+      "milk from cow",
+      "milk, whole fresh cow",
+      "cow's milk"
+    ]
+  },
+  {
+    "value": "milk, whole fresh goat",
+    "synonyms": [
+      "milk, goat",
+      "milk, whole fresh goat",
+      "milk from goat",
+      "goat's milk"
+    ]
+  },
+  {
+    "value": "milk, whole fresh camel",
+    "synonyms": [
+      "milk, camel",
+      "milk from camel",
+      "milk, whole fresh camel",
+      "camel's milk"
+    ]
+  },
+  {
+    "value": "milk, whole fresh sheep",
+    "synonyms": [
+      "milk, sheep",
+      "milk from sheep",
+      "milk, whole fresh sheep",
+      "sheep's milk"
+    ]
+  },
+  {
+    "value": "meat, chicken",
+    "synonyms": [
+      "meat, chicken",
+      "meat from chicken",
+      "chicken meat"
+    ]
+  },
+  {
+    "value": "meat, goat",
+    "synonyms": [
+      "meat, goat",
+      "goat meat",
+      "meat from goat"
+    ]
+  },
+  {
+    "value": "meat, sheep",
+    "synonyms": [
+      "meat, sheep",
+      "sheep meat",
+      "meat from sheep"
+    ]
+  },
+  {
+    "value": "meat, cattle",
+    "synonyms": [
+      "meat, cattle",
+      "meat from cattle",
+      "cattle meat"
+    ]
+  },
+  {
+    "value": "eggs, hen, in shell",
+    "synonyms": [
+      "egg",
+      "eggs",
+      "eggs, hen",
+      "eggs, hen, in shell",
+      "eggs from hen"
+    ]
+  }
+]

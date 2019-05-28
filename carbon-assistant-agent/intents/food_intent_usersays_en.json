@@ -1,0 +1,315 @@
+[
+  {
+    "data": [
+      {
+        "text": "Emission due to food product like ",
+        "userDefined": false
+      },
+      {
+        "text": "camel's milk",
+        "alias": "food_type",
+        "meta": "@food_type",
+        "userDefined": true
+      },
+      {
+        "text": " in ",
+        "userDefined": false
+      },
+      {
+        "text": "Yemen",
+        "alias": "food_region",
+        "meta": "@sys.geo-country",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 1551640901
+  },
+  {
+    "data": [
+      {
+        "text": "What will be emission due to ",
+        "userDefined": false
+      },
+      {
+        "text": "milk, whole fresh goat",
+        "alias": "food_type",
+        "meta": "@food_type",
+        "userDefined": true
+      },
+      {
+        "text": " in ",
+        "userDefined": false
+      },
+      {
+        "text": "Afghanistan",
+        "alias": "food_region",
+        "meta": "@sys.geo-country",
+        "userDefined": true
+      },
+      {
+        "text": "?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 1551640901
+  },
+  {
+    "data": [
+      {
+        "text": "Emission due to ",
+        "userDefined": false
+      },
+      {
+        "text": "meat, sheep",
+        "alias": "food_type",
+        "meta": "@food_type",
+        "userDefined": true
+      },
+      {
+        "text": " in ",
+        "userDefined": false
+      },
+      {
+        "text": "China",
+        "alias": "food_region",
+        "meta": "@sys.geo-country",
+        "userDefined": true
+      },
+      {
+        "text": " is?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 1551640901
+  },
+  {
+    "data": [
+      {
+        "text": "Emission for food product, ",
+        "userDefined": false
+      },
+      {
+        "text": "chicken meat",
+        "alias": "food_type",
+        "meta": "@food_type",
+        "userDefined": true
+      },
+      {
+        "text": " in ",
+        "userDefined": false
+      },
+      {
+        "text": "Austria",
+        "alias": "food_region",
+        "meta": "@sys.geo-country",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 1551640901
+  },
+  {
+    "data": [
+      {
+        "text": "In ",
+        "userDefined": false
+      },
+      {
+        "text": "Sweden",
+        "alias": "food_region",
+        "meta": "@sys.geo-country",
+        "userDefined": true
+      },
+      {
+        "text": " emission due to ",
+        "userDefined": false
+      },
+      {
+        "text": "meat from cattle",
+        "alias": "food_type",
+        "meta": "@food_type",
+        "userDefined": true
+      },
+      {
+        "text": " is?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 1551640901
+  },
+  {
+    "data": [
+      {
+        "text": "In ",
+        "userDefined": false
+      },
+      {
+        "text": "India",
+        "alias": "food_region",
+        "meta": "@sys.geo-country",
+        "userDefined": false
+      },
+      {
+        "text": " emission for food product like  ",
+        "userDefined": false
+      },
+      {
+        "text": "milk from sheep",
+        "alias": "food_type",
+        "meta": "@food_type",
+        "userDefined": false
+      },
+      {
+        "text": " will be?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 1551640901
+  },
+  {
+    "data": [
+      {
+        "text": "Emission for ",
+        "userDefined": false
+      },
+      {
+        "text": "eggs",
+        "alias": "food_type",
+        "meta": "@food_type",
+        "userDefined": true
+      },
+      {
+        "text": " in ",
+        "userDefined": false
+      },
+      {
+        "text": "Zambia",
+        "alias": "food_region",
+        "meta": "@sys.geo-country",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 1551640901
+  },
+  {
+    "data": [
+      {
+        "text": "Emission in ",
+        "userDefined": false
+      },
+      {
+        "text": "Yemen",
+        "alias": "food_region",
+        "meta": "@sys.geo-country",
+        "userDefined": true
+      },
+      {
+        "text": " because of ",
+        "userDefined": false
+      },
+      {
+        "text": "meat from goat",
+        "alias": "food_type",
+        "meta": "@food_type",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 1551640901
+  },
+  {
+    "data": [
+      {
+        "text": "In ",
+        "userDefined": false
+      },
+      {
+        "text": "United Kingdom",
+        "alias": "food_region",
+        "meta": "@sys.geo-country",
+        "userDefined": true
+      },
+      {
+        "text": " emission due to ",
+        "userDefined": false
+      },
+      {
+        "text": "Milk from cow",
+        "alias": "food_type",
+        "meta": "@food_type",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 1551640303
+  },
+  {
+    "data": [
+      {
+        "text": "emission for ",
+        "userDefined": false
+      },
+      {
+        "text": "cereals excluding rice",
+        "alias": "food_type",
+        "meta": "@food_type",
+        "userDefined": true
+      },
+      {
+        "text": " in ",
+        "userDefined": false
+      },
+      {
+        "text": "China",
+        "alias": "food_region",
+        "meta": "@sys.geo-country",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 1551640303
+  },
+  {
+    "data": [
+      {
+        "text": "What is the net emission for ",
+        "userDefined": false
+      },
+      {
+        "text": "rice, paddy",
+        "alias": "food_type",
+        "meta": "@food_type",
+        "userDefined": true
+      },
+      {
+        "text": " in ",
+        "userDefined": false
+      },
+      {
+        "text": "India",
+        "alias": "food_region",
+        "meta": "@sys.geo-country",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 1551640303
+  }
+]

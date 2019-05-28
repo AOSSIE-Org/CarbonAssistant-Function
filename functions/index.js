@@ -18,12 +18,11 @@ var poultry = require('./poultry');
 var appliances = require('./appliances');
 var trains = require('./trains');
 var land = require('./land');
+var food = require('./food');
 
 const app = dialogflow({
     debug: true
 });
-
-
 
 // The default welcome intent has been matched, welcome the user (https://dialogflow.com/docs/events#default_welcome_intent)
 app.intent('Default Welcome Intent', (conv) => {
@@ -444,7 +443,37 @@ app.intent('land_intent - followup', (conv, parameters) => {
     if (!conv.user.storage.noPermission)
         return land.processRequest(conv, newParams, true);
     else
-        return land.processRequest(conv, newParams, false);
+        return land.processRequest(conv, newParams, false); 
+});        
+    
+app.intent('food_intent', (conv, parameters) => {
+    conv.user.storage.lastParams = parameters;
+    if (!conv.user.storage.noPermission)
+        return food.processRequest(conv, parameters, true);
+    else
+        return food.processRequest(conv, parameters, false);
+});
+
+app.intent('food_intent - followup', (conv, parameters) => {
+    let contextParams = conv.user.storage.lastParams;
+    let newParams = {};
+
+    if (parameters.food_type && parameters.food_type !== "")
+        newParams.food_type = parameters.food_type;
+    else
+        newParams.food_type = contextParams.food_type;
+
+    if (parameters.food_region && parameters.food_region !== "")
+        newParams.food_region = parameters.food_region;
+    else
+        newParams.food_region = contextParams.food_region;
+
+    conv.user.storage.lastParams = newParams;
+
+    if (!conv.user.storage.noPermission)
+        return food.processRequest(conv, newParams, true);
+    else
+        return food.processRequest(conv, newParams, false);
 });
 
 
