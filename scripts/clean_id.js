@@ -38,10 +38,12 @@ function handleData(filePath, fileReadOptions) {
 			if (dataObject.length > 1) {
 				for (var i = 0; i < dataObject.length; i++) {
 					delete dataObject[i]['id'];
+					delete dataObject[i]['updated'];
 				}
 			}
 			else {
 				// removes external id
+				delete dataObject['lastUpdate'];
 				delete dataObject['id'];
 				delete dataObject['parentId'];
 				delete dataObject['rootParentId'];
