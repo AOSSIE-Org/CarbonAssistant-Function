@@ -1,5 +1,5 @@
 {
-  "name": "land_intent - followup",
+  "name": "land_intent_followup",
   "auto": true,
   "contexts": [
     "land_intent-followup"
@@ -47,5 +47,9 @@
   "webhookForSlotFilling": false,
   "lastUpdate": 1508189124811,
   "fallbackIntent": false,
-  "events": []
+  "events": [
+    {
+      "name": "actions_intent_OPTION"
+    }
+  ]
 }
