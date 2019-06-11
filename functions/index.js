@@ -6,7 +6,8 @@ const {
     Permission,
     Suggestions,
     BasicCard,
-    SimpleResponse
+    SimpleResponse,
+    List
 } = require('actions-on-google'); // Google Assistant helper library
 const requestLib = require('request');
 var config = require('./config');
@@ -19,6 +20,7 @@ var appliances = require('./appliances');
 var trains = require('./trains');
 var land = require('./land');
 var food = require('./food');
+var land_utils = require('./land_utils');
 
 const app = dialogflow({
     debug: true
@@ -99,14 +101,14 @@ app.intent('help_intent', (conv) => {
     } else if(conv.surface.capabilities.has('actions.capability.SCREEN_OUTPUT')){
     //display screens
         conv.ask(new SimpleResponse({
-            speech: "I can tell you the emissions produced by different activities and appliances. Try asking me about them.",
+            speech: "I can tell you the emissions produced by different activities and appliances. Try asking me about them. You can also choose the category you want to know the emission of, from the menu list.",
             text: "Here's what I can do:"
         }));
         conv.ask(new BasicCard({
             title: '',
             text: "**Appliances**  \n  \ne.g: *How much emissions are produced if a radio is used for 3 hours in Canada?* \n  \n  \n**Travel \u0026 Journeys**  \n  \nYou can ask about emissions generated due to a travel by flight,"
              +" train or a private vehicle by road between two places, optionally, with no. of passengers if you"+
-              "know.  \n  \ne.g: *How much emissions are produced due to flight from Mumbai to Seattle airport with 1202 passengers?*  \n  \nThere is much more I can do. Click Read More to know more.",
+              "know.  \n  \ne.g: *How much emissions are produced due to flight from Mumbai to Seattle airport with 1202 passengers?*    \n  \n \n You can choose the category from the menu to know the emission related to it.  \n  \nThere is much more I can do. Click Read More to know more.",
             
             buttons: [
                 {
@@ -118,9 +120,31 @@ app.intent('help_intent', (conv) => {
                 }
             ]
         }));
+        conv.ask(new Suggestions(["Show the menu"]));    
     }
-        
-    
+});
+
+app.intent('menu_intent', (conv,option) => { //intent to show the list of categories
+    let category = ["Land", "Poultry", "Electricity", "Food Production", "Reduce Emission", "Appliances", "Train", "Fuel consumption", "Sector", "Vehicles", "Flights", "Agriculture"];
+    let items = {};
+    category.forEach(element => {
+        items[element] = { // key
+        title: element
+        }
+    });
+    conv.ask('This is the list of all categories I support please choose one so that I can provide you the exact value of the emission for it.');
+    conv.ask(new List({
+        title: "Category List",
+        items: items
+    }));
+});
+
+app.intent('menu_option_handler',(conv, parameters, option) => { //intent to handle the triggering of followup events
+    if(option == 'Land'){
+        conv.followup('land_intent_triggered', {
+            option: option,
+        });
+    }
 });
 
 app.intent('trains_intent', (conv, parameters) => {
@@ -416,34 +440,44 @@ app.intent('appliance_intent - followup', (conv, parameters) => {
         return appliances.processRequest(conv, newParams, false);
 });
 
-app.intent('land_intent', (conv, parameters) => {
-    conv.user.storage.lastParams = parameters;
-    if (!conv.user.storage.noPermission)
-        return land.processRequest(conv, parameters, true);
-    else
-        return land.processRequest(conv, parameters, false);
-});
+app.intent('land_intent', (conv, parameters, option) => {
+    if (parameters.land_type === ""){
+        if (conv.surface.capabilities.has('actions.capability.SCREEN_OUTPUT')) {
+            var items = land_utils.getLandTypes();
+            conv.ask('This is the list of land types Please choose one So, that I can provide you the exact value of the emission.');
+            conv.ask(new List({
+                title: "Land Types List",
+                items: items
+            }));
+        }
+        conv.user.storage.lastParams = parameters;
+    } else {
+        if (!conv.user.storage.noPermission)
+            return land.processRequest(conv, parameters, true);
+        else
+            return land.processRequest(conv, parameters, false);
+    }
+}); 
 
-app.intent('land_intent - followup', (conv, parameters) => {
+app.intent('land_intent_followup',(conv,parameters,option) => {
     let contextParams = conv.user.storage.lastParams;
     let newParams = {};
-
-    if (parameters.land_type && parameters.land_type !== "")
-        newParams.land_type = parameters.land_type;
-    else
-        newParams.land_type = contextParams.land_type;
-
     if (parameters.land_region && parameters.land_region !== "")
         newParams.land_region = parameters.land_region;
     else
         newParams.land_region = contextParams.land_region;
 
+    if (parameters.land_type && parameters.land_type !== "")
+        newParams.land_type = parameters.land_type;
+    else if(option && contextParams.land_type == "")
+        newParams.land_type = option;
+    else
+        newParams.land_type = contextParams.land_type;
     conv.user.storage.lastParams = newParams;
-
     if (!conv.user.storage.noPermission)
         return land.processRequest(conv, newParams, true);
     else
-        return land.processRequest(conv, newParams, false); 
+        return land.processRequest(conv, newParams, false);
 });        
     
 app.intent('food_intent', (conv, parameters) => {

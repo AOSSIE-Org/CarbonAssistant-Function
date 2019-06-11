@@ -14,7 +14,7 @@
       ],
       "parameters": [
         {
-          "required": true,
+          "required": false,
           "dataType": "@land_type",
           "name": "land_type",
           "value": "$land_type",
@@ -64,5 +64,12 @@
   "webhookForSlotFilling": false,
   "lastUpdate": 1551621075,
   "fallbackIntent": false,
-  "events": []
+  "events": [
+    {
+      "name": "actions_intent_OPTION"
+    },
+    {
+      "name": "land_intent_triggered"
+    }
+  ]
 }

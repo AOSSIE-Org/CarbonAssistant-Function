@@ -3,9 +3,9 @@ const requestLib = require('request');
 const utils = require('./utils');
 const reverseLookupManager = require('./reverseLookupManager');
 
-exports.processRequest = function(conv, parameters, requestReverseLookup) {
+exports.processRequest = function(conv, parameters, requestReverseLookup,option) {
     return new Promise(function(resolve, reject) {
-        if (parameters.land_type !== "" && parameters.land_region !== "") {
+        if (parameters.land_region !== "") {
             let land_type = parameters.land_type;
             let land_region = parameters.land_region;
             var options = {
@@ -75,7 +75,7 @@ exports.processRequest = function(conv, parameters, requestReverseLookup) {
             });
 
         } else {
-            conv.ask("Sorry, need a valid country name and land type. Could you please repeat your question with correct information?");
+            conv.ask("Sorry, need a valid country name. Could you please repeat your question with correct information?");
             resolve();
         }
     });
