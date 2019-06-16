@@ -191,6 +191,9 @@ exports.processRequest = function(conv, parameters, requestReverseLookup) {
                 } else {
                   console.log(response);
                   console.log(error);
+                  // Handle errors here
+                  if (!error)
+                     error = body.error;
                   //Handle the error in the utils function
                   utils.handleError(error, response, body, conv);
                   resolve();

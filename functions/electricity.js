@@ -131,11 +131,11 @@ exports.processRequest = function(conv, parameters, requestReverseLookup) {
                         resolve();
                     }
                 }
-            } else {
-              
-              //Handle the error in the utils function
+            } else { 
+              // Handle errors here
               if (!error)
                 error = body.error;
+              //Handle the error in the utils function
               utils.handleError(error, response, body, conv);
               resolve();
             }
