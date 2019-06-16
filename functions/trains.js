@@ -28,6 +28,7 @@ exports.processRequest = function(conv, parameters, requestReverseLookup) {
             };
 
             requestLib(options, function(error, response, body) {
+                const button = "/";
                 const emissionResponse = "The emissions released due to this action are given below";
                 if (!error && response.statusCode === 200) {
                     console.log(body);
@@ -47,17 +48,17 @@ exports.processRequest = function(conv, parameters, requestReverseLookup) {
                             .then((responses) => {
                                 let selectedResponse = utils.getRandomNumber(0, responses.length - 1);
                                 finalResponseString = finalResponseString + ' are ' + carbonEmission + ' kg.\n\n' + responses[selectedResponse]
-                                utils.richResponse(conv, finalResponseString, responses[selectedResponse]);
+                                utils.richResponse(conv, finalResponseString, responses[selectedResponse], button);
                                 resolve();
                             })
                             .catch((err) => {
                                 finalResponseString = finalResponseString + ' are ' + carbonEmission + ' kg.\n';
-                                utils.richResponse(conv, finalResponseString, emissionResponse);
+                                utils.richResponse(conv, finalResponseString, emissionResponse, button);
                                 resolve();
                             });
                     } else {
                         finalResponseString = finalResponseString + ' are ' + carbonEmission + ' kg.\n';
-                        utils.richResponse(conv, finalResponseString, emissionResponse);
+                        utils.richResponse(conv, finalResponseString, emissionResponse, button);
                         resolve();
                     }
                 } else {
