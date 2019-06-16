@@ -22,6 +22,7 @@ exports.processRequest = function(conv, parameters, requestReverseLookup,option)
             };
 
             requestLib(options, function(error, response, body) {
+                const button = "/";
                 const emissionResponse = "The net emissions or removals  due to this land type are given below";
                 if (!error && response.statusCode === 200) {
                     let emission = body.quantity;
@@ -36,31 +37,31 @@ exports.processRequest = function(conv, parameters, requestReverseLookup,option)
                                 let unit = body.unit;
                                 if (unit !== undefined) {
                                     finalResponseString = finalResponseString + ' ' + unit + ' \n\n' + responses[selectedResponse];
-                                    utils.richResponse(conv, finalResponseString, responses[selectedResponse]);
+                                    utils.richResponse(conv, finalResponseString, responses[selectedResponse], button);
                                     resolve();
                                 } else {
                                     finalResponseString = finalResponseString + ' kg' + ' \n\n' + responses[selectedResponse];
-                                    utils.richResponse(conv, finalResponseString, responses[selectedResponse]);
+                                    utils.richResponse(conv, finalResponseString, responses[selectedResponse], button);
                                     resolve();
                                 }
                             })
                             .catch((err) => {
                                 let unit = body.unit;
                                 if (unit !== undefined) {
-                                    utils.richResponse(conv, finalResponseString + ' ' + unit, emissionResponse);
+                                    utils.richResponse(conv, finalResponseString + ' ' + unit, emissionResponse, button);
                                     resolve();
                                 } else {
-                                    utils.richResponse(conv, finalResponseString + ' kg', emissionResponse);
+                                    utils.richResponse(conv, finalResponseString + ' kg', emissionResponse, button);
                                     resolve();
                                 }
                             });
                     } else {
                         let unit = body.unit;
                         if (unit !== undefined) {
-                            utils.richResponse(conv, finalResponseString + ' ' + unit, emissionResponse);
+                            utils.richResponse(conv, finalResponseString + ' ' + unit, emissionResponse, button);
                             resolve();
                         } else {
-                            utils.richResponse(conv, finalResponseString + ' kg', emissionResponse);
+                            utils.richResponse(conv, finalResponseString + ' kg', emissionResponse, button);
                             resolve();
                         }
                     }

@@ -35,6 +35,7 @@ exports.processRequest = function(conv, parameters, requestReverseLookup) {
 
             requestLib(options, function(error, response, body) {
                 if (!error && response.statusCode === 200) {
+                    const button = "/";
                     const emissionResponse = "The emissions released due to this action are given below";
                     console.log(body);
                     if (parameters.emission_type !== "") {
@@ -64,11 +65,11 @@ exports.processRequest = function(conv, parameters, requestReverseLookup) {
                                     let unit = body.unit;
                                     if (unit !== undefined) {
                                         finalResponseString = finalResponseString + ' ' + unit + ' \n\n' + responses[selectedResponse];
-                                        utils.richResponse(conv, finalResponseString, responses[selectedResponse]);
+                                        utils.richResponse(conv, finalResponseString, responses[selectedResponse], button);
                                         resolve();
                                     } else {
                                         finalResponseString = finalResponseString + ' kg' + ' \n\n' + responses[selectedResponse];
-                                        utils.richResponse(conv, finalResponseString, responses[selectedResponse]);
+                                        utils.richResponse(conv, finalResponseString, responses[selectedResponse], button);
                                         resolve();
                                     }
                                 })
@@ -76,11 +77,11 @@ exports.processRequest = function(conv, parameters, requestReverseLookup) {
                                     let unit = body.unit;
                                     if (unit !== undefined) {
                                         finalResponseString = finalResponseString + ' ' + unit;
-                                        utils.richResponse(conv, finalResponseString, emissionResponse);
+                                        utils.richResponse(conv, finalResponseString, emissionResponse, button);
                                         resolve();
                                     } else {
                                         finalResponseString = finalResponseString + ' kg';
-                                        utils.richResponse(conv, finalResponseString, emissionResponse);
+                                        utils.richResponse(conv, finalResponseString, emissionResponse, button);
                                         resolve();
                                     }
                                 });
@@ -88,11 +89,11 @@ exports.processRequest = function(conv, parameters, requestReverseLookup) {
                             let unit = body.unit;
                             if (unit !== undefined) {
                                 finalResponseString = finalResponseString + ' ' + unit;
-                                utils.richResponse(conv, finalResponseString, emissionResponse);
+                                utils.richResponse(conv, finalResponseString, emissionResponse, button);
                                 resolve();
                             } else {
                                 finalResponseString = finalResponseString + ' kg';
-                                utils.richResponse(conv, finalResponseString, emissionResponse);
+                                utils.richResponse(conv, finalResponseString, emissionResponse, button);
                                 resolve();
                             }
                         }
@@ -121,7 +122,7 @@ exports.processRequest = function(conv, parameters, requestReverseLookup) {
                                         "Nitrous Oxide: " + nitrousEmission + ' kg.\n' +
                                         "Methane: " + methaneEmission + ' kg.' + ' \n\n' + responses[selectedResponse];
                                     console.log("selected response: " + selectedResponse);
-                                    utils.richResponse(conv, finalResponseString, responses[selectedResponse]);
+                                    utils.richResponse(conv, finalResponseString, responses[selectedResponse],button);
                                     resolve();
                                 })
                                 .catch((err) => {
@@ -129,7 +130,7 @@ exports.processRequest = function(conv, parameters, requestReverseLookup) {
                                         'Carbon Dioxide: ' + carbonEmission + ' kg.\n' +
                                         "Nitrous Oxide: " + nitrousEmission + ' kg.\n' +
                                         "Methane: " + methaneEmission + ' kg.'
-                                    utils.richResponse(conv, finalResponseString, emissionResponse);
+                                    utils.richResponse(conv, finalResponseString, emissionResponse, button);
                                     resolve();
                                 });
                         } else {
@@ -137,7 +138,7 @@ exports.processRequest = function(conv, parameters, requestReverseLookup) {
                                 'Carbon Dioxide: ' + carbonEmission + ' kg.\n' +
                                 "Nitrous Oxide: " + nitrousEmission + ' kg.\n' +
                                 "Methane: " + methaneEmission + ' kg.'
-                            utils.richResponse(conv, finalResponseString, emissionResponse);
+                            utils.richResponse(conv, finalResponseString, emissionResponse, button);
                             resolve();
                         }
                     }

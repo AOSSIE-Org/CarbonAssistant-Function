@@ -1,5 +1,5 @@
 const {
-    SimpleResponse, Suggestions
+    SimpleResponse, Suggestions, BasicCard
 } = require('actions-on-google');
 
 exports.roundWithPrecision = (value, precision) => {
@@ -11,12 +11,31 @@ exports.getRandomNumber = (minimum, maximum) => {
     return Math.floor(Math.random() * (maximum - minimum + 1)) + minimum;
 }
 
-exports.richResponse = (conv, display, toSpeak) => {
+exports.richResponse = (conv, display, toSpeak, button) => {
+  if (conv.surface.capabilities.has('actions.capability.SCREEN_OUTPUT')) {
     conv.ask(new SimpleResponse({
         speech: toSpeak,
         text: display
     }));
-    conv.ask("What else would you like to know next?");
+    conv.ask(new BasicCard({
+      title: '',
+      text: 'To see some visuals click the button',
+      buttons: [
+          {
+           title: "See More",
+           openUrlAction: {
+              url: "https://carbonhub.org"+ button,
+              urlTypeHint: "URL_TYPE_HINT_UNSPECIFIED"
+              }
+          }
+      ]
+    }));
+  } else if (conv.surface.capabilities.has('actions.capability.AUDIO_OUTPUT')) {
+    conv.ask(new SimpleResponse({
+      speech: display
+    }));
+  }
+  conv.ask("What else would you like to know next?");    
 }
 
 exports.responseWithSuggestions = (conv, display, suggestions) => {

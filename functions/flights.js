@@ -30,6 +30,7 @@ exports.processRequest = function(conv, parameters, requestReverseLookup) {
             };
 
             requestLib(options, function(error, response, body) {
+                const button = "/visuals/flights";
                 const emissionResponse = "The emissions released due to this action are given below";
                 if (!error && response.statusCode === 200) {
                     console.log(body);
@@ -53,11 +54,11 @@ exports.processRequest = function(conv, parameters, requestReverseLookup) {
                                 let unit = body.unit;
                                 if (unit !== undefined) {
                                     finalResponseString = finalResponseString + ' ' + unit + '\n\n' + responses[selectedResponse];
-                                    utils.richResponse(conv, finalResponseString, responses[selectedResponse])
+                                    utils.richResponse(conv, finalResponseString, responses[selectedResponse], button)
                                     resolve();
                                 } else {
                                     finalResponseString = finalResponseString + ' kg ' + '\n\n' + responses[selectedResponse];
-                                    utils.richResponse(conv, finalResponseString, responses[selectedResponse])
+                                    utils.richResponse(conv, finalResponseString, responses[selectedResponse], button)
                                     resolve();
                                 }
                             })
