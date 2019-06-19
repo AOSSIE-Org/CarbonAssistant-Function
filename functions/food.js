@@ -3,9 +3,45 @@ const requestLib = require('request');
 const reverseLookupManager = require('./reverseLookupManager');
 const utils = require('./utils');
 
-exports.processRequest = function(conv, parameters, requestReverseLookup) {
+exports.processRequest = function(conv, parameters, requestReverseLookup, option) {
     return new Promise(function(resolve, reject) {
-        if (parameters.food_type !== "" && parameters.food_region !== "") {
+        if (parameters.food_region !== "") {
+            if(parameters.food_type !== ""){
+                switch (parameters.food_type) {
+                    case "Beef Production":
+                      parameters.food_type = "Meat, cattle";
+                      break;
+                    case "Cow Dairy Farming":
+                      parameters.food_type = "Milk, whole fresh cow";
+                      break;
+                    case "Production of Cereals excluding rice":
+                      parameters.food_type = "Cereals excluding rice";
+                      break;
+                    case "Rice Production":
+                      parameters.food_type = "Rice, paddy";
+                      break;
+                    case "Goat Production":
+                      parameters.food_type = "Meat, goat";
+                      break;
+                    case "Sheep Dairy Farming":
+                      parameters.food_type = "Milk, whole fresh sheep";
+                      break;
+                    case "Sheep Production":
+                     parameters.food_type = "Meat, sheep";
+                      break;
+                    case "Goat Dairy Farming":
+                      parameters.food_type= "Milk, whole fresh goat";
+                      break; 
+                    case "Hen Production":
+                      parameters.food_type = "Eggs, hen, in shell";
+                      break;              
+                    case "Chicken Production":
+                      parameters.food_type = "Meat, chicken";
+                      break;
+                    case "Camel Dairy Farming":
+                      parameters.food_type = "Milk, whole fresh camel";                       
+                  }
+            }
             let food_type = parameters.food_type;
             let food_region = parameters.food_region;
             var options = {
@@ -76,7 +112,7 @@ exports.processRequest = function(conv, parameters, requestReverseLookup) {
             });
 
         } else {
-            conv.ask("Sorry,I need a valid country name and food type. Could you please repeat your question with correct information?");
+            conv.ask("Sorry, I need a valid country name. Could you please repeat your question with correct information?");
             resolve();
         }
     });

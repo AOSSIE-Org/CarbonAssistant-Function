@@ -21,6 +21,8 @@ var trains = require('./trains');
 var land = require('./land');
 var food = require('./food');
 var land_utils = require('./land_utils');
+var food_utils = require('./food_utils');
+var menu_utils = require('./menu_utils');
 
 const app = dialogflow({
     debug: true
@@ -125,24 +127,24 @@ app.intent('help_intent', (conv) => {
 });
 
 app.intent('menu_intent', (conv,option) => { //intent to show the list of categories
-    let category = ["Land", "Poultry", "Electricity", "Food Production", "Reduce Emission", "Appliances", "Train", "Fuel consumption", "Sector", "Vehicles", "Flights", "Agriculture"];
-    let items = {};
-    category.forEach(element => {
-        items[element] = { // key
-        title: element
-        }
-    });
-    conv.ask('This is the list of all categories I support please choose one so that I can provide you the exact value of the emission for it.');
-    conv.ask(new List({
-        title: "Category List",
-        items: items
-    }));
+    if (conv.surface.capabilities.has('actions.capability.SCREEN_OUTPUT')) {
+        var items = menu_utils.getCategories();
+        conv.ask('This is the list of all categories I support please choose one so that I can provide you the exact value of the emission for it.');
+        conv.ask(new List({
+            title: "Category List",
+            items: items
+        }));
+    }
 });
 
 app.intent('menu_option_handler',(conv, parameters, option) => { //intent to handle the triggering of followup events
     if(option == 'Land'){
         conv.followup('land_intent_triggered', {
             option: option,
+        });
+    } else if(option == 'Food Production'){
+        conv.followup('food_intent_triggered', {
+            option:option,
         });
     }
 });
@@ -480,34 +482,43 @@ app.intent('land_intent_followup',(conv,parameters,option) => {
         return land.processRequest(conv, newParams, false);
 });        
     
-app.intent('food_intent', (conv, parameters) => {
-    conv.user.storage.lastParams = parameters;
-    if (!conv.user.storage.noPermission)
-        return food.processRequest(conv, parameters, true);
-    else
-        return food.processRequest(conv, parameters, false);
+app.intent('food_intent', (conv, parameters, option) => {
+    if (parameters.food_type === ""){
+        if (conv.surface.capabilities.has('actions.capability.SCREEN_OUTPUT')) {
+            var items = food_utils.getFoodTypes();
+            conv.ask('This is the list of food types Please choose one So, that I can provide you the exact value of the emission.');
+            conv.ask(new List({
+                title: "Food Types List",
+                items: items
+            }));
+        }
+        conv.user.storage.lastParams = parameters;
+    } else {
+        if (!conv.user.storage.noPermission)
+            return food.processRequest(conv, parameters, true);
+        else
+            return food.processRequest(conv, parameters, false);
+    }
 });
 
-app.intent('food_intent - followup', (conv, parameters) => {
+app.intent('food_intent_followup',(conv,parameters,option) => {
     let contextParams = conv.user.storage.lastParams;
     let newParams = {};
-
-    if (parameters.food_type && parameters.food_type !== "")
-        newParams.food_type = parameters.food_type;
-    else
-        newParams.food_type = contextParams.food_type;
-
+    
     if (parameters.food_region && parameters.food_region !== "")
         newParams.food_region = parameters.food_region;
     else
         newParams.food_region = contextParams.food_region;
 
-    conv.user.storage.lastParams = newParams;
-
-    if (!conv.user.storage.noPermission)
-        return food.processRequest(conv, newParams, true);
+    if (parameters.food_type && parameters.food_type !== "")
+        newParams.food_type = parameters.food_type;
+    else if(option && contextParams.food_type == "")
+        newParams.food_type = option;
     else
-        return food.processRequest(conv, newParams, false);
+        newParams.food_type = contextParams.food_type;
+        
+    conv.user.storage.lastParams = newParams;
+    return food.processRequest(conv, newParams, option);
 });
 
 
