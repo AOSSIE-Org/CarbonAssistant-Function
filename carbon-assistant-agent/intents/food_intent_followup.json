@@ -1,5 +1,5 @@
 {
-  "name": "food_intent - followup",
+  "name": "food_intent_followup",
   "auto": true,
   "contexts": [
     "food_intent-followup"
@@ -46,5 +46,9 @@
   "webhookUsed": true,
   "webhookForSlotFilling": false,
   "fallbackIntent": false,
-  "events": []
+  "events": [
+    {
+      "name": "actions_intent_OPTION"
+    }
+  ]
 }
