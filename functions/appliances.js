@@ -1,4 +1,4 @@
-var config = require('./config')
+var config = require('./config');
 const requestLib = require('request');
 const reverseLookupManager = require('./reverseLookupManager');
 const utils = require('./utils');
@@ -47,7 +47,7 @@ exports.processRequest = function(conv, parameters, requestReverseLookup) {
             } else {
                 appliance_path = "";
                 var applianceTypes = appliances_utils.getApplianceTypes(item);
-                console.log("Appliance types avilable: " + applianceTypes);
+                console.log("Appliance types available: " + applianceTypes);
                 console.log("Appliance types length: " + applianceTypes.length);
                 if (applianceTypes.length > 0) {
                     utils.responseWithSuggestions(conv, "Please select from the following types of " + item + "s", applianceTypes);
@@ -190,20 +190,20 @@ exports.processRequest = function(conv, parameters, requestReverseLookup) {
                         }
                     }
                 } else {
-                  console.log(response);
-                  console.log(error);
-                  // Handle errors here
-                  if (!error)
-                     error = body.error;
-                  //Handle the error in the utils function
-                  utils.handleError(error, response, body, conv);
-                  resolve();
+                    console.log(response);
+                    console.log(error);
+                    // Handle errors here
+                    if (!error)
+                        error = body.error;
+                    //Handle the error in the utils function
+                    utils.handleError(error, response, body, conv);
+                    resolve();
                 }
             });
         } else {
-          //Handle the errors here
-          conv.ask("I didn't get the appliance you were looking for. Can you say the appliance name again?");
-          resolve();
+            //Handle the errors here
+            conv.ask("I didn't get the appliance you were looking for. Can you say the appliance name again?");
+            resolve();
         }
     });
 }

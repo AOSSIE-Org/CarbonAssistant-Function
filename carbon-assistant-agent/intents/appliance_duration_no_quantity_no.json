@@ -1,27 +1,23 @@
 {
-  "name": "appliance_intent - followup",
+  "name": "appliance_duration_no_quantity_no",
   "auto": true,
   "contexts": [
-    "appliance_intent-followup"
+    "appliance_duration_no-followup"
   ],
   "responses": [
     {
       "resetContexts": false,
-      "action": "appliance_intent.appliance_intent-more",
+      "action": "appliance_intent.appliance_intent-custom.appliance_duration_ask-custom-2.appliance_duration_no-custom",
       "affectedContexts": [
         {
-          "name": "appliance_intent-followup",
+          "name": "appliance_duration_no_quantity_no-followup",
           "parameters": {},
           "lifespan": 5
         }
       ],
       "parameters": [
         {
-          "dataType": "@appliance_specs",
-          "name": "type",
-          "value": "$type.original"
-        },
-        {
+          "required": false,
           "dataType": "@appliances",
           "name": "appliance",
           "value": "$appliance",
@@ -29,12 +25,6 @@
         },
         {
           "required": false,
-          "dataType": "@sys.geo-country",
-          "name": "geo_country",
-          "value": "$geo_country",
-          "isList": false
-        },
-        {
           "dataType": "@emission_type",
           "name": "emission_type",
           "value": "$emission_type",
@@ -42,9 +32,9 @@
         },
         {
           "required": false,
-          "dataType": "@sys.duration",
-          "name": "duration",
-          "value": "$duration",
+          "dataType": "@appliance_specs",
+          "name": "type",
+          "value": "$type.original",
           "isList": false
         },
         {
@@ -55,9 +45,25 @@
           "isList": false
         },
         {
+          "required": false,
+          "dataType": "@sys.geo-country",
+          "name": "geo_country",
+          "value": "$geo_country",
+          "isList": false
+        },
+        {
+          "required": false,
           "dataType": "@sys.number",
           "name": "quantity",
-          "value": "$quantity"
+          "value": "$quantity",
+          "isList": false
+        },
+        {
+          "required": false,
+          "dataType": "@sys.duration",
+          "name": "duration",
+          "value": "$duration",
+          "isList": false
         }
       ],
       "messages": [
