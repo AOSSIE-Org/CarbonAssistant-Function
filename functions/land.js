@@ -1,9 +1,9 @@
-var config = require('./config')
+var config = require('./config');
 const requestLib = require('request');
 const utils = require('./utils');
 const reverseLookupManager = require('./reverseLookupManager');
 
-exports.processRequest = function(conv, parameters, requestReverseLookup,option) {
+exports.processRequest = function(conv, parameters, requestReverseLookup, option) {
     return new Promise(function(resolve, reject) {
         if (parameters.land_region !== "") {
             let land_type = parameters.land_type;
@@ -26,10 +26,12 @@ exports.processRequest = function(conv, parameters, requestReverseLookup,option)
                 const emissionResponse = "The net emissions or removals  due to this land type are given below";
                 if (!error && response.statusCode === 200) {
                     let emission = body.quantity;
-                    let finalResponseString = 'Net emissions for ' + land_type  + ' in ' + land_region + ' are ' + emission;
+                    let finalResponseString = 'Net emissions for ' + land_type + ' in ' + land_region + ' are ' + emission;
 
                     if (requestReverseLookup) {
-                        var emissions = { "CO2": emission };
+                        var emissions = {
+                            "CO2": emission
+                        };
                         let reverseLookup = reverseLookupManager.reverseLookup(emissions, conv.user.storage.location.coordinates);
                         reverseLookup
                             .then((responses) => {
@@ -65,14 +67,14 @@ exports.processRequest = function(conv, parameters, requestReverseLookup,option)
                             resolve();
                         }
                     }
- 
+
                 } else {
-                  // Handle errors here
-                  if (!error)
-                    error = body.error;
-                  //Handle the error in the utils function
-                  utils.handleError(error, response, body, conv);
-                  resolve();
+                    // Handle errors here
+                    if (!error)
+                        error = body.error;
+                    //Handle the error in the utils function
+                    utils.handleError(error, response, body, conv);
+                    resolve();
                 }
             });
 

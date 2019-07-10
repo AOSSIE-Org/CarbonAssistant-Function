@@ -1,4 +1,4 @@
-var config = require('./config')
+var config = require('./config');
 const requestLib = require('request');
 const reverseLookupManager = require('./reverseLookupManager');
 const utils = require('./utils');
@@ -6,41 +6,41 @@ const utils = require('./utils');
 exports.processRequest = function(conv, parameters, requestReverseLookup, option) {
     return new Promise(function(resolve, reject) {
         if (parameters.food_region !== "") {
-            if(parameters.food_type !== ""){
+            if (parameters.food_type !== "") {
                 switch (parameters.food_type) {
                     case "Beef Production":
-                      parameters.food_type = "Meat, cattle";
-                      break;
+                        parameters.food_type = "Meat, cattle";
+                        break;
                     case "Cow Dairy Farming":
-                      parameters.food_type = "Milk, whole fresh cow";
-                      break;
+                        parameters.food_type = "Milk, whole fresh cow";
+                        break;
                     case "Production of Cereals excluding rice":
-                      parameters.food_type = "Cereals excluding rice";
-                      break;
+                        parameters.food_type = "Cereals excluding rice";
+                        break;
                     case "Rice Production":
-                      parameters.food_type = "Rice, paddy";
-                      break;
+                        parameters.food_type = "Rice, paddy";
+                        break;
                     case "Goat Production":
-                      parameters.food_type = "Meat, goat";
-                      break;
+                        parameters.food_type = "Meat, goat";
+                        break;
                     case "Sheep Dairy Farming":
-                      parameters.food_type = "Milk, whole fresh sheep";
-                      break;
+                        parameters.food_type = "Milk, whole fresh sheep";
+                        break;
                     case "Sheep Production":
-                     parameters.food_type = "Meat, sheep";
-                      break;
+                        parameters.food_type = "Meat, sheep";
+                        break;
                     case "Goat Dairy Farming":
-                      parameters.food_type= "Milk, whole fresh goat";
-                      break; 
+                        parameters.food_type = "Milk, whole fresh goat";
+                        break;
                     case "Hen Production":
-                      parameters.food_type = "Eggs, hen, in shell";
-                      break;              
+                        parameters.food_type = "Eggs, hen, in shell";
+                        break;
                     case "Chicken Production":
-                      parameters.food_type = "Meat, chicken";
-                      break;
+                        parameters.food_type = "Meat, chicken";
+                        break;
                     case "Camel Dairy Farming":
-                      parameters.food_type = "Milk, whole fresh camel";                       
-                  }
+                        parameters.food_type = "Milk, whole fresh camel";
+                }
             }
             let food_type = parameters.food_type;
             let food_region = parameters.food_region;
@@ -62,9 +62,11 @@ exports.processRequest = function(conv, parameters, requestReverseLookup, option
                 const emissionResponse = "The net emission  due to this food type are given below";
                 if (!error && response.statusCode === 200) {
                     let emission = body.quantity;
-                    let finalResponseString = 'Net emissions for ' + food_type  + ' in ' + food_region + ' are ' + emission;
+                    let finalResponseString = 'Net emissions for ' + food_type + ' in ' + food_region + ' are ' + emission;
                     if (requestReverseLookup) {
-                        var emissions = { "CO2": emission };
+                        var emissions = {
+                            "CO2": emission
+                        };
                         let reverseLookup = reverseLookupManager.reverseLookup(emissions, conv.user.storage.location.coordinates);
                         reverseLookup
                             .then((responses) => {
@@ -89,7 +91,7 @@ exports.processRequest = function(conv, parameters, requestReverseLookup, option
                                     utils.richResponse(conv, finalResponseString + ' kg', emissionResponse, button);
                                     resolve();
                                 }
-                             });
+                            });
                     } else {
                         let unit = body.unit;
                         if (unit !== undefined) {
@@ -100,14 +102,14 @@ exports.processRequest = function(conv, parameters, requestReverseLookup, option
                             resolve();
                         }
                     }
- 
+
                 } else {
-                  // Handle errors here
-                  if (!error)
-                    error = body.error;
-                  //Handle the error in the utils function
-                  utils.handleError(error, response, body, conv);
-                  resolve();
+                    // Handle errors here
+                    if (!error)
+                        error = body.error;
+                    //Handle the error in the utils function
+                    utils.handleError(error, response, body, conv);
+                    resolve();
                 }
             });
 
