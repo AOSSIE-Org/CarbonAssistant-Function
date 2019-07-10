@@ -2,59 +2,64 @@
   {
     "data": [
       {
-        "text": "what if ",
-        "userDefined": false
-      },
-      {
-        "text": "the",
-        "meta": "@sys.ignore",
-        "userDefined": false
-      },
-      {
-        "text": " destination is ",
-        "userDefined": false
-      },
-      {
-        "text": "Chennai",
-        "alias": "destination",
-        "meta": "@sys.geo-city",
-        "userDefined": false
-      }
-    ],
-    "isTemplate": false,
-    "count": 0
-  },
-  {
-    "data": [
-      {
-        "text": "what if number of passengers is ",
-        "userDefined": false
-      },
-      {
-        "text": "322",
-        "alias": "passengers",
-        "meta": "@sys.number",
-        "userDefined": false
-      },
-      {
-        "text": "?",
-        "userDefined": false
-      }
-    ],
-    "isTemplate": false,
-    "count": 0
-  },
-  {
-    "data": [
-      {
-        "text": "what if I'm going to ",
+        "text": "What if the train is traveling to ",
         "userDefined": false
       },
       {
         "text": "Mumbai",
         "alias": "destination",
         "meta": "@sys.geo-city",
+        "userDefined": true
+      },
+      {
+        "text": " with ",
         "userDefined": false
+      },
+      {
+        "text": "3",
+        "alias": "passengers",
+        "meta": "@sys.number",
+        "userDefined": true
+      },
+      {
+        "text": " passengers?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0
+  },
+  {
+    "data": [
+      {
+        "text": "How about ",
+        "userDefined": false
+      },
+      {
+        "text": "23",
+        "alias": "passengers",
+        "meta": "@sys.number",
+        "userDefined": true
+      },
+      {
+        "text": " passengers?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0
+  },
+  {
+    "data": [
+      {
+        "text": "what if I'm traveling to ",
+        "userDefined": false
+      },
+      {
+        "text": "Patna",
+        "alias": "destination",
+        "meta": "@sys.geo-city",
+        "userDefined": true
       },
       {
         "text": "?",
@@ -67,17 +72,17 @@
   {
     "data": [
       {
-        "text": "what if source is ",
+        "text": "and what if the destination is ",
         "userDefined": false
       },
       {
         "text": "Pune",
-        "alias": "origin",
+        "alias": "destination",
         "meta": "@sys.geo-city",
-        "userDefined": false
+        "userDefined": true
       },
       {
-        "text": " ?",
+        "text": "?",
         "userDefined": false
       }
     ],
@@ -87,7 +92,52 @@
   {
     "data": [
       {
-        "text": "are there more",
+        "text": "what if the source is ",
+        "userDefined": false
+      },
+      {
+        "text": "Mumbai",
+        "alias": "origin",
+        "meta": "@sys.geo-city",
+        "userDefined": true
+      },
+      {
+        "text": "?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0
+  },
+  {
+    "data": [
+      {
+        "text": "show more",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0
+  },
+  {
+    "data": [
+      {
+        "text": "give more details",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0
+  },
+  {
+    "data": [
+      {
+        "text": "say",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      },
+      {
+        "text": " something more",
         "userDefined": false
       }
     ],
@@ -107,67 +157,7 @@
   {
     "data": [
       {
-        "text": "show me more",
-        "userDefined": false
-      }
-    ],
-    "isTemplate": false,
-    "count": 0
-  },
-  {
-    "data": [
-      {
-        "text": "more information",
-        "userDefined": false
-      }
-    ],
-    "isTemplate": false,
-    "count": 0
-  },
-  {
-    "data": [
-      {
-        "text": "other results",
-        "userDefined": false
-      }
-    ],
-    "isTemplate": false,
-    "count": 0
-  },
-  {
-    "data": [
-      {
         "text": "tell me more",
-        "userDefined": false
-      }
-    ],
-    "isTemplate": false,
-    "count": 0
-  },
-  {
-    "data": [
-      {
-        "text": "more results",
-        "userDefined": false
-      }
-    ],
-    "isTemplate": false,
-    "count": 0
-  },
-  {
-    "data": [
-      {
-        "text": "more",
-        "userDefined": false
-      }
-    ],
-    "isTemplate": false,
-    "count": 0
-  },
-  {
-    "data": [
-      {
-        "text": "anything else",
         "userDefined": false
       }
     ],

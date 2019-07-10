@@ -155,18 +155,71 @@ app.intent('menu_option_handler',(conv, parameters, option) => { //intent to han
         conv.followup('flights_intent_triggered', {
             option: option,
         });
+    } else if(option == 'Train'){
+        conv.followup('trains_intent_triggered', {
+            option: option,
+        });
     }
 });
 
 app.intent('trains_intent', (conv, parameters) => {
     conv.user.storage.lastParams = parameters;
+    if(parameters.passengers == ''){
+        conv.ask("Would you like to provide the number of passengers travelling?");
+        conv.ask(new Suggestions(["Yes, I'll provide", "No, thanks"]));
+    } else {
+        if (!conv.user.storage.noPermission)
+            return trains.processRequest(conv, parameters, true);
+        else
+            return trains.processRequest(conv, parameters, false);
+    }
+});
+
+app.intent('trains_passenger_yes', (conv, parameters) => {
+    conv.user.storage.lastParams.passengers = parameters.passengers; 
+    parameters = conv.user.storage.lastParams;
     if (!conv.user.storage.noPermission)
         return trains.processRequest(conv, parameters, true);
     else
         return trains.processRequest(conv, parameters, false);
 });
 
-app.intent('trains_intent - followup', (conv, parameters) => {
+app.intent('trains_passenger_no', (conv, parameters) => {
+    parameters = conv.user.storage.lastParams;
+    if (!conv.user.storage.noPermission)
+        return trains.processRequest(conv, parameters, true);
+    else
+        return trains.processRequest(conv, parameters, false);
+});
+
+app.intent('trains_passenger_yes-followup', (conv, parameters) => {
+    let contextParams = conv.user.storage.lastParams;
+    let newParams = {};
+
+    if (parameters.origin && parameters.origin !== "")
+        newParams.origin = parameters.origin;
+    else
+        newParams.origin = contextParams.origin;
+
+    if (parameters.destination && parameters.destination !== "")
+        newParams.destination = parameters.destination;
+    else
+        newParams.destination = contextParams.destination;
+
+    if (parameters.passengers && parameters.passengers !== "")
+        newParams.passengers = parameters.passengers;
+    else
+        newParams.passengers = contextParams.passengers;
+
+    conv.user.storage.lastParams = newParams;
+
+    if (!conv.user.storage.noPermission)
+        return trains.processRequest(conv, newParams, true);
+    else
+        return trains.processRequest(conv, newParams, false);
+});
+
+app.intent('trains_passenger_no-followup', (conv, parameters) => {
     let contextParams = conv.user.storage.lastParams;
     let newParams = {};
 
