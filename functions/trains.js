@@ -1,4 +1,4 @@
-var config = require('./config')
+var config = require('./config');
 const requestLib = require('request');
 const reverseLookupManager = require('./reverseLookupManager');
 const utils = require('./utils');
@@ -62,12 +62,12 @@ exports.processRequest = function(conv, parameters, requestReverseLookup) {
                         resolve();
                     }
                 } else {
-                  // Handle errors here
-                  if (!error)
-                    error = body.error;
-                  //Handle the error in the utils function
-                  utils.handleError(error, response, body, conv);
-                  resolve();
+                    // Handle errors here
+                    if (!error)
+                        error = body.error;
+                    //Handle the error in the utils function
+                    utils.handleError(error, response, body, conv);
+                    resolve();
                 }
             });
         } else {

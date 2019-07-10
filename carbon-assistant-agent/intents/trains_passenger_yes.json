@@ -1,58 +1,50 @@
 {
-  "name": "trains_intent",
+  "name": "trains_passenger_yes",
   "auto": true,
-  "contexts": [],
+  "contexts": [
+    "trains_intent-followup"
+  ],
   "responses": [
     {
       "resetContexts": false,
-      "action": "input.train_details",
+      "action": "trains_intent.trains_intent-custom",
       "affectedContexts": [
         {
-          "name": "trains_intent-followup",
+          "name": "trains_passenger_yes-followup",
           "parameters": {},
-          "lifespan": 2
+          "lifespan": 4
         }
       ],
       "parameters": [
         {
-          "required": true,
+          "required": false,
           "dataType": "@sys.geo-city",
           "name": "origin",
           "value": "$origin",
-          "prompts": [
-            {
-              "lang": "en",
-              "value": "Sorry, from what city does this train start ? I understood that it terminates at $destination"
-            },
-            {
-              "lang": "en",
-              "value": "Ok. What is the source of this train journey?"
-            }
-          ],
-          "isList": false
-        },
-        {
-          "required": true,
-          "dataType": "@sys.geo-city",
-          "name": "destination",
-          "value": "$destination",
-          "prompts": [
-            {
-              "lang": "en",
-              "value": "Where does this train journey end? I can see that the journey starts at $origin, but where does it end?"
-            },
-            {
-              "lang": "en",
-              "value": "Can you tell me the destination of this train?"
-            }
-          ],
           "isList": false
         },
         {
           "required": false,
+          "dataType": "@sys.geo-city",
+          "name": "destination",
+          "value": "$destination",
+          "isList": false
+        },
+        {
+          "required": true,
           "dataType": "@sys.number",
           "name": "passengers",
           "value": "$passengers",
+          "prompts": [
+            {
+              "lang": "en",
+              "value": "Can you please say the number of passengers traveling so that I can provide you with the exact value of the emission."
+            },
+            {
+              "lang": "en",
+              "value": "Ok. What is the number of passengers travelling in the train?"
+            }
+          ],
           "isList": false
         },
         {
@@ -78,9 +70,5 @@
   "webhookUsed": true,
   "webhookForSlotFilling": false,
   "fallbackIntent": false,
-  "events": [
-    {
-      "name": "trains_intent_triggered"
-    }
-  ]
+  "events": []
 }

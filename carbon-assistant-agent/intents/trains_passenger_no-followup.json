@@ -1,20 +1,14 @@
 {
-  "name": "trains_intent - followup",
+  "name": "trains_passenger_no-followup",
   "auto": true,
   "contexts": [
-    "trains_intent-followup"
+    "trains_passenger_no-followup"
   ],
   "responses": [
     {
       "resetContexts": false,
-      "action": "trains_intent.trains_intent-more",
-      "affectedContexts": [
-        {
-          "name": "trains_intent-followup",
-          "parameters": {},
-          "lifespan": 5
-        }
-      ],
+      "action": "trains_intent.trains_intent-custom.trains_passenger_no-custom",
+      "affectedContexts": [],
       "parameters": [
         {
           "required": false,
