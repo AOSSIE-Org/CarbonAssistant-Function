@@ -1,27 +1,24 @@
-[
-    {
-        "land":"cropland",
-        "description": "cropland is the land that is suited to or used for crops.",
-        "url": "https://firebasestorage.googleapis.com/v0/b/co2-gal.appspot.com/o/cropland.png?alt=media&token=42129ef6-ddea-44e0-9fb5-b0bf46c00591",
-        "alt": "Crop Land"
-    },
-    {
-        "land":"forest land",
-        "description": "land covered with forest or reserved for the growth of forests.",
-        "url": "https://firebasestorage.googleapis.com/v0/b/co2-gal.appspot.com/o/forestland.png?alt=media&token=8c19edc6-b0b3-44dd-b1ba-84f925ed3f98",
-        "alt": "Forest Land"
-    },
-    {
-        "land":"grassland",
-        "description": "Land in which the vegetation is dominated by a continuous cover of grasses.",
-        "url": "https://firebasestorage.googleapis.com/v0/b/co2-gal.appspot.com/o/grassland.png?alt=media&token=63775e4e-4fbc-405d-be34-fe051d937f3c",
-        "alt": "Grass Land"
-    },
-    {
-        "land":"Burning Biomass",
-        "description": "Biomass burning is the combustion of organic matter",
-        "url": "https://firebasestorage.googleapis.com/v0/b/co2-gal.appspot.com/o/burning_biomass.png?alt=media&token=8c08f7a6-80b4-4984-ad04-13e379ce566c",
-        "alt": "Burning Biomass"
-    }
-
-]
+[{
+    "land": "cropland",
+    "description": "cropland is the land that is suited to or used for crops.",
+    "url": "https://firebasestorage.googleapis.com/v0/b/co2-gal.appspot.com/o/cropland.png?alt=media&token=42129ef6-ddea-44e0-9fb5-b0bf46c00591",
+    "alt": "Crop Land"
+},
+{
+    "land": "forest land",
+    "description": "land covered with forest or reserved for the growth of forests.",
+    "url": "https://firebasestorage.googleapis.com/v0/b/co2-gal.appspot.com/o/forestland.png?alt=media&token=8c19edc6-b0b3-44dd-b1ba-84f925ed3f98",
+    "alt": "Forest Land"
+},
+{
+    "land": "grassland",
+    "description": "Land in which the vegetation is dominated by a continuous cover of grasses.",
+    "url": "https://firebasestorage.googleapis.com/v0/b/co2-gal.appspot.com/o/grassland.png?alt=media&token=63775e4e-4fbc-405d-be34-fe051d937f3c",
+    "alt": "Grass Land"
+},
+{
+    "land": "Burning Biomass",
+    "description": "Biomass burning is the combustion of organic matter",
+    "url": "https://firebasestorage.googleapis.com/v0/b/co2-gal.appspot.com/o/burning_biomass.png?alt=media&token=8c08f7a6-80b4-4984-ad04-13e379ce566c",
+    "alt": "Burning Biomass"
+}]

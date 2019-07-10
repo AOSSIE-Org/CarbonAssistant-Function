@@ -1,70 +1,66 @@
-[
-    {
-        "food":"Production of Cereals excluding rice",
-        "description": "Cereals are used for both human and animal food and as an industrial raw material, their production is the amount produced in a given country each calendar year.",
-        "image": "https://firebasestorage.googleapis.com/v0/b/co2-gal.appspot.com/o/Webp.net-resizeimage%20(7).png?alt=media&token=e6525124-8c6a-45ee-921a-8d5f9f80d2e7",
-        "alt": "Cereals Production"
-    },
-    {
-        "food":"Rice Production",
-        "description": "Rice production is the amount of rice paddy produced in a given country each calendar year.",
-        "image": "https://firebasestorage.googleapis.com/v0/b/co2-gal.appspot.com/o/Webp.net-resizeimage%20(5).png?alt=media&token=81227a34-e434-4a8a-9178-e01aa2c9dd58",
-        "alt": "Rice Production"
-    },
-    {
-        "food":"Beef Production",
-        "description": "It is a type of farming where cows are bred and raised commercially for meat production.",
-        "image": "https://firebasestorage.googleapis.com/v0/b/co2-gal.appspot.com/o/Webp.net-resizeimage%20(3).png?alt=media&token=b7a7060a-2c0a-46a4-8786-c925d5e44071",
-        "alt": "Beef Production"
-    },
-    {
-        "food":"Cow Dairy Farming",
-        "description": "It is a type of cow farming where highly milk productive cows are raised commercially for milk production purpose.",
-        "image": "https://firebasestorage.googleapis.com/v0/b/co2-gal.appspot.com/o/Webp.net-resizeimage%20(1).png?alt=media&token=a7c7add3-c368-44a3-b9e1-5fb76b0cd83a",
-        "alt": "Dairy Cow Farming"
-    },
-    {
-        "food":"Goat Production",
-        "description": "It is a type of goat farming where domestic goats are raised for their meat.",
-        "image": "https://firebasestorage.googleapis.com/v0/b/co2-gal.appspot.com/o/Webp.net-resizeimage%20(4).png?alt=media&token=674429eb-7136-4f9c-8483-dcfe83d6b95d",
-        "alt": "Goat Production for Meat"
-    },
-    {
-        "food":"Sheep Dairy Farming",
-        "description": "It is a branch of animal husbandry where sheep are raised for milk.",
-        "image": "https://firebasestorage.googleapis.com/v0/b/co2-gal.appspot.com/o/Webp.net-resizeimage.png?alt=media&token=df07cd4d-fec3-4b89-bba2-c6990976ba6e",
-        "alt": "Sheep Dairy Farming"
-    },
-    {
-        "food":"Sheep Production",
-        "description":"It is the process of raising and breeding sheep specifically for their meat.",
-        "image": "https://firebasestorage.googleapis.com/v0/b/co2-gal.appspot.com/o/Webp.net-resizeimage%20(6).png?alt=media&token=42c99006-0e58-49d0-8a67-79b00e863875",
-        "alt": "Sheep Production for Meat"
-    },
-    {
-        "food":"Goat Dairy Farming",
-        "description": "Goat dairy farming is the raising and breeding of domestic goats for milk.",
-        "image": "https://firebasestorage.googleapis.com/v0/b/co2-gal.appspot.com/o/Webp.net-resizeimage%20(9).png?alt=media&token=0fa40ad0-37ff-42f9-ab11-0d2bda87053f",
-        "alt": "Goat Dairy Farming"
-    },
-    {
-        "food":"Hen Production",
-        "description": "It is the process of raising and breeding laying hens specifically for egg laying.",
-        "image": "https://firebasestorage.googleapis.com/v0/b/co2-gal.appspot.com/o/Webp.net-resizeimage%20(8).png?alt=media&token=226c47e0-b486-4768-ac82-9aeea4816ca6",
-        "alt": "Hen Production"
-    },
-    {
-        "food":"Chicken Production",
-        "description": "It is the process of raising domesticated birds such as chickens for the purpose of farming meat.",
-        "image": "https://firebasestorage.googleapis.com/v0/b/co2-gal.appspot.com/o/Webp.net-resizeimage%20(10).png?alt=media&token=33bd976c-442d-40a5-9127-f9aa327e459b",
-        "alt": "Chicken Production"
-    },
-    {
-        "food":"Camel Dairy Farming",
-        "description": "Camel dairy farming is the raising and breeding of domestic camels for milk.",
-        "image": "https://firebasestorage.googleapis.com/v0/b/co2-gal.appspot.com/o/Webp.net-resizeimage%20(2).png?alt=media&token=b9eafa7c-abe1-4868-9a90-f223c7ac3aac",
-        "alt": "Camel Dairy Farming"
-    }
-
-]
-
+[{
+    "food": "Production of Cereals excluding rice",
+    "description": "Cereals are used for both human and animal food and as an industrial raw material, their production is the amount produced in a given country each calendar year.",
+    "image": "https://firebasestorage.googleapis.com/v0/b/co2-gal.appspot.com/o/Webp.net-resizeimage%20(7).png?alt=media&token=e6525124-8c6a-45ee-921a-8d5f9f80d2e7",
+    "alt": "Cereals Production"
+},
+{
+    "food": "Rice Production",
+    "description": "Rice production is the amount of rice paddy produced in a given country each calendar year.",
+    "image": "https://firebasestorage.googleapis.com/v0/b/co2-gal.appspot.com/o/Webp.net-resizeimage%20(5).png?alt=media&token=81227a34-e434-4a8a-9178-e01aa2c9dd58",
+    "alt": "Rice Production"
+},
+{
+    "food": "Beef Production",
+    "description": "It is a type of farming where cows are bred and raised commercially for meat production.",
+    "image": "https://firebasestorage.googleapis.com/v0/b/co2-gal.appspot.com/o/Webp.net-resizeimage%20(3).png?alt=media&token=b7a7060a-2c0a-46a4-8786-c925d5e44071",
+    "alt": "Beef Production"
+},
+{
+    "food": "Cow Dairy Farming",
+    "description": "It is a type of cow farming where highly milk productive cows are raised commercially for milk production purpose.",
+    "image": "https://firebasestorage.googleapis.com/v0/b/co2-gal.appspot.com/o/Webp.net-resizeimage%20(1).png?alt=media&token=a7c7add3-c368-44a3-b9e1-5fb76b0cd83a",
+    "alt": "Dairy Cow Farming"
+},
+{
+    "food": "Goat Production",
+    "description": "It is a type of goat farming where domestic goats are raised for their meat.",
+    "image": "https://firebasestorage.googleapis.com/v0/b/co2-gal.appspot.com/o/Webp.net-resizeimage%20(4).png?alt=media&token=674429eb-7136-4f9c-8483-dcfe83d6b95d",
+    "alt": "Goat Production for Meat"
+},
+{
+    "food": "Sheep Dairy Farming",
+    "description": "It is a branch of animal husbandry where sheep are raised for milk.",
+    "image": "https://firebasestorage.googleapis.com/v0/b/co2-gal.appspot.com/o/Webp.net-resizeimage.png?alt=media&token=df07cd4d-fec3-4b89-bba2-c6990976ba6e",
+    "alt": "Sheep Dairy Farming"
+},
+{
+    "food": "Sheep Production",
+    "description": "It is the process of raising and breeding sheep specifically for their meat.",
+    "image": "https://firebasestorage.googleapis.com/v0/b/co2-gal.appspot.com/o/Webp.net-resizeimage%20(6).png?alt=media&token=42c99006-0e58-49d0-8a67-79b00e863875",
+    "alt": "Sheep Production for Meat"
+},
+{
+    "food": "Goat Dairy Farming",
+    "description": "Goat dairy farming is the raising and breeding of domestic goats for milk.",
+    "image": "https://firebasestorage.googleapis.com/v0/b/co2-gal.appspot.com/o/Webp.net-resizeimage%20(9).png?alt=media&token=0fa40ad0-37ff-42f9-ab11-0d2bda87053f",
+    "alt": "Goat Dairy Farming"
+},
+{
+    "food": "Hen Production",
+    "description": "It is the process of raising and breeding laying hens specifically for egg laying.",
+    "image": "https://firebasestorage.googleapis.com/v0/b/co2-gal.appspot.com/o/Webp.net-resizeimage%20(8).png?alt=media&token=226c47e0-b486-4768-ac82-9aeea4816ca6",
+    "alt": "Hen Production"
+},
+{
+    "food": "Chicken Production",
+    "description": "It is the process of raising domesticated birds such as chickens for the purpose of farming meat.",
+    "image": "https://firebasestorage.googleapis.com/v0/b/co2-gal.appspot.com/o/Webp.net-resizeimage%20(10).png?alt=media&token=33bd976c-442d-40a5-9127-f9aa327e459b",
+    "alt": "Chicken Production"
+},
+{
+    "food": "Camel Dairy Farming",
+    "description": "Camel dairy farming is the raising and breeding of domestic camels for milk.",
+    "image": "https://firebasestorage.googleapis.com/v0/b/co2-gal.appspot.com/o/Webp.net-resizeimage%20(2).png?alt=media&token=b9eafa7c-abe1-4868-9a90-f223c7ac3aac",
+    "alt": "Camel Dairy Farming"
+}]

@@ -1,50 +1,48 @@
-[
-    {
-        "category": "Land",
-        "description": "This covers emissions of greenhouse gases resulting from direct human-induced land use such as settlements and commercial uses, land-use change, and forestry activities."
-    },
-    {
-        "category": "Poultry",
-        "description":"This covers the net GHG emission due to the animal husbandry and raising of domesticated birds in the farms."
-    },
-    {
-        "category": "Electricity",
-        "description": "This provides the estimated CO2 released due to the consumption or generation of electricity in the electric power industry"
-    },
-    {
-        "category": "Food Production",
-        "description": "This provides the GHG emissions due to the food production by poultry farming and agricultural process."
-    },
-    {
-        "category": "Reduce Emission", 
-        "description": "This provides a list of methods which will help you reduce your carbon footprint."
-    },
-    {
-        "category": "Appliances",
-        "description": "This provides a sum of all GHG emissions due to the use of electric appliances."
-    },
-    {
-        "category": "Train",
-        "description": "This provides an estimated carbon emission due to the train journey."
-    },
-    {
-        "category": "Fuel consumption",
-        "description": "This covers the emission of GHG due to the burning of different fuels on site."
-    },
-    {
-        "category": "Sector",
-        "description": "This covers the net GHG emission due to different sectors in a country per calendar year. "
-    }, 
-    {
-        "category": "Vehicles", 
-        "description": "This covers the emission of GHG on the individual level transportation from personal vehicles due to the burning of fossil fuels."
-    },
-    {
-        "category": "Flights", 
-        "description": "This provides a detailed carbon emission produced by flight travel."
-    },
-    {
-        "category": "Agriculture",
-        "description": "This covers emission of greenhouse gases due to the agricultural activities in a country per calendar year."
-    }
-]
+[{
+    "category": "Land",
+    "description": "This covers emissions of greenhouse gases resulting from direct human-induced land use such as settlements and commercial uses, land-use change, and forestry activities."
+},
+{
+    "category": "Poultry",
+    "description": "This covers the net GHG emission due to the animal husbandry and raising of domesticated birds in the farms."
+},
+{
+    "category": "Electricity",
+    "description": "This provides the estimated CO2 released due to the consumption or generation of electricity in the electric power industry"
+},
+{
+    "category": "Food Production",
+    "description": "This provides the GHG emissions due to the food production by poultry farming and agricultural process."
+},
+{
+    "category": "Reduce Emission",
+    "description": "This provides a list of methods which will help you reduce your carbon footprint."
+},
+{
+    "category": "Appliances",
+    "description": "This provides a sum of all GHG emissions due to the use of electric appliances."
+},
+{
+    "category": "Train",
+    "description": "This provides an estimated carbon emission due to the train journey."
+},
+{
+    "category": "Fuel consumption",
+    "description": "This covers the emission of GHG due to the burning of different fuels on site."
+},
+{
+    "category": "Sector",
+    "description": "This covers the net GHG emission due to different sectors in a country per calendar year. "
+},
+{
+    "category": "Vehicles",
+    "description": "This covers the emission of GHG on the individual level transportation from personal vehicles due to the burning of fossil fuels."
+},
+{
+    "category": "Flights",
+    "description": "This provides a detailed carbon emission produced by flight travel."
+},
+{
+    "category": "Agriculture",
+    "description": "This covers emission of greenhouse gases due to the agricultural activities in a country per calendar year."
+}]
