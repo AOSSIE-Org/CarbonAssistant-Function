@@ -1,19 +1,22 @@
 {
-  "name": "appliance_intent",
+  "name": "appliance_intent-followup",
   "auto": true,
-  "contexts": [],
+  "contexts": [
+    "appliance_intent-followup"
+  ],
   "responses": [
     {
       "resetContexts": false,
-      "action": "input.appliance_details",
-      "affectedContexts": [
-        {
-          "name": "appliance_intent-followup",
-          "parameters": {},
-          "lifespan": 2
-        }
-      ],
+      "action": "appliance_intent.appliance_intent-custom-2",
+      "affectedContexts": [],
       "parameters": [
+        {
+          "required": false,
+          "dataType": "@appliance_specs",
+          "name": "size",
+          "value": "$size.original",
+          "isList": false
+        },
         {
           "required": false,
           "dataType": "@appliance_specs",
@@ -26,33 +29,13 @@
           "dataType": "@appliances",
           "name": "appliance",
           "value": "$appliance",
-          "prompts": [
-            {
-              "lang": "en",
-              "value": "I didn't get the appliance you were looking for. Can you please say the appliance name again?"
-            },
-            {
-              "lang": "en",
-              "value": "Sorry I didn't get the appliance name you said, what was it?"
-            }
-          ],
           "isList": false
         },
         {
-          "required": true,
+          "required": false,
           "dataType": "@sys.geo-country",
           "name": "geo_country",
           "value": "$geo_country",
-          "prompts": [
-            {
-              "lang": "en",
-              "value": "I need the name of the country where the appliance is being used to provide you with accurate emissions value. Can you tell me the country name?"
-            },
-            {
-              "lang": "en",
-              "value": "I need the country name to tell you about emissions. What country is the appliance being used in ?"
-            }
-          ],
           "isList": false
         },
         {
@@ -67,13 +50,6 @@
           "dataType": "@sys.duration",
           "name": "duration",
           "value": "$duration",
-          "isList": false
-        },
-        {
-          "required": false,
-          "dataType": "@appliance_specs",
-          "name": "size",
-          "value": "$size.original",
           "isList": false
         },
         {
@@ -99,9 +75,5 @@
   "webhookUsed": true,
   "webhookForSlotFilling": false,
   "fallbackIntent": false,
-  "events": [
-    {
-      "name": "appliance_intent_triggered"
-    }
-  ]
+  "events": []
 }

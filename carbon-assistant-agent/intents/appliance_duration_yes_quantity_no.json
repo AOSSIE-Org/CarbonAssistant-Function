@@ -1,0 +1,85 @@
+{
+  "name": "appliance_duration_yes_quantity_no",
+  "auto": true,
+  "contexts": [
+    "appliance_duration_yes-followup"
+  ],
+  "responses": [
+    {
+      "resetContexts": false,
+      "action": "appliance_intent.appliance_intent-custom.appliance_duration_ask-custom.appliance_duration_yes-custom-2",
+      "affectedContexts": [
+        {
+          "name": "appliance_duration_yes_quantity_no-followup",
+          "parameters": {},
+          "lifespan": 5
+        }
+      ],
+      "parameters": [
+        {
+          "required": false,
+          "dataType": "@appliances",
+          "name": "appliance",
+          "value": "$appliance",
+          "isList": false
+        },
+        {
+          "required": false,
+          "dataType": "@appliance_specs",
+          "name": "type",
+          "value": "$type.original",
+          "isList": false
+        },
+        {
+          "required": false,
+          "dataType": "@appliance_specs",
+          "name": "size",
+          "value": "$size_original",
+          "isList": false
+        },
+        {
+          "required": false,
+          "dataType": "@emission_type",
+          "name": "emission_type",
+          "value": "$emission_type",
+          "isList": false
+        },
+        {
+          "required": false,
+          "dataType": "@sys.number",
+          "name": "quantity",
+          "value": "$quantity",
+          "isList": false
+        },
+        {
+          "required": false,
+          "dataType": "@sys.duration",
+          "name": "duration",
+          "value": "$duration",
+          "isList": false
+        },
+        {
+          "required": false,
+          "dataType": "@sys.geo-country",
+          "name": "geo_country",
+          "value": "$geo_country",
+          "isList": false
+        }
+      ],
+      "messages": [
+        {
+          "type": 0,
+          "lang": "en",
+          "speech": []
+        }
+      ],
+      "defaultResponsePlatforms": {},
+      "speech": []
+    }
+  ],
+  "priority": 500000,
+  "webhookUsed": true,
+  "webhookForSlotFilling": false,
+  "fallbackIntent": false,
+  "events": []
+}

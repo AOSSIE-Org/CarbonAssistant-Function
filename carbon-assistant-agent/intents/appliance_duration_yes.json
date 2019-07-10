@@ -1,0 +1,95 @@
+{
+  "name": "appliance_duration_yes",
+  "auto": true,
+  "contexts": [
+    "appliance_duration_ask-followup"
+  ],
+  "responses": [
+    {
+      "resetContexts": false,
+      "action": "appliance_intent.appliance_intent-custom.appliance_duration_ask-custom",
+      "affectedContexts": [
+        {
+          "name": "appliance_duration_yes-followup",
+          "parameters": {},
+          "lifespan": 2
+        }
+      ],
+      "parameters": [
+        {
+          "required": true,
+          "dataType": "@sys.duration",
+          "name": "duration",
+          "value": "$duration",
+          "prompts": [
+            {
+              "lang": "en",
+              "value": "Can you please say the duration or the number of hours the appliance was used?"
+            },
+            {
+              "lang": "en",
+              "value": "Ok. What is the running time of the appliance?"
+            }
+          ],
+          "isList": false
+        },
+        {
+          "required": false,
+          "dataType": "@sys.number",
+          "name": "quantity",
+          "value": "$quantity",
+          "isList": false
+        },
+        {
+          "required": false,
+          "dataType": "@appliances",
+          "name": "appliance",
+          "value": "$appliance",
+          "isList": false
+        },
+        {
+          "required": false,
+          "dataType": "@appliance_specs",
+          "name": "type",
+          "value": "$type.original",
+          "isList": false
+        },
+        {
+          "required": false,
+          "dataType": "@appliance_specs",
+          "name": "size",
+          "value": "$size.original",
+          "isList": false
+        },
+        {
+          "required": false,
+          "dataType": "@sys.geo-country",
+          "name": "geo_country",
+          "value": "$geo_country",
+          "isList": false
+        },
+        {
+          "required": false,
+          "dataType": "@emission_type",
+          "name": "emission_type",
+          "value": "$emission_type",
+          "isList": false
+        }
+      ],
+      "messages": [
+        {
+          "type": 0,
+          "lang": "en",
+          "speech": []
+        }
+      ],
+      "defaultResponsePlatforms": {},
+      "speech": []
+    }
+  ],
+  "priority": 500000,
+  "webhookUsed": true,
+  "webhookForSlotFilling": false,
+  "fallbackIntent": false,
+  "events": []
+}

@@ -23,6 +23,7 @@ var food = require('./food');
 var land_utils = require('./land_utils');
 var food_utils = require('./food_utils');
 var menu_utils = require('./menu_utils');
+var appliances_utils = require('./appliances_utils');
 
 const app = dialogflow({
     debug: true
@@ -145,6 +146,10 @@ app.intent('menu_option_handler',(conv, parameters, option) => { //intent to han
     } else if(option == 'Food Production'){
         conv.followup('food_intent_triggered', {
             option:option,
+        });
+    } else if(option == 'Appliances'){
+        conv.followup('appliance_intent_triggered', {
+            option: option,
         });
     }
 });
@@ -386,16 +391,297 @@ app.intent('poultry_intent - followup', (conv, parameters) => {
     
 });
 
-
 app.intent('appliance_intent', (conv, parameters) => {
     conv.user.storage.lastParams = parameters;
+    if (parameters.appliance == '') {
+        if (conv.surface.capabilities.has('actions.capability.SCREEN_OUTPUT')) {
+            var items = appliances_utils.getApplianceList();
+            conv.ask('This is the list of Appliance names Please choose one So, that I can provide you the exact value of the emission.');
+            conv.ask(new List({
+                title: "Appliances List",
+                items: items
+            }));
+        }
+    } else {
+        if (!conv.user.storage.noPermission)
+            return appliances.processRequest(conv, parameters, true);
+        else
+            return appliances.processRequest(conv, parameters, false);
+    }
+});
+
+app.intent('appliance_duration_ask', (conv, parameters, option) => {
+    conv.user.storage.lastParams.appliance = option;
+    parameters = conv.user.storage.lastParams;
+    if (parameters.duration == '') {
+        conv.ask("Would you like to provide the duration or the number of hours the appliance is being used?");
+        conv.ask(new Suggestions(["Yes, I'll provide", "No, thanks"]));
+    } else {
+        if (!conv.user.storage.noPermission)
+            return appliances.processRequest(conv, parameters, true);
+        else
+            return appliances.processRequest(conv, parameters, false);
+    }
+});
+
+app.intent('appliance_duration_yes', (conv, parameters) => {
+    conv.user.storage.lastParams.duration = parameters.duration;
+    parameters = conv.user.storage.lastParams;
+    if(parameters.quantity == ''){
+        conv.ask("Would you like to provide the quantity or number of the appliance being used?");
+        conv.ask(new Suggestions(["Yes", "No, thanks"]));
+    } else {
+        if (!conv.user.storage.noPermission)
+            return appliances.processRequest(conv, parameters, true);
+        else
+            return appliances.processRequest(conv, parameters, false);
+    }
+});
+
+app.intent('appliance_duration_no', (conv, parameters) => {
+    parameters = conv.user.storage.lastParams;
+    if(parameters.quantity == ''){
+        conv.ask("Would you like to provide the quantity or number of the appliance being used?");
+        conv.ask(new Suggestions(["Ok. I'll", "No, that's it"]));
+    } else {
+        if (!conv.user.storage.noPermission)
+            return appliances.processRequest(conv, parameters, true);
+        else
+            return appliances.processRequest(conv, parameters, false);
+    }
+});
+
+app.intent('appliance_duration_yes_quantity_yes', (conv, parameters) => {
+    conv.user.storage.lastParams.quantity = parameters.quantity; 
+    parameters = conv.user.storage.lastParams;
     if (!conv.user.storage.noPermission)
         return appliances.processRequest(conv, parameters, true);
     else
         return appliances.processRequest(conv, parameters, false);
 });
 
-app.intent('appliance_intent - followup', (conv, parameters) => {
+app.intent('appliance_duration_yes_quantity_no', (conv, parameters) => {
+    parameters = conv.user.storage.lastParams;
+    if (!conv.user.storage.noPermission)
+        return appliances.processRequest(conv, parameters, true);
+    else
+        return appliances.processRequest(conv, parameters, false);
+});
+
+app.intent('appliance_duration_no_quantity_yes', (conv, parameters) => {
+    conv.user.storage.lastParams.quantity = parameters.quantity; 
+    parameters = conv.user.storage.lastParams;
+    if (!conv.user.storage.noPermission)
+        return appliances.processRequest(conv, parameters, true);
+    else
+        return appliances.processRequest(conv, parameters, false);
+});
+
+app.intent('appliance_duration_no_quantity_no', (conv, parameters) => {
+    parameters = conv.user.storage.lastParams;
+    if (!conv.user.storage.noPermission)
+        return appliances.processRequest(conv, parameters, true);
+    else    
+        return appliances.processRequest(conv, parameters, false);
+});
+
+app.intent('appliance_duration_yes_quantity_yes-followup', (conv, parameters, option) => {
+    let contextParams = conv.user.storage.lastParams;
+    let newParams = {};
+
+    if (parameters.type && parameters.type !== "")
+        newParams.type = parameters.type;
+    else
+        newParams.type = contextParams.type;
+
+    if (parameters.appliance && parameters.appliance !== "")
+        newParams.appliance = parameters.appliance;
+    else if(option && contextParams.appliance == "")
+        newParams.appliance = option;
+    else
+        newParams.appliance = contextParams.appliance;
+
+    if (parameters.geo_country && parameters.geo_country !== "")
+        newParams.geo_country = parameters.geo_country;
+    else
+        newParams.geo_country = contextParams.geo_country;
+
+    if (parameters.emission_type && parameters.emission_type !== "")
+        newParams.emission_type = parameters.emission_type;
+    else
+        newParams.emission_type = contextParams.emission_type;
+
+    if (parameters.duration && parameters.duration !== "")
+        newParams.duration = parameters.duration;
+    else
+        newParams.duration = contextParams.duration;
+
+    if (parameters.size && parameters.size !== "")
+        newParams.size = parameters.size;
+    else
+        newParams.size = contextParams.size;
+
+    if (parameters.quantity && parameters.quantity !== "")
+        newParams.quantity = parameters.quantity;
+    else
+        newParams.quantity = contextParams.quantity;
+
+    conv.user.storage.lastParams = newParams;
+
+    if (!conv.user.storage.noPermission)
+        return appliances.processRequest(conv, newParams, true);
+    else
+        return appliances.processRequest(conv, newParams, false);
+});
+
+app.intent('appliance_duration_yes_quantity_no-followup', (conv, parameters, option) => {
+    let contextParams = conv.user.storage.lastParams;
+    let newParams = {};
+
+    if (parameters.type && parameters.type !== "")
+        newParams.type = parameters.type;
+    else
+        newParams.type = contextParams.type;
+
+    if (parameters.appliance && parameters.appliance !== "")
+        newParams.appliance = parameters.appliance;
+    else if(option && contextParams.appliance == "")
+        newParams.appliance = option;
+    else
+        newParams.appliance = contextParams.appliance;
+
+    if (parameters.geo_country && parameters.geo_country !== "")
+        newParams.geo_country = parameters.geo_country;
+    else
+        newParams.geo_country = contextParams.geo_country;
+
+    if (parameters.emission_type && parameters.emission_type !== "")
+        newParams.emission_type = parameters.emission_type;
+    else
+        newParams.emission_type = contextParams.emission_type;
+
+    if (parameters.duration && parameters.duration !== "")
+        newParams.duration = parameters.duration;
+    else
+        newParams.duration = contextParams.duration;
+
+    if (parameters.size && parameters.size !== "")
+        newParams.size = parameters.size;
+    else
+        newParams.size = contextParams.size;
+
+    if (parameters.quantity && parameters.quantity !== "")
+        newParams.quantity = parameters.quantity;
+    else
+        newParams.quantity = contextParams.quantity;
+
+    conv.user.storage.lastParams = newParams;
+
+    if (!conv.user.storage.noPermission)
+        return appliances.processRequest(conv, newParams, true);
+    else
+        return appliances.processRequest(conv, newParams, false);
+});
+
+app.intent('appliance_duration_no_quantity_yes-followup', (conv, parameters, option) => {
+    let contextParams = conv.user.storage.lastParams;
+    let newParams = {};
+
+    if (parameters.type && parameters.type !== "")
+        newParams.type = parameters.type;
+    else
+        newParams.type = contextParams.type;
+
+    if (parameters.appliance && parameters.appliance !== "")
+        newParams.appliance = parameters.appliance;
+    else if(option && contextParams.appliance == "")
+        newParams.appliance = option;
+    else
+        newParams.appliance = contextParams.appliance;
+
+    if (parameters.geo_country && parameters.geo_country !== "")
+        newParams.geo_country = parameters.geo_country;
+    else
+        newParams.geo_country = contextParams.geo_country;
+
+    if (parameters.emission_type && parameters.emission_type !== "")
+        newParams.emission_type = parameters.emission_type;
+    else
+        newParams.emission_type = contextParams.emission_type;
+
+    if (parameters.duration && parameters.duration !== "")
+        newParams.duration = parameters.duration;
+    else
+        newParams.duration = contextParams.duration;
+
+    if (parameters.size && parameters.size !== "")
+        newParams.size = parameters.size;
+    else
+        newParams.size = contextParams.size;
+
+    if (parameters.quantity && parameters.quantity !== "")
+        newParams.quantity = parameters.quantity;
+    else
+        newParams.quantity = contextParams.quantity;
+
+    conv.user.storage.lastParams = newParams;
+
+    if (!conv.user.storage.noPermission)
+        return appliances.processRequest(conv, newParams, true);
+    else
+        return appliances.processRequest(conv, newParams, false);
+});
+
+app.intent('appliance_duration_no_quantity_no-followup', (conv, parameters, option) => {
+    let contextParams = conv.user.storage.lastParams;
+    let newParams = {};
+
+    if (parameters.type && parameters.type !== "")
+        newParams.type = parameters.type;
+    else
+        newParams.type = contextParams.type;
+
+    if (parameters.appliance && parameters.appliance !== "")
+        newParams.appliance = parameters.appliance;
+    else if(option && contextParams.appliance == "")
+        newParams.appliance = option;
+    else
+        newParams.appliance = contextParams.appliance;
+
+    if (parameters.geo_country && parameters.geo_country !== "")
+        newParams.geo_country = parameters.geo_country;
+    else
+        newParams.geo_country = contextParams.geo_country;
+
+    if (parameters.emission_type && parameters.emission_type !== "")
+        newParams.emission_type = parameters.emission_type;
+    else
+        newParams.emission_type = contextParams.emission_type;
+
+    if (parameters.duration && parameters.duration !== "")
+        newParams.duration = parameters.duration;
+    else
+        newParams.duration = contextParams.duration;
+
+    if (parameters.size && parameters.size !== "")
+        newParams.size = parameters.size;
+    else
+        newParams.size = contextParams.size;
+
+    if (parameters.quantity && parameters.quantity !== "")
+        newParams.quantity = parameters.quantity;
+    else
+        newParams.quantity = contextParams.quantity;
+
+    conv.user.storage.lastParams = newParams;
+
+    if (!conv.user.storage.noPermission)
+        return appliances.processRequest(conv, newParams, true);
+    else
+        return appliances.processRequest(conv, newParams, false);
+});
+
+app.intent('appliance_intent-followup', (conv, parameters) => {
     let contextParams = conv.user.storage.lastParams;
     let newParams = {};
 

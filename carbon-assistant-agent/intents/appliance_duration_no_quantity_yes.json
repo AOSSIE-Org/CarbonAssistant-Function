@@ -1,0 +1,95 @@
+{
+  "name": "appliance_duration_no_quantity_yes",
+  "auto": true,
+  "contexts": [
+    "appliance_duration_no-followup"
+  ],
+  "responses": [
+    {
+      "resetContexts": false,
+      "action": "appliance_intent.appliance_intent-custom.appliance_duration_ask-custom-2.appliance_duration_no-custom-2",
+      "affectedContexts": [
+        {
+          "name": "appliance_duration_no_quantity_yes-followup",
+          "parameters": {},
+          "lifespan": 5
+        }
+      ],
+      "parameters": [
+        {
+          "required": false,
+          "dataType": "@appliances",
+          "name": "appliance",
+          "value": "$appliance",
+          "isList": false
+        },
+        {
+          "required": false,
+          "dataType": "@appliance_specs",
+          "name": "type",
+          "value": "$type.original",
+          "isList": false
+        },
+        {
+          "required": false,
+          "dataType": "@appliance_specs",
+          "name": "size",
+          "value": "$size.original",
+          "isList": false
+        },
+        {
+          "required": false,
+          "dataType": "@emission_type",
+          "name": "emission_type",
+          "value": "$emission_type",
+          "isList": false
+        },
+        {
+          "required": false,
+          "dataType": "@sys.geo-country",
+          "name": "geo_country",
+          "value": "$geo_country",
+          "isList": false
+        },
+        {
+          "required": false,
+          "dataType": "@sys.duration",
+          "name": "duration",
+          "value": "$duration",
+          "isList": false
+        },
+        {
+          "required": true,
+          "dataType": "@sys.number",
+          "name": "quantity",
+          "value": "$quantity",
+          "prompts": [
+            {
+              "lang": "en",
+              "value": "Can you please tell me the number of appliances being used so that I can provide you with the exact value of the emissions."
+            },
+            {
+              "lang": "en",
+              "value": "Ok. what is the quantity or the number of appliances being used?"
+            }
+          ],
+          "isList": false
+        }
+      ],
+      "messages": [
+        {
+          "type": 0,
+          "lang": "en",
+          "speech": []
+        }
+      ],
+      "defaultResponsePlatforms": {},
+      "speech": []
+    }
+  ],
+  "priority": 500000,
+  "webhookUsed": true,
+  "webhookForSlotFilling": false,
+  "fallbackIntent": false,
+  "events": []
+}

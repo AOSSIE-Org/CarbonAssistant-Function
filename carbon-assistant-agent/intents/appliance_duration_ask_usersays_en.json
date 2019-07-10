@@ -1,0 +1,46 @@
+[
+  {
+    "data": [
+      {
+        "text": "Air cooler",
+        "alias": "appliance",
+        "meta": "@appliances",
+        "userDefined": true
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "portable",
+        "alias": "type",
+        "meta": "@appliance_specs",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0
+  },
+  {
+    "data": [
+      {
+        "text": "Air Conditioner",
+        "alias": "appliance",
+        "meta": "@appliances",
+        "userDefined": true
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "Medium",
+        "alias": "size",
+        "meta": "@appliance_specs",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0
+  }
+]

@@ -1,0 +1,56 @@
+[
+  {
+    "data": [
+      {
+        "text": "The number of appliances are ",
+        "userDefined": false
+      },
+      {
+        "text": "5",
+        "alias": "quantity",
+        "meta": "@sys.number",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0
+  },
+  {
+    "data": [
+      {
+        "text": "Ok. ",
+        "userDefined": false
+      },
+      {
+        "text": "3",
+        "alias": "quantity",
+        "meta": "@sys.number",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0
+  },
+  {
+    "data": [
+      {
+        "text": "2",
+        "alias": "quantity",
+        "meta": "@sys.number",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0
+  },
+  {
+    "data": [
+      {
+        "text": "Yes",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0
+  }
+]
