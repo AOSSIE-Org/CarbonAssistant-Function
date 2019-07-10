@@ -1,4 +1,4 @@
-var config = require('./config')
+var config = require('./config');
 const requestLib = require('request');
 const reverseLookupManager = require('./reverseLookupManager');
 const utils = require('./utils');
