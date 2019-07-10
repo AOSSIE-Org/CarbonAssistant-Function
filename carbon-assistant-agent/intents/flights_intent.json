@@ -22,11 +22,11 @@
           "prompts": [
             {
               "lang": "en",
-              "value": "Sorry, I couldn't understand from where the flight will take off. Can you tell me the origin of your flight? You can say the name of the city, airport or the code of the airport if you will."
+              "value": "Can you tell me the origin of your flight so that I can provide you the exact value of the emission? You can say the name of the city, airport or the code of the airport if you will."
             },
             {
               "lang": "en",
-              "value": "I didn't get the source of your requested flight travel, could you tell me from where the flight will take off?"
+              "value": "I need a source city to provide you the emission values, could you tell me from where the flight will take off?"
             }
           ],
           "isList": false
@@ -39,7 +39,7 @@
           "prompts": [
             {
               "lang": "en",
-              "value": "Sorry, but where will the flight land? I couldn't understand correctly the destination of your flight travel"
+              "value": "Can you please tell me the destination of the flight so that I can provide you with the exact value of emissions due to the air travel."
             },
             {
               "lang": "en",
@@ -57,12 +57,14 @@
         },
         {
           "required": false,
+          "dataType": "",
           "name": "origin_original",
           "value": "$origin.original",
           "isList": false
         },
         {
           "required": false,
+          "dataType": "",
           "name": "destination_original",
           "value": "$destination.original",
           "isList": false
@@ -83,5 +85,9 @@
   "webhookUsed": true,
   "webhookForSlotFilling": false,
   "fallbackIntent": false,
-  "events": []
+  "events": [
+    {
+      "name": "flights_intent_triggered"
+    }
+  ]
 }

@@ -2,6 +2,16 @@
   {
     "data": [
       {
+        "text": "Flights",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0
+  },
+  {
+    "data": [
+      {
         "text": "what are ",
         "userDefined": false
       },

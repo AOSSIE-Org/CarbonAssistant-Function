@@ -151,6 +151,10 @@ app.intent('menu_option_handler',(conv, parameters, option) => { //intent to han
         conv.followup('appliance_intent_triggered', {
             option: option,
         });
+    } else if(option == 'Flights'){
+        conv.followup('flights_intent_triggered', {
+            option: option,
+        });
     }
 });
 
@@ -236,13 +240,68 @@ app.intent('vehicle_intent - followup', (conv, parameters) => {
 
 app.intent('flights_intent', (conv, parameters) => {
     conv.user.storage.lastParams = parameters;
+    if(parameters.passengers == ''){
+        conv.ask("Would you like to provide the number of passengers travelling?");
+        conv.ask(new Suggestions(["Yes, I'll provide", "No, thanks"]));
+    } else {
+        if (!conv.user.storage.noPermission)
+            return flights.processRequest(conv, parameters, true);
+        else
+            return flights.processRequest(conv, parameters, false);
+    }
+});
+
+app.intent('flights_passenger_yes', (conv, parameters) => {
+    conv.user.storage.lastParams.passengers = parameters.passengers; 
+    parameters = conv.user.storage.lastParams;
     if (!conv.user.storage.noPermission)
         return flights.processRequest(conv, parameters, true);
     else
         return flights.processRequest(conv, parameters, false);
 });
 
-app.intent('flights_intent - followup', (conv, parameters) => {
+app.intent('flights_passenger_no', (conv, parameters) => {
+    parameters = conv.user.storage.lastParams;
+    if (!conv.user.storage.noPermission)
+        return flights.processRequest(conv, parameters, true);
+    else
+        return flights.processRequest(conv, parameters, false);
+});
+
+app.intent('flights_passenger_yes-followup', (conv, parameters) => {
+    let contextParams = conv.user.storage.lastParams;
+    let newParams = {};
+
+    if (parameters.origin && parameters.origin !== "") {
+        newParams.origin = parameters.origin;
+        newParams.origin_original = newParams.origin_original;
+    } else {
+        newParams.origin = contextParams.origin;
+        newParams.origin_original = contextParams.origin_original;
+    }
+
+    if (parameters.destination && parameters.destination !== "") {
+        newParams.destination = parameters.destination;
+        newParams.destination_original = parameters.destination_original;
+    } else {
+        newParams.destination = contextParams.destination;
+        newParams.destination_original = contextParams.destination_original;
+    }
+
+    if (parameters.passengers && parameters.passengers !== "")
+        newParams.passengers = parameters.passengers;
+    else
+        newParams.passengers = contextParams.passengers;
+
+    conv.user.storage.lastParams = newParams;
+
+    if (!conv.user.storage.noPermission)
+        return flights.processRequest(conv, newParams, true);
+    else
+        return flights.processRequest(conv, newParams, false);
+});
+
+app.intent('flights_passenger_no-followup', (conv, parameters) => {
     let contextParams = conv.user.storage.lastParams;
     let newParams = {};
 

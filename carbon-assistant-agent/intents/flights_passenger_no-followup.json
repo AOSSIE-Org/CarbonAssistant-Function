@@ -1,45 +1,49 @@
 {
-  "name": "flights_intent - followup",
+  "name": "flights_passenger_no-followup",
   "auto": true,
   "contexts": [
-    "flights_intent-followup"
+    "flights_passenger_no-followup"
   ],
   "responses": [
     {
       "resetContexts": false,
-      "action": "flights_intent.flights_intent-more",
-      "affectedContexts": [
-        {
-          "name": "flights_intent-followup",
-          "parameters": {},
-          "lifespan": 5
-        }
-      ],
+      "action": "flights_intent.flights_intent-custom.flights_passenger_no-custom",
+      "affectedContexts": [],
       "parameters": [
         {
+          "required": false,
           "dataType": "@flight_airports",
           "name": "origin",
           "value": "$origin",
           "isList": false
         },
         {
+          "required": false,
+          "dataType": "@flight_airports",
+          "name": "destination",
+          "value": "$destination",
+          "isList": false
+        },
+        {
+          "required": false,
           "dataType": "@sys.number",
           "name": "passengers",
           "value": "$passengers",
           "isList": false
         },
         {
-          "dataType": "@flight_airports",
-          "name": "destination",
-          "value": "$destination"
-        },
-        {
+          "required": false,
+          "dataType": "",
           "name": "origin_original",
-          "value": "$origin.original"
+          "value": "$origin_original",
+          "isList": false
         },
         {
+          "required": false,
+          "dataType": "",
           "name": "destination_original",
-          "value": "$destination.original"
+          "value": "$destination_original",
+          "isList": false
         }
       ],
       "messages": [

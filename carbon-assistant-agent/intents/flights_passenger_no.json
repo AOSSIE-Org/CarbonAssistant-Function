@@ -1,0 +1,71 @@
+{
+  "name": "flights_passenger_no",
+  "auto": true,
+  "contexts": [
+    "flights_intent-followup"
+  ],
+  "responses": [
+    {
+      "resetContexts": false,
+      "action": "flights_intent.flights_intent-custom",
+      "affectedContexts": [
+        {
+          "name": "flights_passenger_no-followup",
+          "parameters": {},
+          "lifespan": 4
+        }
+      ],
+      "parameters": [
+        {
+          "required": false,
+          "dataType": "@flight_airports",
+          "name": "origin",
+          "value": "$origin",
+          "isList": false
+        },
+        {
+          "required": false,
+          "dataType": "@flight_airports",
+          "name": "destination",
+          "value": "$destination",
+          "isList": false
+        },
+        {
+          "required": false,
+          "dataType": "@sys.number",
+          "name": "passengers",
+          "value": "@passengers",
+          "isList": false
+        },
+        {
+          "required": false,
+          "dataType": "",
+          "name": "origin_original",
+          "value": "$origin_original",
+          "isList": false
+        },
+        {
+          "required": false,
+          "dataType": "",
+          "name": "destination_original",
+          "value": "$destination_original",
+          "isList": false
+        }
+      ],
+      "messages": [
+        {
+          "type": 0,
+          "lang": "en",
+          "speech": []
+        }
+      ],
+      "defaultResponsePlatforms": {},
+      "speech": []
+    }
+  ],
+  "priority": 500000,
+  "webhookUsed": true,
+  "webhookForSlotFilling": false,
+  "fallbackIntent": false,
+  "events": []
+}
