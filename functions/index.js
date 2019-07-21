@@ -24,6 +24,8 @@ var land_utils = require('./land_utils');
 var food_utils = require('./food_utils');
 var menu_utils = require('./menu_utils');
 var appliances_utils = require('./appliances_utils');
+var sector =require('./sector');
+var sector_utils = require('./sector_utils');
 
 const app = dialogflow({
     debug: true
@@ -145,7 +147,7 @@ app.intent('menu_option_handler',(conv, parameters, option) => { //intent to han
         });
     } else if(option == 'Food Production'){
         conv.followup('food_intent_triggered', {
-            option:option,
+            option: option,
         });
     } else if(option == 'Appliances'){
         conv.followup('appliance_intent_triggered', {
@@ -157,6 +159,10 @@ app.intent('menu_option_handler',(conv, parameters, option) => { //intent to han
         });
     } else if(option == 'Train'){
         conv.followup('trains_intent_triggered', {
+            option: option,
+        });
+    } else if(option == 'Sector'){
+        conv.followup('sector_intent_triggered', {
             option: option,
         });
     }
@@ -917,6 +923,48 @@ app.intent('food_intent_followup',(conv,parameters,option) => {
         
     conv.user.storage.lastParams = newParams;
     return food.processRequest(conv, newParams, option);
+});
+
+app.intent('sector_intent', (conv, parameters, option) => {
+    conv.user.storage.lastParams = parameters;
+    if (parameters.sector_type === ""){
+        if (conv.surface.capabilities.has('actions.capability.SCREEN_OUTPUT')) {
+            var items = sector_utils.getSectorTypes();
+            conv.ask('This is the list of sector types Please choose one So, that I can provide you the exact value of the emission.');
+            conv.ask(new List({
+                title: "Sector Types List",
+                items: items
+            }));
+        }
+        conv.user.storage.lastParams = parameters;
+    } else {
+        if (!conv.user.storage.noPermission)
+            return sector.processRequest(conv, parameters, true);
+        else
+            return sector.processRequest(conv, parameters, false);
+    }
+});
+
+app.intent('sector_intent_followup',(conv,parameters,option) => {
+    let contextParams = conv.user.storage.lastParams;
+    let newParams = {};
+    if (parameters.sector_region && parameters.sector_region !== "")
+        newParams.sector_region = parameters.sector_region;
+    else
+        newParams.sector_region = contextParams.sector_region;
+
+    if (parameters.sector_type && parameters.sector_type !== "")
+        newParams.sector_type = parameters.sector_type;
+    else if(option && contextParams.sector_type == "")
+        newParams.sector_type = option;
+    else
+        newParams.sector_type = contextParams.sector_type;
+    option = '';
+    conv.user.storage.lastParams = newParams;
+    if (!conv.user.storage.noPermission)
+        return sector.processRequest(conv, newParams, true);
+    else
+        return sector.processRequest(conv, newParams, false);
 });
 
 

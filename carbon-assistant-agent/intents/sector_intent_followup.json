@@ -1,0 +1,54 @@
+{
+  "name": "sector_intent_followup",
+  "auto": true,
+  "contexts": [
+    "sector_intent-followup"
+  ],
+  "responses": [
+    {
+      "resetContexts": false,
+      "action": "sector_intent.sector_intent-custom",
+      "affectedContexts": [],
+      "parameters": [
+        {
+          "required": false,
+          "dataType": "@sector_type",
+          "name": "sector_type",
+          "value": "$sector_type",
+          "promptMessages": [],
+          "noMatchPromptMessages": [],
+          "noInputPromptMessages": [],
+          "isList": false
+        },
+        {
+          "required": false,
+          "dataType": "@sys.geo-country",
+          "name": "sector_region",
+          "value": "$sector_region",
+          "promptMessages": [],
+          "noMatchPromptMessages": [],
+          "noInputPromptMessages": [],
+          "isList": false
+        }
+      ],
+      "messages": [
+        {
+          "type": 0,
+          "lang": "en",
+          "speech": []
+        }
+      ],
+      "defaultResponsePlatforms": {},
+      "speech": []
+    }
+  ],
+  "priority": 500000,
+  "webhookUsed": true,
+  "webhookForSlotFilling": false,
+  "fallbackIntent": false,
+  "events": [
+    {
+      "name": "actions_intent_OPTION"
+    }
+  ]
+}

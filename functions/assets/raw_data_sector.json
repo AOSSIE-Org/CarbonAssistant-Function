@@ -1,0 +1,18 @@
+[{
+    "sector": "energy",
+    "description": "The energy sector is a category of stocks that relate to producing or supplying energy",
+    "url": "https://firebasestorage.googleapis.com/v0/b/co2-gal.appspot.com/o/electricity.png?alt=media&token=f0bdcf45-1b3d-4db0-ba3e-609f10de6670",
+    "alt": "Energy Sector"
+},
+{
+    "sector": "industry",
+    "description": "The industry sector is the one that makes finished products which can then be further utilized by other sectors",
+    "url": "https://firebasestorage.googleapis.com/v0/b/co2-gal.appspot.com/o/industry.png?alt=media&token=b8abab80-fd05-4505-93f0-54e88e2fc1f4",
+    "alt": "Industry Sector"
+},
+{
+    "sector": "waste",
+    "description": "Waste sector is considered to include municipal or domestic waste and industrial waste",
+    "url": "https://firebasestorage.googleapis.com/v0/b/co2-gal.appspot.com/o/waste.png?alt=media&token=85ad5480-1361-4a76-96f0-9a5fb7f51f2a",
+    "alt": "Waste Sector"
+}]

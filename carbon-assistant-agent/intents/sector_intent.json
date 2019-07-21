@@ -1,0 +1,74 @@
+{
+  "name": "sector_intent",
+  "auto": true,
+  "contexts": [],
+  "responses": [
+    {
+      "resetContexts": false,
+      "affectedContexts": [
+        {
+          "name": "sector_intent-followup",
+          "parameters": {},
+          "lifespan": 2
+        }
+      ],
+      "parameters": [
+        {
+          "required": false,
+          "dataType": "@sector_type",
+          "name": "sector_type",
+          "value": "$sector_type",
+          "prompts": [
+            {
+              "lang": "en",
+              "value": "Sorry, I couldn't find the sector type you are looking for. Can you please tell the sector name again?"
+            },
+            {
+              "lang": "en",
+              "value": "I need to know the sector name to tell you the exact emission value. Can you please tell the sector name?"
+            }
+          ],
+          "promptMessages": [],
+          "noMatchPromptMessages": [],
+          "noInputPromptMessages": [],
+          "isList": false
+        },
+        {
+          "required": true,
+          "dataType": "@sys.geo-country",
+          "name": "sector_region",
+          "value": "$sector_region",
+          "prompts": [
+            {
+              "lang": "en",
+              "value": "For which country would you like to know the emission value for sector?"
+            },
+            {
+              "lang": "en",
+              "value": "Can you please tell the region name so, that I can provide you exact emission values for."
+            }
+          ],
+          "promptMessages": [],
+          "noMatchPromptMessages": [],
+          "noInputPromptMessages": [],
+          "isList": false
+        }
+      ],
+      "messages": [],
+      "defaultResponsePlatforms": {},
+      "speech": []
+    }
+  ],
+  "priority": 500000,
+  "webhookUsed": true,
+  "webhookForSlotFilling": false,
+  "fallbackIntent": false,
+  "events": [
+    {
+      "name": "sector_intent_triggered"
+    },
+    {
+      "name": "actions_intent_OPTION"
+    }
+  ]
+}

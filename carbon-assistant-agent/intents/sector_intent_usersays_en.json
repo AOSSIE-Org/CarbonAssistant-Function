@@ -1,0 +1,258 @@
+[
+  {
+    "data": [
+      {
+        "text": "different sector",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0
+  },
+  {
+    "data": [
+      {
+        "text": "Sectors",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0
+  },
+  {
+    "data": [
+      {
+        "text": "Emission ",
+        "userDefined": false
+      },
+      {
+        "text": "due",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "to",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      },
+      {
+        "text": " sectors",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0
+  },
+  {
+    "data": [
+      {
+        "text": "Net emission due to ",
+        "userDefined": false
+      },
+      {
+        "text": "energy",
+        "alias": "sector_type",
+        "meta": "@sector_type",
+        "userDefined": true
+      },
+      {
+        "text": " produced in ",
+        "userDefined": false
+      },
+      {
+        "text": "Bangladesh",
+        "alias": "sector_region",
+        "meta": "@sys.geo-country",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0
+  },
+  {
+    "data": [
+      {
+        "text": "How much emission is caused by ",
+        "userDefined": false
+      },
+      {
+        "text": "industry",
+        "alias": "sector_type",
+        "meta": "@sector_type",
+        "userDefined": true
+      },
+      {
+        "text": " in ",
+        "userDefined": false
+      },
+      {
+        "text": "Austria",
+        "alias": "sector_region",
+        "meta": "@sys.geo-country",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0
+  },
+  {
+    "data": [
+      {
+        "text": "Emission due to the ",
+        "userDefined": false
+      },
+      {
+        "text": "energy",
+        "alias": "sector_type",
+        "meta": "@sector_type",
+        "userDefined": true
+      },
+      {
+        "text": " sector in the ",
+        "userDefined": false
+      },
+      {
+        "text": "United Kingdom",
+        "alias": "sector_region",
+        "meta": "@sys.geo-country",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0
+  },
+  {
+    "data": [
+      {
+        "text": "Net emission because of ",
+        "userDefined": false
+      },
+      {
+        "text": "waste",
+        "alias": "sector_type",
+        "meta": "@sector_type",
+        "userDefined": true
+      },
+      {
+        "text": "  sector in ",
+        "userDefined": false
+      },
+      {
+        "text": "Malaysia",
+        "alias": "sector_region",
+        "meta": "@sys.geo-country",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0
+  },
+  {
+    "data": [
+      {
+        "text": "Emission due to the ",
+        "userDefined": false
+      },
+      {
+        "text": "energy",
+        "alias": "sector_type",
+        "meta": "@sector_type",
+        "userDefined": true
+      },
+      {
+        "text": " sector in ",
+        "userDefined": false
+      },
+      {
+        "text": "Sweden",
+        "alias": "sector_region",
+        "meta": "@sys.geo-country",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0
+  },
+  {
+    "data": [
+      {
+        "text": "Emission caused by ",
+        "userDefined": false
+      },
+      {
+        "text": "industry",
+        "alias": "sector_type",
+        "meta": "@sector_type",
+        "userDefined": true
+      },
+      {
+        "text": "  sector in ",
+        "userDefined": false
+      },
+      {
+        "text": "Yemen",
+        "alias": "sector_region",
+        "meta": "@sys.geo-country",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0
+  },
+  {
+    "data": [
+      {
+        "text": "In ",
+        "userDefined": false
+      },
+      {
+        "text": "India",
+        "alias": "sector_region",
+        "meta": "@sys.geo-country",
+        "userDefined": true
+      },
+      {
+        "text": " net emission because of ",
+        "userDefined": false
+      },
+      {
+        "text": "waste",
+        "alias": "sector_type",
+        "meta": "@sector_type",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0
+  },
+  {
+    "data": [
+      {
+        "text": "Emission due to ",
+        "userDefined": false
+      },
+      {
+        "text": "industry",
+        "alias": "sector_type",
+        "meta": "@sector_type",
+        "userDefined": true
+      },
+      {
+        "text": " sector in ",
+        "userDefined": false
+      },
+      {
+        "text": "China",
+        "alias": "sector_region",
+        "meta": "@sys.geo-country",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0
+  }
+]
