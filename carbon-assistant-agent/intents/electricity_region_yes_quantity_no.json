@@ -1,16 +1,16 @@
 {
-  "name": "electricity_intent - followup",
+  "name": "electricity_region_yes_quantity_no",
   "auto": true,
   "contexts": [
-    "electricity_intent-followup"
+    "electricity_intent_region_yes-followup"
   ],
   "responses": [
     {
       "resetContexts": false,
-      "action": "electricity_intent.electricity_intent-custom",
+      "action": "electricity_intent.electricity_intent-custom.electricity_intent_region_yes-custom",
       "affectedContexts": [
         {
-          "name": "electricity_intent-followup",
+          "name": "electricity_region_yes_quantity_no-followup",
           "parameters": {},
           "lifespan": 5
         }
@@ -25,16 +25,16 @@
         },
         {
           "required": false,
-          "dataType": "@sys.geo-country",
-          "name": "geo_country",
-          "value": "$geo_country",
+          "dataType": "@emission_type",
+          "name": "emission_type",
+          "value": "$emission_type",
           "isList": false
         },
         {
           "required": false,
-          "dataType": "@emission_type",
-          "name": "emission_type",
-          "value": "$emission_type",
+          "dataType": "@sys.geo-country",
+          "name": "geo_country",
+          "value": "$geo_country",
           "isList": false
         }
       ],

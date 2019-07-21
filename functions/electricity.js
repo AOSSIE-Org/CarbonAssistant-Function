@@ -1,4 +1,4 @@
-var config = require('./config')
+var config = require('./config');
 const requestLib = require('request');
 const utils = require('./utils');
 const reverseLookupManager = require('./reverseLookupManager');
@@ -47,7 +47,7 @@ exports.processRequest = function(conv, parameters, requestReverseLookup) {
                         emission = body.emissions.N2O;
                     else
                         emission = body.emissions.CH4;
-                    let basicResponseString = emissionType +' emissions due to electricity consumption of ' + consumed_quantity + ' kWh';
+                    let basicResponseString = emissionType + ' emissions due to electricity consumption of ' + consumed_quantity + ' kWh';
                     let finalResponseString = "";
                     if (consumption_country != "" && consumption_country != "Default")
                         finalResponseString = basicResponseString + ' in ' + consumption_country + ' are ' + emission;

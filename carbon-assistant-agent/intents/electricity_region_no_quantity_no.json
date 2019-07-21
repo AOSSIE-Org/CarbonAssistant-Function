@@ -1,14 +1,16 @@
 {
-  "name": "electricity_intent",
+  "name": "electricity_region_no_quantity_no",
   "auto": true,
-  "contexts": [],
+  "contexts": [
+    "electricity_intent_region_no-followup"
+  ],
   "responses": [
     {
       "resetContexts": false,
-      "action": "input.electricity_details",
+      "action": "electricity_intent.electricity_intent-custom.electricity_intent_region_no-custom-2",
       "affectedContexts": [
         {
-          "name": "electricity_intent-followup",
+          "name": "electricity_region_no_quantity_no-followup",
           "parameters": {},
           "lifespan": 5
         }
@@ -16,7 +18,7 @@
       "parameters": [
         {
           "required": false,
-          "dataType": "@sys.number",
+          "dataType": "@sys.geo-country",
           "name": "quantity",
           "value": "$quantity",
           "isList": false
@@ -51,9 +53,5 @@
   "webhookUsed": true,
   "webhookForSlotFilling": false,
   "fallbackIntent": false,
-  "events": [
-    {
-      "name": "electricity_intent_triggered"
-    }
-  ]
+  "events": []
 }

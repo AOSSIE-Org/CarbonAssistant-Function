@@ -1,0 +1,56 @@
+[
+  {
+    "data": [
+      {
+        "text": "1.567",
+        "alias": "quantity",
+        "meta": "@sys.number",
+        "userDefined": true
+      },
+      {
+        "text": " kwh",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0
+  },
+  {
+    "data": [
+      {
+        "text": "100",
+        "alias": "quantity",
+        "meta": "@sys.number",
+        "userDefined": true
+      },
+      {
+        "text": " units",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0
+  },
+  {
+    "data": [
+      {
+        "text": "23",
+        "alias": "quantity",
+        "meta": "@sys.number",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 1
+  },
+  {
+    "data": [
+      {
+        "text": "Ok. I'll",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0
+  }
+]
