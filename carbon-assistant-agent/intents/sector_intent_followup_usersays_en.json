@@ -1,0 +1,214 @@
+[
+  {
+    "data": [
+      {
+        "text": "what if ",
+        "userDefined": false
+      },
+      {
+        "text": "industry",
+        "alias": "sector_type",
+        "meta": "@sector_type",
+        "userDefined": true
+      },
+      {
+        "text": " sector ?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0
+  },
+  {
+    "data": [
+      {
+        "text": "how about ",
+        "userDefined": false
+      },
+      {
+        "text": "energy",
+        "alias": "sector_type",
+        "meta": "@sector_type",
+        "userDefined": true
+      },
+      {
+        "text": " ?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0
+  },
+  {
+    "data": [
+      {
+        "text": "are",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      },
+      {
+        "text": " there more",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0
+  },
+  {
+    "data": [
+      {
+        "text": "more information",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0
+  },
+  {
+    "data": [
+      {
+        "text": "more results",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0
+  },
+  {
+    "data": [
+      {
+        "text": "more",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0
+  },
+  {
+    "data": [
+      {
+        "text": "anything else",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0
+  },
+  {
+    "data": [
+      {
+        "text": "what about emission due to the same in ",
+        "userDefined": false
+      },
+      {
+        "text": "Sweden",
+        "alias": "sector_region",
+        "meta": "@sys.geo-country",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0
+  },
+  {
+    "data": [
+      {
+        "text": "emissions due to ",
+        "userDefined": false
+      },
+      {
+        "text": "energy",
+        "alias": "sector_type",
+        "meta": "@sector_type",
+        "userDefined": true
+      },
+      {
+        "text": " sector in ",
+        "userDefined": false
+      },
+      {
+        "text": "Malaysia",
+        "alias": "sector_region",
+        "meta": "@sys.geo-country",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0
+  },
+  {
+    "data": [
+      {
+        "text": "How about in ",
+        "userDefined": false
+      },
+      {
+        "text": "India",
+        "alias": "sector_region",
+        "meta": "@sys.geo-country",
+        "userDefined": true
+      },
+      {
+        "text": " ?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0
+  },
+  {
+    "data": [
+      {
+        "text": "what about emissions caused by ",
+        "userDefined": false
+      },
+      {
+        "text": "industry",
+        "alias": "sector_type",
+        "meta": "@sector_type",
+        "userDefined": true
+      },
+      {
+        "text": "  sector ?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0
+  },
+  {
+    "data": [
+      {
+        "text": "tell me more",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0
+  },
+  {
+    "data": [
+      {
+        "text": "what else",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0
+  },
+  {
+    "data": [
+      {
+        "text": "say",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      },
+      {
+        "text": " more",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0
+  }
+]

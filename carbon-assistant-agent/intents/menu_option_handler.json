@@ -7,13 +7,7 @@
   "responses": [
     {
       "resetContexts": false,
-      "affectedContexts": [
-        {
-          "name": "menu_intent-followup",
-          "parameters": {},
-          "lifespan": 1
-        }
-      ],
+      "affectedContexts": [],
       "parameters": [],
       "messages": [
         {
