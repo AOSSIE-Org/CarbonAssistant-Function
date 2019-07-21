@@ -1,0 +1,67 @@
+{
+  "name": "electricity_intent_region_yes",
+  "auto": true,
+  "contexts": [
+    "electricity_intent-followup"
+  ],
+  "responses": [
+    {
+      "resetContexts": false,
+      "action": "electricity_intent.electricity_intent-custom",
+      "affectedContexts": [
+        {
+          "name": "electricity_intent_region_yes-followup",
+          "parameters": {},
+          "lifespan": 3
+        }
+      ],
+      "parameters": [
+        {
+          "required": false,
+          "dataType": "@sys.number",
+          "name": "quantity",
+          "value": "$quantity",
+          "isList": false
+        },
+        {
+          "required": true,
+          "dataType": "@sys.geo-country",
+          "name": "geo_country",
+          "value": "$geo_country",
+          "prompts": [
+            {
+              "lang": "en",
+              "value": "Can you please say the region name so that I can provide you the exact value of emission."
+            },
+            {
+              "lang": "en",
+              "value": "What is the the country name you want to know the emission for?"
+            }
+          ],
+          "isList": false
+        },
+        {
+          "required": false,
+          "dataType": "@emission_type",
+          "name": "emission_type",
+          "value": "$emission_type",
+          "isList": false
+        }
+      ],
+      "messages": [
+        {
+          "type": 0,
+          "lang": "en",
+          "speech": []
+        }
+      ],
+      "defaultResponsePlatforms": {},
+      "speech": []
+    }
+  ],
+  "priority": 500000,
+  "webhookUsed": true,
+  "webhookForSlotFilling": false,
+  "fallbackIntent": false,
+  "events": []
+}

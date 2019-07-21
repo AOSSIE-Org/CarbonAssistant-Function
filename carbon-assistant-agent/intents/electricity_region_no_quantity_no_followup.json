@@ -1,18 +1,14 @@
 {
-  "name": "electricity_intent",
+  "name": "electricity_region_no_quantity_no_followup",
   "auto": true,
-  "contexts": [],
+  "contexts": [
+    "electricity_region_no_quantity_no-followup"
+  ],
   "responses": [
     {
       "resetContexts": false,
-      "action": "input.electricity_details",
-      "affectedContexts": [
-        {
-          "name": "electricity_intent-followup",
-          "parameters": {},
-          "lifespan": 5
-        }
-      ],
+      "action": "electricity_intent.electricity_intent-custom.electricity_intent_region_no-custom-2.electricity_region_no_quantity_no-custom",
+      "affectedContexts": [],
       "parameters": [
         {
           "required": false,
@@ -51,9 +47,5 @@
   "webhookUsed": true,
   "webhookForSlotFilling": false,
   "fallbackIntent": false,
-  "events": [
-    {
-      "name": "electricity_intent_triggered"
-    }
-  ]
+  "events": []
 }

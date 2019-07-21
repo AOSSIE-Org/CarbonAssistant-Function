@@ -1,24 +1,32 @@
 {
-  "name": "electricity_intent",
+  "name": "electricity_region_yes_quantity_yes",
   "auto": true,
-  "contexts": [],
+  "contexts": [
+    "electricity_intent_region_yes-followup"
+  ],
   "responses": [
     {
       "resetContexts": false,
-      "action": "input.electricity_details",
+      "action": "electricity_intent.electricity_intent-custom.electricity_intent_region_yes-custom-2",
       "affectedContexts": [
         {
-          "name": "electricity_intent-followup",
+          "name": "electricity_region_yes_quantity_yes-followup",
           "parameters": {},
           "lifespan": 5
         }
       ],
       "parameters": [
         {
-          "required": false,
+          "required": true,
           "dataType": "@sys.number",
           "name": "quantity",
           "value": "$quantity",
+          "prompts": [
+            {
+              "lang": "en",
+              "value": "Can you please say the units of electricity consumed so that I can provide you the exact value of emission."
+            }
+          ],
           "isList": false
         },
         {
@@ -51,9 +59,5 @@
   "webhookUsed": true,
   "webhookForSlotFilling": false,
   "fallbackIntent": false,
-  "events": [
-    {
-      "name": "electricity_intent_triggered"
-    }
-  ]
+  "events": []
 }

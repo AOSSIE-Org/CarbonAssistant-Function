@@ -2,47 +2,7 @@
   {
     "data": [
       {
-        "text": "how about ",
-        "userDefined": false
-      },
-      {
-        "text": "nitrous",
-        "alias": "emission_type",
-        "meta": "@emission_type",
-        "userDefined": true
-      },
-      {
-        "text": " emissions in ",
-        "userDefined": false
-      },
-      {
-        "text": "India",
-        "alias": "geo_country",
-        "meta": "@sys.geo-country",
-        "userDefined": true
-      },
-      {
-        "text": "?",
-        "userDefined": false
-      }
-    ],
-    "isTemplate": false,
-    "count": 0
-  },
-  {
-    "data": [
-      {
-        "text": "And ",
-        "userDefined": false
-      },
-      {
-        "text": "1.45",
-        "alias": "quantity",
-        "meta": "@sys.number",
-        "userDefined": true
-      },
-      {
-        "text": " kwh in ",
+        "text": "what about in ",
         "userDefined": false
       },
       {
@@ -62,107 +22,7 @@
   {
     "data": [
       {
-        "text": "How about ",
-        "userDefined": false
-      },
-      {
-        "text": "nitrous",
-        "alias": "emission_type",
-        "meta": "@emission_type",
-        "userDefined": true
-      },
-      {
-        "text": " emission?",
-        "userDefined": false
-      }
-    ],
-    "isTemplate": false,
-    "count": 0
-  },
-  {
-    "data": [
-      {
-        "text": "and if it was ",
-        "userDefined": false
-      },
-      {
-        "text": "200",
-        "alias": "quantity",
-        "meta": "@sys.number",
-        "userDefined": true
-      },
-      {
-        "text": " kwh?",
-        "userDefined": false
-      }
-    ],
-    "isTemplate": false,
-    "count": 0
-  },
-  {
-    "data": [
-      {
-        "text": "give more details",
-        "userDefined": false
-      }
-    ],
-    "isTemplate": false,
-    "count": 0
-  },
-  {
-    "data": [
-      {
-        "text": "Tell me more",
-        "userDefined": false
-      }
-    ],
-    "isTemplate": false,
-    "count": 0
-  },
-  {
-    "data": [
-      {
-        "text": "Say",
-        "meta": "@sys.ignore",
-        "userDefined": false
-      },
-      {
-        "text": " something more",
-        "userDefined": false
-      }
-    ],
-    "isTemplate": false,
-    "count": 0
-  },
-  {
-    "data": [
-      {
-        "text": "What else",
-        "userDefined": false
-      }
-    ],
-    "isTemplate": false,
-    "count": 0
-  },
-  {
-    "data": [
-      {
-        "text": "say",
-        "meta": "@sys.ignore",
-        "userDefined": false
-      },
-      {
-        "text": " more",
-        "userDefined": false
-      }
-    ],
-    "isTemplate": false,
-    "count": 0
-  },
-  {
-    "data": [
-      {
-        "text": "What about ",
+        "text": "how about ",
         "userDefined": false
       },
       {
@@ -182,7 +42,87 @@
   {
     "data": [
       {
-        "text": "What about ",
+        "text": "what about ",
+        "userDefined": false
+      },
+      {
+        "text": "nitrous",
+        "alias": "emission_type",
+        "meta": "@emission_type",
+        "userDefined": true
+      },
+      {
+        "text": " emissions in ",
+        "userDefined": false
+      },
+      {
+        "text": "China",
+        "alias": "geo_country",
+        "meta": "@sys.geo-country",
+        "userDefined": true
+      },
+      {
+        "text": "?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0
+  },
+  {
+    "data": [
+      {
+        "text": "and ",
+        "userDefined": false
+      },
+      {
+        "text": "1.45",
+        "alias": "quantity",
+        "meta": "@sys.number",
+        "userDefined": true
+      },
+      {
+        "text": " kwh in ",
+        "userDefined": false
+      },
+      {
+        "text": "China",
+        "alias": "geo_country",
+        "meta": "@sys.geo-country",
+        "userDefined": true
+      },
+      {
+        "text": "?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0
+  },
+  {
+    "data": [
+      {
+        "text": "How about ",
+        "userDefined": false
+      },
+      {
+        "text": "100",
+        "alias": "quantity",
+        "meta": "@sys.number",
+        "userDefined": true
+      },
+      {
+        "text": " units?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0
+  },
+  {
+    "data": [
+      {
+        "text": "what about ",
         "userDefined": false
       },
       {
@@ -212,17 +152,57 @@
   {
     "data": [
       {
-        "text": "How about ",
+        "text": "what else",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0
+  },
+  {
+    "data": [
+      {
+        "text": "give more details",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0
+  },
+  {
+    "data": [
+      {
+        "text": "say",
+        "meta": "@sys.ignore",
         "userDefined": false
       },
       {
-        "text": "100",
-        "alias": "quantity",
-        "meta": "@sys.number",
-        "userDefined": true
+        "text": " more",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0
+  },
+  {
+    "data": [
+      {
+        "text": "say",
+        "meta": "@sys.ignore",
+        "userDefined": false
       },
       {
-        "text": " units?",
+        "text": " something more",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0
+  },
+  {
+    "data": [
+      {
+        "text": "tell me more",
         "userDefined": false
       }
     ],

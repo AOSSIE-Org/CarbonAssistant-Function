@@ -165,6 +165,10 @@ app.intent('menu_option_handler',(conv, parameters, option) => { //intent to han
         conv.followup('sector_intent_triggered', {
             option: option,
         });
+    } else if(option == 'Electricity'){
+        conv.followup('electricity_intent_triggered', {
+            option: option,
+        });
     }
 });
 
@@ -436,13 +440,79 @@ app.intent('fuels_intent - followup', (conv, parameters) => {
 
 app.intent('electricity_intent', (conv, parameters) => {
     conv.user.storage.lastParams = parameters;
+    if(parameters.geo_country == ''){
+        conv.ask("Would you like to provide the consumption country name?");
+        conv.ask(new Suggestions(["Yes, I'll provide", "No, thanks"]));
+    } else {
+        if (!conv.user.storage.noPermission)
+            return electricity.processRequest(conv, parameters, true);
+        else
+            return electricity.processRequest(conv, parameters, false);
+    }
+});
+
+app.intent('electricity_intent_region_yes', (conv, parameters) => {
+    conv.user.storage.lastParams.geo_country = parameters.geo_country;
+    parameters = conv.user.storage.lastParams;
+    if(parameters.quantity == ''){
+        conv.ask("Would you like to provide the consumption quantity or the unit?");
+        conv.ask(new Suggestions(["Yes", "No, thanks"]));
+    } else {
+        if (!conv.user.storage.noPermission)
+            return electricity.processRequest(conv, parameters, true);
+        else
+            return electricity.processRequest(conv, parameters, false);
+    }
+});
+
+app.intent('electricity_intent_region_no', (conv, parameters) => {
+    parameters = conv.user.storage.lastParams;
+    if(parameters.quantity == ''){
+        conv.ask("Would you like to provide the consumption quantity or the unit?");
+        conv.ask(new Suggestions(["Ok. I'll", "No, that's it"]));
+    } else {
+        if (!conv.user.storage.noPermission)
+            return electricity.processRequest(conv, parameters, true);
+        else
+            return electricity.processRequest(conv, parameters, false);
+    }
+});
+
+app.intent('electricity_region_yes_quantity_yes', (conv, parameters) => {
+    conv.user.storage.lastParams.quantity = parameters.quantity; 
+    parameters = conv.user.storage.lastParams;
     if (!conv.user.storage.noPermission)
         return electricity.processRequest(conv, parameters, true);
     else
         return electricity.processRequest(conv, parameters, false);
 });
 
-app.intent('electricity_intent - followup', (conv, parameters) => {
+app.intent('electricity_region_yes_quantity_no', (conv, parameters) => {
+    parameters = conv.user.storage.lastParams;
+    if (!conv.user.storage.noPermission)
+        return electricity.processRequest(conv, parameters, true);
+    else
+        return electricity.processRequest(conv, parameters, false);
+});
+
+app.intent('electricity_region_no_quantity_yes', (conv, parameters) => {
+    conv.user.storage.lastParams.quantity = parameters.quantity; 
+    parameters = conv.user.storage.lastParams;
+    if (!conv.user.storage.noPermission)
+        return electricity.processRequest(conv, parameters, true);
+    else
+        return electricity.processRequest(conv, parameters, false);
+});
+
+app.intent('electricity_region_no_quantity_no', (conv, parameters) => {
+    parameters = conv.user.storage.lastParams;
+    if (!conv.user.storage.noPermission)
+        return electricity.processRequest(conv, parameters, true);
+    else
+        return electricity.processRequest(conv, parameters, false);
+});
+
+app.intent('electricity_region_yes_quantity_yes_followup', (conv, parameters) => {
     let contextParams = conv.user.storage.lastParams;
     let newParams = {};
 
@@ -462,13 +532,89 @@ app.intent('electricity_intent - followup', (conv, parameters) => {
         newParams.emission_type = contextParams.emission_type;
 
     conv.user.storage.lastParams = newParams;
-
     if (!conv.user.storage.noPermission)
         return electricity.processRequest(conv, newParams, true);
     else
         return electricity.processRequest(conv, newParams, false);
 });
 
+app.intent('electricity_region_yes_quantity_no_followup', (conv, parameters) => {
+    let contextParams = conv.user.storage.lastParams;
+    let newParams = {};
+
+    if (parameters.quantity && parameters.quantity !== "")
+        newParams.quantity = parameters.quantity;
+    else
+        newParams.quantity = contextParams.quantity;
+
+    if (parameters.geo_country && parameters.geo_country !== "")
+        newParams.geo_country = parameters.geo_country;
+    else
+        newParams.geo_country = contextParams.geo_country;
+    
+    if (parameters.emission_type && parameters.emission_type !== "")
+        newParams.emission_type = parameters.emission_type;
+    else
+        newParams.emission_type = contextParams.emission_type;
+
+    conv.user.storage.lastParams = newParams;
+    if (!conv.user.storage.noPermission)
+        return electricity.processRequest(conv, newParams, true);
+    else
+        return electricity.processRequest(conv, newParams, false);
+});
+
+app.intent('electricity_region_no_quantity_yes_followup', (conv, parameters) => {
+    let contextParams = conv.user.storage.lastParams;
+    let newParams = {};
+
+    if (parameters.quantity && parameters.quantity !== "")
+        newParams.quantity = parameters.quantity;
+    else
+        newParams.quantity = contextParams.quantity;
+
+    if (parameters.geo_country && parameters.geo_country !== "")
+        newParams.geo_country = parameters.geo_country;
+    else
+        newParams.geo_country = contextParams.geo_country;
+    
+    if (parameters.emission_type && parameters.emission_type !== "")
+        newParams.emission_type = parameters.emission_type;
+    else
+        newParams.emission_type = contextParams.emission_type;
+
+    conv.user.storage.lastParams = newParams;
+    if (!conv.user.storage.noPermission)
+        return electricity.processRequest(conv, newParams, true);
+    else
+        return electricity.processRequest(conv, newParams, false);
+});
+
+app.intent('electricity_region_no_quantity_no_followup', (conv, parameters) => {
+    let contextParams = conv.user.storage.lastParams;
+    let newParams = {};
+
+    if (parameters.quantity && parameters.quantity !== "")
+        newParams.quantity = parameters.quantity;
+    else
+        newParams.quantity = contextParams.quantity;
+
+    if (parameters.geo_country && parameters.geo_country !== "")
+        newParams.geo_country = parameters.geo_country;
+    else
+        newParams.geo_country = contextParams.geo_country;
+    
+    if (parameters.emission_type && parameters.emission_type !== "")
+        newParams.emission_type = parameters.emission_type;
+    else
+        newParams.emission_type = contextParams.emission_type;
+
+    conv.user.storage.lastParams = newParams;
+    if (!conv.user.storage.noPermission)
+        return electricity.processRequest(conv, newParams, true);
+    else
+        return electricity.processRequest(conv, newParams, false);
+});
 
 app.intent('poultry_intent', (conv, parameters) => {
     conv.user.storage.lastParams = parameters;
