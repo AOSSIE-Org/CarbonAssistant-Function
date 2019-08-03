@@ -10,6 +10,42 @@ function getFuelType(fuelString) {
 exports.processRequest = function(conv, parameters, requestReverseLookup) {
     return new Promise(function(resolve, reject) {
         if (parameters.origin != "" && parameters.destination !== "" && parameters.fuel_type !== "") {
+
+            switch (parameters.fuel_type) {
+                case "B20":
+                    parameters.fuel_type = "fuelB20";
+                    break;
+                case "Bio Diesel":
+                    parameters.fuel_type = "fuelBioDiesel";
+                    break;
+                case "CNG":
+                    parameters.fuel_type = "fuelCNG";
+                    break;
+                case "Diesel":
+                    parameters.fuel_type = "fuelDiesel";
+                    break;
+                case "E10":
+                    parameters.fuel_type = "fuelE10";
+                    break;
+                case "E25":
+                    parameters.fuel_type = "fuelE25";
+                    break;
+                case "E85":
+                    parameters.fuel_type = "fuelE85";
+                    break;
+                case "Ethanol":
+                    parameters.fuel_type = "fuelEthanol";
+                    break;
+                case "Gasoline":
+                    parameters.fuel_type = "fuelGasoline";
+                    break;
+                case "LPG":
+                    parameters.fuel_type = "fuelLPG";
+                    break;
+                case "Petrol":
+                    parameters.fuel_type = "fuelPetrol";
+            }
+
             let origin = parameters.origin,
                 destination = parameters.destination,
                 fuel_type = getFuelType(parameters.fuel_type),
@@ -122,7 +158,7 @@ exports.processRequest = function(conv, parameters, requestReverseLookup) {
                                         "Nitrous Oxide: " + nitrousEmission + ' kg.\n' +
                                         "Methane: " + methaneEmission + ' kg.' + ' \n\n' + responses[selectedResponse];
                                     console.log("selected response: " + selectedResponse);
-                                    utils.richResponse(conv, finalResponseString, responses[selectedResponse],button);
+                                    utils.richResponse(conv, finalResponseString, responses[selectedResponse], button);
                                     resolve();
                                 })
                                 .catch((err) => {
@@ -143,12 +179,12 @@ exports.processRequest = function(conv, parameters, requestReverseLookup) {
                         }
                     }
                 } else {
-                  // Handle errors here
-                  if (!error)
-                    error = body.error;
-                  //Handle the error in the utils function
-                  conv.close(utils.handleError(error, response, body));
-                  resolve();
+                    // Handle errors here
+                    if (!error)
+                        error = body.error;
+                    //Handle the error in the utils function
+                    conv.close(utils.handleError(error, response, body));
+                    resolve();
                 }
             });
         } else {

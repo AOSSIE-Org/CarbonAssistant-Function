@@ -1,0 +1,134 @@
+[
+  {
+    "data": [
+      {
+        "text": "Petrol",
+        "alias": "fuel_type",
+        "meta": "@fuels",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0
+  },
+  {
+    "data": [
+      {
+        "text": "E85",
+        "alias": "fuel_type",
+        "meta": "@fuels",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0
+  },
+  {
+    "data": [
+      {
+        "text": "E25",
+        "alias": "fuel_type",
+        "meta": "@fuels",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0
+  },
+  {
+    "data": [
+      {
+        "text": "E10",
+        "alias": "fuel_type",
+        "meta": "@fuels",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0
+  },
+  {
+    "data": [
+      {
+        "text": "CNG",
+        "alias": "fuel_type",
+        "meta": "@fuels",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0
+  },
+  {
+    "data": [
+      {
+        "text": "LPG",
+        "alias": "fuel_type",
+        "meta": "@fuels",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0
+  },
+  {
+    "data": [
+      {
+        "text": "Gasoline",
+        "alias": "fuel_type",
+        "meta": "@fuels",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0
+  },
+  {
+    "data": [
+      {
+        "text": "Diesel",
+        "alias": "fuel_type",
+        "meta": "@fuels",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0
+  },
+  {
+    "data": [
+      {
+        "text": "Ethanol",
+        "alias": "fuel_type",
+        "meta": "@fuels",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0
+  },
+  {
+    "data": [
+      {
+        "text": "Bio Diesel",
+        "alias": "fuel_type",
+        "meta": "@fuels",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0
+  },
+  {
+    "data": [
+      {
+        "text": "B20",
+        "alias": "fuel_type",
+        "meta": "@fuels",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0
+  }
+]

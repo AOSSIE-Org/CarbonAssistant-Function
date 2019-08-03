@@ -1,0 +1,81 @@
+{
+  "name": "vehicles_emission_type_yes_mileage_yes",
+  "auto": true,
+  "contexts": [
+    "vehicles_emission_type_yes-followup"
+  ],
+  "responses": [
+    {
+      "resetContexts": false,
+      "action": "vehicle_intent.vehicle_intent-custom-2.vehicles_emission_type_ask-custom.vehicles_emission_type_yes-custom",
+      "affectedContexts": [
+        {
+          "name": "vehicles_emission_type_yes_mileage_yes-followup",
+          "parameters": {},
+          "lifespan": 5
+        }
+      ],
+      "parameters": [
+        {
+          "required": true,
+          "dataType": "@sys.number",
+          "name": "mileage",
+          "value": "$mileage",
+          "prompts": [
+            {
+              "lang": "en",
+              "value": "Can you please tell the fuel efficiency of the vehicle i.e. distance traveled per unit of fuel?"
+            },
+            {
+              "lang": "en",
+              "value": "Ok. what is the mileage of the vehicle?"
+            }
+          ],
+          "isList": false
+        },
+        {
+          "required": false,
+          "dataType": "@fuels",
+          "name": "fuel_type",
+          "value": "$fuel_type",
+          "isList": false
+        },
+        {
+          "required": false,
+          "dataType": "@sys.geo-city",
+          "name": "origin",
+          "value": "$origin",
+          "isList": false
+        },
+        {
+          "required": false,
+          "dataType": "@sys.geo-city",
+          "name": "destination",
+          "value": "$destination",
+          "isList": false
+        },
+        {
+          "required": false,
+          "dataType": "@emission_type",
+          "name": "emission_type",
+          "value": "$emission_type",
+          "isList": false
+        }
+      ],
+      "messages": [
+        {
+          "type": 0,
+          "lang": "en",
+          "speech": []
+        }
+      ],
+      "defaultResponsePlatforms": {},
+      "speech": []
+    }
+  ],
+  "priority": 500000,
+  "webhookUsed": true,
+  "webhookForSlotFilling": false,
+  "fallbackIntent": false,
+  "events": []
+}

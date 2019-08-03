@@ -1,0 +1,56 @@
+[
+  {
+    "data": [
+      {
+        "text": "73",
+        "alias": "mileage",
+        "meta": "@sys.number",
+        "userDefined": true
+      },
+      {
+        "text": " km per litre is the mileage",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0
+  },
+  {
+    "data": [
+      {
+        "text": "26",
+        "alias": "mileage",
+        "meta": "@sys.number",
+        "userDefined": true
+      },
+      {
+        "text": " km per litre",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0
+  },
+  {
+    "data": [
+      {
+        "text": "23",
+        "alias": "mileage",
+        "meta": "@sys.number",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0
+  },
+  {
+    "data": [
+      {
+        "text": "Ok. I'll",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 1
+  }
+]

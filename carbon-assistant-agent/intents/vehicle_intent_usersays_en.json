@@ -2,6 +2,16 @@
   {
     "data": [
       {
+        "text": "Vehicles",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 1
+  },
+  {
+    "data": [
+      {
         "text": "How much emissions ",
         "userDefined": false
       },
@@ -93,7 +103,7 @@
         "text": "New Delhi",
         "alias": "destination",
         "meta": "@sys.geo-city",
-        "userDefined": false
+        "userDefined": true
       },
       {
         "text": "?",
@@ -141,7 +151,7 @@
         "text": "seattle",
         "alias": "destination",
         "meta": "@sys.geo-city",
-        "userDefined": false
+        "userDefined": true
       },
       {
         "text": " on a ",
@@ -223,7 +233,7 @@
         "text": "Pune",
         "alias": "destination",
         "meta": "@sys.geo-city",
-        "userDefined": false
+        "userDefined": true
       },
       {
         "text": " on a ",
@@ -278,7 +288,7 @@
         "text": "Seattle",
         "alias": "destination",
         "meta": "@sys.geo-city",
-        "userDefined": false
+        "userDefined": true
       },
       {
         "text": " in a ",
@@ -364,7 +374,7 @@
         "text": "Sangli",
         "alias": "destination",
         "meta": "@sys.geo-city",
-        "userDefined": false
+        "userDefined": true
       },
       {
         "text": " in a ",
@@ -427,7 +437,7 @@
         "text": "Pune",
         "alias": "destination",
         "meta": "@sys.geo-city",
-        "userDefined": false
+        "userDefined": true
       },
       {
         "text": " by ",
@@ -471,7 +481,7 @@
         "text": "Kuala lumpur",
         "alias": "destination",
         "meta": "@sys.geo-city",
-        "userDefined": false
+        "userDefined": true
       }
     ],
     "isTemplate": false,
@@ -521,7 +531,7 @@
         "text": "Sangli",
         "alias": "destination",
         "meta": "@sys.geo-city",
-        "userDefined": false
+        "userDefined": true
       }
     ],
     "isTemplate": false,

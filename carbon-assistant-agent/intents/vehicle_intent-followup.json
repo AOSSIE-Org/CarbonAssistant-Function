@@ -1,0 +1,75 @@
+{
+  "name": "vehicle_intent-followup",
+  "auto": true,
+  "contexts": [
+    "vehicle_intent-followup"
+  ],
+  "responses": [
+    {
+      "resetContexts": false,
+      "action": "vehicle_intent.vehicle_intent-custom",
+      "affectedContexts": [
+        {
+          "name": "vehicle_intent-followup",
+          "parameters": {},
+          "lifespan": 5
+        }
+      ],
+      "parameters": [
+        {
+          "required": false,
+          "dataType": "@sys.geo-city",
+          "name": "origin",
+          "value": "$origin",
+          "isList": false
+        },
+        {
+          "required": false,
+          "dataType": "@sys.geo-city",
+          "name": "destination",
+          "value": "$destination",
+          "isList": false
+        },
+        {
+          "required": false,
+          "dataType": "@fuels",
+          "name": "fuel_type",
+          "value": "$fuel_type",
+          "isList": false
+        },
+        {
+          "required": false,
+          "dataType": "@emission_type",
+          "name": "emission_type",
+          "value": "$emission_type",
+          "isList": false
+        },
+        {
+          "required": false,
+          "dataType": "@sys.number",
+          "name": "mileage",
+          "value": "$mileage",
+          "isList": false
+        }
+      ],
+      "messages": [
+        {
+          "type": 0,
+          "lang": "en",
+          "speech": []
+        }
+      ],
+      "defaultResponsePlatforms": {},
+      "speech": []
+    }
+  ],
+  "priority": 500000,
+  "webhookUsed": true,
+  "webhookForSlotFilling": false,
+  "fallbackIntent": false,
+  "events": [
+    {
+      "name": "actions_intent_OPTION"
+    }
+  ]
+}
