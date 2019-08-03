@@ -26,6 +26,7 @@ var menu_utils = require('./menu_utils');
 var appliances_utils = require('./appliances_utils');
 var sector =require('./sector');
 var sector_utils = require('./sector_utils');
+var fuels_utils = require('./fuels_utils');
 
 const app = dialogflow({
     debug: true
@@ -167,6 +168,10 @@ app.intent('menu_option_handler',(conv, parameters, option) => { //intent to han
         });
     } else if(option == 'Electricity'){
         conv.followup('electricity_intent_triggered', {
+            option: option,
+        });
+    } else if(option == 'Fuel consumption'){
+        conv.followup('fuels_intent_triggered', {
             option: option,
         });
     }
@@ -399,13 +404,176 @@ app.intent('flights_passenger_no-followup', (conv, parameters) => {
 
 app.intent('fuels_intent', (conv, parameters) => {
     conv.user.storage.lastParams = parameters;
-    if (!conv.user.storage.noPermission)
-        return fuels.processRequest(conv, parameters, true);
-    else
-        return fuels.processRequest(conv, parameters, false);
+    if (parameters.fuel_type === ""){
+        if (conv.surface.capabilities.has('actions.capability.SCREEN_OUTPUT')) {
+            var items = fuels_utils.getFuelTypes();
+            conv.ask('This is the list of fuel types Please choose one so that I can provide you the exact value of the emission.');
+            conv.ask(new List({
+                title: "Fuel Types List",
+                items: items
+            }));
+            //Google home response
+        } else if(!conv.surface.capabilities.has('actions.capability.SCREEN_OUTPUT')) {
+            conv.ask("This is the list of fuel types please choose one so that I can provide you the exact value of the emission. 1.B20 Bio Diesel, it is a blend of 20% bio diesel and 80% petroleum diesel. 2.Bio Diesel, It is a domestically produced, renewable fuel that can be manufactured from vegetable oils, animal fats, or recycled restaurant grease for use in diesel vehicles. 3.CNG, It is a fuel which can be used in place of gasoline, diesel fuel and LPG.  4.Diesel fuel, it is a mixture of hydrocarbons obtained by distillation of crude oil. 5.E10, it is regular unleaded petrol blended with between 9% and 10% ethanol. 6.E25, it contains 25% ethanol. 7.E85, it contains high-level ethanol-gasoline blends containing 51% to 83% ethanol, depending on geography and season. 8.Ethanol fuel, it is ethyl alcohol, the same type of alcohol found in alcoholic beverages, used as fuel. 9.Gasoline, it is a colorless petroleum-derived flammable liquid that is used primarily as a fuel in spark-ignited internal combustion engines. 10.LPG, Liquefied petroleum gas is a flammable mixture of hydrocarbon gases used as fuel in heating appliances, cooking equipment, and vehicles. 11.Petrol, it is a naturally occurring, yellowish-black liquid found in geological formations beneath the Earth's surface.");
+        }
+    } else {
+        if (!conv.user.storage.noPermission)
+            return fuels.processRequest(conv, parameters, true);
+        else
+            return fuels.processRequest(conv, parameters, false);
+    }
 });
 
-app.intent('fuels_intent - followup', (conv, parameters) => {
+app.intent('fuels_emission_type_ask', (conv, parameters, option) => {
+    conv.user.storage.lastParams.fuel_type = option;
+    parameters = conv.user.storage.lastParams;
+    if (parameters.emission_type == '') {
+        if (conv.surface.capabilities.has('actions.capability.SCREEN_OUTPUT')) {
+            conv.ask("Would you like to provide the emission type?");
+            conv.ask(new Suggestions(["Yes, I'll provide", "No, thanks"]));
+        } else if (!conv.surface.capabilities.has('actions.capability.SCREEN_OUTPUT')) {
+            conv.ask("Would you like to provide the emission type?");
+        }
+    } else {
+        if (!conv.user.storage.noPermission)
+            return fuels.processRequest(conv, parameters, true);
+        else
+            return fuels.processRequest(conv, parameters, false);
+    }
+});
+
+app.intent('fuels_emission_type_yes', (conv, parameters) => {
+    conv.user.storage.lastParams.emission_type = parameters.emission_type;
+    parameters = conv.user.storage.lastParams;
+    if(parameters.quantity == ''){
+        if (conv.surface.capabilities.has('actions.capability.SCREEN_OUTPUT')) {
+            conv.ask("Would you like to provide the consumption quantity of the fuel?");
+            conv.ask(new Suggestions(["Yes, I'll", "No, thanks"]));
+        } else if (!conv.surface.capabilities.has('actions.capability.SCREEN_OUTPUT')) {
+            conv.ask("Would you like to provide the consumption quantity of the fuel?");
+        }
+    } else {
+        if (!conv.user.storage.noPermission)
+            return fuels.processRequest(conv, parameters, true);
+        else
+            return fuels.processRequest(conv, parameters, false);
+    }
+});
+
+app.intent('fuels_emission_type_no', (conv, parameters) => {
+    parameters = conv.user.storage.lastParams;
+    if(parameters.quantity == ''){
+        if (conv.surface.capabilities.has('actions.capability.SCREEN_OUTPUT')) {
+            conv.ask("Would you like to provide the consumption quantity of the fuel?");
+            conv.ask(new Suggestions(["Ok. I'll", "No, that's it"]));
+        } else if (!conv.surface.capabilities.has('actions.capability.SCREEN_OUTPUT')) {
+            conv.ask("Would you like to provide the consumption quantity of the fuel?");
+        }
+    } else {
+        if (!conv.user.storage.noPermission)
+            return fuels.processRequest(conv, parameters, true);
+        else
+            return fuels.processRequest(conv, parameters, false);
+    }
+});
+
+app.intent('fuels_emission_type_yes_quantity_yes', (conv, parameters) => {
+    conv.user.storage.lastParams.quantity = parameters.quantity; 
+    parameters = conv.user.storage.lastParams;
+        if (!conv.user.storage.noPermission)
+            return fuels.processRequest(conv, parameters, true);
+        else
+            return fuels.processRequest(conv, parameters, false);
+});
+
+app.intent('fuels_emission_type_yes_quantity_no', (conv, parameters) => {
+    parameters = conv.user.storage.lastParams;
+        if (!conv.user.storage.noPermission)
+            return fuels.processRequest(conv, parameters, true);
+        else
+            return fuels.processRequest(conv, parameters, false);
+});
+
+app.intent('fuels_emission_type_no_quantity_yes', (conv, parameters) => {
+    conv.user.storage.lastParams.quantity = parameters.quantity; 
+    parameters = conv.user.storage.lastParams;
+        if (!conv.user.storage.noPermission)
+            return fuels.processRequest(conv, parameters, true);
+        else
+            return fuels.processRequest(conv, parameters, false);
+});
+
+app.intent('fuels_emission_type_no_quantity_no', (conv, parameters) => {
+    parameters = conv.user.storage.lastParams;
+        if (!conv.user.storage.noPermission)
+            return fuels.processRequest(conv, parameters, true);
+        else
+            return fuels.processRequest(conv, parameters, false);
+});
+
+app.intent('fuels_emission_type_yes_quantity_yes-followup', (conv, parameters) => {
+    let contextParams = conv.user.storage.lastParams;
+    let newParams = {};
+
+    if (parameters.quantity && parameters.quantity !== "")
+        newParams.quantity = parameters.quantity;
+    else
+        newParams.quantity = contextParams.quantity;
+
+    if (parameters.fuel_original && parameters.fuel_original !== "")
+        newParams.fuel_original = parameters.fuel_original;
+    else
+        newParams.fuel_original = contextParams.fuel_original;
+
+    if (parameters.emission_type && parameters.emission_type !== "")
+        newParams.emission_type = parameters.emission_type;
+    else
+        newParams.emission_type = contextParams.emission_type;
+
+    if (parameters.fuel_type && parameters.fuel_type !== "")
+        newParams.fuel_type = parameters.fuel_type;   
+    else
+        newParams.fuel_type = contextParams.fuel_type;
+
+    conv.user.storage.lastParams = newParams;
+    if (!conv.user.storage.noPermission)
+        return fuels.processRequest(conv, newParams, true);
+    else
+        return fuels.processRequest(conv, newParams, false);
+});
+
+app.intent('fuels_emission_type_yes_quantity_no-followup', (conv, parameters) => {
+    let contextParams = conv.user.storage.lastParams;
+    let newParams = {};
+
+    if (parameters.quantity && parameters.quantity !== "")
+        newParams.quantity = parameters.quantity;
+    else
+        newParams.quantity = contextParams.quantity;
+
+    if (parameters.fuel_original && parameters.fuel_original !== "")
+        newParams.fuel_original = parameters.fuel_original;
+    else
+        newParams.fuel_original = contextParams.fuel_original;
+
+    if (parameters.emission_type && parameters.emission_type !== "")
+        newParams.emission_type = parameters.emission_type;
+    else
+        newParams.emission_type = contextParams.emission_type;
+
+    if (parameters.fuel_type && parameters.fuel_type !== "")
+        newParams.fuel_type = parameters.fuel_type;    
+    else
+        newParams.fuel_type = contextParams.fuel_type;
+
+    conv.user.storage.lastParams = newParams;
+    if (!conv.user.storage.noPermission)
+        return fuels.processRequest(conv, newParams, true);
+    else
+        return fuels.processRequest(conv, newParams, false);
+});
+
+app.intent('fuels_emission_type_no_quantity_yes-followup', (conv, parameters) => {
     let contextParams = conv.user.storage.lastParams;
     let newParams = {};
 
@@ -430,13 +598,74 @@ app.intent('fuels_intent - followup', (conv, parameters) => {
         newParams.fuel_type = contextParams.fuel_type;
 
     conv.user.storage.lastParams = newParams;
-
     if (!conv.user.storage.noPermission)
         return fuels.processRequest(conv, newParams, true);
     else
         return fuels.processRequest(conv, newParams, false);
 });
 
+app.intent('fuels_emission_type_no_quantity_no-followup', (conv, parameters) => {
+    let contextParams = conv.user.storage.lastParams;
+    let newParams = {};
+
+    if (parameters.quantity && parameters.quantity !== "")
+        newParams.quantity = parameters.quantity;
+    else
+        newParams.quantity = contextParams.quantity;
+
+    if (parameters.fuel_original && parameters.fuel_original !== "")
+        newParams.fuel_original = parameters.fuel_original;
+    else
+        newParams.fuel_original = contextParams.fuel_original;
+
+    if (parameters.emission_type && parameters.emission_type !== "")
+        newParams.emission_type = parameters.emission_type;
+    else
+        newParams.emission_type = contextParams.emission_type;
+
+    if (parameters.fuel_type && parameters.fuel_type !== "")
+        newParams.fuel_type = parameters.fuel_type;
+    else
+        newParams.fuel_type = contextParams.fuel_type;
+
+    conv.user.storage.lastParams = newParams;
+    if (!conv.user.storage.noPermission)
+        return fuels.processRequest(conv, newParams, true);
+    else
+        return fuels.processRequest(conv, newParams, false);
+});
+
+app.intent('fuels_intent-followup', (conv, parameters, option) => {
+    let contextParams = conv.user.storage.lastParams;
+    let newParams = {};
+
+    if (parameters.quantity && parameters.quantity !== "")
+        newParams.quantity = parameters.quantity;
+    else
+        newParams.quantity = contextParams.quantity;
+
+    if (parameters.fuel_original && parameters.fuel_original !== "")
+        newParams.fuel_original = parameters.fuel_original;
+    else
+        newParams.fuel_original = contextParams.fuel_original;
+
+    if (parameters.emission_type && parameters.emission_type !== "")
+        newParams.emission_type = parameters.emission_type;
+    else
+        newParams.emission_type = contextParams.emission_type;
+
+    if (parameters.fuel_type && parameters.fuel_type !== "")
+        newParams.fuel_type = parameters.fuel_type; 
+    else
+        newParams.fuel_type = contextParams.fuel_type;
+
+    conv.user.storage.lastParams = newParams;
+    option = '';
+    if (!conv.user.storage.noPermission)
+        return fuels.processRequest(conv, newParams, true);
+    else
+        return fuels.processRequest(conv, newParams, false);
+});
 
 app.intent('electricity_intent', (conv, parameters) => {
     conv.user.storage.lastParams = parameters;

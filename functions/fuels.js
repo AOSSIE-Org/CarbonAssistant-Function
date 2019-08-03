@@ -1,15 +1,53 @@
-var config = require('./config')
+var config = require('./config');
 const requestLib = require('request');
 const utils = require('./utils');
 const reverseLookupManager = require('./reverseLookupManager');
 
 exports.processRequest = function(conv, parameters, requestReverseLookup) {
     return new Promise(function(resolve, reject) {
-        if (parameters.fuel_type != "" && parameters.fuel_original !== "") {
+        console.log("params: ", parameters);
+        if (parameters.fuel_type != "") {
+
+            switch (parameters.fuel_type) {
+                case "B20":
+                    parameters.fuel_type = "fuelB20";
+                    break;
+                case "Bio Diesel":
+                    parameters.fuel_type = "fuelBioDiesel";
+                    break;
+                case "CNG":
+                    parameters.fuel_type = "fuelCNG";
+                    break;
+                case "Diesel":
+                    parameters.fuel_type = "fuelDiesel";
+                    break;
+                case "E10":
+                    parameters.fuel_type = "fuelE10";
+                    break;
+                case "E25":
+                    parameters.fuel_type = "fuelE25";
+                    break;
+                case "E85":
+                    parameters.fuel_type = "fuelE85";
+                    break;
+                case "Ethanol":
+                    parameters.fuel_type = "fuelEthanol";
+                    break;
+                case "Gasoline":
+                    parameters.fuel_type = "fuelGasoline";
+                    break;
+                case "LPG":
+                    parameters.fuel_type = "fuelLPG";
+                    break;
+                case "Petrol":
+                    parameters.fuel_type = "fuelPetrol";
+            }
+
+
             let consumed_quantity = 1,
                 consumption_unit = 'Litre(s)',
                 consumed_fuel_type = parameters.fuel_type,
-                consumed_fuel_original = parameters.fuel_original;
+                consumed_fuel_original = consumed_fuel_type.slice(4);
 
             if (parameters.quantity !== "")
                 consumed_quantity = parameters.quantity;
@@ -32,7 +70,7 @@ exports.processRequest = function(conv, parameters, requestReverseLookup) {
             };
 
             requestLib(options, function(error, response, body) {
-                const button = "/";
+                const button = "/visuals/fossilfuel";
                 const emissionResponse = "The emissions released due to this action are given below";
                 if (!error && response.statusCode === 200) {
                     console.log(body);
@@ -126,12 +164,12 @@ exports.processRequest = function(conv, parameters, requestReverseLookup) {
                         }
                     }
                 } else {
-                  // Handle errors here
-                  if (!error)
-                    error = body.error;
-                  //Handle the error in the utils function
-                  utils.handleError(error, response, body, conv);
-                  resolve();
+                    // Handle errors here
+                    if (!error)
+                        error = body.error;
+                    //Handle the error in the utils function
+                    utils.handleError(error, response, body, conv);
+                    resolve();
                 }
             });
         } else {

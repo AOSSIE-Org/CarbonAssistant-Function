@@ -1,0 +1,56 @@
+[
+  {
+    "data": [
+      {
+        "text": "carbon",
+        "alias": "emission_type",
+        "meta": "@emission_type",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0
+  },
+  {
+    "data": [
+      {
+        "text": "CO2",
+        "alias": "emission_type",
+        "meta": "@emission_type",
+        "userDefined": true
+      },
+      {
+        "text": " emissions",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0
+  },
+  {
+    "data": [
+      {
+        "text": "methane",
+        "alias": "emission_type",
+        "meta": "@emission_type",
+        "userDefined": true
+      },
+      {
+        "text": " emission",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0
+  },
+  {
+    "data": [
+      {
+        "text": "Yes, I'll provide",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0
+  }
+]

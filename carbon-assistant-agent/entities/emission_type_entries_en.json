@@ -1,17 +1,18 @@
 [
   {
+    "value": "CH4",
+    "synonyms": [
+      "CH4",
+      "Methane",
+      "methane"
+    ]
+  },
+  {
     "value": "CO2",
     "synonyms": [
       "CO2",
       "Carbon Dioxide",
       "carbon"
-    ]
-  },
-  {
-    "value": "CH4",
-    "synonyms": [
-      "CH4",
-      "Methane"
     ]
   },
   {

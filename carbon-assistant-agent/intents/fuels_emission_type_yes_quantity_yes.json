@@ -1,19 +1,32 @@
 {
-  "name": "fuels_intent",
+  "name": "fuels_emission_type_yes_quantity_yes",
   "auto": true,
-  "contexts": [],
+  "contexts": [
+    "fuels_emission_type_yes-followup"
+  ],
   "responses": [
     {
       "resetContexts": false,
-      "action": "input.fuel_details",
+      "action": "fuels_intent.fuels_intent-custom-2.fuels_emission_type_ask-custom.fuels_emission_type_yes-custom",
       "affectedContexts": [
         {
-          "name": "fuels_intent-followup",
+          "name": "fuels_emission_type_yes_quantity_yes-followup",
           "parameters": {},
           "lifespan": 2
         }
       ],
       "parameters": [
+        {
+          "required": false,
+          "dataType": "@fuels",
+          "name": "fuel_type",
+          "value": "$fuel_type",
+          "promptMessages": [],
+          "noMatchPromptMessages": [],
+          "noInputPromptMessages": [],
+          "outputDialogContexts": [],
+          "isList": false
+        },
         {
           "required": false,
           "dataType": "@emission_type",
@@ -26,22 +39,18 @@
           "isList": false
         },
         {
-          "required": false,
-          "dataType": "@fuels",
-          "name": "fuel_type",
-          "value": "$fuel_type",
+          "required": true,
+          "dataType": "@sys.number",
+          "name": "quantity",
+          "value": "$quantity",
           "prompts": [
             {
               "lang": "en",
-              "value": "I didn't get the fuel you are  looking for. Can you please say the fuel name again?"
+              "value": "Can you please provide the consumption quantity of the fuel so that I can provide you with the exact value of the emission."
             },
             {
               "lang": "en",
-              "value": "Sorry I didn't get the fuel name you said. What was it again?"
-            },
-            {
-              "lang": "en",
-              "value": "I can't tell you the exact emission value without knowing the fuel name. CAn you please say the fuel name?"
+              "value": "Ok. What is the amount of fuel consumed?"
             }
           ],
           "promptMessages": [],
@@ -55,17 +64,6 @@
           "dataType": "",
           "name": "fuel_original",
           "value": "$fuel_type.original",
-          "promptMessages": [],
-          "noMatchPromptMessages": [],
-          "noInputPromptMessages": [],
-          "outputDialogContexts": [],
-          "isList": false
-        },
-        {
-          "required": false,
-          "dataType": "@sys.number",
-          "name": "quantity",
-          "value": "$quantity",
           "promptMessages": [],
           "noMatchPromptMessages": [],
           "noInputPromptMessages": [],
@@ -88,9 +86,5 @@
   "webhookUsed": true,
   "webhookForSlotFilling": false,
   "fallbackIntent": false,
-  "events": [
-    {
-      "name": "fuels_intent_triggered"
-    }
-  ]
+  "events": []
 }
