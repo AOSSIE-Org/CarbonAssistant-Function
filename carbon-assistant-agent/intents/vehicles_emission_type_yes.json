@@ -1,47 +1,36 @@
 {
-  "name": "vehicle_intent",
+  "name": "vehicles_emission_type_yes",
   "auto": true,
-  "contexts": [],
+  "contexts": [
+    "vehicles_emission_type_ask-followup"
+  ],
   "responses": [
     {
       "resetContexts": false,
-      "action": "input.vehicle_details",
+      "action": "vehicle_intent.vehicle_intent-custom-2.vehicles_emission_type_ask-custom",
       "affectedContexts": [
         {
-          "name": "vehicle_intent-followup",
+          "name": "vehicles_emission_type_yes-followup",
           "parameters": {},
           "lifespan": 2
         }
       ],
       "parameters": [
         {
-          "required": false,
+          "required": true,
           "dataType": "@emission_type",
           "name": "emission_type",
           "value": "$emission_type",
-          "promptMessages": [],
-          "noMatchPromptMessages": [],
-          "noInputPromptMessages": [],
-          "isList": false
-        },
-        {
-          "required": true,
-          "dataType": "@sys.geo-city",
-          "name": "origin",
-          "value": "$origin",
           "prompts": [
             {
               "lang": "en",
-              "value": "From where does this road trip to $destination begin ? Could you tell me the source of this journey?"
-            },
-            {
-              "lang": "en",
-              "value": "From which place does this road trip begin?"
+              "value": "I can provide you the value of carbon, methane and nitrous emission due to this road trip.Can you please choose one so that I can provide you the exact value of the emission."
             }
           ],
           "promptMessages": [],
           "noMatchPromptMessages": [],
           "noInputPromptMessages": [],
+          "outputDialogContexts": [],
           "isList": false
         },
         {
@@ -52,6 +41,29 @@
           "promptMessages": [],
           "noMatchPromptMessages": [],
           "noInputPromptMessages": [],
+          "outputDialogContexts": [],
+          "isList": false
+        },
+        {
+          "required": false,
+          "dataType": "@sys.geo-city",
+          "name": "origin",
+          "value": "$origin",
+          "promptMessages": [],
+          "noMatchPromptMessages": [],
+          "noInputPromptMessages": [],
+          "outputDialogContexts": [],
+          "isList": false
+        },
+        {
+          "required": false,
+          "dataType": "@sys.geo-city",
+          "name": "destination",
+          "value": "$destination",
+          "promptMessages": [],
+          "noMatchPromptMessages": [],
+          "noInputPromptMessages": [],
+          "outputDialogContexts": [],
           "isList": false
         },
         {
@@ -62,26 +74,7 @@
           "promptMessages": [],
           "noMatchPromptMessages": [],
           "noInputPromptMessages": [],
-          "isList": false
-        },
-        {
-          "required": true,
-          "dataType": "@sys.geo-city",
-          "name": "destination",
-          "value": "$destination",
-          "prompts": [
-            {
-              "lang": "en",
-              "value": "Ok. A road trip is happening from $origin, but where does it end?"
-            },
-            {
-              "lang": "en",
-              "value": "Alright. Where does this road trip end? Could you tell me the name of the city ?"
-            }
-          ],
-          "promptMessages": [],
-          "noMatchPromptMessages": [],
-          "noInputPromptMessages": [],
+          "outputDialogContexts": [],
           "isList": false
         }
       ],
@@ -100,12 +93,5 @@
   "webhookUsed": true,
   "webhookForSlotFilling": false,
   "fallbackIntent": false,
-  "events": [
-    {
-      "name": "vehicles_intent_triggered"
-    },
-    {
-      "name": "actions_intent_OPTION"
-    }
-  ]
+  "events": []
 }

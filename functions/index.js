@@ -27,6 +27,7 @@ var appliances_utils = require('./appliances_utils');
 var sector =require('./sector');
 var sector_utils = require('./sector_utils');
 var fuels_utils = require('./fuels_utils');
+var vehicles_utils = require('./vehicles_utils');
 
 const app = dialogflow({
     debug: true
@@ -83,54 +84,52 @@ app.intent('permission_confirmation', (conv, parameters, permission_allowed) => 
         conv.ask(`Ok ${name.given}, we are all set!`);
     } else {
         //For display screens
-        if (conv.surface.capabilities.has('actions.capability.SCREEN_OUTPUT')){
+        if (conv.surface.capabilities.has('actions.capability.SCREEN_OUTPUT')) {
             conv.ask(` Unfortunately, we can't provide you intelligent emission results without the location information.
                 Therefore, you'll only be able to receive raw emission results. You can allow the permission if you change your mind.`);
-            conv.ask(new Suggestions(['Request Permission', 'Allowed Permission']));    
+            conv.ask(new Suggestions(['Request Permission', 'Allowed Permission']));
             conv.user.storage.noPermission = true;
-        } else if (!conv.surface.capabilities.has('actions.capability.SCREEN_OUTPUT')){
+        } else if (!conv.surface.capabilities.has('actions.capability.SCREEN_OUTPUT')) {
             // google home
             conv.ask(` Unfortunately, we can't provide you intelligent emission results without the location information.
                 Therefore, you'll only be able to receive raw emission results. You can allow the permission if you change your mind.`);
             conv.user.storage.noPermission = true;
 
         }
-        
+
 
     }
 });
 
 app.intent('help_intent', (conv) => {
     //google home
-    if (!conv.surface.capabilities.has('actions.capability.SCREEN_OUTPUT')){
+    if (!conv.surface.capabilities.has('actions.capability.SCREEN_OUTPUT')) {
         conv.ask(`I can try to answer some of your emission related questions. I promise to make it less boring by giving you info that you can relate with!I can provide you with info regarding emissions released due to appliance usage, flight travels, train journeys, road trips, fuel consumption, poultry and meat generation and electricity generation across the world.  You can ask me about how much emissions your washing machine produces, or, how much pollution you contribute to by taking a flight to Mauritius. I support limited number of categories right now but trust me I'll get better over time.`)
-    } else if(conv.surface.capabilities.has('actions.capability.SCREEN_OUTPUT')){
-    //display screens
+    } else if (conv.surface.capabilities.has('actions.capability.SCREEN_OUTPUT')) {
+        //display screens
         conv.ask(new SimpleResponse({
             speech: "I can tell you the emissions produced by different activities and appliances. Try asking me about them. You can also choose the category you want to know the emission of, from the menu list.",
             text: "Here's what I can do:"
         }));
         conv.ask(new BasicCard({
             title: '',
-            text: "**Appliances**  \n  \ne.g: *How much emissions are produced if a radio is used for 3 hours in Canada?* \n  \n  \n**Travel \u0026 Journeys**  \n  \nYou can ask about emissions generated due to a travel by flight,"
-             +" train or a private vehicle by road between two places, optionally, with no. of passengers if you"+
-              "know.  \n  \ne.g: *How much emissions are produced due to flight from Mumbai to Seattle airport with 1202 passengers?*    \n  \n \n You can choose the category from the menu to know the emission related to it.  \n  \nThere is much more I can do. Click Read More to know more.",
-            
-            buttons: [
-                {
-                 title: "Read More",
-                 openUrlAction: {
+            text: "**Appliances**  \n  \ne.g: *How much emissions are produced if a radio is used for 3 hours in Canada?* \n  \n  \n**Travel \u0026 Journeys**  \n  \nYou can ask about emissions generated due to a travel by flight," +
+                " train or a private vehicle by road between two places, optionally, with no. of passengers if you" +
+                "know.  \n  \ne.g: *How much emissions are produced due to flight from Mumbai to Seattle airport with 1202 passengers?*    \n  \n \n You can choose the category from the menu to know the emission related to it.  \n  \nThere is much more I can do. Click Read More to know more.",
+
+            buttons: [{
+                title: "Read More",
+                openUrlAction: {
                     url: "https://gitlab.com/aossie/CarbonAssistant-Function/tree/master/docs/Usage.md",
                     urlTypeHint: "URL_TYPE_HINT_UNSPECIFIED"
-                    }
                 }
-            ]
+            }]
         }));
-        conv.ask(new Suggestions(["Show the menu"]));    
+        conv.ask(new Suggestions(["Show the menu"]));
     }
 });
 
-app.intent('menu_intent', (conv,option) => { //intent to show the list of categories
+app.intent('menu_intent', (conv, option) => { //intent to show the list of categories
     if (conv.surface.capabilities.has('actions.capability.SCREEN_OUTPUT')) {
         var items = menu_utils.getCategories();
         conv.ask('This is the list of all categories I support please choose one so that I can provide you the exact value of the emission for it.');
@@ -141,12 +140,12 @@ app.intent('menu_intent', (conv,option) => { //intent to show the list of catego
     }
 });
 
-app.intent('menu_option_handler',(conv, parameters, option) => { //intent to handle the triggering of followup events
-    if(option == 'Land'){
+app.intent('menu_option_handler', (conv, parameters, option) => { //intent to handle the triggering of followup events
+    if (option == 'Land') {
         conv.followup('land_intent_triggered', {
             option: option,
         });
-    } else if(option == 'Food Production'){
+    } else if (option == 'Food Production') {
         conv.followup('food_intent_triggered', {
             option: option,
         });
@@ -172,6 +171,10 @@ app.intent('menu_option_handler',(conv, parameters, option) => { //intent to han
         });
     } else if(option == 'Fuel consumption'){
         conv.followup('fuels_intent_triggered', {
+            option: option,
+        });
+    } else if (option == 'Vehicles') {
+        conv.followup('vehicles_intent_triggered', {
             option: option,
         });
     }
@@ -263,13 +266,262 @@ app.intent('trains_passenger_no-followup', (conv, parameters) => {
 
 app.intent('vehicle_intent', (conv, parameters) => {
     conv.user.storage.lastParams = parameters;
+    if (parameters.fuel_type == '') {
+        if (conv.surface.capabilities.has('actions.capability.SCREEN_OUTPUT')) {
+            var items = vehicles_utils.getFuelTypes();
+            conv.ask('Can you please select the type of fuel your vehicle uses so that I can provide you the exact value of the emission.');
+            conv.ask(new List({
+                title: "Fuel Types List",
+                items: items
+            }));
+        } else if(!conv.surface.capabilities.has('actions.capability.SCREEN_OUTPUT')) {
+            conv.ask('Can you please select the type of fuel your vehicle uses so that I can provide you the exact value of the emission. 1.B20 Fuel. 2.Bio Diesel. 3.CNG. 4.Diesel. 5.E10 Fuel. 6.E25 Fuel. 7.E85 Fuel. 8.Ethanol. 9.Gasoline. 10.LPG. 11.Petrol.');
+        }
+    } else {
+        if (!conv.user.storage.noPermission)
+            return vehicles.processRequest(conv, parameters, true);
+        else
+            return vehicles.processRequest(conv, parameters, false);
+    }
+
+});
+
+app.intent('vehicles_emission_type_ask', (conv, parameters, option) => {
+    conv.user.storage.lastParams.fuel_type = option;
+    parameters = conv.user.storage.lastParams;
+    if (parameters.emission_type == '') {
+        if (conv.surface.capabilities.has('actions.capability.SCREEN_OUTPUT')) {
+            conv.ask("Would you like to provide the emission type?");
+            conv.ask(new Suggestions(["Yes, I'll provide", "No, thanks", "carbon", "methane", "nitrous"]));
+        } else if(!conv.surface.capabilities.has('actions.capability.SCREEN_OUTPUT')) {
+            conv.ask("Would you like to provide the emission type?");
+        }
+    } else {
+        if (!conv.user.storage.noPermission)
+            return vehicles.processRequest(conv, parameters, true);
+        else
+            return vehicles.processRequest(conv, parameters, false);
+    }
+});
+
+app.intent('vehicles_emission_type_yes', (conv, parameters) => {
+    conv.user.storage.lastParams.emission_type = parameters.emission_type;
+    parameters = conv.user.storage.lastParams;
+    if (parameters.mileage == '') {
+        if (conv.surface.capabilities.has('actions.capability.SCREEN_OUTPUT')) {
+            conv.ask("Would you like to provide the mileage or the fuel efficiency of the vehicle that is the distance traveled per unit of fuel?");
+            conv.ask(new Suggestions(["Yes, I'll provide", "No, thanks"]));
+        } else if(!conv.surface.capabilities.has('actions.capability.SCREEN_OUTPUT')) {
+            conv.ask("Would you like to provide the mileage or the fuel efficiency of the vehicle that is the distance traveled per unit of fuel?");
+        }
+    } else {
+        if (!conv.user.storage.noPermission)
+            return vehicles.processRequest(conv, parameters, true);
+        else
+            return vehicles.processRequest(conv, parameters, false);
+    }
+});
+
+app.intent('vehicles_emission_type_no', (conv, parameters) => {
+    parameters = conv.user.storage.lastParams;
+    if (parameters.mileage == '') {
+        if (conv.surface.capabilities.has('actions.capability.SCREEN_OUTPUT')) {
+            conv.ask("Would you like to provide the mileage or the fuel efficiency of the vehicle that is the distance traveled per unit of fuel?");
+            conv.ask(new Suggestions(["Ok. I'll", "No, that's it"]));
+        } else if(!conv.surface.capabilities.has('actions.capability.SCREEN_OUTPUT')) {
+            conv.ask("Would you like to provide the mileage or the fuel efficiency of the vehicle that is the distance traveled per unit of fuel?");
+        }
+    } else {
+        if (!conv.user.storage.noPermission)
+            return vehicles.processRequest(conv, parameters, true);
+        else
+            return vehicles.processRequest(conv, parameters, false);
+    }
+});
+
+app.intent('vehicles_emission_type_yes_mileage_yes', (conv, parameters) => {
+    conv.user.storage.lastParams.mileage = parameters.mileage;
+    parameters = conv.user.storage.lastParams;
     if (!conv.user.storage.noPermission)
         return vehicles.processRequest(conv, parameters, true);
     else
         return vehicles.processRequest(conv, parameters, false);
 });
 
-app.intent('vehicle_intent - followup', (conv, parameters) => {
+app.intent('vehicles_emission_type_yes_mileage_no', (conv, parameters) => {
+    parameters = conv.user.storage.lastParams;
+    if (!conv.user.storage.noPermission)
+        return vehicles.processRequest(conv, parameters, true);
+    else
+        return vehicles.processRequest(conv, parameters, false);
+});
+
+app.intent('vehicles_emission_type_no_mileage_yes', (conv, parameters) => {
+    conv.user.storage.lastParams.mileage = parameters.mileage;
+    parameters = conv.user.storage.lastParams;
+    if (!conv.user.storage.noPermission)
+        return vehicles.processRequest(conv, parameters, true);
+    else
+        return vehicles.processRequest(conv, parameters, false);
+});
+
+app.intent('vehicles_emission_type_no_mileage_no', (conv, parameters) => {
+    parameters = conv.user.storage.lastParams;
+    if (!conv.user.storage.noPermission)
+        return vehicles.processRequest(conv, parameters, true);
+    else
+        return vehicles.processRequest(conv, parameters, false);
+});
+
+app.intent('vehicle_intent-followup', (conv, parameters) => {
+    let contextParams = conv.user.storage.lastParams;
+    let newParams = {};
+
+    if (parameters.origin && parameters.origin !== "")
+        newParams.origin = parameters.origin;
+    else
+        newParams.origin = contextParams.origin;
+
+    if (parameters.destination && parameters.destination !== "")
+        newParams.destination = parameters.destination;
+    else
+        newParams.destination = contextParams.destination;
+
+    if (parameters.mileage && parameters.mileage !== "")
+        newParams.mileage = parameters.mileage;
+    else
+        newParams.mileage = contextParams.mileage;
+
+    if (parameters.emission_type && parameters.emission_type !== "")
+        newParams.emission_type = parameters.emission_type;
+    else
+        newParams.emission_type = contextParams.emission_type;
+
+    if (parameters.fuel_type && parameters.fuel_type !== "")
+        newParams.fuel_type = parameters.fuel_type;
+    else
+        newParams.fuel_type = contextParams.fuel_type;
+
+    conv.user.storage.lastParams = newParams;
+
+    if (!conv.user.storage.noPermission)
+        return vehicles.processRequest(conv, newParams, true);
+    else
+        return vehicles.processRequest(conv, newParams, false);
+});
+
+app.intent('vehicles_emission_type_yes_mileage_yes-followup', (conv, parameters) => {
+    let contextParams = conv.user.storage.lastParams;
+    let newParams = {};
+
+    if (parameters.origin && parameters.origin !== "")
+        newParams.origin = parameters.origin;
+    else
+        newParams.origin = contextParams.origin;
+
+    if (parameters.destination && parameters.destination !== "")
+        newParams.destination = parameters.destination;
+    else
+        newParams.destination = contextParams.destination;
+
+    if (parameters.mileage && parameters.mileage !== "")
+        newParams.mileage = parameters.mileage;
+    else
+        newParams.mileage = contextParams.mileage;
+
+    if (parameters.emission_type && parameters.emission_type !== "")
+        newParams.emission_type = parameters.emission_type;
+    else
+        newParams.emission_type = contextParams.emission_type;
+
+    if (parameters.fuel_type && parameters.fuel_type !== "")
+        newParams.fuel_type = parameters.fuel_type;
+    else
+        newParams.fuel_type = contextParams.fuel_type;
+
+    conv.user.storage.lastParams = newParams;
+
+    if (!conv.user.storage.noPermission)
+        return vehicles.processRequest(conv, newParams, true);
+    else
+        return vehicles.processRequest(conv, newParams, false);
+});
+
+app.intent('vehicles_emission_type_yes_mileage_no-followup', (conv, parameters) => {
+    let contextParams = conv.user.storage.lastParams;
+    let newParams = {};
+
+    if (parameters.origin && parameters.origin !== "")
+        newParams.origin = parameters.origin;
+    else
+        newParams.origin = contextParams.origin;
+
+    if (parameters.destination && parameters.destination !== "")
+        newParams.destination = parameters.destination;
+    else
+        newParams.destination = contextParams.destination;
+
+    if (parameters.mileage && parameters.mileage !== "")
+        newParams.mileage = parameters.mileage;
+    else
+        newParams.mileage = contextParams.mileage;
+
+    if (parameters.emission_type && parameters.emission_type !== "")
+        newParams.emission_type = parameters.emission_type;
+    else
+        newParams.emission_type = contextParams.emission_type;
+
+    if (parameters.fuel_type && parameters.fuel_type !== "")
+        newParams.fuel_type = parameters.fuel_type;
+    else
+        newParams.fuel_type = contextParams.fuel_type;
+
+    conv.user.storage.lastParams = newParams;
+
+    if (!conv.user.storage.noPermission)
+        return vehicles.processRequest(conv, newParams, true);
+    else
+        return vehicles.processRequest(conv, newParams, false);
+});
+
+app.intent('vehicles_emission_type_no_mileage_yes-followup', (conv, parameters) => {
+    let contextParams = conv.user.storage.lastParams;
+    let newParams = {};
+
+    if (parameters.origin && parameters.origin !== "")
+        newParams.origin = parameters.origin;
+    else
+        newParams.origin = contextParams.origin;
+
+    if (parameters.destination && parameters.destination !== "")
+        newParams.destination = parameters.destination;
+    else
+        newParams.destination = contextParams.destination;
+
+    if (parameters.mileage && parameters.mileage !== "")
+        newParams.mileage = parameters.mileage;
+    else
+        newParams.mileage = contextParams.mileage;
+
+    if (parameters.emission_type && parameters.emission_type !== "")
+        newParams.emission_type = parameters.emission_type;
+    else
+        newParams.emission_type = contextParams.emission_type;
+
+    if (parameters.fuel_type && parameters.fuel_type !== "")
+        newParams.fuel_type = parameters.fuel_type;
+    else
+        newParams.fuel_type = contextParams.fuel_type;
+
+    conv.user.storage.lastParams = newParams;
+
+    if (!conv.user.storage.noPermission)
+        return vehicles.processRequest(conv, newParams, true);
+    else
+        return vehicles.processRequest(conv, newParams, false);
+});
+
+app.intent('vehicles_emission_type_no_mileage_no-followup', (conv, parameters) => {
     let contextParams = conv.user.storage.lastParams;
     let newParams = {};
 
@@ -754,7 +1006,7 @@ app.intent('electricity_region_yes_quantity_yes_followup', (conv, parameters) =>
         newParams.geo_country = parameters.geo_country;
     else
         newParams.geo_country = contextParams.geo_country;
-    
+
     if (parameters.emission_type && parameters.emission_type !== "")
         newParams.emission_type = parameters.emission_type;
     else
@@ -847,12 +1099,12 @@ app.intent('electricity_region_no_quantity_no_followup', (conv, parameters) => {
 
 app.intent('poultry_intent', (conv, parameters) => {
     conv.user.storage.lastParams = parameters;
-    
+
     if (!conv.user.storage.noPermission)
         return poultry.processRequest(conv, parameters, true);
     else
         return poultry.processRequest(conv, parameters, false);
-    
+
 });
 
 
@@ -881,7 +1133,7 @@ app.intent('poultry_intent - followup', (conv, parameters) => {
         return poultry.processRequest(conv, newParams, true);
     else
         return poultry.processRequest(conv, newParams, false);
-    
+
 });
 
 app.intent('appliance_intent', (conv, parameters) => {
@@ -1222,7 +1474,7 @@ app.intent('appliance_intent-followup', (conv, parameters) => {
 });
 
 app.intent('land_intent', (conv, parameters, option) => {
-    if (parameters.land_type === ""){
+    if (parameters.land_type === "") {
         if (conv.surface.capabilities.has('actions.capability.SCREEN_OUTPUT')) {
             var items = land_utils.getLandTypes();
             conv.ask('This is the list of land types Please choose one So, that I can provide you the exact value of the emission.');
@@ -1238,9 +1490,9 @@ app.intent('land_intent', (conv, parameters, option) => {
         else
             return land.processRequest(conv, parameters, false);
     }
-}); 
+});
 
-app.intent('land_intent_followup',(conv,parameters,option) => {
+app.intent('land_intent_followup', (conv, parameters, option) => {
     let contextParams = conv.user.storage.lastParams;
     let newParams = {};
     if (parameters.land_region && parameters.land_region !== "")
@@ -1250,7 +1502,7 @@ app.intent('land_intent_followup',(conv,parameters,option) => {
 
     if (parameters.land_type && parameters.land_type !== "")
         newParams.land_type = parameters.land_type;
-    else if(option && contextParams.land_type == "")
+    else if (option && contextParams.land_type == "")
         newParams.land_type = option;
     else
         newParams.land_type = contextParams.land_type;
@@ -1259,10 +1511,10 @@ app.intent('land_intent_followup',(conv,parameters,option) => {
         return land.processRequest(conv, newParams, true);
     else
         return land.processRequest(conv, newParams, false);
-});        
-    
+});
+
 app.intent('food_intent', (conv, parameters, option) => {
-    if (parameters.food_type === ""){
+    if (parameters.food_type === "") {
         if (conv.surface.capabilities.has('actions.capability.SCREEN_OUTPUT')) {
             var items = food_utils.getFoodTypes();
             conv.ask('This is the list of food types Please choose one So, that I can provide you the exact value of the emission.');
@@ -1280,10 +1532,10 @@ app.intent('food_intent', (conv, parameters, option) => {
     }
 });
 
-app.intent('food_intent_followup',(conv,parameters,option) => {
+app.intent('food_intent_followup', (conv, parameters, option) => {
     let contextParams = conv.user.storage.lastParams;
     let newParams = {};
-    
+
     if (parameters.food_region && parameters.food_region !== "")
         newParams.food_region = parameters.food_region;
     else
@@ -1291,11 +1543,11 @@ app.intent('food_intent_followup',(conv,parameters,option) => {
 
     if (parameters.food_type && parameters.food_type !== "")
         newParams.food_type = parameters.food_type;
-    else if(option && contextParams.food_type == "")
+    else if (option && contextParams.food_type == "")
         newParams.food_type = option;
     else
         newParams.food_type = contextParams.food_type;
-        
+
     conv.user.storage.lastParams = newParams;
     return food.processRequest(conv, newParams, option);
 });
