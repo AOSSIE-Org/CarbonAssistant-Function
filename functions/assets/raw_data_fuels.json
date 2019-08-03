@@ -1,0 +1,66 @@
+[{
+    "fuel": "B20",
+    "description": " B20 Biodiesel is a blend of 20% biodiesel and 80% petroleum diesel",
+    "url": "https://firebasestorage.googleapis.com/v0/b/co2-gal.appspot.com/o/Webp.net-resizeimage%20(19).png?alt=media&token=e67caddc-39cb-42de-b877-ddfc7879e363",
+    "alt": "B20"
+},
+{
+    "fuel": "Bio Diesel",
+    "description": "It is a domestically produced, renewable fuel that can be manufactured from vegetable oils, animal fats, or recycled restaurant grease for use in diesel vehicles.",
+    "url": "https://firebasestorage.googleapis.com/v0/b/co2-gal.appspot.com/o/Webp.net-resizeimage%20(13).png?alt=media&token=21cc0865-f40e-4df6-b5ce-bca9e07dea87",
+    "alt": "Bio Diesel"
+},
+{
+    "fuel": "CNG",
+    "description": "It is a fuel which can be used in place of gasoline, diesel fuel and LPG. CNG combustion produces fewer undesirable gases.",
+    "url": "https://firebasestorage.googleapis.com/v0/b/co2-gal.appspot.com/o/Webp.net-resizeimage%20(11).png?alt=media&token=47bc5a25-6044-43e0-960a-88fc70f4b5bd",
+    "alt": "CNG"
+},
+{
+    "fuel": "Diesel",
+    "description": "Diesel fuel is a mixture of hydrocarbons obtained by distillation of crude oil",
+    "url": "https://firebasestorage.googleapis.com/v0/b/co2-gal.appspot.com/o/Webp.net-resizeimage%20(12).png?alt=media&token=72ee4f96-51de-4caf-a018-e24610353630",
+    "alt": "Diesel"
+},
+{
+    "fuel": "E10",
+    "description": "E10 is regular unleaded petrol blended with between 9% and 10% ethanol. E10 is a safe and reliable fuel.",
+    "url": "https://firebasestorage.googleapis.com/v0/b/co2-gal.appspot.com/o/Webp.net-resizeimage%20(14).png?alt=media&token=d916887e-cf00-4faa-a196-6145543fbe1e",
+    "alt": "E10"
+},
+{
+    "fuel": "E25",
+    "description": "E25 contains 25% ethanol. These blends have been widely used in Brazil since the late 1970s",
+    "url": "https://firebasestorage.googleapis.com/v0/b/co2-gal.appspot.com/o/Webp.net-resizeimage%20(15).png?alt=media&token=3bfd96af-ff9f-4979-8249-a80c4941b85d",
+    "alt": "E25"
+},
+{
+    "fuel": "E85",
+    "description": "It contains high-level ethanol-gasoline blends containing 51% to 83% ethanol, depending on geography and season. It can be used in flexible fuel vehicles ",
+    "url": "https://firebasestorage.googleapis.com/v0/b/co2-gal.appspot.com/o/Webp.net-resizeimage%20(16).png?alt=media&token=344090bf-4163-4605-8f00-e6c8536902d0",
+    "alt": "E85"
+},
+{
+    "fuel": "Ethanol",
+    "description": "Ethanol fuel is ethyl alcohol, the same type of alcohol found in alcoholic beverages, used as fuel",
+    "url": "https://firebasestorage.googleapis.com/v0/b/co2-gal.appspot.com/o/Webp.net-resizeimage%20(20).png?alt=media&token=8563c5bd-f521-4549-a271-01c9bd3eba97",
+    "alt": "Ethanol"
+},
+{
+    "fuel": "Gasoline",
+    "description": "Gasoline is a colorless petroleum-derived flammable liquid that is used primarily as a fuel in spark-ignited internal combustion engines",
+    "url": "https://firebasestorage.googleapis.com/v0/b/co2-gal.appspot.com/o/Webp.net-resizeimage%20(21).png?alt=media&token=668bb48a-95dd-4fdf-82e2-c031bcfb87f0",
+    "alt": "Gasoline"
+},
+{
+    "fuel": "LPG",
+    "description": "Liquefied petroleum gas is a flammable mixture of hydrocarbon gases used as fuel in heating appliances, cooking equipment, and vehicles",
+    "url": "https://firebasestorage.googleapis.com/v0/b/co2-gal.appspot.com/o/Webp.net-resizeimage%20(17).png?alt=media&token=20b4e776-9ffb-4fb8-ac9e-1b58ed49c1ba",
+    "alt": "LPG"
+},
+{
+    "fuel": "Petrol",
+    "description": "Petroleum is a naturally occurring, yellowish-black liquid found in geological formations beneath the Earth's surface",
+    "url": "https://firebasestorage.googleapis.com/v0/b/co2-gal.appspot.com/o/Webp.net-resizeimage%20(18).png?alt=media&token=abd3b5ce-226d-4f32-9e26-8e3a5d28c57b",
+    "alt": "Petrol"
+}]

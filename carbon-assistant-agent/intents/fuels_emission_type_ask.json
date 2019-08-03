@@ -1,5 +1,5 @@
 {
-  "name": "fuels_intent - followup",
+  "name": "fuels_emission_type_ask",
   "auto": true,
   "contexts": [
     "fuels_intent-followup"
@@ -7,20 +7,35 @@
   "responses": [
     {
       "resetContexts": false,
-      "action": "fuels_intent.fuels_intent-custom",
+      "action": "fuels_intent.fuels_intent-custom-2",
       "affectedContexts": [
         {
-          "name": "fuels_intent-followup",
+          "name": "fuels_emission_type_ask-followup",
           "parameters": {},
-          "lifespan": 5
+          "lifespan": 2
         }
       ],
       "parameters": [
         {
           "required": false,
+          "dataType": "@fuels",
+          "name": "fuel_type",
+          "value": "$fuel_type",
+          "promptMessages": [],
+          "noMatchPromptMessages": [],
+          "noInputPromptMessages": [],
+          "outputDialogContexts": [],
+          "isList": false
+        },
+        {
+          "required": false,
           "dataType": "@emission_type",
           "name": "emission_type",
           "value": "$emission_type",
+          "promptMessages": [],
+          "noMatchPromptMessages": [],
+          "noInputPromptMessages": [],
+          "outputDialogContexts": [],
           "isList": false
         },
         {
@@ -28,19 +43,21 @@
           "dataType": "@sys.number",
           "name": "quantity",
           "value": "$quantity",
+          "promptMessages": [],
+          "noMatchPromptMessages": [],
+          "noInputPromptMessages": [],
+          "outputDialogContexts": [],
           "isList": false
         },
         {
           "required": false,
-          "dataType": "@fuels",
-          "name": "fuel_type",
-          "value": "$fuel_type",
-          "isList": false
-        },
-        {
-          "required": false,
+          "dataType": "",
           "name": "fuel_original",
           "value": "$fuel_type.original",
+          "promptMessages": [],
+          "noMatchPromptMessages": [],
+          "noInputPromptMessages": [],
+          "outputDialogContexts": [],
           "isList": false
         }
       ],
@@ -59,5 +76,9 @@
   "webhookUsed": true,
   "webhookForSlotFilling": false,
   "fallbackIntent": false,
-  "events": []
+  "events": [
+    {
+      "name": "actions_intent_OPTION"
+    }
+  ]
 }
