@@ -1,0 +1,213 @@
+[
+  {
+    "data": [
+      {
+        "text": "what about ",
+        "userDefined": false
+      },
+      {
+        "text": "Michigan",
+        "alias": "poultry_region",
+        "meta": "@poultry_regions",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0
+  },
+  {
+    "data": [
+      {
+        "text": "give more details",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0
+  },
+  {
+    "data": [
+      {
+        "text": "show more",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0
+  },
+  {
+    "data": [
+      {
+        "text": "tell me more",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0
+  },
+  {
+    "data": [
+      {
+        "text": "what else",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0
+  },
+  {
+    "data": [
+      {
+        "text": "say",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      },
+      {
+        "text": " something more",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0
+  },
+  {
+    "data": [
+      {
+        "text": "How about in ",
+        "userDefined": false
+      },
+      {
+        "text": "Ohio",
+        "alias": "poultry_region",
+        "meta": "@poultry_regions",
+        "userDefined": true
+      },
+      {
+        "text": "?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0
+  },
+  {
+    "data": [
+      {
+        "text": "And how about ",
+        "userDefined": false
+      },
+      {
+        "text": "beef",
+        "alias": "poultry_type",
+        "meta": "@poultry_list",
+        "userDefined": true
+      },
+      {
+        "text": " in ",
+        "userDefined": false
+      },
+      {
+        "text": "Michigan",
+        "alias": "poultry_region",
+        "meta": "@poultry_regions",
+        "userDefined": true
+      },
+      {
+        "text": "?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0
+  },
+  {
+    "data": [
+      {
+        "text": "And what if ",
+        "userDefined": false
+      },
+      {
+        "text": "turkey",
+        "alias": "poultry_type",
+        "meta": "@poultry_list",
+        "userDefined": true
+      },
+      {
+        "text": "?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 1
+  },
+  {
+    "data": [
+      {
+        "text": "how about ",
+        "userDefined": false
+      },
+      {
+        "text": "3",
+        "alias": "poultry_quantity",
+        "meta": "@sys.number",
+        "userDefined": true
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "eggs",
+        "alias": "poultry_type",
+        "meta": "@poultry_list",
+        "userDefined": true
+      },
+      {
+        "text": "?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0
+  },
+  {
+    "data": [
+      {
+        "text": "what about ",
+        "userDefined": false
+      },
+      {
+        "text": "2",
+        "alias": "poultry_quantity",
+        "meta": "@sys.number",
+        "userDefined": true
+      },
+      {
+        "text": " kgs?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 1
+  },
+  {
+    "data": [
+      {
+        "text": "anything else",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 1
+  },
+  {
+    "data": [
+      {
+        "text": "more",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0
+  }
+]

@@ -2,6 +2,22 @@
   {
     "data": [
       {
+        "text": "what about ",
+        "userDefined": false
+      },
+      {
+        "text": "Michigan",
+        "alias": "poultry_region",
+        "meta": "@poultry_regions",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0
+  },
+  {
+    "data": [
+      {
         "text": "What if it was ",
         "userDefined": false
       },
@@ -253,7 +269,7 @@
         "userDefined": true
       },
       {
-        "text": "kg of ",
+        "text": " kg of ",
         "userDefined": false
       },
       {
@@ -293,7 +309,7 @@
         "userDefined": true
       },
       {
-        "text": "kg of it?",
+        "text": " kg of it?",
         "userDefined": false
       }
     ],

@@ -1,0 +1,77 @@
+[
+  {
+    "data": [
+      {
+        "text": "Turkey",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      },
+      {
+        "text": " Farming",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0
+  },
+  {
+    "data": [
+      {
+        "text": "Pig Farming",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0
+  },
+  {
+    "data": [
+      {
+        "text": "Lamp",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      },
+      {
+        "text": " Farming",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0
+  },
+  {
+    "data": [
+      {
+        "text": "Layer Poultry Farming",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0
+  },
+  {
+    "data": [
+      {
+        "text": "Broiler Chicken",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      },
+      {
+        "text": " Farming",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 1
+  },
+  {
+    "data": [
+      {
+        "text": "Beef Cow Farming",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0
+  }
+]

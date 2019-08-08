@@ -1,16 +1,18 @@
 {
-  "name": "poultry_intent",
+  "name": "poultry_region_no",
   "auto": true,
-  "contexts": [],
+  "contexts": [
+    "poultry_region_ask-followup"
+  ],
   "responses": [
     {
       "resetContexts": false,
-      "action": "input.poultry_details",
+      "action": "poultry_intent.poultry_intent-custom.poultry_region_ask-custom-2",
       "affectedContexts": [
         {
-          "name": "poultry_intent-followup",
+          "name": "poultry_region_no-followup",
           "parameters": {},
-          "lifespan": 1
+          "lifespan": 2
         }
       ],
       "parameters": [
@@ -19,20 +21,6 @@
           "dataType": "@poultry_list",
           "name": "poultry_type",
           "value": "$poultry_type",
-          "prompts": [
-            {
-              "lang": "en",
-              "value": "I didn't get the poultry type you are looking for. Can you please say the poultry name again?"
-            },
-            {
-              "lang": "en",
-              "value": "Can you please say the poultry name again?"
-            },
-            {
-              "lang": "en",
-              "value": "I can't tell you the exact emission without knowing the poultry type. Can you please say the type of the poultry?"
-            }
-          ],
           "isList": false
         },
         {
@@ -50,7 +38,13 @@
           "isList": false
         }
       ],
-      "messages": [],
+      "messages": [
+        {
+          "type": 0,
+          "lang": "en",
+          "speech": []
+        }
+      ],
       "defaultResponsePlatforms": {},
       "speech": []
     }
@@ -59,12 +53,5 @@
   "webhookUsed": true,
   "webhookForSlotFilling": false,
   "fallbackIntent": false,
-  "events": [
-    {
-      "name": "actions_intent_OPTION"
-    },
-    {
-      "name": "poultry_intent_triggered"
-    }
-  ]
+  "events": []
 }
