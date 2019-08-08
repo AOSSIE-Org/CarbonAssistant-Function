@@ -1,16 +1,16 @@
 {
-  "name": "poultry_intent - followup",
+  "name": "poultry_region_no_quantity_yes",
   "auto": true,
   "contexts": [
-    "poultry_intent-followup"
+    "poultry_region_no-followup"
   ],
   "responses": [
     {
       "resetContexts": false,
-      "action": "poultry_intent.poultry_intent-custom",
+      "action": "poultry_intent.poultry_intent-custom.poultry_region_ask-custom-2.poultry_region_no-custom-2",
       "affectedContexts": [
         {
-          "name": "poultry_intent-followup",
+          "name": "poultry_region_no_quantity_yes-followup",
           "parameters": {},
           "lifespan": 5
         }
@@ -25,16 +25,26 @@
         },
         {
           "required": false,
-          "dataType": "@sys.number",
-          "name": "poultry_quantity",
-          "value": "$poultry_quantity",
-          "isList": false
-        },
-        {
-          "required": false,
           "dataType": "@poultry_regions",
           "name": "poultry_region",
           "value": "$poultry_region",
+          "isList": false
+        },
+        {
+          "required": true,
+          "dataType": "@sys.number",
+          "name": "poultry_quantity",
+          "value": "$poultry_quantity",
+          "prompts": [
+            {
+              "lang": "en",
+              "value": "Can you please say the production quantity so that I can provide you with the exact value of the emission"
+            },
+            {
+              "lang": "en",
+              "value": "Ok. what is the production quantity?"
+            }
+          ],
           "isList": false
         }
       ],

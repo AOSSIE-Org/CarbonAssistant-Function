@@ -1,0 +1,36 @@
+[{
+    "poultry": "Beef Cow Farming",
+    "description": "Beef poultry farms are the farms where cows are raised for beef production.",
+    "url": "https://firebasestorage.googleapis.com/v0/b/co2-gal.appspot.com/o/Webp.net-resizeimage%20(27).png?alt=media&token=2ee558cc-77f9-4622-8d66-b4c1cc447403",
+    "alt": "Beef Cow Farming"
+},
+{
+    "poultry": "Broiler Chicken Farming",
+    "description": "It is a poultry farm where a broiler chicken is bred and raised specifically for meat production",
+    "url": "https://firebasestorage.googleapis.com/v0/b/co2-gal.appspot.com/o/Webp.net-resizeimage%20(24).png?alt=media&token=d6ca81cc-f2ed-4a72-a90e-0884317e38d6",
+    "alt": "Broiler Chicken Farming"
+},
+{
+    "poultry": "Layer Poultry Farming",
+    "description": "Layer poultry farming means raising egg laying poultry birds for the purpose of commercial egg production",
+    "url": "https://firebasestorage.googleapis.com/v0/b/co2-gal.appspot.com/o/Webp.net-resizeimage%20(22).png?alt=media&token=d37ab2b2-4f19-4019-a54c-3f686d67792f",
+    "alt": "Layer Poultry Farming"
+},
+{
+    "poultry": "Lamp Farming",
+    "description": "It is the raising and breeding of domestic sheep. It is a branch of animal husbandry. Sheep are raised principally for their lamb and mutton.",
+    "url": "https://firebasestorage.googleapis.com/v0/b/co2-gal.appspot.com/o/Webp.net-resizeimage%20(25).png?alt=media&token=44e719f2-8cc5-4800-8103-98bad087775b",
+    "alt": "Lamp Farming"
+},
+{
+    "poultry": "Pig Farming",
+    "description": "Pig farming is the raising and breeding of domestic pigs as livestock, and is a branch of animal husbandry. Pigs are farmed principally for food",
+    "url": "https://firebasestorage.googleapis.com/v0/b/co2-gal.appspot.com/o/Webp.net-resizeimage%20(26).png?alt=media&token=d7c4582b-59fb-44cd-b6f2-5d1804bb1f83",
+    "alt": "Pig Farming"
+},
+{
+    "poultry": "Turkey Farming",
+    "description": "It is the raising and breeding of Turkey commercially for meat and egg production",
+    "url": "https://firebasestorage.googleapis.com/v0/b/co2-gal.appspot.com/o/Webp.net-resizeimage%20(23).png?alt=media&token=2281a0d0-c5ca-4e42-a8aa-abf388ba6af7",
+    "alt": "Turkey Farming"
+}]

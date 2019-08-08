@@ -1,0 +1,98 @@
+[
+  {
+    "data": [
+      {
+        "text": "pennsylvania",
+        "alias": "poultry_region",
+        "meta": "@poultry_regions",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0
+  },
+  {
+    "data": [
+      {
+        "text": "new jersey",
+        "alias": "poultry_region",
+        "meta": "@poultry_regions",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0
+  },
+  {
+    "data": [
+      {
+        "text": "iowa",
+        "alias": "poultry_region",
+        "meta": "@poultry_regions",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0
+  },
+  {
+    "data": [
+      {
+        "text": "idaho",
+        "alias": "poultry_region",
+        "meta": "@poultry_regions",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0
+  },
+  {
+    "data": [
+      {
+        "text": "british columbia",
+        "alias": "poultry_region",
+        "meta": "@poultry_regions",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0
+  },
+  {
+    "data": [
+      {
+        "text": "nebraska",
+        "alias": "poultry_region",
+        "meta": "@poultry_regions",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0
+  },
+  {
+    "data": [
+      {
+        "text": "michigan",
+        "alias": "poultry_region",
+        "meta": "@poultry_regions",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0
+  },
+  {
+    "data": [
+      {
+        "text": "ohio",
+        "alias": "poultry_region",
+        "meta": "@poultry_regions",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0
+  }
+]

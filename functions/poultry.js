@@ -1,4 +1,4 @@
-var config = require('./config')
+var config = require('./config');
 const requestLib = require('request');
 const reverseLookupManager = require('./reverseLookupManager');
 const utils = require('./utils');
@@ -6,6 +6,27 @@ const utils = require('./utils');
 exports.processRequest = function(conv, parameters, requestReverseLookup) {
     return new Promise(function(resolve, reject) {
         if (parameters.poultry_type !== "") {
+
+            switch (parameters.poultry_type) {
+                case "Beef Cow Farming":
+                    parameters.poultry_type = "beef";
+                    break;
+                case "Broiler Chicken Farming":
+                    parameters.poultry_type = "broiler chicken";
+                    break;
+                case "Layer Poultry Farming":
+                    parameters.poultry_type = "egg";
+                    break;
+                case "Lamp Farming":
+                    parameters.poultry_type = "lamp";
+                    break;
+                case "Pig Farming":
+                    parameters.poultry_type = "pork";
+                    break;
+                case "Turkey Farming":
+                    parameters.poultry_type = "turkey";
+            }
+
             let poultry_type = parameters.poultry_type;
             let poultry_region = "Default",
                 poultry_quantity = 1;
@@ -48,10 +69,10 @@ exports.processRequest = function(conv, parameters, requestReverseLookup) {
                     else
                         finalResponseString = basicResponseString + ' is ' + emission;
 
-                    
+
 
                     if (requestReverseLookup) {
-                        
+
                         let reverseLookup = reverseLookupManager.reverseLookup(body.emissions, conv.user.storage.location.coordinates);
                         reverseLookup
                             .then((responses) => {
@@ -88,12 +109,12 @@ exports.processRequest = function(conv, parameters, requestReverseLookup) {
                         }
                     }
                 } else {
-                  // Handle errors here
-                  if (!error)
-                    error = body.error;
-                  //Handle the error in the utils function
-                  utils.handleError(error, response, body, conv);
-                  resolve();
+                    // Handle errors here
+                    if (!error)
+                        error = body.error;
+                    //Handle the error in the utils function
+                    utils.handleError(error, response, body, conv);
+                    resolve();
                 }
             });
 

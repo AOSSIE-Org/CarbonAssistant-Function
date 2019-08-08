@@ -1,0 +1,24 @@
+[
+  {
+    "data": [
+      {
+        "text": "23",
+        "alias": "poultry_quantity",
+        "meta": "@sys.number",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0
+  },
+  {
+    "data": [
+      {
+        "text": "Yes, I'll",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0
+  }
+]
