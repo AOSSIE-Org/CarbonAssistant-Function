@@ -1,0 +1,40 @@
+[{
+    "agriculture": "Enteric Fermentation",
+    "description": "It is a digestive process by which carbohydrates are broken down by microorganisms into simple molecules for absorption into the bloodstream of an animal."
+},
+{
+    "agriculture": "Manure Management",
+    "description": "Manure management refers to capture, storage, treatment, and utilization of animal manures"
+},
+{
+    "agriculture": "Rice Cultivation",
+    "description": "More carbon dioxide in the atmosphere, coupled with rising temperatures, is making rice agriculture a larger source of the potent greenhouse gas methane"
+},
+{
+    "agriculture": "Synthetic Fertilizers",
+    "description": "Synthetic fertilizers are man-made combinations of chemicals and inorganic substances."
+},
+{
+    "agriculture": "Cultivation of Organic Soils",
+    "description": "Organic soil is a complex combination of decomposed organic matter, minerals and beneficial microorganisms"
+},
+{
+    "agriculture": "Crop Residues",
+    "description": "These are the materials left in an agricultural field or orchard after the crop has been harvested."
+},
+{
+    "agriculture": "Manure left on Pasture",
+    "description": "GHG emissions from manure left on pastures consist of direct and indirect nitrous oxide emissions from manure nitrogen left on pastures"
+},
+{
+    "agriculture": "Manure applied to Soils",
+    "description": "Manure applied to soils speeds up decomposition, and lowers the soil's acidity level, less than chemical fertilizers."
+},
+{
+    "agriculture": "Burning - Crop residues",
+    "description": "Crop residue is burnt 'on-farm' primarily to clean the field for sowing the next crop"
+},
+{
+    "agriculture": "Burning - Savanna",
+    "description": "Tropical savanna fires make a significant contribution to the nation's accountable greenhouse gas emissions"
+}]

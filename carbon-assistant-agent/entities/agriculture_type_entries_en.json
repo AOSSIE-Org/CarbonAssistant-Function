@@ -1,0 +1,82 @@
+[
+  {
+    "value": "Burning - Crop residues",
+    "synonyms": [
+      "Burning - Crop residues",
+      "burning crop residue",
+      "burning crop residues",
+      "burning of crop residues",
+      "burning residues of crops"
+    ]
+  },
+  {
+    "value": "Burning - Savanna",
+    "synonyms": [
+      "Burning - Savanna",
+      "burning of savanna",
+      "burning savanna"
+    ]
+  },
+  {
+    "value": "Crop Residues",
+    "synonyms": [
+      "Crop Residues",
+      "crop residue"
+    ]
+  },
+  {
+    "value": "Cultivation of Organic Soils",
+    "synonyms": [
+      "Cultivation of Organic Soils",
+      "cultivating of organic soil",
+      "cultivating of organic soils",
+      "cultivating organic soil",
+      "cultivating organic soils"
+    ]
+  },
+  {
+    "value": "Enteric Fermentation",
+    "synonyms": [
+      "Enteric Fermentation",
+      "enteric fermentation"
+    ]
+  },
+  {
+    "value": "Manure Management",
+    "synonyms": [
+      "Manure Management",
+      "manure management"
+    ]
+  },
+  {
+    "value": "Manure applied to Soils",
+    "synonyms": [
+      "Manure applied to Soils",
+      "applying manure to soil",
+      "applying manure to soils",
+      "manure applied to soil"
+    ]
+  },
+  {
+    "value": "Manure left on Pasture",
+    "synonyms": [
+      "Manure left on Pasture",
+      "manure left on pasture",
+      "manures left on pasture"
+    ]
+  },
+  {
+    "value": "Rice Cultivation",
+    "synonyms": [
+      "Rice Cultivation",
+      "cultivation of rice"
+    ]
+  },
+  {
+    "value": "Synthetic Fertilizers",
+    "synonyms": [
+      "Synthetic Fertilizers",
+      "synthetic fertilizer"
+    ]
+  }
+]
