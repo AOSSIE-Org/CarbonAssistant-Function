@@ -29,6 +29,8 @@ var sector_utils = require('./sector_utils');
 var fuels_utils = require('./fuels_utils');
 var vehicles_utils = require('./vehicles_utils');
 var poultry_utils = require('./poultry_utils');
+var agriculture = require('./agriculture');
+var agriculture_utils = require('./agriculture_utils');
 
 const app = dialogflow({
     debug: true
@@ -180,6 +182,10 @@ app.intent('menu_option_handler', (conv, parameters, option) => { //intent to ha
         });
     } else if(option == 'Poultry'){
         conv.followup('poultry_intent_triggered', {
+            option: option,
+        });
+    } else if(option == 'Agriculture'){
+        conv.followup('agriculture_intent_triggered', {
             option: option,
         });
     }
@@ -1738,6 +1744,7 @@ app.intent('land_intent_followup', (conv, parameters, option) => {
     else
         newParams.land_type = contextParams.land_type;
     conv.user.storage.lastParams = newParams;
+    option = '';
     if (!conv.user.storage.noPermission)
         return land.processRequest(conv, newParams, true);
     else
@@ -1780,7 +1787,11 @@ app.intent('food_intent_followup', (conv, parameters, option) => {
         newParams.food_type = contextParams.food_type;
 
     conv.user.storage.lastParams = newParams;
-    return food.processRequest(conv, newParams, option);
+    option = '';
+    if (!conv.user.storage.noPermission)
+        return food.processRequest(conv, newParams, true);
+    else
+        return food.processRequest(conv, newParams, false);
 });
 
 app.intent('sector_intent', (conv, parameters, option) => {
@@ -1825,6 +1836,48 @@ app.intent('sector_intent_followup',(conv,parameters,option) => {
         return sector.processRequest(conv, newParams, false);
 });
 
+app.intent('agriculture_intent', (conv, parameters, option) => {
+    if (parameters.agriculture_type === ""){
+        if (conv.surface.capabilities.has('actions.capability.SCREEN_OUTPUT')) {
+            var items = agriculture_utils.getAgricultureTypes();
+            conv.ask('This is the list of agriculture types Please choose one So, that I can provide you the exact value of the emission.');
+            conv.ask(new List({
+                title: "Agriculture Types List",
+                items: items
+            }));
+        } else if(!conv.surface.capabilities.has('actions.capability.SCREEN_OUTPUT')) {
+            conv.ask(`This is the list of agriculture types please choose one so that I can provide you the exact value of the emission. 1.Enteric fermentation, It is a digestive process by which carbohydrates are broken down by microorganisms into simple molecules for absorption into the bloodstream of an animal. 2.Manure management, it refers to capture, storage, treatment, and utilization of animal manures. 3.Rice cultivation, it is one of the largest source of the potent greenhouse gas methane. 4.Synthetic fertilizers, these are the man-made combinations of chemicals and inorganic substances. 5.Cultivation of organic soils. Organic soil is a complex combination of decomposed organic matter, minerals and beneficial microorganisms. 6.Crop residues, these are the materials left in an agricultural field or orchard after the crop has been harvested. 7.Manure left on pasture. Emissions from manure left on pastures consist of direct and indirect nitrous oxide emissions from manure nitrogen left on pastures. 8.Manure applied to soils, it speeds up decomposition, and lowers the soil's acidity level, less than chemical fertilizers. 9.Burning crop residues, crop residue is burnt 'on-farm' primarily to clean the field for sowing the next crop. 10.Burning Savanna, tropical savanna fires make a significant contribution to the nation's accountable greenhouse gas emissions.`);
+        }
+        conv.user.storage.lastParams = parameters;
+    } else {
+        if (!conv.user.storage.noPermission)
+            return agriculture.processRequest(conv, parameters, true);
+        else
+            return agriculture.processRequest(conv, parameters, false);
+    }
+});
+
+app.intent('agriculture_intent_followup',(conv,parameters,option) => {
+    let contextParams = conv.user.storage.lastParams;
+    let newParams = {};
+    if (parameters.agriculture_region && parameters.agriculture_region !== "")
+        newParams.agriculture_region = parameters.agriculture_region;
+    else
+        newParams.agriculture_region = contextParams.agriculture_region;
+
+    if (parameters.agriculture_type && parameters.agriculture_type !== "")
+        newParams.agriculture_type = parameters.agriculture_type;
+    else if(option && contextParams.agriculture_type == "")
+        newParams.agriculture_type = option;
+    else
+        newParams.agriculture_type = contextParams.agriculture_type;
+    conv.user.storage.lastParams = newParams;
+    option = '';
+    if (!conv.user.storage.noPermission)
+        return agriculture.processRequest(conv, newParams, true);
+    else
+        return agriculture.processRequest(conv, newParams, false);
+});
 
 // The default fallback intent has been matched, try to recover (https://dialogflow.com/docs/intents#fallback_intents)
 app.intent('Default Fallback Intent', (conv) => {

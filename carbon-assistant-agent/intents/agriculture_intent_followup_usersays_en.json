@@ -1,0 +1,141 @@
+[
+  {
+    "data": [
+      {
+        "text": "What if it was  due to  ",
+        "userDefined": false
+      },
+      {
+        "text": "Crop Residues",
+        "alias": "agriculture_type",
+        "meta": "@agriculture_type",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0
+  },
+  {
+    "data": [
+      {
+        "text": "How about the emission due to ",
+        "userDefined": false
+      },
+      {
+        "text": "Rice Cultivation",
+        "alias": "agriculture_type",
+        "meta": "@agriculture_type",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0
+  },
+  {
+    "data": [
+      {
+        "text": "What if it was ",
+        "userDefined": false
+      },
+      {
+        "text": "Bangladesh",
+        "alias": "agriculture_region",
+        "meta": "@sys.geo-country",
+        "userDefined": true
+      },
+      {
+        "text": "?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0
+  },
+  {
+    "data": [
+      {
+        "text": "What about ",
+        "userDefined": false
+      },
+      {
+        "text": "Burning - Savanna",
+        "alias": "agriculture_type",
+        "meta": "@agriculture_type",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0
+  },
+  {
+    "data": [
+      {
+        "text": "How about the emission in ",
+        "userDefined": false
+      },
+      {
+        "text": "India",
+        "alias": "agriculture_region",
+        "meta": "@sys.geo-country",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0
+  },
+  {
+    "data": [
+      {
+        "text": "What about in ",
+        "userDefined": false
+      },
+      {
+        "text": "China",
+        "alias": "agriculture_region",
+        "meta": "@sys.geo-country",
+        "userDefined": true
+      },
+      {
+        "text": "?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0
+  },
+  {
+    "data": [
+      {
+        "text": "say",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      },
+      {
+        "text": " more",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0
+  },
+  {
+    "data": [
+      {
+        "text": "what else?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0
+  },
+  {
+    "data": [
+      {
+        "text": "Tell me more",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0
+  }
+]
