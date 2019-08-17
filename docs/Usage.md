@@ -17,3 +17,12 @@ OR
 *"How much emissions are produced due to 313 units of electricity generation in Canada?"*
 OR
 *"Emissions due to 32 litres of petrol consumption?"*
+
+**Agriculture**
+*"What is the carbon emission due to the process of rice cultivation in India?"*
+
+**Land**
+*"What will be the total emission in India due to forest land?"*
+
+**Sector**
+*"Net emissions due to the energy sector in Bangladesh?"*
