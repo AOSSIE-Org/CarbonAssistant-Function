@@ -1,5 +1,6 @@
 node_modules/
-config.js
+.env
 .firebaserc
 firebase.json
 *.log
+test_output

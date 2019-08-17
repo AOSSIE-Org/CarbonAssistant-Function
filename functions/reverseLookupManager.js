@@ -1,6 +1,10 @@
-var config = require('./config')
 const requestLib = require('request');
 const utils = require('./utils');
+const dotenv = require('dotenv');
+dotenv.config();
+const BASE_URL = process.env.ENDPOINT;
+const EMISSION_ENDPOINT = BASE_URL + "/comparer";
+const API_KEY = process.env.ACCESS_KEY;
 
 function constructResponse(result) {
     let response;
@@ -32,10 +36,10 @@ function constructResponse(result) {
 exports.reverseLookup = function(emissions, locationData, blacklist) {
     return new Promise(function(resolve, reject) {
         var reverseLookupOptions = {
-            uri: config.endpoint + "/comparer",
+            uri: EMISSION_ENDPOINT,
             method: 'POST',
             headers: {
-                'access-key': config.access_key
+                'access-key': API_KEY
             },
             json: true,
             body: {
