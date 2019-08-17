@@ -8,7 +8,7 @@
   "scripts": {
     "start": "firebase serve --only functions:dialogflowFirebaseFulfillment",
     "deploy": "firebase deploy --only functions:dialogflowFirebaseFulfillment",
-    "test": "bst test test/unit/appliance.test.yml"
+    "test": "bst test"
   },
   "dependencies": {
     "actions-on-google": "^2.9.1",
