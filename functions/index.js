@@ -1451,7 +1451,7 @@ app.intent('poultry_intent', (conv, parameters) => {
     if (parameters.poultry_type === ""){
         if (conv.surface.capabilities.has('actions.capability.SCREEN_OUTPUT')) {
             var items = poultry_utils.getPoultryTypes();
-            conv.ask('This is the list of poultry types please choose one So, that I can provide you the exact value of the emission.');
+            conv.ask('This is the list of poultry types please choose one so that I can provide you the exact value of the emission.');
             conv.ask(new List({
                 title: "Poultry Types List",
                 items: items
@@ -1461,6 +1461,7 @@ app.intent('poultry_intent', (conv, parameters) => {
         }
         conv.user.storage.lastParams = parameters;
     } else {
+        conv.user.storage.lastParams = parameters;
         if (!conv.user.storage.noPermission)
             return poultry.processRequest(conv, parameters, true);
         else
