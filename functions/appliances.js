@@ -1,8 +1,12 @@
-var config = require('./config');
+const dotenv = require('dotenv');
+dotenv.config();
 const requestLib = require('request');
 const reverseLookupManager = require('./reverseLookupManager');
 const utils = require('./utils');
 const appliances_utils = require('./appliances_utils');
+const BASE_URL = process.env.ENDPOINT;
+const ENDPOINT = BASE_URL + "/emissions";
+const ACCESS_KEY = process.env.ACCESS_KEY;
 
 function getTimeInHours(duration) {
     if (duration.unit === 'h')
@@ -69,12 +73,13 @@ exports.processRequest = function(conv, parameters, requestReverseLookup) {
             console.log("Appliance: " + parameters.appliance + ", path=" + appliance_path);
             console.log("Duration: " + appliance_usage_hours + ", quantity=" + appliance_quantity);
 
+
             // At this point we have enough info
             var options = {
-                uri: config.endpoint + "/emissions",
+                uri: ENDPOINT,
                 method: 'POST',
                 headers: {
-                    'access-key': config.access_key
+                    'access-key': ACCESS_KEY
                 },
                 json: true,
                 body: {

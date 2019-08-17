@@ -1,7 +1,11 @@
-var config = require('./config');
+const dotenv = require('dotenv');
+dotenv.config();
 const requestLib = require('request');
 const utils = require('./utils');
 const reverseLookupManager = require('./reverseLookupManager');
+const BASE_URL = process.env.ENDPOINT;
+const ENDPOINT = BASE_URL + "/sector";
+const ACCESS_KEY = process.env.ACCESS_KEY;
 
 exports.processRequest = function(conv, parameters, requestReverseLookup, option) {
     return new Promise(function(resolve, reject) {
@@ -9,10 +13,10 @@ exports.processRequest = function(conv, parameters, requestReverseLookup, option
             let sector_type = parameters.sector_type;
             let sector_region = parameters.sector_region;
             var options = {
-                uri: config.endpoint + "/sector",
+                uri: ENDPOINT,
                 method: 'POST',
                 headers: {
-                    'access-key': config.access_key
+                    'access-key': ACCESS_KEY
                 },
                 json: true,
                 body: {

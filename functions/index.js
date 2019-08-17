@@ -10,7 +10,6 @@ const {
     List
 } = require('actions-on-google'); // Google Assistant helper library
 const requestLib = require('request');
-var config = require('./config');
 var flights = require('./flights');
 var vehicles = require('./vehicles');
 var fuels = require('./fuels');
@@ -31,6 +30,8 @@ var vehicles_utils = require('./vehicles_utils');
 var poultry_utils = require('./poultry_utils');
 var agriculture = require('./agriculture');
 var agriculture_utils = require('./agriculture_utils');
+const dotenv = require('dotenv');
+dotenv.config();
 
 const app = dialogflow({
     debug: true

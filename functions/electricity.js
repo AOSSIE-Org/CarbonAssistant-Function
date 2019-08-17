@@ -1,4 +1,8 @@
-var config = require('./config');
+const dotenv = require('dotenv');
+dotenv.config();
+const BASE_URL = process.env.ENDPOINT;
+const ENDPOINT = BASE_URL + "/emissions";
+const ACCESS_KEY = process.env.ACCESS_KEY;
 const requestLib = require('request');
 const utils = require('./utils');
 const reverseLookupManager = require('./reverseLookupManager');
@@ -18,10 +22,10 @@ exports.processRequest = function(conv, parameters, requestReverseLookup) {
         console.log("Electricity consumed =" + consumed_quantity + ", country =" + consumption_country);
 
         var options = {
-            uri: config.endpoint + "/emissions",
+            uri: ENDPOINT,
             method: 'POST',
             headers: {
-                'access-key': config.access_key
+                'access-key': ACCESS_KEY
             },
             json: true,
             body: {

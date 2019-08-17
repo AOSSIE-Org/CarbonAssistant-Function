@@ -1,4 +1,8 @@
-var config = require('./config');
+const dotenv = require('dotenv');
+dotenv.config();
+const BASE_URL = process.env.ENDPOINT;
+const ENDPOINT = BASE_URL + "/flight";
+const ACCESS_KEY = process.env.ACCESS_KEY;
 const requestLib = require('request');
 const reverseLookupManager = require('./reverseLookupManager');
 const utils = require('./utils');
@@ -16,10 +20,10 @@ exports.processRequest = function(conv, parameters, requestReverseLookup) {
                 passengers = parameters.passengers;
 
             var options = {
-                uri: config.endpoint + "/flight",
+                uri: ENDPOINT,
                 method: 'POST',
                 headers: {
-                    'access-key': config.access_key
+                    'access-key': ACCESS_KEY
                 },
                 json: true,
                 body: {

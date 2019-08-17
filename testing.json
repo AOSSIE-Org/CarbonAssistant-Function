@@ -1,0 +1,7 @@
+{
+    "dialogFlowDirectory": "./carbon-assistant-agent",
+    "handler": "./functions/index.dialogflowFirebaseFulfillment",
+    "filter": "filter.js",
+    "platform": "google",
+    "trace": false
+}

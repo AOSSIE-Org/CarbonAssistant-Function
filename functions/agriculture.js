@@ -1,7 +1,11 @@
-var config = require('./config');
+const dotenv = require('dotenv');
+dotenv.config();
 const requestLib = require('request');
 const utils = require('./utils');
 const reverseLookupManager = require('./reverseLookupManager');
+const BASE_URL = process.env.ENDPOINT;
+const ENDPOINT = BASE_URL + "/agriculture";
+const ACCESS_KEY = process.env.ACCESS_KEY;
 
 exports.processRequest = function(conv, parameters, requestReverseLookup, option) {
     return new Promise(function(resolve, reject) {
@@ -9,10 +13,10 @@ exports.processRequest = function(conv, parameters, requestReverseLookup, option
             let agriculture_type = parameters.agriculture_type;
             let agriculture_region = parameters.agriculture_region;
             var options = {
-                uri: config.endpoint + "/agriculture",
+                uri: ENDPOINT,
                 method: 'POST',
                 headers: {
-                    'access-key': config.access_key
+                    'access-key': ACCESS_KEY
                 },
                 json: true,
                 body: {
