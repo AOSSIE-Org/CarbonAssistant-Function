@@ -6,7 +6,7 @@
   "license": "Apache Version 2.0",
   "author": "Google Inc.",
   "scripts": {
-    "test": "bst test test/unit/appliance.test.yml"
+    "test": "bst test"
   },
   "dependencies": {
     "actions-on-google": "^2.2.0",
