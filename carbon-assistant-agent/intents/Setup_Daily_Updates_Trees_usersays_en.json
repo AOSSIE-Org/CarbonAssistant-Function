@@ -1,0 +1,21 @@
+[
+  {
+    "data": [
+      {
+        "text": "Send ",
+        "userDefined": false
+      },
+      {
+        "text": "green",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      },
+      {
+        "text": " updates",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 1
+  }
+]
