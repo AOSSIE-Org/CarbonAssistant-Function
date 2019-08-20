@@ -7,6 +7,7 @@ const {
     Suggestions,
     BasicCard,
     SimpleResponse,
+    RegisterUpdate,
     List
 } = require('actions-on-google'); // Google Assistant helper library
 const requestLib = require('request');
@@ -221,6 +222,278 @@ app.intent('reduceEmission_intent', (conv) => {
             ]
         }));
         conv.ask(new Suggestions(["NGO", "Composting", "Transportation", "Go Green at Home", "Clothes and Shopping", "Trees", "Air Travel"]));
+    }
+});
+
+app.intent('reduce_emission_ngo_intent', (conv) => {
+    //google home
+    if (!conv.surface.capabilities.has('actions.capability.SCREEN_OUTPUT')){
+        conv.ask(`Human caused climate change is real and it is caused due to the increase in the GHG emissions. It is a burning global issue now. We can reduce the GHG emissions in a number of ways. 1.You can switch to the companies and support organisations who are trying to reduce the green house gases themselves and supporting action on climate change. 2.During the elections always vote for the candidate who is most likely to support climate-friendly policies. 3. Learn about the climate change and GHG emissions and share with others what you learn. 4. Be a part of an Non Governmental Organization and start campaigns. 5. You can always support and fund a project Or an NGO actively working for the climate change. `)
+    } else if(conv.surface.capabilities.has('actions.capability.SCREEN_OUTPUT')){
+    //display screens
+        conv.ask(new SimpleResponse({
+            speech: "Human caused climate change is real and it is caused due to the increase in the GHG emissions. It is a burning global issue now. We can reduce the GHG emissions in a number of ways. ",
+            text: "Here are couple of ways in which you can reduce emission by being a part of an Organization and bringing mass:-"
+        }));
+        conv.ask(new BasicCard({
+            title: '',
+            text: "**1. Support climate action organizations.** \n \n *Research the companies you buy your products from (especially ongoing purchases). If they aren't reducing greenhouse gases themselves and supporting action on climate change, switch to a company that is.* \n  \n  \n**2. Vote like your future depends on it - because it does!** \n \n *Always vote in every election for the candidate who is most likely to support climate-friendly policies. Ask your elected officials to support a carbon free and dividend policy to provide incentives for companies and individuals to reduce carbon emissions.*\n \n\n **3. Spread the message**  \n  \n*Learn more about climate change and share with others what you learn because together we can make a change!* \n  \n  \n **4. Help in stabilizing the population** \n \n*Support organizations that educate, protect and empower girls and women and help in stabilizing our population, such as Camfed.org, Girls Not Brides, Tostan, and Population Services International. * \n \n \n **5. Be a part of an NGO** \n \n *You can always contribute by being a part of an Non Governmental Organization. You be a part of a campaign and bring awareness among the mass. You also contribute by funding a project Or an NGO actively working for the climate change.*",
+
+
+            buttons: [
+                {
+                 title: "Read More",
+                 openUrlAction: {
+                    url: "https://cotap.org/reduce-carbon-footprint/",
+                    urlTypeHint: "URL_TYPE_HINT_UNSPECIFIED"
+                    }
+                }
+            ]
+        }));
+        conv.ask('I can send you daily updates about NGO and eco-friendly organizations. Would you like that?');
+        conv.ask(new Suggestions('Send NGO updates'));  
+    }
+});
+
+app.intent('reduce_emission_food_intent', (conv) => {
+    //google home
+    if (!conv.surface.capabilities.has('actions.capability.SCREEN_OUTPUT')){
+        conv.ask(`Meat and dairy is responsible for 14.5 percent of man-made global greenhouse gas emissions, mainly from production and processing and the methane that beef and sheep belch out. 1.Every day that you forgo meat and dairy, you can reduce your carbon footprint by 8 pounds—that’s 2,920 pounds a year. You can start by joining Meatless Mondays. 2.Buy foodstuffs in bulk when possible using your own reusable container. 3. Reduce your food waste by planning meals ahead of time, freezing the excess and reusing leftovers. 4.Compost your food waste if possible. `)
+    } else if(conv.surface.capabilities.has('actions.capability.SCREEN_OUTPUT')){
+    //display screens
+        conv.ask(new SimpleResponse({
+            speech: "Meat and dairy is responsible for 14.5 percent of man-made global greenhouse gas emissions, mainly from production and processing and the methane that beef and sheep belch out. ",
+            text: "Here are couple of ways in which you can reduce emission due to food production and transportation:-"
+        }));
+        conv.ask(new BasicCard({
+            title: '',
+            text: "**1.Eat low on the food chain.**  \n  \n *This means eating mostly fruits, veggies, grains, and beans. Livestock—meat and dairy—is responsible for 14.5 percent of man-made global greenhouse gas emissions, mainly from feed production and processing and the methane that beef and sheep belch out. Every day that you forgo meat and dairy, you can reduce your carbon footprint by 8 pounds—that’s 2,920 pounds a year. You can start by joining Meatless Mondays.* \n  \n  \n**2. Choose organic and local foods that are in season.** \n \n *Transporting food from far away, whether by truck, ship, rail or plane, uses fossil fuels for fuel and for cooling to keep foods in transit from spoiling.*\n \n\n **3. Buy foodstuffs in bulk**  \n  \n*Buy food products in bulk when possible using your own reusable container.* \n  \n  \n **4. Reduce Waste**\n \n *Reduce your food waste by planning meals ahead of time, freezing the excess and reusing leftovers. You can also save water by using the dishwasher when full and by selecting the program with low water usage.*\n \n \n **5. Compost** \n \n *You can always make your own compost with uncooked vegetable scraps. Using a home-composting system in earthen pots can avoid a building’s meaningless contribution of 22 tonnes of waste, which would end up in a landfill. This is equivalent to planting 29 trees per building per year.*",
+
+
+            buttons: [
+                {
+                 title: "Read More",
+                 openUrlAction: {
+                    url: "http://www.greeneatz.com/foods-carbon-footprint.html",
+                    urlTypeHint: "URL_TYPE_HINT_UNSPECIFIED"
+                    }
+                }
+            ]
+        }));
+        conv.ask('I can send you daily updates about composting and organic food. Would you like that?');
+        conv.ask(new Suggestions('Send food updates')); 
+    }
+});
+
+app.intent('reduce_emission_transportation_intent', (conv) => {
+    //google home
+    if (!conv.surface.capabilities.has('actions.capability.SCREEN_OUTPUT')){
+        conv.ask(`An average car produces about five tons of CO2 each year. Making changes in how you get around can significantly cut your carbon budget. 1. Always try to choose alternatives to driving. When possible, walk or ride your bike in order to avoid carbon emissions completely. 2. Drive a fuel efficient vehicle. 3.Avoid speeding and unnecessary acceleration because it can reduce mileage by up to 33%, waste gas and money, and increase your carbon emissions. 4. When doing errands, try to combine them to reduce your driving. 5.On longer trips, turn on the cruise control, which can save gas. `)
+    } else if(conv.surface.capabilities.has('actions.capability.SCREEN_OUTPUT')){
+    //display screens
+        conv.ask(new SimpleResponse({
+            speech: "An average car produces about five tons of CO2 each year. Making changes in how you get around can significantly cut your carbon budget. ",
+            text: "Here are couple of ways in which you can reduce your carbon emissions from driving:-"
+        }));
+        conv.ask(new BasicCard({
+            title: '',
+            text: "**1. Alternatives to driving** \n \n *When possible, walk or ride your bike in order to avoid carbon emissions completely. Carpooling and public transportation drastically reduce GHG emissions by spreading them out over many riders.* \n  \n  \n**2. Driving style** \n \n *If you must drive, avoid unnecessary braking and acceleration. Some studies found that aggressive driving can result in 40 percent more fuel consumption than consistent, calm driving.*\n \n\n **3. Take care of your car**  \n  \n*Keeping your tires properly inflated can increase your fuel efficiency by three percent; and ensuring that your car is properly maintained can increase it by four percent. Remove any extra weight from the car.* \n  \n  \n **4. Traffic apps** \n \n*Use traffic apps like Waze to help avoid getting stuck in traffic jams.* \n \n \n **5. Hybrid or Electric vehicle** \n \n *If you’re shopping for a new car, consider purchasing a hybrid or electric vehicle. But do factor in the greenhouse gas emissions from the production of the car as well as its operation. Some electric vehicles are initially responsible for more emissions than internal combustion engine vehicles because of manufacturing impacts; but they make up for it after three years.*",
+
+
+            buttons: [
+                {
+                 title: "Read More",
+                 openUrlAction: {
+                    url: "https://cotap.org/reduce-carbon-emissions/",
+                    urlTypeHint: "URL_TYPE_HINT_UNSPECIFIED"
+                    }
+                }
+            ]
+        }));
+        conv.ask('I can send you daily updates about alternatives to driving and eco-friendly transportation. Would you like that?');
+        conv.ask(new Suggestions('Ok. Send updates')); 
+    }
+});
+
+app.intent('reduce_emission_air_travel_intent', (conv) => {
+    //google home
+    if (!conv.surface.capabilities.has('actions.capability.SCREEN_OUTPUT')){
+        conv.ask(`Air travel is probably responsible for the largest part of your carbon footprint. It is one of the major contributor of the green house gases. 1.Avoid flying if possible, on shorter trips driving may emit fewer greenhouse gases. 2.Fly nonstop since landings and takeoffs use more fuel and produce more emissions. 3.If you can’t avoid flying, offset the carbon emissions of your travel. 4.Don’t fly on private jets and always go economy class.`)
+    } else if(conv.surface.capabilities.has('actions.capability.SCREEN_OUTPUT')){
+    //display screens
+        conv.ask(new SimpleResponse({
+            speech: " Air travel is probably responsible for the largest part of your carbon footprint. It is one of the major contributor of the green house gases. ",
+            text: "Here are couple of ways in which you can reduce your carbon emissions from air travel:-"
+        }));
+        conv.ask(new BasicCard({
+            title: '',
+            text: "**1. Go Economy Class** \n \n *Business class is responsible for almost three times as many emissions as economy because in economy, the flight’s carbon emissions are shared among more passengers; first class can result in nine times more carbon emissions than economy.* \n  \n  \n**2. Fly Nonstop** \n \n *landings and takeoffs use more fuel and produce more emissions.*\n \n \n **3. Don't Fly on Private Jets**  \n  \n*Fly first or business class if you must, because at least those seats always fill up anyway, and avoid private jets.* \n  \n  \n **4. Avoid flying if possible** \n \n*Until petroleum-based aviation fuel is replaced, you should avoid flying when possible, fly less frequently, fly shorter distances, and fly economy class.*",
+
+
+            buttons: [
+                {
+                 title: "Read More",
+                 openUrlAction: {
+                    url: "https://cotap.org/reduce-carbon-emissions/",
+                    urlTypeHint: "URL_TYPE_HINT_UNSPECIFIED"
+                    }
+                }
+            ]
+        }));
+        conv.ask('I can send daily updates about eco-friendly air travel. Would you like that?');
+        conv.ask(new Suggestions('Send daily')); 
+    }
+});
+
+app.intent('reduce_emission_shopping_intent', (conv) => {
+    //google home
+    if (!conv.surface.capabilities.has('actions.capability.SCREEN_OUTPUT')){
+        conv.ask(` It has been estimated that 29% of greenhouse gas emissions result from the provision of goods, which means the extraction of resources, manufacturing, transport, and final disposal of goods. 1.Wash your clothing in cold water because the enzymes in cold water detergent are designed to clean better in cold water. 2.Don't buy fast fashion. 3.Buy used or recycled item whenever possible. 4.Bring your own reusable bag when you shop and try avoiding the usage of plastic. 5.Use energy star products and opt for a laptop instead of a desktop. 6.Try donating clothes whenever possible.`)
+    } else if(conv.surface.capabilities.has('actions.capability.SCREEN_OUTPUT')){
+    //display screens
+        conv.ask(new SimpleResponse({
+            speech: "  It has been estimated that 29% of greenhouse gas emissions result from the provision of goods, which means the extraction of resources, manufacturing, transport, and final disposal of goods. ",
+            text: "Here are couple of ways in which you can reduce your carbon emissions from clothing and shopping:-"
+        }));
+        conv.ask(new BasicCard({
+            title: '',
+            text: "**1. Don't buy fast fashion** \n \n *Trendy, cheap items that go out of style quickly get dumped in landfills where they produce methane as they decompose.* \n  \n  \n**2. Wash your clothing in cold water** \n \n *The enzymes in cold water detergent are designed to clean better in cold water. Doing two loads of laundry weekly in cold water instead of hot or warm water can save up to 500 pounds of carbon dioxide each year.*\n \n \n **3. Buy less stuff**  \n  \n*Buy used or recycled items whenever possible and bring your own reusable bag when you shop. Try donating clothes whenever possible.* \n  \n  \n **4. Use energy star products** \n \n*If shopping for appliances, lighting, office equipment or electronics, look for Energy Star products, which are certified to be more energy efficient.* \n \n \n **5. Laptop over a desktop** \n \n *If you’re in the market for a new computer, opt for a laptop instead of a desktop. Laptops require less energy to charge and operate than desktops.* ",
+
+            buttons: [
+                {
+                 title: "Read More",
+                 openUrlAction: {
+                    url: "https://cotap.org/reduce-carbon-emissions/",
+                    urlTypeHint: "URL_TYPE_HINT_UNSPECIFIED"
+                    }
+                }
+            ]
+        }));
+        conv.ask('I can send you daily updates about eco-friendly shopping and donations. Would you like that?');
+        conv.ask(new Suggestions("Ok. Update me")); 
+    }
+});
+
+app.intent('reduce_emission_home_appliances_intent', (conv) => {
+    //google home
+    if (!conv.surface.capabilities.has('actions.capability.SCREEN_OUTPUT')){
+        conv.ask(` All the electronics draw energy when they are plugged in, even if they're powered down. This vampire power is responsible for draining up to 59 billion dollar in energy every year. 1. Change incandescent light bulbs to light emitting diodes. 2.Do an energy audit of your home. 3.Switch lights off when you leave the room and unplug your electronic devices when they are not in use. 4.Installing a low-flow showerhead to reduce hot water use can save 350 pounds of CO2. 5.Turn your water heater down to 120˚F. This can save about 550 pounds of CO2 a year. 6.Lower your thermostat in winter and raise it in summer. Use less air conditioning in the summer.`)
+    } else if(conv.surface.capabilities.has('actions.capability.SCREEN_OUTPUT')){
+    //display screens
+        conv.ask(new SimpleResponse({
+            speech: "All the electronics draw energy when they are plugged in, even if they're powered down. This vampire power is responsible for draining up to 59 billion dollar in energy every year. ",
+            text: "Here are couple of ways in which you can reduce your home energy carbon emissions:-"
+        }));
+        conv.ask(new BasicCard({
+            title: '',
+            text: "**1. Do an energy audit of your home** \n \n *This will show how you use or waste energy and help identify ways to be more energy efficient.* \n  \n  \n**2. Change incandescent light bulbs to LEDs** \n \n *Though LEDs cost more, they use a quarter of the energy and last up to 25 times longer. They are also preferable to compact fluorescent lamp bulbs, which emit 80 percent of their energy as heat and contain mercury.*\n \n \n**3. Unplug your electronic devices**  \n  \n*Switch lights off when you leave the room and unplug your electronic devices when they are not in use. Turn your water heater down to 120˚F. This can save about 550 pounds of CO2 a year.* \n  \n  \n **4. Use solar energy** \n \n*Add solar panels to the roof of your home. This costs a little more than the above options, but many providers offer financing options which minimize upfront costs.* \n \n \n **5. Energy Star** \n \n *Make energy efficiency a primary consideration when choosing new appliances like furnaces, air conditioning units, dishwashers, and refrigerators. ENERGY STAR labeled products are recognized as having superior energy efficiency.* ",
+
+            buttons: [
+                {
+                 title: "Read More",
+                 openUrlAction: {
+                    url: "https://cotap.org/reduce-carbon-emissions/",
+                    urlTypeHint: "URL_TYPE_HINT_UNSPECIFIED"
+                    }
+                }
+            ]
+        }));
+        conv.ask('I can send you daily updates about reducing carbon emissions at home. Would you like that?');
+        conv.ask(new Suggestions('Send updates daily')); 
+    }
+});
+
+app.intent('reduce_emission_trees_intent', (conv) => {
+    //google home
+    if (!conv.surface.capabilities.has('actions.capability.SCREEN_OUTPUT')){
+        conv.ask(` Whether you live in a house or an apartment, planting some greens is a quick and easy way to reduce your carbon footprint. We all know plants absorb carbon dioxide. Plant some bee friendly flowers, a few trees, or a vegetable garden. Balcony gardens are great for urban dwellings. Cities often need to reduce the urban heat island effect. Basically, cities tend to be hotter than rural areas because of vast pavement areas, concrete buildings, and increased human activity. Creating more spaces for plants, grasses, and trees can mitigate this effect and lead to better cooling, which will be a necessity with worsening climate change. Help avoid the heat island effect by planting trees for shade, or maybe try a green roof or community garden.`)
+    } else if(conv.surface.capabilities.has('actions.capability.SCREEN_OUTPUT')){
+    //display screens
+        conv.ask(new SimpleResponse({
+            speech: "A young tree absorbs roughly 13 pounds of CO2 per year and a mature tree can absorb 48 pounds. After 40 years, a tree will have sequestered 1 ton of carbon that would have otherwise contributed to global warming. ",
+            text: "Here are couple of ways in which you can reduce the carbon emissions by planting trees:-"
+        }));
+        conv.ask(new BasicCard({
+            title: '',
+            text: "**1. Plant a Garden** \n \n *Plants consume carbon dioxide, a significant greenhouse gas. The reduction of carbon dioxide in the atmosphere has an indirect cooling effect. Creating more spaces for plants, grasses, and trees can mitigate the heat island effect and lead to better cooling, which will be a necessity with worsening climate change.* \n  \n  \n**2. Green Hotels** \n \n *Whenever possible choose green hotels and encourage hotels you visit to green their practices.* \n \n \n**3.Support Green homes**  \n  \n *A green home is a type of house designed to be environmentally sustainable and focus on the efficient use of water, energy and building material. It may include sustainable energy sources such as solar or geothermal, and be sited to take maximum advantage of natural features such as sunlight and tree cover to improve energy efficiency. You can always support green home project by funding and promoting it.* \n  \n  \n**4. Support Green Highways** \n \n*A green highway is a roadway constructed per a relatively new concept for roadway design that integrates transportation functionality and ecological sustainability. The result is a highway that will benefit transportation, the ecosystem, urban growth, public health and surrounding communities. You can always help by supporting and funding the green highways project.*",
+
+            buttons: [
+                {
+                 title: "Read More",
+                 openUrlAction: {
+                    url: "https://cotap.org/reduce-carbon-emissions/",
+                    urlTypeHint: "URL_TYPE_HINT_UNSPECIFIED"
+                    }
+                }
+            ]
+        }));
+        conv.ask('I can send you these updates daily. Would you like that?');
+        conv.ask(new Suggestions('Send green updates')); 
+    }
+});
+
+app.intent("Setup_Daily_Updates_Trees", conv => {
+    // Request to register Daily Updates
+    conv.ask(new RegisterUpdate({
+        intent: "reduce_emission_trees_intent",
+        frequency: "DAILY"
+    }));
+});
+
+app.intent("Setup_Daily_Updates_Home", conv => {
+    // Request to register Daily Updates
+    conv.ask(new RegisterUpdate({
+        intent: "reduce_emission_home_appliances_intent",
+        frequency: "DAILY"
+    }));
+});
+
+app.intent("Setup_Daily_Updates_Shopping", conv => {
+    // Request to register Daily Updates
+    conv.ask(new RegisterUpdate({
+        intent: "reduce_emission_shopping_intent",
+        frequency: "DAILY"
+    }));
+});
+
+app.intent("Setup_Daily_Updates_Air", conv => {
+    // Request to register Daily Updates
+    conv.ask(new RegisterUpdate({
+        intent: "reduce_emission_air_travel_intent",
+        frequency: "DAILY"
+    }));
+});
+
+app.intent("Setup_Daily_Updates_Transportation", conv => {
+    // Request to register Daily Updates
+    conv.ask(new RegisterUpdate({
+        intent: "reduce_emission_transportation_intent",
+        frequency: "DAILY"
+    }));
+});
+
+app.intent("Setup_Daily_Updates_Food", conv => {
+    // Request to register Daily Updates
+    conv.ask(new RegisterUpdate({
+        intent: "reduce_emission_food_intent",
+        frequency: "DAILY"
+    }));
+});
+
+app.intent("Setup_Daily_Updates_Ngo", conv => {
+    // Request to register Daily Updates
+    conv.ask(new RegisterUpdate({
+        intent: "reduce_emission_ngo_intent",
+        frequency: "DAILY"
+    }));
+});
+
+
+app.intent("Finish_Daily_Updates_Setup", (conv, params, registered) => {
+    if (registered && registered.status === "OK") {
+        conv.close("OK. I'll start giving you daily updates. See you again.");
+    } else {
+        reply(conv, "I won't send you daily reminders. Can I help you with anything else?");
     }
 });
 
