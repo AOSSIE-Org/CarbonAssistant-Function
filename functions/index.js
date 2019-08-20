@@ -107,23 +107,24 @@ app.intent('permission_confirmation', (conv, parameters, permission_allowed) => 
 
 app.intent('help_intent', (conv) => {
     //google home
-    if (!conv.surface.capabilities.has('actions.capability.SCREEN_OUTPUT')) {
-        conv.ask(`I can try to answer some of your emission related questions. I promise to make it less boring by giving you info that you can relate with!I can provide you with info regarding emissions released due to appliance usage, flight travels, train journeys, road trips, fuel consumption, poultry and meat generation and electricity generation across the world.  You can ask me about how much emissions your washing machine produces, or, how much pollution you contribute to by taking a flight to Mauritius. I support limited number of categories right now but trust me I'll get better over time.`)
-    } else if (conv.surface.capabilities.has('actions.capability.SCREEN_OUTPUT')) {
-        //display screens
+    if (!conv.surface.capabilities.has('actions.capability.SCREEN_OUTPUT')){
+        conv.ask(`I can try to answer some of your emission related questions. I promise to make it less boring by giving you info that you can relate with!I can provide you with info regarding emissions released due to appliance usage, flight travels, train journeys, road trips, fuel consumption, poultry and meat generation and electricity generation across the world.  You can ask me about how much emissions your washing machine produces, or, how much pollution you contribute to by taking a flight to Mauritius. I can also help you in reducing your carbon footprint by following various simple methods. I support limited number of categories right now but trust me I'll get better over time.`)
+    } else if(conv.surface.capabilities.has('actions.capability.SCREEN_OUTPUT')){
+    //display screens
         conv.ask(new SimpleResponse({
-            speech: "I can tell you the emissions produced by different activities and appliances. Try asking me about them. You can also choose the category you want to know the emission of, from the menu list.",
+            speech: "I can help you in reducing your carbon footprint also I can tell you the emissions produced by different activities and appliances. Try asking me about them. You can also choose the category you want to know the emission of, from the menu list.",
             text: "Here's what I can do:"
         }));
         conv.ask(new BasicCard({
             title: '',
-            text: "**Appliances**  \n  \ne.g: *How much emissions are produced if a radio is used for 3 hours in Canada?* \n  \n  \n**Travel \u0026 Journeys**  \n  \nYou can ask about emissions generated due to a travel by flight," +
-                " train or a private vehicle by road between two places, optionally, with no. of passengers if you" +
-                "know.  \n  \ne.g: *How much emissions are produced due to flight from Mumbai to Seattle airport with 1202 passengers?*    \n  \n \n You can choose the category from the menu to know the emission related to it.  \n  \nThere is much more I can do. Click Read More to know more.",
-
-            buttons: [{
-                title: "Read More",
-                openUrlAction: {
+            text: "**Appliances**  \n  \ne.g: *How much emissions are produced if a radio is used for 3 hours in Canada?* \n  \n  \n**Travel \u0026 Journeys**  \n  \nYou can ask about emissions generated due to a travel by flight,"
+             +" train or a private vehicle by road between two places, optionally, with no. of passengers if you"+
+              "know.  \n  \ne.g: *How much emissions are produced due to flight from Mumbai to Seattle airport with 1202 passengers?*    \n  \n \n**Reducing Emissions** \n  \nI can help in reducing your carbon footprint by various simple methods.\n  \ne.g: *You can always reduce carbon emissions by planting a tree or recycling and composting.* \n  \nYou can choose the category from the menu to know the emission related to it.  \n  \nThere is much more I can do. Click Read More to know more.",
+            
+            buttons: [
+                {
+                 title: "Read More",
+                 openUrlAction: {
                     url: "https://gitlab.com/aossie/CarbonAssistant-Function/tree/master/docs/Usage.md",
                     urlTypeHint: "URL_TYPE_HINT_UNSPECIFIED"
                 }
@@ -189,6 +190,37 @@ app.intent('menu_option_handler', (conv, parameters, option) => { //intent to ha
         conv.followup('agriculture_intent_triggered', {
             option: option,
         });
+    } else if(option == 'Reduce Emission'){
+        conv.followup('reduceEmission_intent_triggered', {
+            option: option,
+        });
+    } 
+});
+
+app.intent('reduceEmission_intent', (conv) => {
+    //google home
+    if (!conv.surface.capabilities.has('actions.capability.SCREEN_OUTPUT')){
+        conv.ask(`There are few ways following which you can help reduce carbon emission. For example, You can join a NGO or plant a tree, you can reduce your emission in daily transportation, you can reduce the emission by donating clothes or by avoiding food wastage, You can also help by reducing emission in home. Let me how you want to reduce emission and I will help you with it.`)
+    } else if(conv.surface.capabilities.has('actions.capability.SCREEN_OUTPUT')){
+    //display screens
+        conv.ask(new SimpleResponse({
+            speech: "I can help you with reducing emission in couple of fields, let me know which one you want to begin with",
+            text: "Here are couple of ways to reduce emission :-"
+        }));
+        conv.ask(new BasicCard({
+            title: '',
+            text: "**1. NGO** \n  \n *You can be a member of an NGO and help the community in reducing emission* \n  \n  \n**2. Food and Composting** \n  \n *You can reduce emission by using organic products and reducing wastage* \n  \n  \n**3. Transportation** \n  \n *You can can reduce emission in your daily transportation by taking alternatives to driving.* \n  \n  \n**4. Clothes and Shopping** \n  \n *You can reduce emission by donating clothes and not using plastic bags* \n  \n  \n**5. Trees** \n  \n *You can always reduce emission be planting trees* \n  \n  \n**6. Air Travel** \n  \n *You can reduce emission in air travel by avoiding flying when possible, fly less frequently, fly shorter distances, and fly economy class.* \n  \n  \n**7. Go Green at Home** \n  \n *You reduce emission at home by turning off lights when not required*",
+            buttons: [
+                {
+                 title: "Read More",
+                 openUrlAction: {
+                    url: "https://cotap.org/reduce-carbon-emissions/",
+                    urlTypeHint: "URL_TYPE_HINT_UNSPECIFIED"
+                    }
+                }
+            ]
+        }));
+        conv.ask(new Suggestions(["NGO", "Composting", "Transportation", "Go Green at Home", "Clothes and Shopping", "Trees", "Air Travel"]));
     }
 });
 
