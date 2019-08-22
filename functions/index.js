@@ -31,8 +31,7 @@ var vehicles_utils = require('./vehicles_utils');
 var poultry_utils = require('./poultry_utils');
 var agriculture = require('./agriculture');
 var agriculture_utils = require('./agriculture_utils');
-const dotenv = require('dotenv');
-dotenv.config();
+require('dotenv').config({path: __dirname + '/.env'});
 
 const app = dialogflow({
     debug: true
@@ -143,6 +142,8 @@ app.intent('menu_intent', (conv, option) => { //intent to show the list of categ
             title: "Category List",
             items: items
         }));
+    } else if (!conv.surface.capabilities.has('actions.capability.SCREEN_OUTPUT')){
+        conv.ask('There is a list of categories I support please choose one so that I can provide you the exact value of the emission for it. 1.Land. 2.Poultry. 3.Electricity. 4.Food Production. 5.Reduce Emission. 6.Appliances. 7.Train. 8.Fuel consumption. 9.Sector. 10.Vehicles. 11.Flights. 12.Agriculture.');
     }
 });
 

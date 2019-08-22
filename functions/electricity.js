@@ -1,5 +1,4 @@
-const dotenv = require('dotenv');
-dotenv.config();
+require('dotenv').config({path: __dirname + '/.env'});
 const BASE_URL = process.env.ENDPOINT;
 const ENDPOINT = BASE_URL + "/emissions";
 const ACCESS_KEY = process.env.ACCESS_KEY;
