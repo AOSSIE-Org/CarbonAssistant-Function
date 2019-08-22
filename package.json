@@ -8,6 +8,9 @@
   "scripts": {
     "test": "bst test"
   },
+  "engines": {
+    "node": "8"
+  },
   "dependencies": {
     "actions-on-google": "^2.2.0",
     "apiai": "^4.0.3",

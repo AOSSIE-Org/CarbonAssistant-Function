@@ -1,0 +1,112 @@
+# A simple example of skill test suite for google assistant
+--- # Configuration YAML document
+configuration:
+  locale: en-US
+
+---
+- test: help intent test for output screen displays
+- help_intent: 
+  - request.queryResult.queryText: "help"
+  - request.queryResult.parameters: ""
+  - request.queryResult.intent.name: "help_intent"
+  - request.originalDetectIntentRequest.payload.inputs[0].intent: "actions.intent.TEXT"
+  - request.originalDetectIntentRequest.payload.inputs[0].rawInputs[0].inputType: "KEYBOARD"
+  - request.originalDetectIntentRequest.payload.inputs[0].rawInputs[0].query: "help"
+  - request.originalDetectIntentRequest.payload.inputs[0].arguments[0].name: "text" 
+  - request.originalDetectIntentRequest.payload.inputs[0].arguments[0].rawText: "help"
+  - request.originalDetectIntentRequest.payload.inputs[0].arguments[0].textValue: "help"
+  - request.originalDetectIntentRequest.payload.surface.capabilities[0].name: "actions.capability.AUDIO_OUTPUT"
+  - request.originalDetectIntentRequest.payload.surface.capabilities[1].name: "actions.capability.SCREEN_OUTPUT"
+  - request.originalDetectIntentRequest.payload.surface.capabilities[2].name: "actions.capability.WEB_BROWSER"
+  - request.originalDetectIntentRequest.payload.surface.capabilities[3].name: "actions.capability.ACCOUNT_LINKING"
+  - request.originalDetectIntentRequest.payload.surface.capabilities[4].name: "actions.capability.MEDIA_RESPONSE_AUDIO"
+  - request.originalDetectIntentRequest.payload.user.userStorage: "{\"data\":{\"noPermission\":false,\"name\":{\"display\":\"Stream Co\",\"family\":\"Co\",\"given\":\"Stream\"},\"location\":{\"coordinates\":{\"latitude\":37.4219806,\"longitude\":-122.0841979}},\"lastParams\":{\"land_region\":\"India\",\"land_type\":\"cropland\"}}}"
+  - payload.google.richResponse.items[0].simpleResponse.textToSpeech: "I can help you in reducing your carbon footprint also I can tell you the emissions produced by different activities and appliances. Try asking me about them. You can also choose the category you want to know the emission of, from the menu list."
+  - payload.google.richResponse.items[0].simpleResponse.displayText: "Here's what I can do:"
+  - payload.google.richResponse.items[1].basicCard.formattedText: "**Appliances**  \n  \ne.g: *How much emissions are produced if a radio is used for 3 hours in Canada?* \n  \n  \n**Travel & Journeys**  \n  \nYou can ask about emissions generated due to a travel by flight, train or a private vehicle by road between two places, optionally, with no. of passengers if youknow.  \n  \ne.g: *How much emissions are produced due to flight from Mumbai to Seattle airport with 1202 passengers?*    \n  \n \n**Reducing Emissions** \n  \nI can help in reducing your carbon footprint by various simple methods.\n  \ne.g: *You can always reduce carbon emissions by planting a tree or recycling and composting.* \n  \nYou can choose the category from the menu to know the emission related to it.  \n  \nThere is much more I can do. Click Read More to know more."
+  - payload.google.richResponse.suggestions[0].title: "Show the menu"
+---
+
+---
+- test: help intent test for google home
+- help_intent: 
+  - request.queryResult.queryText: "help"
+  - request.queryResult.parameters: ""
+  - request.queryResult.intent.name: "help_intent"
+  - request.originalDetectIntentRequest.payload.inputs[0].intent: "actions.intent.TEXT"
+  - request.originalDetectIntentRequest.payload.inputs[0].rawInputs[0].inputType: "VOICE"
+  - request.originalDetectIntentRequest.payload.inputs[0].rawInputs[0].query: "help"
+  - request.originalDetectIntentRequest.payload.inputs[0].arguments[0].name: "text" 
+  - request.originalDetectIntentRequest.payload.inputs[0].arguments[0].rawText: "help"
+  - request.originalDetectIntentRequest.payload.inputs[0].arguments[0].textValue: "help"
+  - request.originalDetectIntentRequest.payload.surface.capabilities[0].name: "actions.capability.AUDIO_OUTPUT"
+  - request.originalDetectIntentRequest.payload.surface.capabilities[1].name: "actions.capability.ACCOUNT_LINKING"
+  - request.originalDetectIntentRequest.payload.surface.capabilities[2].name: "actions.capability.MEDIA_RESPONSE_AUDIO"
+  - request.originalDetectIntentRequest.payload.user.userStorage: "{\"data\":{\"noPermission\":false,\"name\":{\"display\":\"Stream Co\",\"family\":\"Co\",\"given\":\"Stream\"},\"location\":{\"coordinates\":{\"latitude\":37.4219806,\"longitude\":-122.0841979}},\"lastParams\":{\"land_region\":\"India\",\"land_type\":\"cropland\"}}}"
+  - payload.google.richResponse.items[0].simpleResponse.textToSpeech: "I can try to answer some of your emission related questions. I promise to make it less boring by giving you info that you can relate with!I can provide you with info regarding emissions released due to appliance usage, flight travels, train journeys, road trips, fuel consumption, poultry and meat generation and electricity generation across the world.  You can ask me about how much emissions your washing machine produces, or, how much pollution you contribute to by taking a flight to Mauritius. I can also help you in reducing your carbon footprint by following various simple methods. I support limited number of categories right now but trust me I'll get better over time."
+---
+
+---
+- test: test for menu intent for display screen
+- menu_intent: 
+  - request.queryResult.queryText: "menu"
+  - request.queryResult.parameters: ""
+  - request.queryResult.intent.name: "menu_intent"
+  - request.originalDetectIntentRequest.payload.inputs[0].intent: "actions.intent.TEXT"
+  - request.originalDetectIntentRequest.payload.inputs[0].rawInputs[0].inputType: "TOUCH"
+  - request.originalDetectIntentRequest.payload.inputs[0].rawInputs[0].query: "Show the menu"
+  - request.originalDetectIntentRequest.payload.inputs[0].arguments[0].name: "text" 
+  - request.originalDetectIntentRequest.payload.inputs[0].arguments[0].rawText: "Show the menu"
+  - request.originalDetectIntentRequest.payload.inputs[0].arguments[0].textValue: "Show the menu"
+  - request.originalDetectIntentRequest.payload.surface.capabilities[0].name: "actions.capability.AUDIO_OUTPUT"
+  - request.originalDetectIntentRequest.payload.surface.capabilities[1].name: "actions.capability.SCREEN_OUTPUT"
+  - request.originalDetectIntentRequest.payload.surface.capabilities[2].name: "actions.capability.WEB_BROWSER"
+  - request.originalDetectIntentRequest.payload.surface.capabilities[3].name: "actions.capability.ACCOUNT_LINKING"
+  - request.originalDetectIntentRequest.payload.surface.capabilities[4].name: "actions.capability.MEDIA_RESPONSE_AUDIO"
+  - request.originalDetectIntentRequest.payload.user.userStorage: "{\"data\":{\"noPermission\":false,\"name\":{\"display\":\"Stream Co\",\"family\":\"Co\",\"given\":\"Stream\"},\"location\":{\"coordinates\":{\"latitude\":37.4219806,\"longitude\":-122.0841979}},\"lastParams\":{\"land_region\":\"India\",\"land_type\":\"cropland\"}}}"
+  - payload.google.richResponse.items[0].simpleResponse.textToSpeech: "This is the list of all categories I support please choose one so that I can provide you the exact value of the emission for it."
+  - payload.google.systemIntent.data.listSelect.title: "Category List"
+  - payload.google.systemIntent.data.listSelect.items[0].description: "This covers emissions of greenhouse gases resulting from direct human-induced land use such as settlements and commercial uses, land-use change, and forestry activities."
+  - payload.google.systemIntent.data.listSelect.items[0].title: "Land"
+  - payload.google.systemIntent.data.listSelect.items[1].description: "This covers the net GHG emission due to the animal husbandry and raising of domesticated birds in the farms."
+  - payload.google.systemIntent.data.listSelect.items[1].title: "Poultry"  
+  - payload.google.systemIntent.data.listSelect.items[2].description: "This provides the estimated CO2 released due to the consumption or generation of electricity in the electric power industry"
+  - payload.google.systemIntent.data.listSelect.items[2].title: "Electricity"  
+  - payload.google.systemIntent.data.listSelect.items[3].description: "This provides the GHG emissions due to the food production by poultry farming and agricultural process."
+  - payload.google.systemIntent.data.listSelect.items[3].title: "Food Production"  
+  - payload.google.systemIntent.data.listSelect.items[4].description: "This provides a list of methods which will help you reduce your carbon footprint."
+  - payload.google.systemIntent.data.listSelect.items[4].title: "Reduce Emission"  
+  - payload.google.systemIntent.data.listSelect.items[5].description: "This provides a sum of all GHG emissions due to the use of electric appliances."
+  - payload.google.systemIntent.data.listSelect.items[5].title: "Appliances"  
+  - payload.google.systemIntent.data.listSelect.items[6].description: "This provides an estimated carbon emission due to the train journey."
+  - payload.google.systemIntent.data.listSelect.items[6].title: "Train"  
+  - payload.google.systemIntent.data.listSelect.items[7].description: "This covers the emission of GHG due to the burning of different fuels on site."
+  - payload.google.systemIntent.data.listSelect.items[7].title: "Fuel consumption"  
+  - payload.google.systemIntent.data.listSelect.items[8].description: "This covers the net GHG emission due to different sectors in a country per calendar year. "
+  - payload.google.systemIntent.data.listSelect.items[8].title: "Sector"  
+  - payload.google.systemIntent.data.listSelect.items[9].description: "This covers the emission of GHG on the individual level transportation from personal vehicles due to the burning of fossil fuels."
+  - payload.google.systemIntent.data.listSelect.items[9].title: "Vehicles"  
+  - payload.google.systemIntent.data.listSelect.items[10].description: "This provides a detailed carbon emission produced by flight travel."
+  - payload.google.systemIntent.data.listSelect.items[10].title: "Flights"  
+  - payload.google.systemIntent.data.listSelect.items[11].description: "This covers emission of greenhouse gases due to the agricultural activities in a country per calendar year."
+  - payload.google.systemIntent.data.listSelect.items[11].title: "Agriculture"    
+---
+
+---
+- test: test for menu intent for google home
+- menu_intent: 
+  - request.queryResult.queryText: "menu"
+  - request.queryResult.parameters: ""
+  - request.queryResult.intent.name: "menu_intent"
+  - request.originalDetectIntentRequest.payload.inputs[0].intent: "actions.intent.TEXT"
+  - request.originalDetectIntentRequest.payload.inputs[0].rawInputs[0].inputType: "VOICE"
+  - request.originalDetectIntentRequest.payload.inputs[0].rawInputs[0].query: "Show the menu"
+  - request.originalDetectIntentRequest.payload.inputs[0].arguments[0].name: "text" 
+  - request.originalDetectIntentRequest.payload.inputs[0].arguments[0].rawText: "Show the menu"
+  - request.originalDetectIntentRequest.payload.inputs[0].arguments[0].textValue: "Show the menu"
+  - request.originalDetectIntentRequest.payload.surface.capabilities[0].name: "actions.capability.MEDIA_RESPONSE_AUDIO"
+  - request.originalDetectIntentRequest.payload.surface.capabilities[1].name: "actions.capability.AUDIO_OUTPUT"
+  - request.originalDetectIntentRequest.payload.surface.capabilities[2].name: "actions.capability.ACCOUNT_LINKING"
+  - request.originalDetectIntentRequest.payload.user.userStorage: "{\"data\":{\"noPermission\":false,\"name\":{\"display\":\"Stream Co\",\"family\":\"Co\",\"given\":\"Stream\"},\"location\":{\"coordinates\":{\"latitude\":37.4219806,\"longitude\":-122.0841979}},\"lastParams\":{\"land_region\":\"India\",\"land_type\":\"cropland\"}}}"
+  - payload.google.richResponse.items[0].simpleResponse.textToSpeech: 'There is a list of categories I support please choose one so that I can provide you the exact value of the emission for it. 1.Land. 2.Poultry. 3.Electricity. 4.Food Production. 5.Reduce Emission. 6.Appliances. 7.Train. 8.Fuel consumption. 9.Sector. 10.Vehicles. 11.Flights. 12.Agriculture.'
+---

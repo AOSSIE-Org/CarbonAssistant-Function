@@ -1,5 +1,4 @@
-const dotenv = require('dotenv');
-dotenv.config();
+require('dotenv').config({path: __dirname + '/.env'});
 const requestLib = require('request');
 const utils = require('./utils');
 const reverseLookupManager = require('./reverseLookupManager');

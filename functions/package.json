@@ -10,6 +10,9 @@
     "deploy": "firebase deploy --only functions:dialogflowFirebaseFulfillment",
     "test": "bst test"
   },
+  "engines": {
+    "node": "8"
+  },
   "dependencies": {
     "actions-on-google": "^2.9.1",
     "apiai": "^4.0.3",
