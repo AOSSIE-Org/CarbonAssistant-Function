@@ -1,7 +1,6 @@
 const requestLib = require('request');
 const utils = require('./utils');
-const dotenv = require('dotenv');
-dotenv.config();
+require('dotenv').config({path: __dirname + '/.env'});
 const BASE_URL = process.env.ENDPOINT;
 const EMISSION_ENDPOINT = BASE_URL + "/comparer";
 const API_KEY = process.env.ACCESS_KEY;
