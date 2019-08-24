@@ -183,9 +183,6 @@ exports.processRequest = function(conv, parameters, requestReverseLookup) {
                     }
                 } else {
                     // Handle errors here
-                    if (!error)
-                        error = body.error;
-                    //Handle the error in the utils function
                     conv.close(utils.handleError(error, response, body));
                     resolve();
                 }
