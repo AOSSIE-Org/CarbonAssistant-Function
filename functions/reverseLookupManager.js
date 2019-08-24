@@ -27,6 +27,13 @@ function constructResponse(result) {
         let passengers = result.match.passengers;
         response = "A train from " + sourceCity + " to " + destinationCity + " carrying " + passengers + " passengers" +
             " will produce these many emissions";
+    } else if (result.section == "flights") {
+        let sourceCity = result.match.source;
+        let destinationCity = result.match.destination;
+        let distance = utils.roundWithPrecision(result.match.distance, 1);
+        let passengers = result.match.passengers;
+        response = "A flight from " + sourceCity + " to " + destinationCity + " carrying " + passengers + " passengers" +
+            " will produce these many emissions";
     }
 	console.log("Reverselookup response: "+response);
 	return response;
