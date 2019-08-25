@@ -8,13 +8,7 @@
     {
       "resetContexts": false,
       "action": "land_intent.land_intent-custom",
-      "affectedContexts": [
-        {
-          "name": "land_intent-followup",
-          "parameters": {},
-          "lifespan": 5
-        }
-      ],
+      "affectedContexts": [],
       "parameters": [
         {
           "required": false,

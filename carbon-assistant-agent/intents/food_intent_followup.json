@@ -8,13 +8,7 @@
     {
       "resetContexts": false,
       "action": "food_intent.food_intent-custom",
-      "affectedContexts": [
-        {
-          "name": "food_intent-followup",
-          "parameters": {},
-          "lifespan": 5
-        }
-      ],
+      "affectedContexts": [],
       "parameters": [
         {
           "required": false,

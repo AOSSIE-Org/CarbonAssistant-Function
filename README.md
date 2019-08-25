@@ -11,9 +11,14 @@ The Dialogflow agent which handles NLP, is combined with the firebase function w
   - Support across all categories such as obtaining emissions caused due to a road trip to somewhere OR due to train journey between two stations AND even due to Flights between two airports along with specification of number of passengers (e.g: "How much emissions are produced after I take a flight from Mumbai to Dubai ?")
   - Support for appliance usage along with their types, region of usage and their counts. (e.g: How much emissions are caused by 2 CRT TVs used for 11 hours in Canada?")
   - Support for queries related to emissions caused by meat and poultry productions (e.g: "What emissions are released for 3 kg beef production ?")
+  - Support for queries related to global land related emissions (e.g: "What will be the total emission in India due to forest land?")
+  - Support for emissions due to various sectors (e.g: "Net emissions due to the energy sector in Bangladesh?")
+  - Support for queries related to emissions caused by agricultural process (e.g: "What is the carbon emission due to the process of rice cultivation in India?")
+  - Support for queries related to reducing carbon emission process (e.g: "How can I reduce emissions?")
   - Reverse lookup and provide user-relatable emission comparisons (Provides you real-life examples which produce similar emissions)
   - Context management support (Able to remember what you said last and continue conversation over it)
   - Slot filling support (Able to recognize and re-enquire missing pieces of required information in your query)
+  - Daily Updates support (Able to notify about a particular emission reduction category or method)
 
 The deployment of the Google Assistant Action is done in two parts: Deployment of DialogFlow Agent and Deployment of Firebase Cloud Function.
 
@@ -25,7 +30,7 @@ The deployment of the Google Assistant Action is done in two parts: Deployment o
 - Once you have a zip, head to [Actions on Google](https://console.actions.google.com/u/0/) and create a new project by entering a name and country for the project
 - Once the project is created, you will be on the Onboarding screen. Select 'Conversational' on this screen.
 - Fill in the basic details about your action such as invocation phrase, voice etc in the 'Quick Setup' section.
-- In 'Build your Action' section, select 'Add new action' and select 'Custom Intent' in the consecutive dialog box and click 'Build'
+- In 'Action' section, select 'Build your action' and select 'Custom Intent' in the consecutive dialog box and click 'Build'
 - You will redirected to DialogFlow's project page. On this screen - select your timezone - don't change the language. Then select 'Create' and wait for the process to complete.
 - Once done, select the Settings gear icon at the top left and then go to Export and Import tab.
 - On this screen, select 'Restore from Zip' and restore the zip you created!
@@ -43,13 +48,10 @@ We will use firebase CLI to deploy our cloud function. Make sure you have node v
 
 In command line:
 - Clone this repository and `cd` to it.
-- Create a config.js in the functions directory with following contents:
+- Create an .env file in the functions directory with following contents:
 ``` javascript
-var config = {
-    endpoint: 'https://www.carbonhub.org/v1',
-    access_key: '<insert-your-carbonfootprint-key>'
-};
-module.exports = config;
+    ENDPOINT=https://www.carbonhub.org/v1
+    ACCESS_KEY=<insert-your-carbonfootprint-key>
 ```
 You can get your CarbonFootprint key by signing up with https://www.carbonhub.org/
 
@@ -106,6 +108,10 @@ References and How to report bugs
 - Detailed deployment documentation [here](https://developers.google.com/actions/dialogflow/deploy-fulfillment)
 - Actions on Google docs: https://developers.google.com/actions/
 - If you find any issues, please open a bug here on Gitlab.
+
+Contributing and Testing
+---
+- Refer to the detailed contribution documentation [here](https://gitlab.com/aossie/CarbonAssistant-Function/blob/master/docs/Contribution.md)
 
 License
 ----

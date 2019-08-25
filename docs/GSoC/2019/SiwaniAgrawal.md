@@ -37,63 +37,63 @@ I would like to thank every AOSSIE member, especially my mentors, for being so n
 
 ## Merge Requests
 
-1. [Merge Request !50](https://gitlab.com/aossie/CarbonAssistant-Function/merge_requests/50) [*Merged*] - Wizard-Support for Land related emission queries
+1. [Merge Request !50](https://gitlab.com/aossie/CarbonAssistant-Function/merge_requests/50) - Wizard-Support for Land related emission queries
     *  Adds the menu support which gives a list of categories for the user to choose one.
     *  Adds slot filling feature for `Region`
     *  Adds a list of `Land Types`
     *  Adds both comparative and number based response along with context-management       support.
 
-2. [Merge Request !51](https://gitlab.com/aossie/CarbonAssistant-Function/merge_requests/51) [*Merged*] - Wizard support for Food related emission queries
+2. [Merge Request !51](https://gitlab.com/aossie/CarbonAssistant-Function/merge_requests/51) - Wizard support for Food related emission queries
     *  Menu support added for `Food`
     * Adds slot filling feature for `Region`
     * Adds a list of `Food Types`
     * Adds both comparative and number based response along with context-management support.
 
-3. [Merge Request !52](https://gitlab.com/aossie/CarbonAssistant-Function/merge_requests/52) [*Merged*] -  Wizard support for Sector related emission queries
+3. [Merge Request !52](https://gitlab.com/aossie/CarbonAssistant-Function/merge_requests/52) -  Wizard support for Sector related emission queries
     * Adds the menu support which gives a list of categories for the user to choose one.
     * Adds slot filling feature for `Region`
     * Adds a list of `Sector Types`
     * Adds both comparative and number based response along with context-management support.
 
-4. [Merge Request !53](https://gitlab.com/aossie/CarbonAssistant-Function/merge_requests/53) [*Merged*] -  Wizard support for Agriculture related emission queries
+4. [Merge Request !53](https://gitlab.com/aossie/CarbonAssistant-Function/merge_requests/53) -  Wizard support for Agriculture related emission queries
     * Adds menu support for `Agriculture`
     * Adds slot filling feature for `Region`
     * Adds a list of `Agriculture Types`
     * Adds both comparative and number based response along with context-management support.
 
-5. [Merge Request !54](https://gitlab.com/aossie/CarbonAssistant-Function/merge_requests/54) [*Merged*] -  Script updated to remove the required parameters
+5. [Merge Request !54](https://gitlab.com/aossie/CarbonAssistant-Function/merge_requests/54) -  Script updated to remove the required parameters
     * Removes updated parameters from the intents' JSON files.
     * Removes lastUpdate parameters from the intents' JSON files.
 
-6. [Merge Request !56](https://gitlab.com/aossie/CarbonAssistant-Function/merge_requests/56) [*Merged*] -  Wizard support for electricity related emission queries
+6. [Merge Request !56](https://gitlab.com/aossie/CarbonAssistant-Function/merge_requests/56) -  Wizard support for electricity related emission queries
     * Suggests parameter Region i.e the consumption country
     * Suggests parameter Quantity i.e the consumption quantity
     * Added both comparative and number based response along with context-management support.
 
-7. [Merge Request !57](https://gitlab.com/aossie/CarbonAssistant-Function/merge_requests/57) [*Merged*] -  Updated the Carbon-Assistant-Agent folder
+7. [Merge Request !57](https://gitlab.com/aossie/CarbonAssistant-Function/merge_requests/57) -  Updated the Carbon-Assistant-Agent folder
     * Removed the parameter updated from the JSON files.
     * Removed the parameter lastUpdate from the JSON files.
 
-8. [Merge Request !58](https://gitlab.com/aossie/CarbonAssistant-Function/merge_requests/58) [*Merged*] -  Enhancing the emission-response
+8. [Merge Request !58](https://gitlab.com/aossie/CarbonAssistant-Function/merge_requests/58) -  Enhancing the emission-response
     * In the emission-related response, a BasicCard with a button linking to [visualizations](https://www.carbonhub.org/) has been added.
 
-9. [Merge Request !59](https://gitlab.com/aossie/CarbonAssistant-Function/merge_requests/59) [*Merged*] -  Wizard Support for Trains related emission queries
+9. [Merge Request !59](https://gitlab.com/aossie/CarbonAssistant-Function/merge_requests/59) -  Wizard Support for Trains related emission queries
     * Menu support added for `Trains`
     * Slot filling feature added for `origin` i.e. the source city
     * Slot filling feature added for `destination` i.e. the destination city
     * Suggests parameter `passengers` i.e the number of passengers traveling
     * Adds context-management support.
 
-10. [Merge Request !60](https://gitlab.com/aossie/CarbonAssistant-Function/merge_requests/60) [*Merged*] -  Wizard support for Flights related emission queries
+10. [Merge Request !60](https://gitlab.com/aossie/CarbonAssistant-Function/merge_requests/60) -  Wizard support for Flights related emission queries
     * Menu support added for `Flights`
     * Slot filling feature added for `origin` i.e. the source city
     * Slot filling feature added for `destination` i.e. the destination city
     * Suggests parameter `passengers` i.e the number of passengers traveling
     * Adds context-management support.
 
-11. [Merge Request !61](https://gitlab.com/aossie/CarbonAssistant-Function/merge_requests/61) [*Merged*] -  Error handling of the intents' JS files
+11. [Merge Request !61](https://gitlab.com/aossie/CarbonAssistant-Function/merge_requests/61) -  Error handling of the intents' JS files
 
-12. [Merge Request !62](https://gitlab.com/aossie/CarbonAssistant-Function/merge_requests/62) [*Merged*] -  Wizard support for fuels related emission queries
+12. [Merge Request !62](https://gitlab.com/aossie/CarbonAssistant-Function/merge_requests/62) -  Wizard support for fuels related emission queries
     * Menu support added for `Fuels`
     * Suggests parameter `Emission Type`
     * Suggests parameter `Consumption Quantity`
@@ -101,7 +101,7 @@ I would like to thank every AOSSIE member, especially my mentors, for being so n
     * Google home response added
     * Adds context-management support.
 
-13. [Merge Request !63](https://gitlab.com/aossie/CarbonAssistant-Function/merge_requests/63) [*Merged*] -  Wizard support for Poultry related emission queries
+13. [Merge Request !63](https://gitlab.com/aossie/CarbonAssistant-Function/merge_requests/63) -  Wizard support for Poultry related emission queries
     * Menu support added for `Poultry`
     * Suggests parameter `Region`
     * Suggests parameter `Quantity`
@@ -110,7 +110,7 @@ I would like to thank every AOSSIE member, especially my mentors, for being so n
     * Adds context-management support.
     * Google home response added for non-display screen devices.
 
-14. [Merge Request !64](https://gitlab.com/aossie/CarbonAssistant-Function/merge_requests/64) [*Merged*] -  Wizard support for vehicles related emission queries
+14. [Merge Request !64](https://gitlab.com/aossie/CarbonAssistant-Function/merge_requests/64) -  Wizard support for vehicles related emission queries
     * Adds the menu support which gives a list of categories for the user to choose one.
     * Adds slot filling feature for `Origin`
     * Adds slot filling feature for `Destination`
@@ -119,7 +119,7 @@ I would like to thank every AOSSIE member, especially my mentors, for being so n
     * Adds support for both, querying directly and through the wizard system.
     * Adds both comparative and number based response along with context-management support.
 
-15. [Merge Request !65](https://gitlab.com/aossie/CarbonAssistant-Function/merge_requests/65) [*Merged*] - Wizard support for appliances related emission queries
+15. [Merge Request !65](https://gitlab.com/aossie/CarbonAssistant-Function/merge_requests/65) - Wizard support for appliances related emission queries
     * Adds the menu support which gives a list of categories for the user to choose one.
     * Adds slot filling feature for `Region`
     * Adds a list of `Appliances`
@@ -128,74 +128,74 @@ I would like to thank every AOSSIE member, especially my mentors, for being so n
     * Adds support for both, querying directly and through the wizard support.
     * Adds both comparative and number based response along with context-management support.
 
-16. [Merge Request !66](https://gitlab.com/aossie/CarbonAssistant-Function/merge_requests/66) [*Merged*] -  Indentation of JS files
+16. [Merge Request !66](https://gitlab.com/aossie/CarbonAssistant-Function/merge_requests/66) -  Indentation of JS files
 
-17. [Merge Request !67](https://gitlab.com/aossie/CarbonAssistant-Function/merge_requests/67) [*Merged*] -  Menu feature for reducing emissions' guidance system
+17. [Merge Request !67](https://gitlab.com/aossie/CarbonAssistant-Function/merge_requests/67) -  Menu feature for reducing emissions' guidance system
     * Details about Reducing Emissions added in help intent for google home support and display screen devices.
     * A Basic card along with button and description of different categories is added
     * Menu support is added for this guidance system
     * Google Home response is added
     * Suggestion chips for different categories is added
 
-18. [Merge Request !68](https://gitlab.com/aossie/CarbonAssistant-Function/merge_requests/68) [*Merged*] -  Support for fields under reduce emission guidance system
+18. [Merge Request !68](https://gitlab.com/aossie/CarbonAssistant-Function/merge_requests/68) -  Support for fields under reduce emission guidance system
     * Support for all the categories, `NGO`, `Food`, `Air Travel`, `Transportation`, `Clothes and Shopping`, `Trees` and `Home Appliances` added under the reduce emission guidance
 
-19. [Merge Request !69](https://gitlab.com/aossie/CarbonAssistant-Function/merge_requests/69) [*Merged*] -  Unit test for land intents
+19. [Merge Request !69](https://gitlab.com/aossie/CarbonAssistant-Function/merge_requests/69) -  Unit test for land intents
 
-20. [Merge Request !70](https://gitlab.com/aossie/CarbonAssistant-Function/merge_requests/70) [*Merged*] -  Unit-test for Food Intents
+20. [Merge Request !70](https://gitlab.com/aossie/CarbonAssistant-Function/merge_requests/70) -  Unit-test for Food Intents
 
-21. [Merge Request !71](https://gitlab.com/aossie/CarbonAssistant-Function/merge_requests/71) [*Merged*] -  Adds unit-test for flight intents
+21. [Merge Request !71](https://gitlab.com/aossie/CarbonAssistant-Function/merge_requests/71) -  Adds unit-test for flight intents
 
-22. [Merge Request !72](https://gitlab.com/aossie/CarbonAssistant-Function/merge_requests/72) [*Merged*] -  Adds unit-test for trains intent
+22. [Merge Request !72](https://gitlab.com/aossie/CarbonAssistant-Function/merge_requests/72) -  Adds unit-test for trains intent
 
-23. [Merge Request !73](https://gitlab.com/aossie/CarbonAssistant-Function/merge_requests/73) [*Merged*] -  Unit test for help and menu intents
+23. [Merge Request !73](https://gitlab.com/aossie/CarbonAssistant-Function/merge_requests/73) -  Unit test for help and menu intents
     * Adds unit test for both display screens and google home support
     * Adds unit test for menu and help intents
     * Covers the test for suggestion chips in the help intent
     * Covers the test for the list of categories in the menu intent    
 
-24. [Merge Request !74](https://gitlab.com/aossie/CarbonAssistant-Function/merge_requests/74) [*Open*] -  Google home response added for [land+food+flights+train+appliances]
+24. [Merge Request !74](https://gitlab.com/aossie/CarbonAssistant-Function/merge_requests/74) -  Google home response added for [land+food+flights+train+appliances]
 
-25. [Merge Request !75](https://gitlab.com/aossie/CarbonAssistant-Function/merge_requests/75) [*Merged*] -  Unit-test for appliances
+25. [Merge Request !75](https://gitlab.com/aossie/CarbonAssistant-Function/merge_requests/75) -  Unit-test for appliances
     * Added test for appliances intents
     * Added test for suggestion Chips, Basic Card, button and lists
     * Adds automated testing 
     * Added .env file and support to read environment variables.    
   
 
-26. [Merge Request !76](https://gitlab.com/aossie/CarbonAssistant-Function/merge_requests/76) [*Open*] -  Support to include comparative response for flights
+26. [Merge Request !76](https://gitlab.com/aossie/CarbonAssistant-Function/merge_requests/76) -  Support to include comparative response for flights
     * Adds support for comparative responses of flights in the `reverseLookupManager`   
 
-27. [Merge Request !77](https://gitlab.com/aossie/CarbonAssistant-Function/merge_requests/77) [*Merged*] -  Unit-test for Sectors Intents
+27. [Merge Request !77](https://gitlab.com/aossie/CarbonAssistant-Function/merge_requests/77) -  Unit-test for Sectors Intents
     * Added button feature for the sector intent's response which links to the visualization 
     * Added test for sector intents   
 
-28. [Merge Request !78](https://gitlab.com/aossie/CarbonAssistant-Function/merge_requests/78) [*Merged*] -  Unit-test for Electricity Intent
+28. [Merge Request !78](https://gitlab.com/aossie/CarbonAssistant-Function/merge_requests/78) -  Unit-test for Electricity Intent
 
-29. [Merge Request !79](https://gitlab.com/aossie/CarbonAssistant-Function/merge_requests/79) [*Open*] -  Google home responses added for [Sectors + Electricity]
+29. [Merge Request !79](https://gitlab.com/aossie/CarbonAssistant-Function/merge_requests/79) -  Google home responses added for [Sectors + Electricity]
 
-30. [Merge Request !80](https://gitlab.com/aossie/CarbonAssistant-Function/merge_requests/80) [*Merged*] -  Unit-test for fuels intents
+30. [Merge Request !80](https://gitlab.com/aossie/CarbonAssistant-Function/merge_requests/80) -  Unit-test for fuels intents
     * Added test for fuels intents   
     * Indented index.js file
 
-31. [Merge Request !81](https://gitlab.com/aossie/CarbonAssistant-Function/merge_requests/81) [*Merged*] -  Unit-test for vehicles intents
+31. [Merge Request !81](https://gitlab.com/aossie/CarbonAssistant-Function/merge_requests/81) -  Unit-test for vehicles intents
 
-32. [Merge Request !82](https://gitlab.com/aossie/CarbonAssistant-Function/merge_requests/82) [*Merged*] -  Unit-test for Poultry Intents
+32. [Merge Request !82](https://gitlab.com/aossie/CarbonAssistant-Function/merge_requests/82) -  Unit-test for Poultry Intents
 
-33. [Merge Request !83](https://gitlab.com/aossie/CarbonAssistant-Function/merge_requests/83) [*Open*] -  Adding error response and improving error handling
+33. [Merge Request !83](https://gitlab.com/aossie/CarbonAssistant-Function/merge_requests/83) -  Adding error response and improving error handling
     * Added error response for status code 400 when error is null   
 
-34. [Merge Request !84](https://gitlab.com/aossie/CarbonAssistant-Function/merge_requests/84) [*Merged*] -  Unit-test script for Agriculture Intent
+34. [Merge Request !84](https://gitlab.com/aossie/CarbonAssistant-Function/merge_requests/84) -  Unit-test script for Agriculture Intent
 
-35. [Merge Request !85](https://gitlab.com/aossie/CarbonAssistant-Function/merge_requests/85) [*Merged*] -  Updated the usage documentation
+35. [Merge Request !85](https://gitlab.com/aossie/CarbonAssistant-Function/merge_requests/85) -  Updated the usage documentation
 
-36. [Merge Request !86](https://gitlab.com/aossie/CarbonAssistant-Function/merge_requests/86) [*Open*] -  Unit-test script for Reducing_Emission Support
+36. [Merge Request !86](https://gitlab.com/aossie/CarbonAssistant-Function/merge_requests/86) -  Unit-test script for Reducing_Emission Support
     * Test for menu Intent for Reducing Emission
     * Test for all the categories under Reducing Emission i.e. Food and Composting, NGO, Transportation, Air Travel, Clothes and Shopping, Home Appliances, and Trees.
     * Test for basic Card, suggestion chips, buttons, and Daily Updates.
     * Path to .env file added in all the JS files
 
-37. [Merge Request !163](https://gitlab.com/aossie/CarbonFootprint-API/merge_requests/163) [*Open*] -  Adds support for comparative response for flights
+37. [Merge Request !163](https://gitlab.com/aossie/CarbonFootprint-API/merge_requests/163) -  Adds support for comparative response for flights
     * Adds support for the comparative response for flights in the `reverseLookupController`
 
 
