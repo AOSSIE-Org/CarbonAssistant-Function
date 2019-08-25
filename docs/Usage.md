@@ -26,3 +26,6 @@ OR
 
 **Sector**
 *"Net emissions due to the energy sector in Bangladesh?"*
+
+**Reduce Emission**
+*"How can I reduce emissions?"*

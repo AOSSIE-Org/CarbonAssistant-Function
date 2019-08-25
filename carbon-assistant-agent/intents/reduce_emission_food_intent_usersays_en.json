@@ -2,6 +2,16 @@
   {
     "data": [
       {
+        "text": "Composting",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0
+  },
+  {
+    "data": [
+      {
         "text": "Food ",
         "userDefined": false
       },
