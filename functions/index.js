@@ -1408,6 +1408,8 @@ app.intent('appliance_intent', (conv, parameters) => {
                 title: "Appliances List",
                 items: items
             }));
+        } else if (!conv.surface.capabilities.has('actions.capability.SCREEN_OUTPUT')){
+            conv.ask('Can you please say the appliance name so that I can provide you the exact value of the emission.');  
         }
     } else {
         if (!conv.user.storage.noPermission)
@@ -1421,8 +1423,12 @@ app.intent('appliance_duration_ask', (conv, parameters, option) => {
     conv.user.storage.lastParams.appliance = option;
     parameters = conv.user.storage.lastParams;
     if (parameters.duration == '') {
-        conv.ask("Would you like to provide the duration or the number of hours the appliance is being used?");
-        conv.ask(new Suggestions(["Yes, I'll provide", "No, thanks"]));
+        if (conv.surface.capabilities.has('actions.capability.SCREEN_OUTPUT')) {
+            conv.ask("Would you like to provide the duration or the number of hours the appliance is being used?");
+            conv.ask(new Suggestions(["Yes, I'll provide", "No, thanks"]));
+        } else if (!conv.surface.capabilities.has('actions.capability.SCREEN_OUTPUT')) {
+            conv.ask("Would you like to provide the duration or the number of hours the appliance is being used?");
+        }
     } else {
         if (!conv.user.storage.noPermission)
             return appliances.processRequest(conv, parameters, true);
@@ -1435,8 +1441,12 @@ app.intent('appliance_duration_yes', (conv, parameters) => {
     conv.user.storage.lastParams.duration = parameters.duration;
     parameters = conv.user.storage.lastParams;
     if (parameters.quantity == '') {
-        conv.ask("Would you like to provide the quantity or number of the appliance being used?");
-        conv.ask(new Suggestions(["Yes", "No, thanks"]));
+        if (conv.surface.capabilities.has('actions.capability.SCREEN_OUTPUT')) {
+            conv.ask("Would you like to provide the quantity or number of the appliance being used?");
+            conv.ask(new Suggestions(["Yes", "No, thanks"]));
+        } else if (!conv.surface.capabilities.has('actions.capability.SCREEN_OUTPUT')) {
+            conv.ask("Would you like to provide the quantity or number of the appliance being used?");
+        }
     } else {
         if (!conv.user.storage.noPermission)
             return appliances.processRequest(conv, parameters, true);
@@ -1448,8 +1458,12 @@ app.intent('appliance_duration_yes', (conv, parameters) => {
 app.intent('appliance_duration_no', (conv, parameters) => {
     parameters = conv.user.storage.lastParams;
     if (parameters.quantity == '') {
-        conv.ask("Would you like to provide the quantity or number of the appliance being used?");
-        conv.ask(new Suggestions(["Ok. I'll", "No, that's it"]));
+        if (conv.surface.capabilities.has('actions.capability.SCREEN_OUTPUT')) {
+            conv.ask("Would you like to provide the quantity or number of the appliance being used?");
+            conv.ask(new Suggestions(["Ok. I'll", "No, that's it"]));
+        } else if (conv.surface.capabilities.has('actions.capability.SCREEN_OUTPUT')) {
+            conv.ask("Would you like to provide the quantity or number of the appliance being used?");
+        }
     } else {
         if (!conv.user.storage.noPermission)
             return appliances.processRequest(conv, parameters, true);
@@ -2010,6 +2024,8 @@ app.intent('land_intent', (conv, parameters, option) => {
                 title: "Land Types List",
                 items: items
             }));
+        } else if(!conv.surface.capabilities.has('actions.capability.SCREEN_OUTPUT')) {
+            conv.ask('This is the list of land types please choose one so that I can provide you the exact value of the emission. 1.Cropland, it is the land that is suited to or used for crops. 2.Forest land, it is covered with forest or reserved for the growth of forests. 3.Grassland, it is the land in which the vegetation is dominated by a continuous cover of grasses. 4.Burning Biomass, it is the combustion of organic matter.');
         }
         conv.user.storage.lastParams = parameters;
     } else {
@@ -2051,6 +2067,8 @@ app.intent('food_intent', (conv, parameters, option) => {
                 title: "Food Types List",
                 items: items
             }));
+        } else if (!conv.surface.capabilities.has('actions.capability.SCREEN_OUTPUT')){
+            conv.ask("This is the list of food types please choose one so that I can provide you the exact value of the emission. 1.Cereals excluding rice. 2.Eggs. 3.Cattle meat. 4.Chicken meat. 5.Goat meat. 6.Sheep meat. 7.Camel's milk. 8.Cow's milk. 9.Goat's milk. 10.Sheep's milk. 11.Rice paddy.");
         }
         conv.user.storage.lastParams = parameters;
     } else {
