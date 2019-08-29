@@ -1222,9 +1222,13 @@ app.intent('fuels_intent-followup', (conv, parameters, option) => {
 
 app.intent('electricity_intent', (conv, parameters) => {
     conv.user.storage.lastParams = parameters;
-    if (parameters.geo_country == '') {
-        conv.ask("Would you like to provide the consumption country name?");
-        conv.ask(new Suggestions(["Yes, I'll provide", "No, thanks"]));
+    if(parameters.geo_country == ''){
+        if (conv.surface.capabilities.has('actions.capability.SCREEN_OUTPUT')) {
+            conv.ask("Would you like to provide the consumption country name?");
+            conv.ask(new Suggestions(["Yes, I'll provide", "No, thanks"]));
+        } else if (!conv.surface.capabilities.has('actions.capability.SCREEN_OUTPUT')) {
+            conv.ask("Would you like to provide the consumption country name?");
+        }
     } else {
         if (!conv.user.storage.noPermission)
             return electricity.processRequest(conv, parameters, true);
@@ -1236,9 +1240,13 @@ app.intent('electricity_intent', (conv, parameters) => {
 app.intent('electricity_intent_region_yes', (conv, parameters) => {
     conv.user.storage.lastParams.geo_country = parameters.geo_country;
     parameters = conv.user.storage.lastParams;
-    if (parameters.quantity == '') {
-        conv.ask("Would you like to provide the consumption quantity or the unit?");
-        conv.ask(new Suggestions(["Yes", "No, thanks"]));
+    if(parameters.quantity == ''){
+        if (conv.surface.capabilities.has('actions.capability.SCREEN_OUTPUT')) {
+            conv.ask("Would you like to provide the consumption quantity or the unit?");
+            conv.ask(new Suggestions(["Yes", "No, thanks"]));
+        } else if (!conv.surface.capabilities.has('actions.capability.SCREEN_OUTPUT')) {
+            conv.ask("Would you like to provide the consumption quantity or the unit?");
+        }
     } else {
         if (!conv.user.storage.noPermission)
             return electricity.processRequest(conv, parameters, true);
@@ -1249,9 +1257,13 @@ app.intent('electricity_intent_region_yes', (conv, parameters) => {
 
 app.intent('electricity_intent_region_no', (conv, parameters) => {
     parameters = conv.user.storage.lastParams;
-    if (parameters.quantity == '') {
-        conv.ask("Would you like to provide the consumption quantity or the unit?");
-        conv.ask(new Suggestions(["Ok. I'll", "No, that's it"]));
+    if(parameters.quantity == ''){
+        if (conv.surface.capabilities.has('actions.capability.SCREEN_OUTPUT')) {
+            conv.ask("Would you like to provide the consumption quantity or the unit?");
+            conv.ask(new Suggestions(["Ok. I'll", "No, that's it"]));
+        } else if (!conv.surface.capabilities.has('actions.capability.SCREEN_OUTPUT')) {
+            conv.ask("Would you like to provide the consumption quantity or the unit?");
+        }
     } else {
         if (!conv.user.storage.noPermission)
             return electricity.processRequest(conv, parameters, true);
@@ -2113,10 +2125,13 @@ app.intent('sector_intent', (conv, parameters, option) => {
                 title: "Sector Types List",
                 items: items
             }));
+        } else if(!conv.surface.capabilities.has('actions.capability.SCREEN_OUTPUT')) {
+            conv.ask('This is the list of sector types please choose one so that I can provide you the exact value of the emission. 1.Energy sector, it is a category of stocks that relate to producing or supplying energy. 2.Industry sector, it makes finished products which can then be further utilized by other sectors. 3.Waste sector, it is considered to include municipal or domestic waste and industrial waste.');
         }
         conv.user.storage.lastParams = parameters;
     } else {
         if (!conv.user.storage.noPermission)
+
             return sector.processRequest(conv, parameters, true);
         else
             return sector.processRequest(conv, parameters, false);
