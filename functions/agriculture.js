@@ -24,51 +24,54 @@ exports.processRequest = function(conv, parameters, requestReverseLookup, option
                 }
             };
 
-            requestLib(options, function(error, response, body) {
+            requestLib(options,   function(error, response, body){
                 const button = "/visuals/agriculture";
                 const emissionResponse = "The net emissions or removals  due to this agriculture type are given below";
                 if (!error && response.statusCode === 200) {
                     let emission = body.quantity;
                     let finalResponseString = 'Net emissions for ' + agriculture_type + ' in ' + agriculture_region + ' are ' + emission;
-
+                    let unit = body.unit;
                     if (requestReverseLookup) {
                         var emissions = {
                             "CO2": emission
                         };
-                        let reverseLookup = reverseLookupManager.reverseLookup(emissions, conv.user.storage.location.coordinates);
+                        let reverseLookup =   reverseLookupManager.reverseLookup(emissions, conv.user.storage.location.coordinates);
                         reverseLookup
                             .then((responses) => {
                                 let selectedResponse = utils.getRandomNumber(0, responses.length - 1);
-                                let unit = body.unit;
+                                
                                 if (unit !== undefined) {
                                     finalResponseString = finalResponseString + ' ' + unit + ' \n\n' + responses[selectedResponse];
                                     utils.richResponse(conv, finalResponseString, responses[selectedResponse], button);
-                                    resolve();
+                                    
                                 } else {
                                     finalResponseString = finalResponseString + ' kg' + ' \n\n' + responses[selectedResponse];
                                     utils.richResponse(conv, finalResponseString, responses[selectedResponse], button);
-                                    resolve();
+                                    
                                 }
+                                resolve();
                             })
                             .catch((err) => {
-                                let unit = body.unit;
+                                
                                 if (unit !== undefined) {
                                     utils.richResponse(conv, finalResponseString + ' ' + unit, emissionResponse, button);
-                                    resolve();
+                                   
                                 } else {
                                     utils.richResponse(conv, finalResponseString + ' kg', emissionResponse, button);
-                                    resolve();
+                                    
                                 }
+                                resolve();
                             });
                     } else {
-                        let unit = body.unit;
+                        
                         if (unit !== undefined) {
                             utils.richResponse(conv, finalResponseString + ' ' + unit, emissionResponse, button);
-                            resolve();
+                           
                         } else {
                             utils.richResponse(conv, finalResponseString + ' kg', emissionResponse, button);
-                            resolve();
+                            
                         }
+                        resolve();
                     }
 
                 } else {
